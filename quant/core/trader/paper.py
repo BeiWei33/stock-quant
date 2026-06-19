@@ -90,33 +90,20 @@ class PaperTradingEngine:
                 factors=factors,
             )
         )
-        # Apply price range filter on signals
+        # Apply price range filter on signals (BUY signals only, positions stay)
         if price_min is not None or price_max is not None:
             low = price_min if price_min is not None else 0
             high = price_max if price_max is not None else float("inf")
             latest_price = history[history["trade_date"] == trade_date][["ts_code", "close"]]
             if not signals.empty and not latest_price.empty:
+                # Only filter BUY signals, keep all existing positions intact
+                held_codes = set()
+                if current_positions is not None and not current_positions.empty:
+                    held_codes = set(current_positions["ts_code"])
                 signals = signals.merge(latest_price, on="ts_code", how="inner")
-                signals = signals[(signals["close"] >= low) & (signals["close"] <= high)]
-                signals = signals.drop(columns=["close"]).reset_index(drop=True)
-        # 将被过滤掉的持仓股恢复为 SELL 信号（确保持仓股能触发卖出）
-        if current_positions is not None and not current_positions.empty:
-            held_codes = set(current_positions["ts_code"])
-            filtered_out = held_codes - set(signals["ts_code"])
-            if filtered_out:
-                sell_frames = []
-                for code in filtered_out:
-                    sell_frames.append(pd.DataFrame([{
-                        "trade_date": trade_date,
-                        "ts_code": code,
-                        "strategy_id": strategy.strategy_id,
-                        "strategy_version": strategy.strategy_version,
-                        "signal_type": "SELL",
-                        "score": 0.0,
-                        "reason": "持仓股价超出范围，触发卖出",
-                    }]))
-                if sell_frames:
-                    signals = pd.concat([signals] + sell_frames, ignore_index=True)
+                buy_mask = (signals["signal_type"] == "BUY") & ((signals["close"] < low) | (signals["close"] > high))
+                not_buy_or_held = (signals["signal_type"] != "BUY") | (signals["ts_code"].isin(held_codes))
+                signals = signals[~buy_mask | not_buy_or_held].drop(columns=["close"]).reset_index(drop=True)
         target_weights = self.portfolio_engine.build_target_weights(signals, universe_snapshot)
         risk_decision = self.risk_engine.check_target_weights(target_weights)
         if not risk_decision.allowed:
