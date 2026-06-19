@@ -80,6 +80,8 @@ class DailyAppConfig:
             horizon=int(workflow.get("horizon", 5)),
             quantiles=int(workflow.get("quantiles", 5)),
             initial_cash=float(workflow.get("initial_cash", 1_000_000)),
+            price_min=workflow.get("price_min"),
+            price_max=workflow.get("price_max"),
             apply_fills=bool(workflow.get("apply_fills", True)),
             quality_check_enabled=bool(quality.get("enabled", True)),
             fail_on_quality_error=bool(quality.get("fail_on_error", False)),

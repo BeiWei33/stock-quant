@@ -90,6 +90,10 @@ class PaperTradingEngine:
                 factors=factors,
             )
         )
+        # Attach latest close price to signals
+        if not signals.empty:
+            latest_price_map = history[history["trade_date"] == trade_date][["ts_code", "close"]].set_index("ts_code")["close"].to_dict()
+            signals["price"] = signals["ts_code"].map(latest_price_map).fillna(0.0)
         # Apply price range filter on signals (BUY signals only, positions stay)
         if price_min is not None or price_max is not None:
             low = price_min if price_min is not None else 0

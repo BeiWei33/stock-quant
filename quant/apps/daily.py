@@ -135,6 +135,8 @@ def main() -> None:
             quality_check_enabled=config.quality_check_enabled,
             fail_on_quality_error=config.fail_on_quality_error,
             quality_check_weekday_gaps=config.quality_check_weekday_gaps,
+            price_min=config.price_min,
+            price_max=config.price_max,
         )
     )
     try:
@@ -225,7 +227,9 @@ def _resolve_config(args: argparse.Namespace) -> DailyAppConfig:
             args.quality_weekday_gaps, args.no_quality_weekday_gaps
         ),
         "use_lock": _bool_override(args.use_lock, args.no_lock),
-        "lock_ttl_minutes": args.lock_ttl_minutes,
+                "lock_ttl_minutes": args.lock_ttl_minutes,
+        "price_min": args.price_min,
+        "price_max": args.price_max,
     }
     return config.merge_cli(overrides)
 
