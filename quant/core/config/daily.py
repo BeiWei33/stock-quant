@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import json
 from dataclasses import dataclass
@@ -31,6 +31,8 @@ class DailyAppConfig:
     horizon: int = 5
     quantiles: int = 5
     initial_cash: float = 1_000_000
+    price_min: float | None = None
+    price_max: float | None = None
     apply_fills: bool = True
     quality_check_enabled: bool = True
     fail_on_quality_error: bool = False

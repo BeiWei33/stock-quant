@@ -35,6 +35,8 @@ class DailyWorkflowConfig:
     quality_check_enabled: bool = True
     fail_on_quality_error: bool = False
     quality_check_weekday_gaps: bool = True
+    price_min: float | None = None
+    price_max: float | None = None
 
 
 @dataclass(frozen=True)
@@ -129,6 +131,7 @@ class DailyWorkflow:
                 execution_bars = bars[bars["trade_date"] == resolved_execution_date]
         if resolved_execution_date is None:
             resolved_execution_date = resolved_trade_date
+            execution_bars = None
 
         report_paths = self._run_research(bars)
         plan, fill_state = self._run_paper_trading(
@@ -139,22 +142,24 @@ class DailyWorkflow:
             execution_bars=execution_bars,
             research_report_path=report_paths.markdown_path,
         )
+
         health_checks = self._health_checks(
-            collected_stocks=len(collection.stocks),
-            collected_daily_bars=len(collection.daily_bars),
-            data_quality_ok=quality_report.ok if quality_report is not None else True,
+            collected_stocks=len(collection.stocks) if collection.stocks is not None else 0,
+            collected_daily_bars=len(collection.daily_bars) if collection.daily_bars is not None else 0,
+            data_quality_ok=quality_report.ok if quality_report else True,
             data_quality_level=quality_level,
-            data_quality_report=Path(quality_markdown_path) if quality_markdown_path else None,
+            data_quality_report=Path(quality_json_path) if quality_json_path else None,
             research_report=report_paths.markdown_path,
             order_count=len(plan.order_intents),
             snapshot=fill_state.snapshot if fill_state else None,
         )
-
         return DailyWorkflowResult(
             trade_date=resolved_trade_date,
-            collected_stocks=len(collection.stocks),
-            collected_daily_bars=len(collection.daily_bars),
-            collected_benchmark_bars=len(collection.benchmark_bars),
+            collected_stocks=len(collection.stocks) if collection.stocks is not None else 0,
+            collected_daily_bars=len(collection.daily_bars) if collection.daily_bars is not None else 0,
+            collected_benchmark_bars=(
+                len(collection.benchmark_bars) if collection.benchmark_bars is not None else 0
+            ),
             data_quality_json_path=quality_json_path,
             data_quality_markdown_path=quality_markdown_path,
             data_quality_level=quality_level,
@@ -210,6 +215,8 @@ class DailyWorkflow:
             account_id=self.config.account_id,
             total_asset=total_asset,
             current_positions=current_positions,
+            price_min=self.config.price_min,
+            price_max=self.config.price_max,
             research_report_path=str(research_report_path),
             strategy_status="paper",
         )

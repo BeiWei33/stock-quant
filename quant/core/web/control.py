@@ -145,6 +145,26 @@ def run_akshare_backtest(
     return run_command("akshare-backtest", python)
 
 
+def run_stock_pick(
+    scope: str = '30',
+    price_min: str = '',
+    price_max: str = '',
+) -> WebRunResult:
+    """Run stock picking with AkShare, supports 30-blue-chip or full-market."""
+    import subprocess
+    py = sys.executable
+    cmd = [py, '-X', 'utf8', '-m', 'quant.apps.daily', '--source', 'akshare', '--no-lock']
+    if scope == 'all':
+        cmd.append('--akshare-all')
+    else:
+        cmd.extend(['--akshare-limit', '30'])
+    if price_min:
+        cmd.extend(['--price-min', price_min])
+    if price_max:
+        cmd.extend(['--price-max', price_max])
+    return run_command('stock-pick', cmd)
+
+
 def import_uploaded_fills(
     filename: str,
     content: bytes,
@@ -449,6 +469,9 @@ def render_console_html(message: str = "") -> str:
     # 操作按钮
     sections += _action_section()
 
+    # 选股设置
+    sections += _stock_pick_section()
+
     # 账户管理
     sections += _account_section()
 
@@ -547,8 +570,50 @@ def _action_button(label: str, action: str, cls: str = "btn-primary") -> str:
 
 def _action_section() -> str:
     buttons = (
+        _action_button("""▶ 运行日常流程""", "daily", "btn-primary")
+        # 全市场选股已移到选股设置面板
+        + _action_button("""🔍 系统体检""", "doctor", "btn-outline")
+        + _action_button("""📸 快照归档""", "snapshot", "btn-outline")
+        + _action_button("""🏠 生成主页""", "home", "btn-outline")
+    )
+    return f"""<section class="panel">
+  <h2>刷新执行链路</h2>
+  <div class="actions">{buttons}</div>
+</section>"""
+
+def _stock_pick_section() -> str:
+    price_min = 5
+    price_max = 200
+    try:
+        import yaml
+        cp = ROOT / "config" / "daily.yaml"
+        with open(str(cp)) as fh:
+            cfg = yaml.safe_load(fh) or {}
+        wf = cfg.get("workflow", {})
+        price_min = wf.get("price_min", 5)
+        price_max = wf.get("price_max", 200)
+    except:
+        pass
+    return f"""<section class="panel">
+  <h2>选股设置</h2>
+  <div class="form-card">
+    <form method=POST action="/stock-pick" class="form-inline">
+      <label for="scope">选股范围</label>
+      <select id=scope name="scope">
+        <option value="30">30只白马股</option>
+        <option value="all" selected>全市场</option>
+      </select>
+      <label for="pmin">最低价</label>
+      <input type=number id=pmin name="price_min" value='{price_min}' min=0 step=1>
+      <label for="pmax">最高价</label>
+      <input type=number id=pmax name="price_max" value='{price_max}' min=0 step=1>
+      <button class="btn btn-success" type=submit>📡 执行选股</button>
+    </form>
+  </div>
+</section>"""
+    buttons = (
         _action_button("▶ 运行日常流程", "daily", "btn-primary")
-        + _action_button("📡 全市场选股", "akshare", "btn-success")
+        # 全市场选股已移到选股设置面板
         + _action_button("🔍 系统体检", "doctor", "btn-outline")
         + _action_button("📸 快照归档", "snapshot", "btn-outline")
         + _action_button("🏠 生成主页", "home", "btn-outline")
@@ -638,3 +703,7 @@ def _upload_section() -> str:
     </form>
   </div>
 </section>"""
+
+
+
+

@@ -104,6 +104,24 @@ class QuantWebHandler(BaseHTTPRequestHandler):
             except Exception as exc:
                 self._send_html(render_console_html(f"AkShare 全市场回测失败: {exc}"), HTTPStatus.BAD_REQUEST)
             return
+        if parsed.path == "/stock-pick":
+            from quant.core.web.control import run_stock_pick
+            try:
+                fields = self._parse_urlencoded()
+                result = run_stock_pick(
+                    scope=fields.get("scope", "30"),
+                    price_min=fields.get("price_min", ""),
+                    price_max=fields.get("price_max", ""),
+                )
+                self._send_html(
+                    render_console_html(
+                        f"????: {result.status}, ??={fields.get('scope','30')}, ?? {fields.get('price_min','??')}-{fields.get('price_max','??')} ?"
+                    )
+                )
+            except Exception as exc:
+                self._send_html(render_console_html(f"????: {exc}"))
+            return
+
         if parsed.path == '/reset-paper':
             from quant.core.web.control import reset_paper_trading
             try:

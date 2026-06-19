@@ -1,4 +1,4 @@
-quality:
+﻿quality:
   check_weekday_gaps: true
   enabled: true
   fail_on_error: false
@@ -6,15 +6,12 @@ run:
   lock_ttl_minutes: 120
   use_lock: true
 source:
-  bars: research_store/sample/daily_bar.cleaned.csv
-  benchmark_bars: null
-  benchmark_code: equal_weight
-  end_date: null
+  type: akshare
+  akshare_all_market: false
+  akshare_limit: 30
   start_date: null
-  stocks: research_store/sample/stocks.csv
+  end_date: null
   trade_date: null
-  tushare_token: null
-  type: csv
 storage:
   market_sqlite: research_store/market_data.sqlite3
   output: research_store/reports/daily_summary.json
@@ -25,6 +22,8 @@ workflow:
   apply_fills: true
   factor: momentum_60d
   horizon: 5
-  initial_cash: 10000.0
+  initial_cash: 1000000
   quantiles: 5
   strategy: momentum_rank
+  price_min: 5
+  price_max: 200

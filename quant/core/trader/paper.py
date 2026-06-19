@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
@@ -59,6 +59,8 @@ class PaperTradingEngine:
         account_id: str,
         total_asset: float,
         current_positions: pd.DataFrame | None = None,
+        price_min: float | None = None,
+        price_max: float | None = None,
         research_report_path: str = "",
         strategy_status: str = "paper",
     ) -> PaperTradingPlan:
@@ -88,6 +90,15 @@ class PaperTradingEngine:
                 factors=factors,
             )
         )
+        # Apply price range filter on signals
+        if price_min is not None or price_max is not None:
+            low = price_min if price_min is not None else 0
+            high = price_max if price_max is not None else float("inf")
+            latest_price = history[history["trade_date"] == trade_date][["ts_code", "close"]]
+            if not signals.empty and not latest_price.empty:
+                signals = signals.merge(latest_price, on="ts_code", how="inner")
+                signals = signals[(signals["close"] >= low) & (signals["close"] <= high)]
+                signals = signals.drop(columns=["close"]).reset_index(drop=True)
         target_weights = self.portfolio_engine.build_target_weights(signals, universe_snapshot)
         risk_decision = self.risk_engine.check_target_weights(target_weights)
         if not risk_decision.allowed:
