@@ -52,6 +52,7 @@ def run_command(action: str, command: list[str]) -> WebRunResult:
             command,
             capture_output=True,
             text=True,
+            encoding="utf-8",
             timeout=600,
         )
         return_code = proc.returncode
@@ -253,7 +254,6 @@ def stock_picks_html() -> str:
     overview_date = snap_date
     if snap_date:
         pos_latest = snap_date
-        pos_latest = snap_date
 
     # 账户概览
     overview = ""
@@ -290,9 +290,14 @@ def stock_picks_html() -> str:
         signals = cu.fetchall()
     else:
         latest = overview_date
-    positions = cu.fetchall()
-
-    conn.close()
+    # 查询真正的最新持仓
+    positions = []
+    if pos_latest:
+        try:
+            cu.execute("SELECT p.ts_code, p.quantity, p.weight, p.market_value, p.avg_cost FROM positions p WHERE p.account_id=? AND p.trade_date=? AND p.quantity > 0 ORDER BY p.weight DESC", ("paper", pos_latest))
+            positions = cu.fetchall()
+        except Exception:
+            positions = []
 
     # 策略名
     strat = signals[0][1] if signals else "N/A"
@@ -703,6 +708,7 @@ def _upload_section() -> str:
     </form>
   </div>
 </section>"""
+
 
 
 

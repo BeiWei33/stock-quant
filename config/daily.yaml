@@ -1,4 +1,4 @@
-﻿quality:
+quality:
   check_weekday_gaps: true
   enabled: true
   fail_on_error: false
@@ -6,12 +6,12 @@ run:
   lock_ttl_minutes: 120
   use_lock: true
 source:
-  type: akshare
   akshare_all_market: false
   akshare_limit: 30
-  start_date: null
   end_date: null
+  start_date: null
   trade_date: null
+  type: akshare
 storage:
   market_sqlite: research_store/market_data.sqlite3
   output: research_store/reports/daily_summary.json
@@ -22,8 +22,8 @@ workflow:
   apply_fills: true
   factor: momentum_60d
   horizon: 5
-  initial_cash: 1000000
+  initial_cash: 10000.0
+  price_max: 200
+  price_min: 5
   quantiles: 5
   strategy: momentum_rank
-  price_min: 5
-  price_max: 200
