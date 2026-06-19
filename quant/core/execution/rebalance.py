@@ -37,6 +37,13 @@ class RebalancePlanner:
         intents: list[OrderIntent] = []
         for ts_code in sorted(all_codes):
             price = price_map.get(ts_code)
+            curr_qty = current_quantity.get(ts_code, 0)
+            # 如果是持仓股但缺少当天价格，从持仓记录获取买入成本作为卖出价
+            if (price is None or price <= 0) and curr_qty > 0:
+                if current_positions is not None and not current_positions.empty:
+                    pos_row = current_positions[current_positions["ts_code"] == ts_code]
+                    if not pos_row.empty and "avg_cost" in pos_row.columns:
+                        price = float(pos_row["avg_cost"].iloc[0])
             if price is None or price <= 0:
                 continue
 

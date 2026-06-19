@@ -23,8 +23,13 @@ class PortfolioEngine:
 
         selected = signals.head(self.config.max_holdings).copy()
         budget = max(0.0, 1.0 - self.config.cash_reserve)
-        equal_weight = min(self.config.max_single_weight, budget / len(selected))
-        selected["target_weight"] = equal_weight
+        n_buy = len(selected[selected["signal_type"] == "BUY"])
+        if n_buy == 0:
+            n_buy = len(selected)
+        equal_weight = min(self.config.max_single_weight, budget / n_buy)
+        selected["target_weight"] = selected["signal_type"].apply(
+            lambda t: 0.0 if t == "SELL" else equal_weight
+        )
 
         industry_map = universe.set_index("ts_code")["industry"].to_dict()
         selected["industry"] = selected["ts_code"].map(industry_map).fillna("UNKNOWN")
