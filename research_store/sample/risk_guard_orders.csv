@@ -1,4 +1,0 @@
-order_id,account_id,strategy_id,ts_code,side,quantity,price,target_weight,trade_date
-paper:momentum_rank:2024-09-09:000002.SZ:BUY,paper,momentum_rank,000002.SZ,BUY,8000,12.485984725518357,0.1,2024-09-09
-paper:momentum_rank:2024-09-09:000008.SZ:BUY,paper,momentum_rank,000008.SZ,BUY,5700,17.498915322222285,0.1,2024-09-09
-paper:momentum_rank:2024-09-09:000012.SZ:BUY,paper,momentum_rank,000012.SZ,BUY,5000,19.71194280567523,0.1,2024-09-09

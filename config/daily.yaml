@@ -25,6 +25,6 @@ workflow:
   apply_fills: true
   factor: momentum_60d
   horizon: 5
-  initial_cash: 2000000
+  initial_cash: 10000.0
   quantiles: 5
   strategy: momentum_rank

@@ -1,19 +1,16 @@
-__pycache__/
+﻿__pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
-
-rust_core/target/
-
 logs/
-research_store/reports/*.tmp
-
-# Git config.gitconfig
-# Generated data
-research_store/market_data.sqlite3
-research_store/paper_trading.sqlite3
-research_store/web_runs/*
-research_store/web_uploads/*
-# Zip
+research_store/
+archive/
+config/*.generated.*
 *.zip
-
+.gitconfig
+fix_sig.py
+rust_core/target/
+person quant.zip
+test.txt
+*.sqlite3
+*.db

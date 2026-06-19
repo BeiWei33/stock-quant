@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
@@ -39,7 +39,8 @@ class PaperExecutionSimulator:
         initial_cash: float,
     ) -> PaperAccountState:
         positions = self._position_book(previous_positions)
-        price_map = latest_bars.set_index("ts_code")["close"].astype(float).to_dict()
+        price_col = "open" if "open" in latest_bars.columns else "close"
+        price_map = latest_bars.set_index("ts_code")[price_col].astype(float).to_dict()
         cash = previous_snapshot.cash if previous_snapshot is not None else initial_cash
         previous_total_asset = previous_snapshot.total_asset if previous_snapshot is not None else initial_cash
 

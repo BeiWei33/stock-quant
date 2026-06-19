@@ -1,4 +1,0 @@
-trade_date,ts_code,side,quantity,limit_price,estimated_notional,account_id,strategy_id,order_id,broker_order_id,manual_status,submitted_quantity,submitted_price,operator_note
-2024-09-09,000002.SZ,BUY,8000,12.4860,99887.88,paper,momentum_rank,paper:momentum_rank:2024-09-09:000002.SZ:BUY,DRYRUN:paper:momentum_rank:2024-09-09:000002.SZ:BUY,PENDING,,,
-2024-09-09,000008.SZ,BUY,5700,17.4989,99743.82,paper,momentum_rank,paper:momentum_rank:2024-09-09:000008.SZ:BUY,DRYRUN:paper:momentum_rank:2024-09-09:000008.SZ:BUY,PENDING,,,
-2024-09-09,000012.SZ,BUY,5000,19.7119,98559.71,paper,momentum_rank,paper:momentum_rank:2024-09-09:000012.SZ:BUY,DRYRUN:paper:momentum_rank:2024-09-09:000012.SZ:BUY,PENDING,,,

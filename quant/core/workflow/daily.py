@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from datetime import date
@@ -119,11 +119,24 @@ class DailyWorkflow:
                     f"report={quality_markdown_path}"
                 )
 
+        all_dates = sorted(bars["trade_date"].unique())
+        resolved_execution_date = None
+        execution_bars = None
+        if all_dates:
+            idx = all_dates.index(resolved_trade_date) if resolved_trade_date in all_dates else -1
+            if idx >= 0 and idx + 1 < len(all_dates):
+                resolved_execution_date = all_dates[idx + 1]
+                execution_bars = bars[bars["trade_date"] == resolved_execution_date]
+        if resolved_execution_date is None:
+            resolved_execution_date = resolved_trade_date
+
         report_paths = self._run_research(bars)
         plan, fill_state = self._run_paper_trading(
             bars=bars,
             stocks=stocks,
             trade_date=resolved_trade_date,
+            execution_date=resolved_execution_date,
+            execution_bars=execution_bars,
             research_report_path=report_paths.markdown_path,
         )
         health_checks = self._health_checks(
@@ -173,6 +186,8 @@ class DailyWorkflow:
         bars: pd.DataFrame,
         stocks: pd.DataFrame,
         trade_date: date,
+        execution_date: date,
+        execution_bars: pd.DataFrame | None = None,
         research_report_path: Path,
     ):
         previous_snapshot = self.paper_store.load_latest_portfolio_snapshot(
@@ -201,12 +216,12 @@ class DailyWorkflow:
 
         fill_state: PaperAccountState | None = None
         if self.config.apply_fills:
-            latest_bars = bars[bars["trade_date"] == trade_date]
+            exec_bars = execution_bars if execution_bars is not None else bars[bars["trade_date"] == trade_date]
             fill_state = PaperExecutionSimulator().apply_orders(
                 account_id=self.config.account_id,
-                trade_date=trade_date,
+                trade_date=execution_date,
                 orders=plan.order_intents,
-                latest_bars=latest_bars,
+                latest_bars=exec_bars,
                 previous_positions=current_positions,
                 previous_snapshot=previous_snapshot,
                 initial_cash=self.config.initial_cash,

@@ -1,4 +1,0 @@
-trade_date,ts_code,side,quantity,price,amount,broker_order_id,order_id,status,operator_note
-2024-09-09,000002.SZ,BUY,8000,12.4860,99888.00,DRYRUN:paper:momentum_rank:2024-09-09:000002.SZ:BUY,paper:momentum_rank:2024-09-09:000002.SZ:BUY,FILLED,sample full fill
-2024-09-09,000008.SZ,BUY,5700,17.4989,99743.73,DRYRUN:paper:momentum_rank:2024-09-09:000008.SZ:BUY,paper:momentum_rank:2024-09-09:000008.SZ:BUY,FILLED,sample full fill
-2024-09-09,000012.SZ,BUY,5000,19.7119,98559.50,DRYRUN:paper:momentum_rank:2024-09-09:000012.SZ:BUY,paper:momentum_rank:2024-09-09:000012.SZ:BUY,FILLED,sample full fill

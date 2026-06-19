@@ -194,7 +194,17 @@ def stock_picks_html() -> str:
     if not db.exists():
         return "<p class='empty'>暂无选股数据，请先运行选股流程。</p>"
 
-    # 加载股票名称映射
+    # 加载股票名称映射和收盘价
+    close_map = {}
+    try:
+        mc2 = sqlite3.connect(str(mkt_db))
+        mc2.row_factory = sqlite3.Row
+        cur2 = mc2.execute("SELECT ts_code, close FROM daily_bar WHERE trade_date = (SELECT MAX(trade_date) FROM daily_bar)")
+        for row in cur2.fetchall():
+            close_map[row[0]] = row[1]
+        mc2.close()
+    except Exception:
+        pass
     name_map = {}
     try:
         mc = sqlite3.connect(str(mkt_db))
@@ -213,11 +223,22 @@ def stock_picks_html() -> str:
     # 获取最新交易日期
     cu.execute("SELECT MAX(trade_date) FROM signal")
     latest = cu.fetchone()[0]
+    cu.execute("SELECT MAX(trade_date) FROM positions")
+    pos_latest = cu.fetchone()[0]
+    if not pos_latest:
+        pos_latest = latest
+    # Account overview uses the latest snapshot date, not signal date
+    cu.execute("SELECT MAX(trade_date) FROM portfolio_snapshot")
+    snap_date = cu.fetchone()[0]
+    overview_date = snap_date
+    if snap_date:
+        pos_latest = snap_date
+        pos_latest = snap_date
 
     # 账户概览
     overview = ""
-    if latest:
-        cu.execute("SELECT * FROM portfolio_snapshot WHERE trade_date=? ORDER BY created_at DESC LIMIT 1", (latest,))
+    if overview_date or latest:
+        cu.execute("SELECT * FROM portfolio_snapshot WHERE trade_date=? ORDER BY created_at DESC LIMIT 1", (pos_latest,))
         snap = cu.fetchone()
         if snap:
             cols = [d[0] for d in cu.description]
@@ -231,7 +252,7 @@ def stock_picks_html() -> str:
             sdr = "+" if dr is not None and dr >= 0 else ""
             scr = "+" if cr is not None and cr >= 0 else ""
             overview = (
-                '<section class="panel"><h2>账户概览 (' + str(latest) + ')</h2>'
+                '<section class="panel"><h2>账户概览 (' + str(overview_date) + ')</h2>'
                 '<div class="grid metrics" style="grid-template-columns:repeat(3,minmax(0,1fr))">'
                 '<div class="metric"><span>总资产</span><strong>' + f'{ta:,.2f}' + '</strong></div>'
                 '<div class="metric"><span>可用现金</span><strong>' + f'{cash:,.2f}' + '</strong></div>'
@@ -242,16 +263,13 @@ def stock_picks_html() -> str:
                 '</div></section>'
             )
 
-    if not latest:
-        conn.close()
-        return overview + '<p class="empty">暂无选股信号。</p>'
-
-    # 选股信号
-    cu.execute("SELECT ts_code, strategy_id, signal_type, score, reason FROM signal WHERE trade_date=? ORDER BY score DESC", (latest,))
-    signals = cu.fetchall()
-
-    # 持仓
-    cu.execute("SELECT ts_code, quantity, weight, avg_cost, market_value FROM positions WHERE trade_date=? ORDER BY weight DESC", (latest,))
+        # 选股信号（可能为空）
+    signals = []
+    if latest:
+        cu.execute("SELECT ts_code, strategy_id, signal_type, score, price, reason FROM signal WHERE trade_date=? ORDER BY signal_type ASC, score DESC", (latest,))
+        signals = cu.fetchall()
+    else:
+        latest = overview_date
     positions = cu.fetchall()
 
     conn.close()
@@ -259,15 +277,15 @@ def stock_picks_html() -> str:
     # 策略名
     strat = signals[0][1] if signals else "N/A"
 
-    # 信号表格
     sig_rows = ""
     for s in signals[:30]:
         nm = name_map.get(s[0], "-")
-        sig_rows += f"<tr><td>{s[0]}</td><td>{nm}</td><td>{s[3]:.4f}</td><td>{_reason(s[4])}</td></tr>\n"
+        stype = s[2]
+        badge = "<span class=\"tag-buy\">买入</span>" if stype == "BUY" else "<span class=\"tag-sell\">卖出</span>"
+        price_val = s[4] or close_map.get(s[0], 0)
+        sig_rows += f"<tr><td>{badge}</td><td>{s[0]}</td><td>{nm}</td><td>{price_val:.2f}</td><td>{s[3]:.4f}</td><td>{_reason(s[5])}</td></tr>\n"
     if not sig_rows:
-        sig_rows = "<tr><td colspan=4>无信号</td></tr>"
-
-    # 持仓表格
+        sig_rows = "<tr><td colspan=6>???</td></tr>"
     pos_rows = ""
     for p in positions[:30]:
         nm = name_map.get(p[0], "-")
@@ -279,10 +297,8 @@ def stock_picks_html() -> str:
 
     pos_sec = ""
     if positions:
-        pos_sec = f'<section class="panel"><h2>最新持仓 ({latest})</h2><table><thead><tr><th>代码</th><th>名称</th><th>数量</th><th>权重</th><th>占用资金</th></tr></thead><tbody>{pos_rows}</tbody></table></section>'
-
-    sig_sec = f'<section class="panel"><h2>选股信号 ({latest})</h2><p>策略：{strat} | 信号数：{len(signals)} 只</p><table><thead><tr><th>代码</th><th>名称</th><th>得分</th><th>理由</th></tr></thead><tbody>{sig_rows}</tbody></table></section>'
-
+        pos_sec = f'<section class="panel"><h2>最新持仓 ({pos_latest})</h2><table><thead><tr><th>代码</th><th>名称</th><th>数量</th><th>权重</th><th>占用资金</th></tr></thead><tbody>{pos_rows}</tbody></table></section>'
+    sig_sec = f'<section class="panel"><h2>选股信号 ({latest})</h2><p>策略：{strat} | 信号数：{len(signals)} 只</p><table><thead><tr><th>方向</th><th>代码</th><th>名称</th><th>股价</th><th>得分</th><th>理由</th></tr></thead><tbody>{sig_rows}</tbody></table></section>'
     return overview + sig_sec + pos_sec
 
 
@@ -339,9 +355,15 @@ def reset_paper_trading(initial_cash: float = 1_000_000) -> WebRunResult:
         cu.execute(f"DELETE FROM {t}")
         cleared.append(f"{t}: {cu.rowcount} rows")
     conn.commit()
+    today_str = datetime.now(UTC).strftime("%Y-%m-%d")
+    cu.execute(
+        "INSERT OR REPLACE INTO portfolio_snapshot (account_id, trade_date, total_asset, cash, market_value, total_position_ratio, daily_return, cum_return, drawdown) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        ("paper", today_str, initial_cash, initial_cash, 0.0, 0.0, 0.0, 0.0, 0.0)
+    )
+    conn.commit()
     conn.close()
 
-    log = "\n".join(cleared)
+    log = "\n".join(cleared) + f"\ninitial_snapshot: cash={initial_cash:.0f} at {today_str}"
     return WebRunResult(
         run_id="reset", action="reset", return_code=0, status="OK",
         command=["reset-paper", str(initial_cash)],
@@ -504,6 +526,8 @@ th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #f0f0f0; 
 th { background: #fafafa; font-weight: 600; color: #555; }
 tr:hover { background: #f5f5f5; }
 .empty { color: #999; padding: 24px; text-align: center; }
+.tag-buy { display:inline-block; padding:2px 6px; border-radius:3px; font-size:11px; background:#f6ffed; color:#52c41a; border:1px solid #b7eb8f; }
+.tag-sell { display:inline-block; padding:2px 6px; border-radius:3px; font-size:11px; background:#fff2f0; color:#ff4d4f; border:1px solid #ffccc7; }
 .links { display: flex; flex-wrap: wrap; gap: 8px; }
 .links a { padding: 6px 14px; background: #f0f2f5; border-radius: 4px; font-size: 13px; color: #1890ff; text-decoration: none; }
 .links a:hover { background: #e6f7ff; }
@@ -536,13 +560,23 @@ def _action_section() -> str:
 
 
 def _account_section() -> str:
+    # read current initial_cash from config
+    cash_val = 1000000
+    try:
+        import yaml
+        cp = ROOT / "config" / "daily.yaml"
+        with open(str(cp)) as fh:
+            cfg = yaml.safe_load(fh) or {}
+        cash_val = int(cfg.get("workflow",{}).get("initial_cash",1000000))
+    except:
+        pass
     return f"""<section class="panel">
   <h2>账户管理</h2>
   <div class="form-card">
     <p>修改初始资金并重置模拟盘（清空所有交易记录）</p>
     <form method=POST action="/reset-paper" class="form-inline">
       <label for="ic">初始资金</label>
-      <input type=number id=ic name="initial_cash" value=2000000 min=10000 step=10000>
+      <input type=number id=ic name="initial_cash" value={cash_val} min=10000 step=10000>
       <button class="btn btn-danger" type=submit>重置模拟盘</button>
     </form>
   </div>

@@ -237,6 +237,7 @@ class SqliteStore:
             )
             self._ensure_column(conn, "strategy_registry", "config_hash", "TEXT")
             self._ensure_column(conn, "strategy_registry", "config_json", "TEXT")
+            self._ensure_column(conn, "signal", "price", "REAL")
 
     def _ensure_column(
         self, conn: sqlite3.Connection, table_name: str, column_name: str, column_type: str
@@ -534,6 +535,7 @@ class SqliteStore:
                 float(row.score),
                 float(getattr(row, "target_weight", 0.0)),
                 row.reason,
+                float(getattr(row, "price", 0.0)),
             )
             for row in signals.itertuples(index=False)
         ]
@@ -549,9 +551,9 @@ class SqliteStore:
                 """
                 INSERT INTO signal (
                     trade_date, ts_code, strategy_id, strategy_version, factor_set_id,
-                    signal_type, score, target_weight, reason
+                    signal_type, score, target_weight, reason, price
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 rows,
             )
