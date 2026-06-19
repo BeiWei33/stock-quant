@@ -1,0 +1,86 @@
+{
+  "status": "BLOCKED",
+  "trade_date": "2024-09-09",
+  "strategy_id": "momentum_rank",
+  "order_count": 3,
+  "estimated_notional": 298191.40916919,
+  "artifacts": [
+    {
+      "name": "paper_plan",
+      "path": "research_store\\reports\\paper_plan.json",
+      "status": "OK",
+      "passed": true,
+      "detail": "orders=3"
+    },
+    {
+      "name": "risk_guard",
+      "path": "research_store\\reports\\risk_guard.json",
+      "status": "OK",
+      "passed": true,
+      "detail": "accepted=3, rejected=0"
+    },
+    {
+      "name": "broker_submission",
+      "path": "research_store\\reports\\broker_submission.json",
+      "status": "OK",
+      "passed": true,
+      "detail": "mode=DRY_RUN, orders=3"
+    },
+    {
+      "name": "execution_authorization",
+      "path": "research_store\\reports\\execution_authorization.json",
+      "status": "OK",
+      "passed": true,
+      "detail": "mode=DRY_RUN, adapter=dry_run"
+    },
+    {
+      "name": "broker_adapter_contract",
+      "path": "research_store\\reports\\broker_adapter_contract.json",
+      "status": "OK",
+      "passed": true,
+      "detail": "adapter=dry_run, mode=DRY_RUN, submitted=False"
+    },
+    {
+      "name": "manual_execution",
+      "path": "research_store\\reports\\manual_execution.json",
+      "status": "READY",
+      "passed": true,
+      "detail": "orders=3, notional=298,191.41"
+    },
+    {
+      "name": "pretrade_gate",
+      "path": "research_store\\reports\\pretrade_gate.json",
+      "status": "GO",
+      "passed": true,
+      "detail": "checks=13"
+    },
+    {
+      "name": "manual_fill_validation",
+      "path": "research_store\\reports\\manual_fill_validation.json",
+      "status": "ERROR",
+      "passed": false,
+      "detail": "issues=3"
+    },
+    {
+      "name": "manual_reconciliation",
+      "path": "research_store\\reports\\manual_reconciliation.json",
+      "status": "SKIPPED",
+      "passed": null,
+      "detail": "manual validation did not pass"
+    },
+    {
+      "name": "monitor_status",
+      "path": "research_store\\monitoring\\status_summary.json",
+      "status": "INFO",
+      "passed": true,
+      "detail": "latest=2024-09-09"
+    },
+    {
+      "name": "readiness",
+      "path": "research_store\\monitoring\\readiness.json",
+      "status": "PAPER_READY",
+      "passed": true,
+      "detail": "paper_ready=True, live_ready=False"
+    }
+  ]
+}

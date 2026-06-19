@@ -1,0 +1,4 @@
+broker_order_id,ts_code,side,quantity,price,status,operator_note
+DRYRUN:paper:momentum_rank:2024-09-09:000002.SZ:BUY,000002.SZ,BUY,8000,12.4860,FILLED,sample full fill
+DRYRUN:paper:momentum_rank:2024-09-09:000008.SZ:BUY,000008.SZ,BUY,5700,17.4989,FILLED,sample full fill
+DRYRUN:paper:momentum_rank:2024-09-09:000012.SZ:BUY,000012.SZ,BUY,5000,19.7119,FILLED,sample full fill

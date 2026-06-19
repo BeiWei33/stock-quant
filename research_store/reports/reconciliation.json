@@ -1,0 +1,16 @@
+{
+  "report_id": "paper:2024-09-09:positions",
+  "account_id": "paper",
+  "trade_date": "2024-09-09",
+  "status": "DIFF",
+  "local_count": 2,
+  "broker_count": 2,
+  "differences": [
+    {
+      "ts_code": "000008.SZ",
+      "local_quantity": 5700,
+      "broker_quantity": 5600,
+      "quantity_diff": 100
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "trade_date": "2024-09-09",
+  "risk_reasons": [],
+  "admission_reasons": [],
+  "strategy": {
+    "strategy_id": "quality_rank",
+    "strategy_version": "v1",
+    "status": "paper",
+    "factor_set_id": "quality_score",
+    "research_report_path": "research_store/reports/alpha/quality_score_h5.md",
+    "code_hash": "f5bd01632418aa986759a6d9fb2ca8d37098f10e704b3313738413dc65eca76e",
+    "config_hash": "e29ceb55b45cdd7fb25593ab0f44adfba4108cc2b50a8d16bdaf73699dc51987",
+    "config_json": "{\"class_path\":\"quant.core.strategy.quality.QualityRankStrategy\",\"code_hash\":\"f5bd01632418aa986759a6d9fb2ca8d37098f10e704b3313738413dc65eca76e\",\"factor_set_id\":\"quality_score\",\"parameters\":{\"class_path\":\"quant.core.strategy.quality.QualityRankStrategy\",\"fields\":{\"factor_name\":\"quality_score\",\"max_holdings\":20,\"min_score\":0.0,\"strategy_id\":\"quality_rank\",\"strategy_version\":\"v1\",\"top_pct\":0.1}},\"required_factors\":[\"quality_score\"],\"strategy_id\":\"quality_rank\",\"strategy_version\":\"v1\"}"
+  },
+  "target_weights": [
+    {
+      "ts_code": "000016.SZ",
+      "target_weight": 0.1
+    },
+    {
+      "ts_code": "000019.SZ",
+      "target_weight": 0.1
+    },
+    {
+      "ts_code": "000001.SZ",
+      "target_weight": 0.1
+    }
+  ],
+  "order_intents": [
+    {
+      "ts_code": "000001.SZ",
+      "side": "BUY",
+      "quantity": 17500,
+      "price": 5.708962683502634,
+      "target_weight": 0.1,
+      "strategy_id": "quality_rank",
+      "trade_date": "2024-09-09",
+      "account_id": "paper",
+      "reason": "rebalance_to_target_weight",
+      "status": "CREATED",
+      "order_id": "paper:quality_rank:2024-09-09:000001.SZ:BUY"
+    },
+    {
+      "ts_code": "000016.SZ",
+      "side": "BUY",
+      "quantity": 8900,
+      "price": 11.12278585207057,
+      "target_weight": 0.1,
+      "strategy_id": "quality_rank",
+      "trade_date": "2024-09-09",
+      "account_id": "paper",
+      "reason": "rebalance_to_target_weight",
+      "status": "CREATED",
+      "order_id": "paper:quality_rank:2024-09-09:000016.SZ:BUY"
+    },
+    {
+      "ts_code": "000019.SZ",
+      "side": "BUY",
+      "quantity": 8200,
+      "price": 12.083620111367445,
+      "target_weight": 0.1,
+      "strategy_id": "quality_rank",
+      "trade_date": "2024-09-09",
+      "account_id": "paper",
+      "reason": "rebalance_to_target_weight",
+      "status": "CREATED",
+      "order_id": "paper:quality_rank:2024-09-09:000019.SZ:BUY"
+    }
+  ],
+  "rejected_order_intents": [],
+  "fills": [],
+  "fill_rejected_orders": [],
+  "portfolio_snapshot": null,
+  "positions": []
+}

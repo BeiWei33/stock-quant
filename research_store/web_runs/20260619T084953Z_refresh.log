@@ -1,0 +1,9 @@
+action=refresh
+command=D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.broker refresh --no-console
+return_code=0
+
+[stdout]
+Wrote execution refresh audit to research_store/reports/execution_audit.jsonl
+
+
+[stderr]

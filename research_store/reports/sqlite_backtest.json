@@ -1,0 +1,6821 @@
+{
+  "metrics": {
+    "annual_return": 0.06429841498596911,
+    "volatility": 0.04171355501749873,
+    "sharpe": 1.514939411441929,
+    "max_drawdown": -0.030871797314137472,
+    "total_return": 0.04551678860027275,
+    "benchmark_total_return": 0.08193014650768315,
+    "benchmark_annual_return": 0.11655188935040006,
+    "benchmark_volatility": 0.05021069266090563,
+    "excess_return": -0.036413357907410404,
+    "tracking_error": 0.05951384395690603,
+    "information_ratio": -0.8121820188056419,
+    "active_win_rate": 0.48333333333333334,
+    "benchmark_correlation": 0.17169926335080518,
+    "beta": 0.1426426581409091,
+    "rebalance_count": 37.0,
+    "rejected_rebalance_count": 0.0,
+    "rejected_order_count": 0.0,
+    "filled_order_count": 85.0,
+    "average_turnover": 0.0978535510258841,
+    "max_turnover": 0.4017391276143136
+  },
+  "returns": [
+    {
+      "trade_date": "2024-01-02",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-03",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-04",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-05",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-08",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-09",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-10",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-11",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-12",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-15",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-16",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-17",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-18",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-19",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-22",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-23",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-24",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-25",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-26",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-29",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-30",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-31",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-01",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-02",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-05",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-06",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-07",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-08",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-09",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-12",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-13",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-14",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-15",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-16",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-19",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-20",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-21",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-22",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-23",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-26",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-27",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-28",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-02-29",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-01",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-04",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-05",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-06",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-07",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-08",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-11",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-12",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-13",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-14",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-15",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-18",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-19",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-20",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-21",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-22",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-25",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-26",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-27",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-28",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2024-03-29",
+      "strategy_return": -8.942689286961514e-05
+    },
+    {
+      "trade_date": "2024-04-01",
+      "strategy_return": 0.0035169968533774743
+    },
+    {
+      "trade_date": "2024-04-02",
+      "strategy_return": -0.0005094497472046822
+    },
+    {
+      "trade_date": "2024-04-03",
+      "strategy_return": -0.0015846114519384447
+    },
+    {
+      "trade_date": "2024-04-04",
+      "strategy_return": -0.0012081011959835797
+    },
+    {
+      "trade_date": "2024-04-05",
+      "strategy_return": 0.0007482627607300341
+    },
+    {
+      "trade_date": "2024-04-08",
+      "strategy_return": 0.00552926074080573
+    },
+    {
+      "trade_date": "2024-04-09",
+      "strategy_return": -0.0012744613287621886
+    },
+    {
+      "trade_date": "2024-04-10",
+      "strategy_return": -0.0013942834736071497
+    },
+    {
+      "trade_date": "2024-04-11",
+      "strategy_return": 0.006486271878149097
+    },
+    {
+      "trade_date": "2024-04-12",
+      "strategy_return": -0.00031089743918844004
+    },
+    {
+      "trade_date": "2024-04-15",
+      "strategy_return": 0.004993560870757419
+    },
+    {
+      "trade_date": "2024-04-16",
+      "strategy_return": -4.109595401413646e-05
+    },
+    {
+      "trade_date": "2024-04-17",
+      "strategy_return": 0.002527163626171447
+    },
+    {
+      "trade_date": "2024-04-18",
+      "strategy_return": 0.0016373279336314717
+    },
+    {
+      "trade_date": "2024-04-19",
+      "strategy_return": 0.003809019970286265
+    },
+    {
+      "trade_date": "2024-04-22",
+      "strategy_return": -0.0006073726147141079
+    },
+    {
+      "trade_date": "2024-04-23",
+      "strategy_return": 0.0018056501335832476
+    },
+    {
+      "trade_date": "2024-04-24",
+      "strategy_return": 0.0006441034377544508
+    },
+    {
+      "trade_date": "2024-04-25",
+      "strategy_return": 0.0016887358268984354
+    },
+    {
+      "trade_date": "2024-04-26",
+      "strategy_return": -0.0025274438373100727
+    },
+    {
+      "trade_date": "2024-04-29",
+      "strategy_return": -0.0028346144463160527
+    },
+    {
+      "trade_date": "2024-04-30",
+      "strategy_return": -0.0025402701209983336
+    },
+    {
+      "trade_date": "2024-05-01",
+      "strategy_return": -0.003540187354267532
+    },
+    {
+      "trade_date": "2024-05-02",
+      "strategy_return": -0.0010244783767456855
+    },
+    {
+      "trade_date": "2024-05-03",
+      "strategy_return": -0.001238148180724985
+    },
+    {
+      "trade_date": "2024-05-06",
+      "strategy_return": -0.0010084574267263946
+    },
+    {
+      "trade_date": "2024-05-07",
+      "strategy_return": 0.006559272512131287
+    },
+    {
+      "trade_date": "2024-05-08",
+      "strategy_return": -0.0020798531029120326
+    },
+    {
+      "trade_date": "2024-05-09",
+      "strategy_return": -0.002632055087316898
+    },
+    {
+      "trade_date": "2024-05-10",
+      "strategy_return": 0.005804247725662126
+    },
+    {
+      "trade_date": "2024-05-13",
+      "strategy_return": 0.0009412129578632022
+    },
+    {
+      "trade_date": "2024-05-14",
+      "strategy_return": 0.004393621735947706
+    },
+    {
+      "trade_date": "2024-05-15",
+      "strategy_return": 0.0008969806352125964
+    },
+    {
+      "trade_date": "2024-05-16",
+      "strategy_return": -0.005658221036471067
+    },
+    {
+      "trade_date": "2024-05-17",
+      "strategy_return": 0.0002422871032912166
+    },
+    {
+      "trade_date": "2024-05-20",
+      "strategy_return": 0.00545266643257003
+    },
+    {
+      "trade_date": "2024-05-21",
+      "strategy_return": 0.002409153460645408
+    },
+    {
+      "trade_date": "2024-05-22",
+      "strategy_return": -0.0014739922052992016
+    },
+    {
+      "trade_date": "2024-05-23",
+      "strategy_return": -0.006395941132489202
+    },
+    {
+      "trade_date": "2024-05-24",
+      "strategy_return": -0.00010181934867825593
+    },
+    {
+      "trade_date": "2024-05-27",
+      "strategy_return": 0.005546076519274523
+    },
+    {
+      "trade_date": "2024-05-28",
+      "strategy_return": -0.003763533150706211
+    },
+    {
+      "trade_date": "2024-05-29",
+      "strategy_return": 0.0061955649850213845
+    },
+    {
+      "trade_date": "2024-05-30",
+      "strategy_return": 0.0025233958220893804
+    },
+    {
+      "trade_date": "2024-05-31",
+      "strategy_return": 0.004253593090861818
+    },
+    {
+      "trade_date": "2024-06-03",
+      "strategy_return": 0.0010530864401014917
+    },
+    {
+      "trade_date": "2024-06-04",
+      "strategy_return": 0.0004995148389950188
+    },
+    {
+      "trade_date": "2024-06-05",
+      "strategy_return": 0.0012882855777620605
+    },
+    {
+      "trade_date": "2024-06-06",
+      "strategy_return": -0.003272464978782752
+    },
+    {
+      "trade_date": "2024-06-07",
+      "strategy_return": 0.0015003635134387405
+    },
+    {
+      "trade_date": "2024-06-10",
+      "strategy_return": 6.489839903345285e-05
+    },
+    {
+      "trade_date": "2024-06-11",
+      "strategy_return": -0.000883922324147357
+    },
+    {
+      "trade_date": "2024-06-12",
+      "strategy_return": -0.0012133686755608775
+    },
+    {
+      "trade_date": "2024-06-13",
+      "strategy_return": -0.0017397088610977551
+    },
+    {
+      "trade_date": "2024-06-14",
+      "strategy_return": -0.0011665313482654982
+    },
+    {
+      "trade_date": "2024-06-17",
+      "strategy_return": -0.0040282906878792435
+    },
+    {
+      "trade_date": "2024-06-18",
+      "strategy_return": -0.00792600899705942
+    },
+    {
+      "trade_date": "2024-06-19",
+      "strategy_return": 0.0015336711600639763
+    },
+    {
+      "trade_date": "2024-06-20",
+      "strategy_return": -0.0037893689839813005
+    },
+    {
+      "trade_date": "2024-06-21",
+      "strategy_return": 0.0017606866282458
+    },
+    {
+      "trade_date": "2024-06-24",
+      "strategy_return": 0.001596872427393592
+    },
+    {
+      "trade_date": "2024-06-25",
+      "strategy_return": 0.002708040814008994
+    },
+    {
+      "trade_date": "2024-06-26",
+      "strategy_return": 0.0019349952893721323
+    },
+    {
+      "trade_date": "2024-06-27",
+      "strategy_return": 0.00011627835032768097
+    },
+    {
+      "trade_date": "2024-06-28",
+      "strategy_return": -0.0032599651152227516
+    },
+    {
+      "trade_date": "2024-07-01",
+      "strategy_return": 0.0007530660835570746
+    },
+    {
+      "trade_date": "2024-07-02",
+      "strategy_return": 0.005213887712260501
+    },
+    {
+      "trade_date": "2024-07-03",
+      "strategy_return": -0.001086453004011556
+    },
+    {
+      "trade_date": "2024-07-04",
+      "strategy_return": 0.004649884660194559
+    },
+    {
+      "trade_date": "2024-07-05",
+      "strategy_return": 0.001579759584622531
+    },
+    {
+      "trade_date": "2024-07-08",
+      "strategy_return": 0.0011330330932148858
+    },
+    {
+      "trade_date": "2024-07-09",
+      "strategy_return": -0.006725586273257145
+    },
+    {
+      "trade_date": "2024-07-10",
+      "strategy_return": 0.0008131713485461933
+    },
+    {
+      "trade_date": "2024-07-11",
+      "strategy_return": -0.0042454736811331495
+    },
+    {
+      "trade_date": "2024-07-12",
+      "strategy_return": -0.0004325620046902179
+    },
+    {
+      "trade_date": "2024-07-15",
+      "strategy_return": -0.002567789290871425
+    },
+    {
+      "trade_date": "2024-07-16",
+      "strategy_return": 0.00030778930642161306
+    },
+    {
+      "trade_date": "2024-07-17",
+      "strategy_return": -0.0028806537641193897
+    },
+    {
+      "trade_date": "2024-07-18",
+      "strategy_return": -0.00038569898447426976
+    },
+    {
+      "trade_date": "2024-07-19",
+      "strategy_return": 0.0034817174610903834
+    },
+    {
+      "trade_date": "2024-07-22",
+      "strategy_return": 0.001335761584212669
+    },
+    {
+      "trade_date": "2024-07-23",
+      "strategy_return": 0.0020285893147429235
+    },
+    {
+      "trade_date": "2024-07-24",
+      "strategy_return": 0.0005473234569048913
+    },
+    {
+      "trade_date": "2024-07-25",
+      "strategy_return": -0.004672064247084107
+    },
+    {
+      "trade_date": "2024-07-26",
+      "strategy_return": -0.0063963793249502965
+    },
+    {
+      "trade_date": "2024-07-29",
+      "strategy_return": 0.00020523609831601952
+    },
+    {
+      "trade_date": "2024-07-30",
+      "strategy_return": 0.003454713901181572
+    },
+    {
+      "trade_date": "2024-07-31",
+      "strategy_return": -0.0032376895918555526
+    },
+    {
+      "trade_date": "2024-08-01",
+      "strategy_return": 0.005699412516318114
+    },
+    {
+      "trade_date": "2024-08-02",
+      "strategy_return": -0.005993793582882545
+    },
+    {
+      "trade_date": "2024-08-05",
+      "strategy_return": -0.007620059377018373
+    },
+    {
+      "trade_date": "2024-08-06",
+      "strategy_return": 0.004552449172851691
+    },
+    {
+      "trade_date": "2024-08-07",
+      "strategy_return": 0.0007678194105296132
+    },
+    {
+      "trade_date": "2024-08-08",
+      "strategy_return": -0.002581037094301575
+    },
+    {
+      "trade_date": "2024-08-09",
+      "strategy_return": 0.006117224544534894
+    },
+    {
+      "trade_date": "2024-08-12",
+      "strategy_return": 0.0014245718710776956
+    },
+    {
+      "trade_date": "2024-08-13",
+      "strategy_return": -0.0011263071557783277
+    },
+    {
+      "trade_date": "2024-08-14",
+      "strategy_return": 0.0042578610427665975
+    },
+    {
+      "trade_date": "2024-08-15",
+      "strategy_return": 0.0029982342278580543
+    },
+    {
+      "trade_date": "2024-08-16",
+      "strategy_return": 0.0046286853855244114
+    },
+    {
+      "trade_date": "2024-08-19",
+      "strategy_return": -0.0019683079142275295
+    },
+    {
+      "trade_date": "2024-08-20",
+      "strategy_return": 0.00041257468865829594
+    },
+    {
+      "trade_date": "2024-08-21",
+      "strategy_return": -0.0006575867528555435
+    },
+    {
+      "trade_date": "2024-08-22",
+      "strategy_return": 0.00596309585131527
+    },
+    {
+      "trade_date": "2024-08-23",
+      "strategy_return": 0.0034263368386846516
+    },
+    {
+      "trade_date": "2024-08-26",
+      "strategy_return": 0.0015271882685705673
+    },
+    {
+      "trade_date": "2024-08-27",
+      "strategy_return": 0.00045311731121122634
+    },
+    {
+      "trade_date": "2024-08-28",
+      "strategy_return": -0.00014139576566685186
+    },
+    {
+      "trade_date": "2024-08-29",
+      "strategy_return": 0.0034869741390748388
+    },
+    {
+      "trade_date": "2024-08-30",
+      "strategy_return": -0.0017193820130704252
+    },
+    {
+      "trade_date": "2024-09-02",
+      "strategy_return": 0.0010722532941032092
+    },
+    {
+      "trade_date": "2024-09-03",
+      "strategy_return": -0.0038001144704046252
+    },
+    {
+      "trade_date": "2024-09-04",
+      "strategy_return": 0.000834722027867496
+    },
+    {
+      "trade_date": "2024-09-05",
+      "strategy_return": 0.0020025418284210783
+    },
+    {
+      "trade_date": "2024-09-06",
+      "strategy_return": 0.002332164359151845
+    },
+    {
+      "trade_date": "2024-09-09",
+      "strategy_return": 0.004372618682764395
+    }
+  ],
+  "benchmark_returns": [
+    {
+      "trade_date": "2024-01-02",
+      "benchmark_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-03",
+      "benchmark_return": -0.004908160533070934
+    },
+    {
+      "trade_date": "2024-01-04",
+      "benchmark_return": 0.0017849697768873166
+    },
+    {
+      "trade_date": "2024-01-05",
+      "benchmark_return": -0.0054190149620103305
+    },
+    {
+      "trade_date": "2024-01-08",
+      "benchmark_return": 0.0017626651595451551
+    },
+    {
+      "trade_date": "2024-01-09",
+      "benchmark_return": -0.00023270181989596035
+    },
+    {
+      "trade_date": "2024-01-10",
+      "benchmark_return": 0.0003117722000049117
+    },
+    {
+      "trade_date": "2024-01-11",
+      "benchmark_return": 0.0039492574299122155
+    },
+    {
+      "trade_date": "2024-01-12",
+      "benchmark_return": 0.0005348182430600682
+    },
+    {
+      "trade_date": "2024-01-15",
+      "benchmark_return": 0.001936465963326602
+    },
+    {
+      "trade_date": "2024-01-16",
+      "benchmark_return": 0.0028912938532283826
+    },
+    {
+      "trade_date": "2024-01-17",
+      "benchmark_return": 0.003155037517324503
+    },
+    {
+      "trade_date": "2024-01-18",
+      "benchmark_return": -0.0017494951042104153
+    },
+    {
+      "trade_date": "2024-01-19",
+      "benchmark_return": 0.00544959613654018
+    },
+    {
+      "trade_date": "2024-01-22",
+      "benchmark_return": 0.0057472569048084106
+    },
+    {
+      "trade_date": "2024-01-23",
+      "benchmark_return": 0.005024101930111883
+    },
+    {
+      "trade_date": "2024-01-24",
+      "benchmark_return": -0.0002240096163701429
+    },
+    {
+      "trade_date": "2024-01-25",
+      "benchmark_return": 0.003902695839536104
+    },
+    {
+      "trade_date": "2024-01-26",
+      "benchmark_return": -0.0045228589807204565
+    },
+    {
+      "trade_date": "2024-01-29",
+      "benchmark_return": 0.004939615983417737
+    },
+    {
+      "trade_date": "2024-01-30",
+      "benchmark_return": 0.00197692446414968
+    },
+    {
+      "trade_date": "2024-01-31",
+      "benchmark_return": -0.0009506589495702452
+    },
+    {
+      "trade_date": "2024-02-01",
+      "benchmark_return": 0.0015305791342116958
+    },
+    {
+      "trade_date": "2024-02-02",
+      "benchmark_return": -0.006725362796455425
+    },
+    {
+      "trade_date": "2024-02-05",
+      "benchmark_return": 0.004407693827374929
+    },
+    {
+      "trade_date": "2024-02-06",
+      "benchmark_return": 4.112819670785139e-05
+    },
+    {
+      "trade_date": "2024-02-07",
+      "benchmark_return": -0.001178475232566271
+    },
+    {
+      "trade_date": "2024-02-08",
+      "benchmark_return": 0.0008694222845034145
+    },
+    {
+      "trade_date": "2024-02-09",
+      "benchmark_return": 0.0013760062682885025
+    },
+    {
+      "trade_date": "2024-02-12",
+      "benchmark_return": 0.0033281014081136483
+    },
+    {
+      "trade_date": "2024-02-13",
+      "benchmark_return": -0.00047642168517652385
+    },
+    {
+      "trade_date": "2024-02-14",
+      "benchmark_return": -4.1073889227597844e-05
+    },
+    {
+      "trade_date": "2024-02-15",
+      "benchmark_return": -0.00439182242178322
+    },
+    {
+      "trade_date": "2024-02-16",
+      "benchmark_return": -0.0011664903363212279
+    },
+    {
+      "trade_date": "2024-02-19",
+      "benchmark_return": 0.0001791016962817323
+    },
+    {
+      "trade_date": "2024-02-20",
+      "benchmark_return": 0.004957286694418172
+    },
+    {
+      "trade_date": "2024-02-21",
+      "benchmark_return": 0.004147797995641278
+    },
+    {
+      "trade_date": "2024-02-22",
+      "benchmark_return": 0.0026040399082558692
+    },
+    {
+      "trade_date": "2024-02-23",
+      "benchmark_return": 0.00037137753351629645
+    },
+    {
+      "trade_date": "2024-02-26",
+      "benchmark_return": 0.0006109097464049862
+    },
+    {
+      "trade_date": "2024-02-27",
+      "benchmark_return": 0.0014582480666580262
+    },
+    {
+      "trade_date": "2024-02-28",
+      "benchmark_return": 0.001903155222115697
+    },
+    {
+      "trade_date": "2024-02-29",
+      "benchmark_return": -0.001327188047908597
+    },
+    {
+      "trade_date": "2024-03-01",
+      "benchmark_return": -0.0030031397535658015
+    },
+    {
+      "trade_date": "2024-03-04",
+      "benchmark_return": 0.0032927199631474983
+    },
+    {
+      "trade_date": "2024-03-05",
+      "benchmark_return": -0.0038221494242182833
+    },
+    {
+      "trade_date": "2024-03-06",
+      "benchmark_return": -0.0027727698227045313
+    },
+    {
+      "trade_date": "2024-03-07",
+      "benchmark_return": 0.002860345936293481
+    },
+    {
+      "trade_date": "2024-03-08",
+      "benchmark_return": -0.00021020972801318502
+    },
+    {
+      "trade_date": "2024-03-11",
+      "benchmark_return": -1.3237211702817515e-05
+    },
+    {
+      "trade_date": "2024-03-12",
+      "benchmark_return": 0.0011126649696101257
+    },
+    {
+      "trade_date": "2024-03-13",
+      "benchmark_return": -0.001580570493750888
+    },
+    {
+      "trade_date": "2024-03-14",
+      "benchmark_return": 0.008292299923474222
+    },
+    {
+      "trade_date": "2024-03-15",
+      "benchmark_return": -0.0038971582663881567
+    },
+    {
+      "trade_date": "2024-03-18",
+      "benchmark_return": 0.0009687762340048829
+    },
+    {
+      "trade_date": "2024-03-19",
+      "benchmark_return": 0.0003900096851606379
+    },
+    {
+      "trade_date": "2024-03-20",
+      "benchmark_return": 0.000450679168402468
+    },
+    {
+      "trade_date": "2024-03-21",
+      "benchmark_return": 0.0005639698576371625
+    },
+    {
+      "trade_date": "2024-03-22",
+      "benchmark_return": 0.006034741226988597
+    },
+    {
+      "trade_date": "2024-03-25",
+      "benchmark_return": 0.0017046412953054832
+    },
+    {
+      "trade_date": "2024-03-26",
+      "benchmark_return": 0.007118523870833785
+    },
+    {
+      "trade_date": "2024-03-27",
+      "benchmark_return": -0.0025686068333602135
+    },
+    {
+      "trade_date": "2024-03-28",
+      "benchmark_return": 0.0011552310681906986
+    },
+    {
+      "trade_date": "2024-03-29",
+      "benchmark_return": -0.0036948696946959053
+    },
+    {
+      "trade_date": "2024-04-01",
+      "benchmark_return": 0.00685432579966669
+    },
+    {
+      "trade_date": "2024-04-02",
+      "benchmark_return": 0.0019463344085041319
+    },
+    {
+      "trade_date": "2024-04-03",
+      "benchmark_return": -0.0021139769244277037
+    },
+    {
+      "trade_date": "2024-04-04",
+      "benchmark_return": 0.002567560300885515
+    },
+    {
+      "trade_date": "2024-04-05",
+      "benchmark_return": -0.005267248216778786
+    },
+    {
+      "trade_date": "2024-04-08",
+      "benchmark_return": 0.003014751088914003
+    },
+    {
+      "trade_date": "2024-04-09",
+      "benchmark_return": 0.0042805479349948645
+    },
+    {
+      "trade_date": "2024-04-10",
+      "benchmark_return": 0.0031721490182701467
+    },
+    {
+      "trade_date": "2024-04-11",
+      "benchmark_return": 0.0025369477470309266
+    },
+    {
+      "trade_date": "2024-04-12",
+      "benchmark_return": 0.0013581780684446228
+    },
+    {
+      "trade_date": "2024-04-15",
+      "benchmark_return": 0.003474633788754474
+    },
+    {
+      "trade_date": "2024-04-16",
+      "benchmark_return": 0.008418038548364364
+    },
+    {
+      "trade_date": "2024-04-17",
+      "benchmark_return": 0.001982241569033464
+    },
+    {
+      "trade_date": "2024-04-18",
+      "benchmark_return": -0.0015344182567962662
+    },
+    {
+      "trade_date": "2024-04-19",
+      "benchmark_return": 0.002030655113200985
+    },
+    {
+      "trade_date": "2024-04-22",
+      "benchmark_return": 0.0013351036668725724
+    },
+    {
+      "trade_date": "2024-04-23",
+      "benchmark_return": 0.0002895050045794045
+    },
+    {
+      "trade_date": "2024-04-24",
+      "benchmark_return": -0.004266600123291512
+    },
+    {
+      "trade_date": "2024-04-25",
+      "benchmark_return": -0.0022451334627177372
+    },
+    {
+      "trade_date": "2024-04-26",
+      "benchmark_return": -0.0011572385427639869
+    },
+    {
+      "trade_date": "2024-04-29",
+      "benchmark_return": -0.0033188414493070823
+    },
+    {
+      "trade_date": "2024-04-30",
+      "benchmark_return": -0.0030055177919145284
+    },
+    {
+      "trade_date": "2024-05-01",
+      "benchmark_return": -0.004202262849266932
+    },
+    {
+      "trade_date": "2024-05-02",
+      "benchmark_return": -0.0037471215219611314
+    },
+    {
+      "trade_date": "2024-05-03",
+      "benchmark_return": -0.002004320941722711
+    },
+    {
+      "trade_date": "2024-05-06",
+      "benchmark_return": -0.0010634066810788934
+    },
+    {
+      "trade_date": "2024-05-07",
+      "benchmark_return": 0.0017068781078127407
+    },
+    {
+      "trade_date": "2024-05-08",
+      "benchmark_return": -0.006630733639682929
+    },
+    {
+      "trade_date": "2024-05-09",
+      "benchmark_return": -0.007472826430852608
+    },
+    {
+      "trade_date": "2024-05-10",
+      "benchmark_return": 0.005008953748135214
+    },
+    {
+      "trade_date": "2024-05-13",
+      "benchmark_return": -0.0019046624210912004
+    },
+    {
+      "trade_date": "2024-05-14",
+      "benchmark_return": -0.0005112648229316526
+    },
+    {
+      "trade_date": "2024-05-15",
+      "benchmark_return": -0.004030381804850103
+    },
+    {
+      "trade_date": "2024-05-16",
+      "benchmark_return": 0.002452043298379969
+    },
+    {
+      "trade_date": "2024-05-17",
+      "benchmark_return": -0.0038724325575181682
+    },
+    {
+      "trade_date": "2024-05-20",
+      "benchmark_return": -0.004337097175057528
+    },
+    {
+      "trade_date": "2024-05-21",
+      "benchmark_return": 0.0013627852406191466
+    },
+    {
+      "trade_date": "2024-05-22",
+      "benchmark_return": 0.0007581405392395195
+    },
+    {
+      "trade_date": "2024-05-23",
+      "benchmark_return": 0.00022235710427196778
+    },
+    {
+      "trade_date": "2024-05-24",
+      "benchmark_return": 0.0029655856894932036
+    },
+    {
+      "trade_date": "2024-05-27",
+      "benchmark_return": -0.004972077693418327
+    },
+    {
+      "trade_date": "2024-05-28",
+      "benchmark_return": -0.0017300120830032997
+    },
+    {
+      "trade_date": "2024-05-29",
+      "benchmark_return": 0.0031545486971600273
+    },
+    {
+      "trade_date": "2024-05-30",
+      "benchmark_return": 0.002837644788513734
+    },
+    {
+      "trade_date": "2024-05-31",
+      "benchmark_return": 0.0006566822846102845
+    },
+    {
+      "trade_date": "2024-06-03",
+      "benchmark_return": 0.005650756572443246
+    },
+    {
+      "trade_date": "2024-06-04",
+      "benchmark_return": -0.0024546425331812543
+    },
+    {
+      "trade_date": "2024-06-05",
+      "benchmark_return": 6.286820657536903e-05
+    },
+    {
+      "trade_date": "2024-06-06",
+      "benchmark_return": 0.0005924585772135541
+    },
+    {
+      "trade_date": "2024-06-07",
+      "benchmark_return": 0.0067832254274221015
+    },
+    {
+      "trade_date": "2024-06-10",
+      "benchmark_return": 0.0009005538576754309
+    },
+    {
+      "trade_date": "2024-06-11",
+      "benchmark_return": -0.005098617042911609
+    },
+    {
+      "trade_date": "2024-06-12",
+      "benchmark_return": 0.0014135410056392516
+    },
+    {
+      "trade_date": "2024-06-13",
+      "benchmark_return": 0.0026435620309432067
+    },
+    {
+      "trade_date": "2024-06-14",
+      "benchmark_return": -0.002137947297313599
+    },
+    {
+      "trade_date": "2024-06-17",
+      "benchmark_return": -0.0031202185752148876
+    },
+    {
+      "trade_date": "2024-06-18",
+      "benchmark_return": -0.0025808650824069245
+    },
+    {
+      "trade_date": "2024-06-19",
+      "benchmark_return": -0.0013964518077700236
+    },
+    {
+      "trade_date": "2024-06-20",
+      "benchmark_return": -0.0006116189097814418
+    },
+    {
+      "trade_date": "2024-06-21",
+      "benchmark_return": -0.00042977756149273534
+    },
+    {
+      "trade_date": "2024-06-24",
+      "benchmark_return": 0.0008994961712664747
+    },
+    {
+      "trade_date": "2024-06-25",
+      "benchmark_return": 0.0034081916566802077
+    },
+    {
+      "trade_date": "2024-06-26",
+      "benchmark_return": 0.0021757047418438794
+    },
+    {
+      "trade_date": "2024-06-27",
+      "benchmark_return": 0.001348088026523231
+    },
+    {
+      "trade_date": "2024-06-28",
+      "benchmark_return": -0.0016267858242662192
+    },
+    {
+      "trade_date": "2024-07-01",
+      "benchmark_return": 0.008146897496146489
+    },
+    {
+      "trade_date": "2024-07-02",
+      "benchmark_return": 0.0005580385782088045
+    },
+    {
+      "trade_date": "2024-07-03",
+      "benchmark_return": 0.0004677749906886778
+    },
+    {
+      "trade_date": "2024-07-04",
+      "benchmark_return": 0.001737848747699396
+    },
+    {
+      "trade_date": "2024-07-05",
+      "benchmark_return": 0.0015621752126023162
+    },
+    {
+      "trade_date": "2024-07-08",
+      "benchmark_return": 0.005624265486430147
+    },
+    {
+      "trade_date": "2024-07-09",
+      "benchmark_return": -0.0029440878550496224
+    },
+    {
+      "trade_date": "2024-07-10",
+      "benchmark_return": -0.0006778322657078709
+    },
+    {
+      "trade_date": "2024-07-11",
+      "benchmark_return": -0.001238376092474658
+    },
+    {
+      "trade_date": "2024-07-12",
+      "benchmark_return": 0.0023846596619673368
+    },
+    {
+      "trade_date": "2024-07-15",
+      "benchmark_return": -0.005372100192531696
+    },
+    {
+      "trade_date": "2024-07-16",
+      "benchmark_return": 0.0016821638599607317
+    },
+    {
+      "trade_date": "2024-07-17",
+      "benchmark_return": 0.00037808490170366805
+    },
+    {
+      "trade_date": "2024-07-18",
+      "benchmark_return": 0.005053945061380483
+    },
+    {
+      "trade_date": "2024-07-19",
+      "benchmark_return": -0.004138337678133071
+    },
+    {
+      "trade_date": "2024-07-22",
+      "benchmark_return": 0.0006889424482113382
+    },
+    {
+      "trade_date": "2024-07-23",
+      "benchmark_return": 0.0023297518098301826
+    },
+    {
+      "trade_date": "2024-07-24",
+      "benchmark_return": 4.806764287413889e-05
+    },
+    {
+      "trade_date": "2024-07-25",
+      "benchmark_return": -0.0011050416353342103
+    },
+    {
+      "trade_date": "2024-07-26",
+      "benchmark_return": 0.003012824935747449
+    },
+    {
+      "trade_date": "2024-07-29",
+      "benchmark_return": 0.002242224260299079
+    },
+    {
+      "trade_date": "2024-07-30",
+      "benchmark_return": -0.007437395539283853
+    },
+    {
+      "trade_date": "2024-07-31",
+      "benchmark_return": 0.00019995207216144673
+    },
+    {
+      "trade_date": "2024-08-01",
+      "benchmark_return": -0.0008166117524017043
+    },
+    {
+      "trade_date": "2024-08-02",
+      "benchmark_return": 0.0016036324108675208
+    },
+    {
+      "trade_date": "2024-08-05",
+      "benchmark_return": -0.00011740468273136647
+    },
+    {
+      "trade_date": "2024-08-06",
+      "benchmark_return": 0.004128576663343519
+    },
+    {
+      "trade_date": "2024-08-07",
+      "benchmark_return": -0.001881326080483884
+    },
+    {
+      "trade_date": "2024-08-08",
+      "benchmark_return": -0.003320811095776451
+    },
+    {
+      "trade_date": "2024-08-09",
+      "benchmark_return": -0.0010484885488103556
+    },
+    {
+      "trade_date": "2024-08-12",
+      "benchmark_return": -0.0003319384900320281
+    },
+    {
+      "trade_date": "2024-08-13",
+      "benchmark_return": 0.0034017709390706512
+    },
+    {
+      "trade_date": "2024-08-14",
+      "benchmark_return": 0.0036652492726266953
+    },
+    {
+      "trade_date": "2024-08-15",
+      "benchmark_return": 0.0011683342261147756
+    },
+    {
+      "trade_date": "2024-08-16",
+      "benchmark_return": -0.0017085639577933667
+    },
+    {
+      "trade_date": "2024-08-19",
+      "benchmark_return": -0.003445096530642137
+    },
+    {
+      "trade_date": "2024-08-20",
+      "benchmark_return": 1.261804153121308e-05
+    },
+    {
+      "trade_date": "2024-08-21",
+      "benchmark_return": -2.818485585515118e-05
+    },
+    {
+      "trade_date": "2024-08-22",
+      "benchmark_return": 0.0005072251041269442
+    },
+    {
+      "trade_date": "2024-08-23",
+      "benchmark_return": -0.004661669301614809
+    },
+    {
+      "trade_date": "2024-08-26",
+      "benchmark_return": 0.001053694445634649
+    },
+    {
+      "trade_date": "2024-08-27",
+      "benchmark_return": 0.0004521635680392322
+    },
+    {
+      "trade_date": "2024-08-28",
+      "benchmark_return": 0.004200228359970467
+    },
+    {
+      "trade_date": "2024-08-29",
+      "benchmark_return": 0.0021520828124299415
+    },
+    {
+      "trade_date": "2024-08-30",
+      "benchmark_return": 0.0024453346416256996
+    },
+    {
+      "trade_date": "2024-09-02",
+      "benchmark_return": 0.002364966529926926
+    },
+    {
+      "trade_date": "2024-09-03",
+      "benchmark_return": -0.0037738454650487457
+    },
+    {
+      "trade_date": "2024-09-04",
+      "benchmark_return": 0.0001918395194983417
+    },
+    {
+      "trade_date": "2024-09-05",
+      "benchmark_return": 0.0016782246409678587
+    },
+    {
+      "trade_date": "2024-09-06",
+      "benchmark_return": 0.002456885602328607
+    },
+    {
+      "trade_date": "2024-09-09",
+      "benchmark_return": 0.00447064073303692
+    }
+  ],
+  "active_returns": [
+    {
+      "trade_date": "2024-01-02",
+      "active_return": 0.0
+    },
+    {
+      "trade_date": "2024-01-03",
+      "active_return": 0.004908160533070934
+    },
+    {
+      "trade_date": "2024-01-04",
+      "active_return": -0.0017849697768873166
+    },
+    {
+      "trade_date": "2024-01-05",
+      "active_return": 0.0054190149620103305
+    },
+    {
+      "trade_date": "2024-01-08",
+      "active_return": -0.0017626651595451551
+    },
+    {
+      "trade_date": "2024-01-09",
+      "active_return": 0.00023270181989596035
+    },
+    {
+      "trade_date": "2024-01-10",
+      "active_return": -0.0003117722000049117
+    },
+    {
+      "trade_date": "2024-01-11",
+      "active_return": -0.0039492574299122155
+    },
+    {
+      "trade_date": "2024-01-12",
+      "active_return": -0.0005348182430600682
+    },
+    {
+      "trade_date": "2024-01-15",
+      "active_return": -0.001936465963326602
+    },
+    {
+      "trade_date": "2024-01-16",
+      "active_return": -0.0028912938532283826
+    },
+    {
+      "trade_date": "2024-01-17",
+      "active_return": -0.003155037517324503
+    },
+    {
+      "trade_date": "2024-01-18",
+      "active_return": 0.0017494951042104153
+    },
+    {
+      "trade_date": "2024-01-19",
+      "active_return": -0.00544959613654018
+    },
+    {
+      "trade_date": "2024-01-22",
+      "active_return": -0.0057472569048084106
+    },
+    {
+      "trade_date": "2024-01-23",
+      "active_return": -0.005024101930111883
+    },
+    {
+      "trade_date": "2024-01-24",
+      "active_return": 0.0002240096163701429
+    },
+    {
+      "trade_date": "2024-01-25",
+      "active_return": -0.003902695839536104
+    },
+    {
+      "trade_date": "2024-01-26",
+      "active_return": 0.0045228589807204565
+    },
+    {
+      "trade_date": "2024-01-29",
+      "active_return": -0.004939615983417737
+    },
+    {
+      "trade_date": "2024-01-30",
+      "active_return": -0.00197692446414968
+    },
+    {
+      "trade_date": "2024-01-31",
+      "active_return": 0.0009506589495702452
+    },
+    {
+      "trade_date": "2024-02-01",
+      "active_return": -0.0015305791342116958
+    },
+    {
+      "trade_date": "2024-02-02",
+      "active_return": 0.006725362796455425
+    },
+    {
+      "trade_date": "2024-02-05",
+      "active_return": -0.004407693827374929
+    },
+    {
+      "trade_date": "2024-02-06",
+      "active_return": -4.112819670785139e-05
+    },
+    {
+      "trade_date": "2024-02-07",
+      "active_return": 0.001178475232566271
+    },
+    {
+      "trade_date": "2024-02-08",
+      "active_return": -0.0008694222845034145
+    },
+    {
+      "trade_date": "2024-02-09",
+      "active_return": -0.0013760062682885025
+    },
+    {
+      "trade_date": "2024-02-12",
+      "active_return": -0.0033281014081136483
+    },
+    {
+      "trade_date": "2024-02-13",
+      "active_return": 0.00047642168517652385
+    },
+    {
+      "trade_date": "2024-02-14",
+      "active_return": 4.1073889227597844e-05
+    },
+    {
+      "trade_date": "2024-02-15",
+      "active_return": 0.00439182242178322
+    },
+    {
+      "trade_date": "2024-02-16",
+      "active_return": 0.0011664903363212279
+    },
+    {
+      "trade_date": "2024-02-19",
+      "active_return": -0.0001791016962817323
+    },
+    {
+      "trade_date": "2024-02-20",
+      "active_return": -0.004957286694418172
+    },
+    {
+      "trade_date": "2024-02-21",
+      "active_return": -0.004147797995641278
+    },
+    {
+      "trade_date": "2024-02-22",
+      "active_return": -0.0026040399082558692
+    },
+    {
+      "trade_date": "2024-02-23",
+      "active_return": -0.00037137753351629645
+    },
+    {
+      "trade_date": "2024-02-26",
+      "active_return": -0.0006109097464049862
+    },
+    {
+      "trade_date": "2024-02-27",
+      "active_return": -0.0014582480666580262
+    },
+    {
+      "trade_date": "2024-02-28",
+      "active_return": -0.001903155222115697
+    },
+    {
+      "trade_date": "2024-02-29",
+      "active_return": 0.001327188047908597
+    },
+    {
+      "trade_date": "2024-03-01",
+      "active_return": 0.0030031397535658015
+    },
+    {
+      "trade_date": "2024-03-04",
+      "active_return": -0.0032927199631474983
+    },
+    {
+      "trade_date": "2024-03-05",
+      "active_return": 0.0038221494242182833
+    },
+    {
+      "trade_date": "2024-03-06",
+      "active_return": 0.0027727698227045313
+    },
+    {
+      "trade_date": "2024-03-07",
+      "active_return": -0.002860345936293481
+    },
+    {
+      "trade_date": "2024-03-08",
+      "active_return": 0.00021020972801318502
+    },
+    {
+      "trade_date": "2024-03-11",
+      "active_return": 1.3237211702817515e-05
+    },
+    {
+      "trade_date": "2024-03-12",
+      "active_return": -0.0011126649696101257
+    },
+    {
+      "trade_date": "2024-03-13",
+      "active_return": 0.001580570493750888
+    },
+    {
+      "trade_date": "2024-03-14",
+      "active_return": -0.008292299923474222
+    },
+    {
+      "trade_date": "2024-03-15",
+      "active_return": 0.0038971582663881567
+    },
+    {
+      "trade_date": "2024-03-18",
+      "active_return": -0.0009687762340048829
+    },
+    {
+      "trade_date": "2024-03-19",
+      "active_return": -0.0003900096851606379
+    },
+    {
+      "trade_date": "2024-03-20",
+      "active_return": -0.000450679168402468
+    },
+    {
+      "trade_date": "2024-03-21",
+      "active_return": -0.0005639698576371625
+    },
+    {
+      "trade_date": "2024-03-22",
+      "active_return": -0.006034741226988597
+    },
+    {
+      "trade_date": "2024-03-25",
+      "active_return": -0.0017046412953054832
+    },
+    {
+      "trade_date": "2024-03-26",
+      "active_return": -0.007118523870833785
+    },
+    {
+      "trade_date": "2024-03-27",
+      "active_return": 0.0025686068333602135
+    },
+    {
+      "trade_date": "2024-03-28",
+      "active_return": -0.0011552310681906986
+    },
+    {
+      "trade_date": "2024-03-29",
+      "active_return": 0.00360544280182629
+    },
+    {
+      "trade_date": "2024-04-01",
+      "active_return": -0.003337328946289216
+    },
+    {
+      "trade_date": "2024-04-02",
+      "active_return": -0.002455784155708814
+    },
+    {
+      "trade_date": "2024-04-03",
+      "active_return": 0.000529365472489259
+    },
+    {
+      "trade_date": "2024-04-04",
+      "active_return": -0.0037756614968690945
+    },
+    {
+      "trade_date": "2024-04-05",
+      "active_return": 0.00601551097750882
+    },
+    {
+      "trade_date": "2024-04-08",
+      "active_return": 0.0025145096518917275
+    },
+    {
+      "trade_date": "2024-04-09",
+      "active_return": -0.005555009263757053
+    },
+    {
+      "trade_date": "2024-04-10",
+      "active_return": -0.004566432491877296
+    },
+    {
+      "trade_date": "2024-04-11",
+      "active_return": 0.003949324131118171
+    },
+    {
+      "trade_date": "2024-04-12",
+      "active_return": -0.0016690755076330629
+    },
+    {
+      "trade_date": "2024-04-15",
+      "active_return": 0.0015189270820029446
+    },
+    {
+      "trade_date": "2024-04-16",
+      "active_return": -0.0084591345023785
+    },
+    {
+      "trade_date": "2024-04-17",
+      "active_return": 0.0005449220571379829
+    },
+    {
+      "trade_date": "2024-04-18",
+      "active_return": 0.003171746190427738
+    },
+    {
+      "trade_date": "2024-04-19",
+      "active_return": 0.0017783648570852796
+    },
+    {
+      "trade_date": "2024-04-22",
+      "active_return": -0.0019424762815866802
+    },
+    {
+      "trade_date": "2024-04-23",
+      "active_return": 0.001516145129003843
+    },
+    {
+      "trade_date": "2024-04-24",
+      "active_return": 0.004910703561045963
+    },
+    {
+      "trade_date": "2024-04-25",
+      "active_return": 0.003933869289616173
+    },
+    {
+      "trade_date": "2024-04-26",
+      "active_return": -0.0013702052945460859
+    },
+    {
+      "trade_date": "2024-04-29",
+      "active_return": 0.00048422700299102957
+    },
+    {
+      "trade_date": "2024-04-30",
+      "active_return": 0.0004652476709161948
+    },
+    {
+      "trade_date": "2024-05-01",
+      "active_return": 0.0006620754949993998
+    },
+    {
+      "trade_date": "2024-05-02",
+      "active_return": 0.002722643145215446
+    },
+    {
+      "trade_date": "2024-05-03",
+      "active_return": 0.0007661727609977261
+    },
+    {
+      "trade_date": "2024-05-06",
+      "active_return": 5.49492543524988e-05
+    },
+    {
+      "trade_date": "2024-05-07",
+      "active_return": 0.004852394404318546
+    },
+    {
+      "trade_date": "2024-05-08",
+      "active_return": 0.004550880536770896
+    },
+    {
+      "trade_date": "2024-05-09",
+      "active_return": 0.00484077134353571
+    },
+    {
+      "trade_date": "2024-05-10",
+      "active_return": 0.0007952939775269117
+    },
+    {
+      "trade_date": "2024-05-13",
+      "active_return": 0.002845875378954403
+    },
+    {
+      "trade_date": "2024-05-14",
+      "active_return": 0.004904886558879358
+    },
+    {
+      "trade_date": "2024-05-15",
+      "active_return": 0.004927362440062699
+    },
+    {
+      "trade_date": "2024-05-16",
+      "active_return": -0.008110264334851036
+    },
+    {
+      "trade_date": "2024-05-17",
+      "active_return": 0.004114719660809385
+    },
+    {
+      "trade_date": "2024-05-20",
+      "active_return": 0.00978976360762756
+    },
+    {
+      "trade_date": "2024-05-21",
+      "active_return": 0.0010463682200262613
+    },
+    {
+      "trade_date": "2024-05-22",
+      "active_return": -0.002232132744538721
+    },
+    {
+      "trade_date": "2024-05-23",
+      "active_return": -0.0066182982367611705
+    },
+    {
+      "trade_date": "2024-05-24",
+      "active_return": -0.0030674050381714595
+    },
+    {
+      "trade_date": "2024-05-27",
+      "active_return": 0.010518154212692851
+    },
+    {
+      "trade_date": "2024-05-28",
+      "active_return": -0.002033521067702911
+    },
+    {
+      "trade_date": "2024-05-29",
+      "active_return": 0.0030410162878613573
+    },
+    {
+      "trade_date": "2024-05-30",
+      "active_return": -0.0003142489664243538
+    },
+    {
+      "trade_date": "2024-05-31",
+      "active_return": 0.0035969108062515335
+    },
+    {
+      "trade_date": "2024-06-03",
+      "active_return": -0.004597670132341755
+    },
+    {
+      "trade_date": "2024-06-04",
+      "active_return": 0.002954157372176273
+    },
+    {
+      "trade_date": "2024-06-05",
+      "active_return": 0.0012254173711866915
+    },
+    {
+      "trade_date": "2024-06-06",
+      "active_return": -0.003864923555996306
+    },
+    {
+      "trade_date": "2024-06-07",
+      "active_return": -0.005282861913983361
+    },
+    {
+      "trade_date": "2024-06-10",
+      "active_return": -0.0008356554586419781
+    },
+    {
+      "trade_date": "2024-06-11",
+      "active_return": 0.004214694718764252
+    },
+    {
+      "trade_date": "2024-06-12",
+      "active_return": -0.002626909681200129
+    },
+    {
+      "trade_date": "2024-06-13",
+      "active_return": -0.004383270892040962
+    },
+    {
+      "trade_date": "2024-06-14",
+      "active_return": 0.0009714159490481007
+    },
+    {
+      "trade_date": "2024-06-17",
+      "active_return": -0.0009080721126643559
+    },
+    {
+      "trade_date": "2024-06-18",
+      "active_return": -0.0053451439146524945
+    },
+    {
+      "trade_date": "2024-06-19",
+      "active_return": 0.002930122967834
+    },
+    {
+      "trade_date": "2024-06-20",
+      "active_return": -0.003177750074199859
+    },
+    {
+      "trade_date": "2024-06-21",
+      "active_return": 0.0021904641897385353
+    },
+    {
+      "trade_date": "2024-06-24",
+      "active_return": 0.0006973762561271172
+    },
+    {
+      "trade_date": "2024-06-25",
+      "active_return": -0.0007001508426712137
+    },
+    {
+      "trade_date": "2024-06-26",
+      "active_return": -0.0002407094524717471
+    },
+    {
+      "trade_date": "2024-06-27",
+      "active_return": -0.00123180967619555
+    },
+    {
+      "trade_date": "2024-06-28",
+      "active_return": -0.0016331792909565323
+    },
+    {
+      "trade_date": "2024-07-01",
+      "active_return": -0.007393831412589414
+    },
+    {
+      "trade_date": "2024-07-02",
+      "active_return": 0.004655849134051697
+    },
+    {
+      "trade_date": "2024-07-03",
+      "active_return": -0.001554227994700234
+    },
+    {
+      "trade_date": "2024-07-04",
+      "active_return": 0.0029120359124951626
+    },
+    {
+      "trade_date": "2024-07-05",
+      "active_return": 1.7584372020214723e-05
+    },
+    {
+      "trade_date": "2024-07-08",
+      "active_return": -0.004491232393215261
+    },
+    {
+      "trade_date": "2024-07-09",
+      "active_return": -0.0037814984182075223
+    },
+    {
+      "trade_date": "2024-07-10",
+      "active_return": 0.0014910036142540641
+    },
+    {
+      "trade_date": "2024-07-11",
+      "active_return": -0.0030070975886584916
+    },
+    {
+      "trade_date": "2024-07-12",
+      "active_return": -0.0028172216666575546
+    },
+    {
+      "trade_date": "2024-07-15",
+      "active_return": 0.0028043109016602707
+    },
+    {
+      "trade_date": "2024-07-16",
+      "active_return": -0.0013743745535391187
+    },
+    {
+      "trade_date": "2024-07-17",
+      "active_return": -0.003258738665823058
+    },
+    {
+      "trade_date": "2024-07-18",
+      "active_return": -0.005439644045854753
+    },
+    {
+      "trade_date": "2024-07-19",
+      "active_return": 0.0076200551392234545
+    },
+    {
+      "trade_date": "2024-07-22",
+      "active_return": 0.0006468191360013309
+    },
+    {
+      "trade_date": "2024-07-23",
+      "active_return": -0.00030116249508725917
+    },
+    {
+      "trade_date": "2024-07-24",
+      "active_return": 0.0004992558140307524
+    },
+    {
+      "trade_date": "2024-07-25",
+      "active_return": -0.0035670226117498964
+    },
+    {
+      "trade_date": "2024-07-26",
+      "active_return": -0.009409204260697746
+    },
+    {
+      "trade_date": "2024-07-29",
+      "active_return": -0.0020369881619830593
+    },
+    {
+      "trade_date": "2024-07-30",
+      "active_return": 0.010892109440465425
+    },
+    {
+      "trade_date": "2024-07-31",
+      "active_return": -0.0034376416640169993
+    },
+    {
+      "trade_date": "2024-08-01",
+      "active_return": 0.006516024268719819
+    },
+    {
+      "trade_date": "2024-08-02",
+      "active_return": -0.007597425993750066
+    },
+    {
+      "trade_date": "2024-08-05",
+      "active_return": -0.0075026546942870065
+    },
+    {
+      "trade_date": "2024-08-06",
+      "active_return": 0.00042387250950817225
+    },
+    {
+      "trade_date": "2024-08-07",
+      "active_return": 0.0026491454910134975
+    },
+    {
+      "trade_date": "2024-08-08",
+      "active_return": 0.0007397740014748761
+    },
+    {
+      "trade_date": "2024-08-09",
+      "active_return": 0.00716571309334525
+    },
+    {
+      "trade_date": "2024-08-12",
+      "active_return": 0.0017565103611097237
+    },
+    {
+      "trade_date": "2024-08-13",
+      "active_return": -0.004528078094848979
+    },
+    {
+      "trade_date": "2024-08-14",
+      "active_return": 0.0005926117701399022
+    },
+    {
+      "trade_date": "2024-08-15",
+      "active_return": 0.0018299000017432787
+    },
+    {
+      "trade_date": "2024-08-16",
+      "active_return": 0.006337249343317778
+    },
+    {
+      "trade_date": "2024-08-19",
+      "active_return": 0.0014767886164146074
+    },
+    {
+      "trade_date": "2024-08-20",
+      "active_return": 0.00039995664712708285
+    },
+    {
+      "trade_date": "2024-08-21",
+      "active_return": -0.0006294018970003923
+    },
+    {
+      "trade_date": "2024-08-22",
+      "active_return": 0.005455870747188326
+    },
+    {
+      "trade_date": "2024-08-23",
+      "active_return": 0.008088006140299461
+    },
+    {
+      "trade_date": "2024-08-26",
+      "active_return": 0.00047349382293591837
+    },
+    {
+      "trade_date": "2024-08-27",
+      "active_return": 9.53743171994148e-07
+    },
+    {
+      "trade_date": "2024-08-28",
+      "active_return": -0.004341624125637319
+    },
+    {
+      "trade_date": "2024-08-29",
+      "active_return": 0.0013348913266448973
+    },
+    {
+      "trade_date": "2024-08-30",
+      "active_return": -0.004164716654696124
+    },
+    {
+      "trade_date": "2024-09-02",
+      "active_return": -0.001292713235823717
+    },
+    {
+      "trade_date": "2024-09-03",
+      "active_return": -2.6269005355879574e-05
+    },
+    {
+      "trade_date": "2024-09-04",
+      "active_return": 0.0006428825083691544
+    },
+    {
+      "trade_date": "2024-09-05",
+      "active_return": 0.0003243171874532196
+    },
+    {
+      "trade_date": "2024-09-06",
+      "active_return": -0.0001247212431767621
+    },
+    {
+      "trade_date": "2024-09-09",
+      "active_return": -9.802205027252455e-05
+    }
+  ],
+  "equity_curve": [
+    {
+      "trade_date": "2024-01-02",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-03",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-04",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-05",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-08",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-09",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-10",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-11",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-12",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-15",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-16",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-17",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-18",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-19",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-22",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-23",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-24",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-25",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-26",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-29",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-30",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-31",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-01",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-02",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-05",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-06",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-07",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-08",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-09",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-12",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-13",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-14",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-15",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-16",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-19",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-20",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-21",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-22",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-23",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-26",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-27",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-28",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-02-29",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-01",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-04",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-05",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-06",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-07",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-08",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-11",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-12",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-13",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-14",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-15",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-18",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-19",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-20",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-21",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-22",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-25",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-26",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-27",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-28",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-03-29",
+      "strategy_equity": 999910.5731071304
+    },
+    {
+      "trade_date": "2024-04-01",
+      "strategy_equity": 1003427.255446407
+    },
+    {
+      "trade_date": "2024-04-02",
+      "strategy_equity": 1002916.0596847815
+    },
+    {
+      "trade_date": "2024-04-03",
+      "strategy_equity": 1001326.8274112721
+    },
+    {
+      "trade_date": "2024-04-04",
+      "strategy_equity": 1000117.123273506
+    },
+    {
+      "trade_date": "2024-04-05",
+      "strategy_equity": 1000865.4736732201
+    },
+    {
+      "trade_date": "2024-04-08",
+      "strategy_equity": 1006399.5198436293
+    },
+    {
+      "trade_date": "2024-04-09",
+      "strategy_equity": 1005116.9025743039
+    },
+    {
+      "trade_date": "2024-04-10",
+      "strategy_equity": 1003715.4846880012
+    },
+    {
+      "trade_date": "2024-04-11",
+      "strategy_equity": 1010225.8562099957
+    },
+    {
+      "trade_date": "2024-04-12",
+      "strategy_equity": 1009911.7795782981
+    },
+    {
+      "trade_date": "2024-04-15",
+      "strategy_equity": 1014954.8355237172
+    },
+    {
+      "trade_date": "2024-04-16",
+      "strategy_equity": 1014913.1249864702
+    },
+    {
+      "trade_date": "2024-04-17",
+      "strategy_equity": 1017477.97651966
+    },
+    {
+      "trade_date": "2024-04-18",
+      "strategy_equity": 1019143.9216324704
+    },
+    {
+      "trade_date": "2024-04-19",
+      "strategy_equity": 1023025.8611825644
+    },
+    {
+      "trade_date": "2024-04-22",
+      "strategy_equity": 1022404.503290338
+    },
+    {
+      "trade_date": "2024-04-23",
+      "strategy_equity": 1024250.6081182803
+    },
+    {
+      "trade_date": "2024-04-24",
+      "strategy_equity": 1024910.3314560915
+    },
+    {
+      "trade_date": "2024-04-25",
+      "strategy_equity": 1026641.1342521798
+    },
+    {
+      "trade_date": "2024-04-26",
+      "strategy_equity": 1024046.356444285
+    },
+    {
+      "trade_date": "2024-04-29",
+      "strategy_equity": 1021143.5798486106
+    },
+    {
+      "trade_date": "2024-04-30",
+      "strategy_equity": 1018549.5993234719
+    },
+    {
+      "trade_date": "2024-05-01",
+      "strategy_equity": 1014943.7429122528
+    },
+    {
+      "trade_date": "2024-05-02",
+      "strategy_equity": 1013903.9549940259
+    },
+    {
+      "trade_date": "2024-05-03",
+      "strategy_equity": 1012648.59165672
+    },
+    {
+      "trade_date": "2024-05-06",
+      "strategy_equity": 1011627.3786637997
+    },
+    {
+      "trade_date": "2024-05-07",
+      "strategy_equity": 1018262.9183211887
+    },
+    {
+      "trade_date": "2024-05-08",
+      "strategy_equity": 1016145.0810309381
+    },
+    {
+      "trade_date": "2024-05-09",
+      "strategy_equity": 1013470.5312009584
+    },
+    {
+      "trade_date": "2024-05-10",
+      "strategy_equity": 1019352.9652267073
+    },
+    {
+      "trade_date": "2024-05-13",
+      "strategy_equity": 1020312.3934462148
+    },
+    {
+      "trade_date": "2024-05-14",
+      "strategy_equity": 1024795.260155517
+    },
+    {
+      "trade_date": "2024-05-15",
+      "strategy_equity": 1025714.481658934
+    },
+    {
+      "trade_date": "2024-05-16",
+      "strategy_equity": 1019910.7624013985
+    },
+    {
+      "trade_date": "2024-05-17",
+      "strategy_equity": 1020157.8736256362
+    },
+    {
+      "trade_date": "2024-05-20",
+      "strategy_equity": 1025720.4542190768
+    },
+    {
+      "trade_date": "2024-05-21",
+      "strategy_equity": 1028191.5722010136
+    },
+    {
+      "trade_date": "2024-05-22",
+      "strategy_equity": 1026676.0258380349
+    },
+    {
+      "trade_date": "2024-05-23",
+      "strategy_equity": 1020109.4664146368
+    },
+    {
+      "trade_date": "2024-05-24",
+      "strategy_equity": 1020005.5995331861
+    },
+    {
+      "trade_date": "2024-05-27",
+      "strategy_equity": 1025662.6286382854
+    },
+    {
+      "trade_date": "2024-05-28",
+      "strategy_equity": 1021802.5133339647
+    },
+    {
+      "trade_date": "2024-05-29",
+      "strategy_equity": 1028133.1572071834
+    },
+    {
+      "trade_date": "2024-05-30",
+      "strategy_equity": 1030727.5441206316
+    },
+    {
+      "trade_date": "2024-05-31",
+      "strategy_equity": 1035111.839680864
+    },
+    {
+      "trade_date": "2024-06-03",
+      "strategy_equity": 1036201.9019232205
+    },
+    {
+      "trade_date": "2024-06-04",
+      "strategy_equity": 1036719.500149426
+    },
+    {
+      "trade_date": "2024-06-05",
+      "strategy_equity": 1038055.0909296533
+    },
+    {
+      "trade_date": "2024-06-06",
+      "strategy_equity": 1034658.0919985388
+    },
+    {
+      "trade_date": "2024-06-07",
+      "strategy_equity": 1036210.4552486575
+    },
+    {
+      "trade_date": "2024-06-10",
+      "strategy_equity": 1036277.7036482649
+    },
+    {
+      "trade_date": "2024-06-11",
+      "strategy_equity": 1035361.714651994
+    },
+    {
+      "trade_date": "2024-06-12",
+      "strategy_equity": 1034105.4391795603
+    },
+    {
+      "trade_date": "2024-06-13",
+      "strategy_equity": 1032306.3967837102
+    },
+    {
+      "trade_date": "2024-06-14",
+      "strategy_equity": 1031102.179010847
+    },
+    {
+      "trade_date": "2024-06-17",
+      "strategy_equity": 1026948.5997048855
+    },
+    {
+      "trade_date": "2024-06-18",
+      "strategy_equity": 1018808.9958641072
+    },
+    {
+      "trade_date": "2024-06-19",
+      "strategy_equity": 1020371.5138386776
+    },
+    {
+      "trade_date": "2024-06-20",
+      "strategy_equity": 1016504.9496719991
+    },
+    {
+      "trade_date": "2024-06-21",
+      "strategy_equity": 1018294.6963444324
+    },
+    {
+      "trade_date": "2024-06-24",
+      "strategy_equity": 1019920.7830679859
+    },
+    {
+      "trade_date": "2024-06-25",
+      "strategy_equity": 1022682.7701755901
+    },
+    {
+      "trade_date": "2024-06-26",
+      "strategy_equity": 1024661.6565184019
+    },
+    {
+      "trade_date": "2024-06-27",
+      "strategy_equity": 1024780.8024854659
+    },
+    {
+      "trade_date": "2024-06-28",
+      "strategy_equity": 1021440.0528186134
+    },
+    {
+      "trade_date": "2024-07-01",
+      "strategy_equity": 1022209.2646787779
+    },
+    {
+      "trade_date": "2024-07-02",
+      "strategy_equity": 1027538.9490032453
+    },
+    {
+      "trade_date": "2024-07-03",
+      "strategy_equity": 1026422.576225362
+    },
+    {
+      "trade_date": "2024-07-04",
+      "strategy_equity": 1031195.3228174298
+    },
+    {
+      "trade_date": "2024-07-05",
+      "strategy_equity": 1032824.3635122685
+    },
+    {
+      "trade_date": "2024-07-08",
+      "strategy_equity": 1033994.5876956065
+    },
+    {
+      "trade_date": "2024-07-09",
+      "strategy_equity": 1027040.3678899787
+    },
+    {
+      "trade_date": "2024-07-10",
+      "strategy_equity": 1027875.527690947
+    },
+    {
+      "trade_date": "2024-07-11",
+      "strategy_equity": 1023511.7091906542
+    },
+    {
+      "trade_date": "2024-07-12",
+      "strategy_equity": 1023068.9769139028
+    },
+    {
+      "trade_date": "2024-07-15",
+      "strategy_equity": 1020441.9513511604
+    },
+    {
+      "trade_date": "2024-07-16",
+      "strategy_equity": 1020756.0324716102
+    },
+    {
+      "trade_date": "2024-07-17",
+      "strategy_equity": 1017815.5877644232
+    },
+    {
+      "trade_date": "2024-07-18",
+      "strategy_equity": 1017423.0173258405
+    },
+    {
+      "trade_date": "2024-07-19",
+      "strategy_equity": 1020965.3968105792
+    },
+    {
+      "trade_date": "2024-07-22",
+      "strategy_equity": 1022329.1631664493
+    },
+    {
+      "trade_date": "2024-07-23",
+      "strategy_equity": 1024403.0491829987
+    },
+    {
+      "trade_date": "2024-07-24",
+      "strategy_equity": 1024963.7290011415
+    },
+    {
+      "trade_date": "2024-07-25",
+      "strategy_equity": 1020175.0326083172
+    },
+    {
+      "trade_date": "2024-07-26",
+      "strategy_equity": 1013649.6061219109
+    },
+    {
+      "trade_date": "2024-07-29",
+      "strategy_equity": 1013857.6436121309
+    },
+    {
+      "trade_date": "2024-07-30",
+      "strategy_equity": 1017360.231707337
+    },
+    {
+      "trade_date": "2024-07-31",
+      "strategy_equity": 1014066.3350739703
+    },
+    {
+      "trade_date": "2024-08-01",
+      "strategy_equity": 1019845.9174364676
+    },
+    {
+      "trade_date": "2024-08-02",
+      "strategy_equity": 1013733.1715210078
+    },
+    {
+      "trade_date": "2024-08-05",
+      "strategy_equity": 1006008.4645615646
+    },
+    {
+      "trade_date": "2024-08-06",
+      "strategy_equity": 1010588.2669639396
+    },
+    {
+      "trade_date": "2024-08-07",
+      "strategy_equity": 1011364.216251368
+    },
+    {
+      "trade_date": "2024-08-08",
+      "strategy_equity": 1008753.8476933739
+    },
+    {
+      "trade_date": "2024-08-09",
+      "strategy_equity": 1014924.6214898779
+    },
+    {
+      "trade_date": "2024-08-12",
+      "strategy_equity": 1016370.4545569165
+    },
+    {
+      "trade_date": "2024-08-13",
+      "strategy_equity": 1015225.7092410275
+    },
+    {
+      "trade_date": "2024-08-14",
+      "strategy_equity": 1019548.3992380198
+    },
+    {
+      "trade_date": "2024-08-15",
+      "strategy_equity": 1022605.2441455733
+    },
+    {
+      "trade_date": "2024-08-16",
+      "strategy_equity": 1027338.5620943105
+    },
+    {
+      "trade_date": "2024-08-19",
+      "strategy_equity": 1025316.4434719491
+    },
+    {
+      "trade_date": "2024-08-20",
+      "strategy_equity": 1025739.4630843907
+    },
+    {
+      "trade_date": "2024-08-21",
+      "strategy_equity": 1025064.9504015854
+    },
+    {
+      "trade_date": "2024-08-22",
+      "strategy_equity": 1031177.5109546537
+    },
+    {
+      "trade_date": "2024-08-23",
+      "strategy_equity": 1034710.6724476607
+    },
+    {
+      "trade_date": "2024-08-26",
+      "strategy_equity": 1036290.8704479876
+    },
+    {
+      "trade_date": "2024-08-27",
+      "strategy_equity": 1036760.4317808377
+    },
+    {
+      "trade_date": "2024-08-28",
+      "strategy_equity": 1036613.8382457728
+    },
+    {
+      "trade_date": "2024-08-29",
+      "strategy_equity": 1040228.4838919429
+    },
+    {
+      "trade_date": "2024-08-30",
+      "strategy_equity": 1038439.9337472556
+    },
+    {
+      "trade_date": "2024-09-02",
+      "strategy_equity": 1039553.4043869446
+    },
+    {
+      "trade_date": "2024-09-03",
+      "strategy_equity": 1035602.9824521753
+    },
+    {
+      "trade_date": "2024-09-04",
+      "strategy_equity": 1036467.4230737534
+    },
+    {
+      "trade_date": "2024-09-05",
+      "strategy_equity": 1038542.9924422544
+    },
+    {
+      "trade_date": "2024-09-06",
+      "strategy_equity": 1040965.0453946752
+    },
+    {
+      "trade_date": "2024-09-09",
+      "strategy_equity": 1045516.7886002727
+    }
+  ],
+  "benchmark_equity_curve": [
+    {
+      "trade_date": "2024-01-02",
+      "benchmark_equity": 1000000.0
+    },
+    {
+      "trade_date": "2024-01-03",
+      "benchmark_equity": 995091.8394669291
+    },
+    {
+      "trade_date": "2024-01-04",
+      "benchmark_equity": 996868.0483256046
+    },
+    {
+      "trade_date": "2024-01-05",
+      "benchmark_equity": 991466.005456578
+    },
+    {
+      "trade_date": "2024-01-08",
+      "benchmark_equity": 993213.6280412698
+    },
+    {
+      "trade_date": "2024-01-09",
+      "benchmark_equity": 992982.5054224792
+    },
+    {
+      "trade_date": "2024-01-10",
+      "benchmark_equity": 993292.0897627613
+    },
+    {
+      "trade_date": "2024-01-11",
+      "benchmark_equity": 997214.8559283299
+    },
+    {
+      "trade_date": "2024-01-12",
+      "benchmark_equity": 997748.1846255308
+    },
+    {
+      "trade_date": "2024-01-15",
+      "benchmark_equity": 999680.290025029
+    },
+    {
+      "trade_date": "2024-01-16",
+      "benchmark_equity": 1002570.6595027719
+    },
+    {
+      "trade_date": "2024-01-17",
+      "benchmark_equity": 1005733.807547272
+    },
+    {
+      "trade_date": "2024-01-18",
+      "benchmark_equity": 1003974.2811748291
+    },
+    {
+      "trade_date": "2024-01-19",
+      "benchmark_equity": 1009445.5355387051
+    },
+    {
+      "trade_date": "2024-01-22",
+      "benchmark_equity": 1015247.078362858
+    },
+    {
+      "trade_date": "2024-01-23",
+      "benchmark_equity": 1020347.7831688012
+    },
+    {
+      "trade_date": "2024-01-24",
+      "benchmark_equity": 1020119.2154533294
+    },
+    {
+      "trade_date": "2024-01-25",
+      "benchmark_equity": 1024100.4304713099
+    },
+    {
+      "trade_date": "2024-01-26",
+      "benchmark_equity": 1019468.5686421931
+    },
+    {
+      "trade_date": "2024-01-29",
+      "benchmark_equity": 1024504.35187845
+    },
+    {
+      "trade_date": "2024-01-30",
+      "benchmark_equity": 1026529.7195953062
+    },
+    {
+      "trade_date": "2024-01-31",
+      "benchmark_equity": 1025553.8399303732
+    },
+    {
+      "trade_date": "2024-02-01",
+      "benchmark_equity": 1027123.5312387814
+    },
+    {
+      "trade_date": "2024-02-02",
+      "benchmark_equity": 1020215.7528544242
+    },
+    {
+      "trade_date": "2024-02-05",
+      "benchmark_equity": 1024712.5515308713
+    },
+    {
+      "trade_date": "2024-02-06",
+      "benchmark_equity": 1024754.6961102596
+    },
+    {
+      "trade_date": "2024-02-07",
+      "benchmark_equity": 1023547.0480814377
+    },
+    {
+      "trade_date": "2024-02-08",
+      "benchmark_equity": 1024436.9426942774
+    },
+    {
+      "trade_date": "2024-02-09",
+      "benchmark_equity": 1025846.5743488912
+    },
+    {
+      "trade_date": "2024-02-12",
+      "benchmark_equity": 1029260.6957774904
+    },
+    {
+      "trade_date": "2024-02-13",
+      "benchmark_equity": 1028770.3336623221
+    },
+    {
+      "trade_date": "2024-02-14",
+      "benchmark_equity": 1028728.0780635967
+    },
+    {
+      "trade_date": "2024-02-15",
+      "benchmark_equity": 1024210.087024439
+    },
+    {
+      "trade_date": "2024-02-16",
+      "benchmark_equity": 1023015.3558555624
+    },
+    {
+      "trade_date": "2024-02-19",
+      "benchmark_equity": 1023198.5796411185
+    },
+    {
+      "trade_date": "2024-02-20",
+      "benchmark_equity": 1028270.8683457209
+    },
+    {
+      "trade_date": "2024-02-21",
+      "benchmark_equity": 1032535.9281924216
+    },
+    {
+      "trade_date": "2024-02-22",
+      "benchmark_equity": 1035224.6929561426
+    },
+    {
+      "trade_date": "2024-02-23",
+      "benchmark_equity": 1035609.1521492478
+    },
+    {
+      "trade_date": "2024-02-26",
+      "benchmark_equity": 1036241.8158737619
+    },
+    {
+      "trade_date": "2024-02-27",
+      "benchmark_equity": 1037752.9134983501
+    },
+    {
+      "trade_date": "2024-02-28",
+      "benchmark_equity": 1039727.9183749402
+    },
+    {
+      "trade_date": "2024-02-29",
+      "benchmark_equity": 1038348.0039085961
+    },
+    {
+      "trade_date": "2024-03-01",
+      "benchmark_equity": 1035229.6997400225
+    },
+    {
+      "trade_date": "2024-03-04",
+      "benchmark_equity": 1038638.4212387996
+    },
+    {
+      "trade_date": "2024-03-05",
+      "benchmark_equity": 1034668.5899950907
+    },
+    {
+      "trade_date": "2024-03-06",
+      "benchmark_equity": 1031799.6921522521
+    },
+    {
+      "trade_date": "2024-03-07",
+      "benchmark_equity": 1034750.9962087687
+    },
+    {
+      "trade_date": "2024-03-08",
+      "benchmark_equity": 1034533.4814832943
+    },
+    {
+      "trade_date": "2024-03-11",
+      "benchmark_equity": 1034519.7871445863
+    },
+    {
+      "trade_date": "2024-03-12",
+      "benchmark_equity": 1035670.8610721106
+    },
+    {
+      "trade_date": "2024-03-13",
+      "benchmark_equity": 1034033.9102678624
+    },
+    {
+      "trade_date": "2024-03-14",
+      "benchmark_equity": 1042608.4295828464
+    },
+    {
+      "trade_date": "2024-03-15",
+      "benchmark_equity": 1038545.2195228917
+    },
+    {
+      "trade_date": "2024-03-18",
+      "benchmark_equity": 1039551.3374495049
+    },
+    {
+      "trade_date": "2024-03-19",
+      "benchmark_equity": 1039956.7725393317
+    },
+    {
+      "trade_date": "2024-03-20",
+      "benchmark_equity": 1040425.4593927542
+    },
+    {
+      "trade_date": "2024-03-21",
+      "benchmark_equity": 1041012.2279909701
+    },
+    {
+      "trade_date": "2024-03-22",
+      "benchmark_equity": 1047294.4674010265
+    },
+    {
+      "trade_date": "2024-03-25",
+      "benchmark_equity": 1049079.7287985033
+    },
+    {
+      "trade_date": "2024-03-26",
+      "benchmark_equity": 1056547.627890363
+    },
+    {
+      "trade_date": "2024-03-27",
+      "benchmark_equity": 1053833.7724335934
+    },
+    {
+      "trade_date": "2024-03-28",
+      "benchmark_equity": 1055051.1939482172
+    },
+    {
+      "trade_date": "2024-03-29",
+      "benchmark_equity": 1051152.9172653453
+    },
+    {
+      "trade_date": "2024-04-01",
+      "benchmark_equity": 1058357.861825552
+    },
+    {
+      "trade_date": "2024-04-02",
+      "benchmark_equity": 1060417.780148534
+    },
+    {
+      "trade_date": "2024-04-03",
+      "benchmark_equity": 1058176.0814310473
+    },
+    {
+      "trade_date": "2024-04-04",
+      "benchmark_equity": 1060893.0123290762
+    },
+    {
+      "trade_date": "2024-04-05",
+      "benchmark_equity": 1055305.0255016927
+    },
+    {
+      "trade_date": "2024-04-08",
+      "benchmark_equity": 1058486.5074764604
+    },
+    {
+      "trade_date": "2024-04-09",
+      "benchmark_equity": 1063017.4097102587
+    },
+    {
+      "trade_date": "2024-04-10",
+      "benchmark_equity": 1066389.459342875
+    },
+    {
+      "trade_date": "2024-04-11",
+      "benchmark_equity": 1069094.8336792125
+    },
+    {
+      "trade_date": "2024-04-12",
+      "benchmark_equity": 1070546.8548354032
+    },
+    {
+      "trade_date": "2024-04-15",
+      "benchmark_equity": 1074266.6131096592
+    },
+    {
+      "trade_date": "2024-04-16",
+      "benchmark_equity": 1083309.830870037
+    },
+    {
+      "trade_date": "2024-04-17",
+      "benchmark_equity": 1085457.21264893
+    },
+    {
+      "trade_date": "2024-04-18",
+      "benchmark_equity": 1083791.6672848705
+    },
+    {
+      "trade_date": "2024-04-19",
+      "benchmark_equity": 1085992.474375687
+    },
+    {
+      "trade_date": "2024-04-22",
+      "benchmark_equity": 1087442.386910422
+    },
+    {
+      "trade_date": "2024-04-23",
+      "benchmark_equity": 1087757.2069236243
+    },
+    {
+      "trade_date": "2024-04-24",
+      "benchmark_equity": 1083116.1818904527
+    },
+    {
+      "trade_date": "2024-04-25",
+      "benchmark_equity": 1080684.4415064794
+    },
+    {
+      "trade_date": "2024-04-26",
+      "benchmark_equity": 1079433.8318182027
+    },
+    {
+      "trade_date": "2024-04-29",
+      "benchmark_equity": 1075851.36207538
+    },
+    {
+      "trade_date": "2024-04-30",
+      "benchmark_equity": 1072617.871665207
+    },
+    {
+      "trade_date": "2024-05-01",
+      "benchmark_equity": 1068110.4494316487
+    },
+    {
+      "trade_date": "2024-05-02",
+      "benchmark_equity": 1064108.1097787516
+    },
+    {
+      "trade_date": "2024-05-03",
+      "benchmark_equity": 1061975.295610065
+    },
+    {
+      "trade_date": "2024-05-06",
+      "benchmark_equity": 1060845.9839855728
+    },
+    {
+      "trade_date": "2024-05-07",
+      "benchmark_equity": 1062656.718771399
+    },
+    {
+      "trade_date": "2024-05-08",
+      "benchmark_equity": 1055610.5251188064
+    },
+    {
+      "trade_date": "2024-05-09",
+      "benchmark_equity": 1047722.1308860126
+    },
+    {
+      "trade_date": "2024-05-10",
+      "benchmark_equity": 1052970.1225805185
+    },
+    {
+      "trade_date": "2024-05-13",
+      "benchmark_equity": 1050964.5699575073
+    },
+    {
+      "trade_date": "2024-05-14",
+      "benchmark_equity": 1050427.2487427406
+    },
+    {
+      "trade_date": "2024-05-15",
+      "benchmark_equity": 1046193.625872089
+    },
+    {
+      "trade_date": "2024-05-16",
+      "benchmark_equity": 1048758.9379412164
+    },
+    {
+      "trade_date": "2024-05-17",
+      "benchmark_equity": 1044697.6896849447
+    },
+    {
+      "trade_date": "2024-05-20",
+      "benchmark_equity": 1040166.7342862231
+    },
+    {
+      "trade_date": "2024-05-21",
+      "benchmark_equity": 1041584.2581594912
+    },
+    {
+      "trade_date": "2024-05-22",
+      "benchmark_equity": 1042373.9254106357
+    },
+    {
+      "trade_date": "2024-05-23",
+      "benchmark_equity": 1042605.7046582584
+    },
+    {
+      "trade_date": "2024-05-24",
+      "benchmark_equity": 1045697.641215777
+    },
+    {
+      "trade_date": "2024-05-27",
+      "benchmark_equity": 1040498.3512998278
+    },
+    {
+      "trade_date": "2024-05-28",
+      "benchmark_equity": 1038698.2765797342
+    },
+    {
+      "trade_date": "2024-05-29",
+      "benchmark_equity": 1041974.9008748612
+    },
+    {
+      "trade_date": "2024-05-30",
+      "benchmark_equity": 1044931.6555220906
+    },
+    {
+      "trade_date": "2024-05-31",
+      "benchmark_equity": 1045617.8436289006
+    },
+    {
+      "trade_date": "2024-06-03",
+      "benchmark_equity": 1051526.3755310504
+    },
+    {
+      "trade_date": "2024-06-04",
+      "benchmark_equity": 1048945.25416491
+    },
+    {
+      "trade_date": "2024-06-05",
+      "benchmark_equity": 1049011.199471835
+    },
+    {
+      "trade_date": "2024-06-06",
+      "benchmark_equity": 1049632.695154555
+    },
+    {
+      "trade_date": "2024-06-07",
+      "benchmark_equity": 1056752.590341781
+    },
+    {
+      "trade_date": "2024-06-10",
+      "benchmark_equity": 1057704.2529636216
+    },
+    {
+      "trade_date": "2024-06-11",
+      "benchmark_equity": 1052311.4240331012
+    },
+    {
+      "trade_date": "2024-06-12",
+      "benchmark_equity": 1053798.9093816746
+    },
+    {
+      "trade_date": "2024-06-13",
+      "benchmark_equity": 1056584.6921667655
+    },
+    {
+      "trade_date": "2024-06-14",
+      "benchmark_equity": 1054325.7697797646
+    },
+    {
+      "trade_date": "2024-06-17",
+      "benchmark_equity": 1051036.04292857
+    },
+    {
+      "trade_date": "2024-06-18",
+      "benchmark_equity": 1048323.4607050244
+    },
+    {
+      "trade_date": "2024-06-19",
+      "benchmark_equity": 1046859.5275131951
+    },
+    {
+      "trade_date": "2024-06-20",
+      "benchmark_equity": 1046219.2484302833
+    },
+    {
+      "trade_date": "2024-06-21",
+      "benchmark_equity": 1045769.6068729061
+    },
+    {
+      "trade_date": "2024-06-24",
+      "benchmark_equity": 1046710.2726303153
+    },
+    {
+      "trade_date": "2024-06-25",
+      "benchmark_equity": 1050277.6618484552
+    },
+    {
+      "trade_date": "2024-06-26",
+      "benchmark_equity": 1052562.7559375917
+    },
+    {
+      "trade_date": "2024-06-27",
+      "benchmark_equity": 1053981.7031860354
+    },
+    {
+      "trade_date": "2024-06-28",
+      "benchmark_equity": 1052267.1006922564
+    },
+    {
+      "trade_date": "2024-07-01",
+      "benchmark_equity": 1060839.8129001635
+    },
+    {
+      "trade_date": "2024-07-02",
+      "benchmark_equity": 1061431.8024410617
+    },
+    {
+      "trade_date": "2024-07-03",
+      "benchmark_equity": 1061928.3136925653
+    },
+    {
+      "trade_date": "2024-07-04",
+      "benchmark_equity": 1063773.7844826623
+    },
+    {
+      "trade_date": "2024-07-05",
+      "benchmark_equity": 1065435.5855205972
+    },
+    {
+      "trade_date": "2024-07-08",
+      "benchmark_equity": 1071427.8781122554
+    },
+    {
+      "trade_date": "2024-07-09",
+      "benchmark_equity": 1068273.5003087434
+    },
+    {
+      "trade_date": "2024-07-10",
+      "benchmark_equity": 1067549.3900616334
+    },
+    {
+      "trade_date": "2024-07-11",
+      "benchmark_equity": 1066227.362419445
+    },
+    {
+      "trade_date": "2024-07-12",
+      "benchmark_equity": 1068769.9518010926
+    },
+    {
+      "trade_date": "2024-07-15",
+      "benchmark_equity": 1063028.41253725
+    },
+    {
+      "trade_date": "2024-07-16",
+      "benchmark_equity": 1064816.6005149316
+    },
+    {
+      "trade_date": "2024-07-17",
+      "benchmark_equity": 1065219.1915946696
+    },
+    {
+      "trade_date": "2024-07-18",
+      "benchmark_equity": 1070602.7508673172
+    },
+    {
+      "trade_date": "2024-07-19",
+      "benchmark_equity": 1066172.2351650903
+    },
+    {
+      "trade_date": "2024-07-22",
+      "benchmark_equity": 1066906.7664749995
+    },
+    {
+      "trade_date": "2024-07-23",
+      "benchmark_equity": 1069392.394445115
+    },
+    {
+      "trade_date": "2024-07-24",
+      "benchmark_equity": 1069443.7976168236
+    },
+    {
+      "trade_date": "2024-07-25",
+      "benchmark_equity": 1068262.0176938071
+    },
+    {
+      "trade_date": "2024-07-26",
+      "benchmark_equity": 1071480.504138627
+    },
+    {
+      "trade_date": "2024-07-29",
+      "benchmark_equity": 1073883.0037194442
+    },
+    {
+      "trade_date": "2024-07-30",
+      "benchmark_equity": 1065896.1110578685
+    },
+    {
+      "trade_date": "2024-07-31",
+      "benchmark_equity": 1066109.2391939834
+    },
+    {
+      "trade_date": "2024-08-01",
+      "benchmark_equity": 1065238.6418599132
+    },
+    {
+      "trade_date": "2024-08-02",
+      "benchmark_equity": 1066946.8930713085
+    },
+    {
+      "trade_date": "2024-08-05",
+      "benchmark_equity": 1066821.6285098363
+    },
+    {
+      "trade_date": "2024-08-06",
+      "benchmark_equity": 1071226.083389252
+    },
+    {
+      "trade_date": "2024-08-07",
+      "benchmark_equity": 1069210.7578204772
+    },
+    {
+      "trade_date": "2024-08-08",
+      "benchmark_equity": 1065660.1108721835
+    },
+    {
+      "trade_date": "2024-08-09",
+      "benchmark_equity": 1064542.77844901
+    },
+    {
+      "trade_date": "2024-08-12",
+      "benchmark_equity": 1064189.4157265571
+    },
+    {
+      "trade_date": "2024-08-13",
+      "benchmark_equity": 1067809.5443546423
+    },
+    {
+      "trade_date": "2024-08-14",
+      "benchmark_equity": 1071723.3325103922
+    },
+    {
+      "trade_date": "2024-08-15",
+      "benchmark_equity": 1072975.46356069
+    },
+    {
+      "trade_date": "2024-08-16",
+      "benchmark_equity": 1071142.2163560532
+    },
+    {
+      "trade_date": "2024-08-19",
+      "benchmark_equity": 1067452.0280226606
+    },
+    {
+      "trade_date": "2024-08-20",
+      "benchmark_equity": 1067465.4971766828
+    },
+    {
+      "trade_date": "2024-08-21",
+      "benchmark_equity": 1067435.4108155144
+    },
+    {
+      "trade_date": "2024-08-22",
+      "benchmark_equity": 1067976.840852914
+    },
+    {
+      "trade_date": "2024-08-23",
+      "benchmark_equity": 1062998.2859990743
+    },
+    {
+      "trade_date": "2024-08-26",
+      "benchmark_equity": 1064118.3613887508
+    },
+    {
+      "trade_date": "2024-08-27",
+      "benchmark_equity": 1064599.5169438524
+    },
+    {
+      "trade_date": "2024-08-28",
+      "benchmark_equity": 1069071.0780269308
+    },
+    {
+      "trade_date": "2024-08-29",
+      "benchmark_equity": 1071371.8075192184
+    },
+    {
+      "trade_date": "2024-08-30",
+      "benchmark_equity": 1073991.6701142064
+    },
+    {
+      "trade_date": "2024-09-02",
+      "benchmark_equity": 1076531.624467447
+    },
+    {
+      "trade_date": "2024-09-03",
+      "benchmark_equity": 1072468.960478469
+    },
+    {
+      "trade_date": "2024-09-04",
+      "benchmark_equity": 1072674.7024085242
+    },
+    {
+      "trade_date": "2024-09-05",
+      "benchmark_equity": 1074474.891525849
+    },
+    {
+      "trade_date": "2024-09-06",
+      "benchmark_equity": 1077114.7534169026
+    },
+    {
+      "trade_date": "2024-09-09",
+      "benchmark_equity": 1081930.1465076832
+    }
+  ],
+  "rebalance_records": [
+    {
+      "trade_date": "2024-01-05",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-01-12",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-01-19",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-01-26",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-02-02",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-02-09",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-02-16",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-02-23",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-03-01",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-03-08",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-03-15",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-03-22",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    },
+    {
+      "trade_date": "2024-03-29",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.30000000000000004,
+      "buy_turnover": 0.30000000000000004,
+      "sell_turnover": 0.0,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000009.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-04-05",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.007799656488017878,
+      "buy_turnover": 0.004500821647143632,
+      "sell_turnover": 0.0032988348408742457,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000009.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-04-12",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.009017251301827442,
+      "buy_turnover": 0.002271395333790255,
+      "sell_turnover": 0.006745855968037187,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000009.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-04-19",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.20658972188781038,
+      "buy_turnover": 0.1,
+      "sell_turnover": 0.10658972188781037,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-04-26",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0032800584843751535,
+      "buy_turnover": 0.0015385157542687211,
+      "sell_turnover": 0.0017415427301064323,
+      "holdings_count": 3,
+      "order_count": 2,
+      "rejected_order_count": 0,
+      "filled_count": 2,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-05-03",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.01117676706175269,
+      "buy_turnover": 0.01117676706175269,
+      "sell_turnover": 0.0,
+      "holdings_count": 3,
+      "order_count": 2,
+      "rejected_order_count": 0,
+      "filled_count": 2,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-05-10",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.20208337509767213,
+      "buy_turnover": 0.1,
+      "sell_turnover": 0.10208337509767214,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000013.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-05-17",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.19894940586989887,
+      "buy_turnover": 0.1,
+      "sell_turnover": 0.09894940586989887,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000009.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-05-24",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.39760397665649516,
+      "buy_turnover": 0.2,
+      "sell_turnover": 0.19760397665649515,
+      "holdings_count": 3,
+      "order_count": 5,
+      "rejected_order_count": 0,
+      "filled_count": 5,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000013.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-05-31",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.008891356467616435,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.008891356467616435,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000013.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-06-07",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.20335993910157724,
+      "buy_turnover": 0.1019873125723293,
+      "sell_turnover": 0.10137262652924794,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000027.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-06-14",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.1981136067219179,
+      "buy_turnover": 0.10158040124018083,
+      "sell_turnover": 0.09653320548173709,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000013.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-06-21",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.20676084191780247,
+      "buy_turnover": 0.10865139479819841,
+      "sell_turnover": 0.09810944711960407,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000030.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-06-28",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.2053364514339189,
+      "buy_turnover": 0.10260191098598097,
+      "sell_turnover": 0.10273454044793794,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000013.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-07-05",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.21172565991957878,
+      "buy_turnover": 0.10259456136295231,
+      "sell_turnover": 0.10913109855662648,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000002.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-07-12",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.201400596379084,
+      "buy_turnover": 0.10481561539489709,
+      "sell_turnover": 0.09658498098418691,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-07-19",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.004908656943970538,
+      "buy_turnover": 0.0041485533095455,
+      "sell_turnover": 0.0007601036344250384,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000016.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-07-26",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.20551838623415483,
+      "buy_turnover": 0.10658819227574236,
+      "sell_turnover": 0.09893019395841247,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000002.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-08-02",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.20300190823615494,
+      "buy_turnover": 0.10204410396895207,
+      "sell_turnover": 0.10095780426720287,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-08-09",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.00986394924904957,
+      "buy_turnover": 0.00559203297573993,
+      "sell_turnover": 0.004271916273309639,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-08-16",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.01729442911574025,
+      "buy_turnover": 0.005603753796609073,
+      "sell_turnover": 0.011690675319131177,
+      "holdings_count": 3,
+      "order_count": 3,
+      "rejected_order_count": 0,
+      "filled_count": 3,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-08-23",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.2021531482909057,
+      "buy_turnover": 0.1,
+      "sell_turnover": 0.10215314829090567,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000025.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-08-30",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.00320047761296173,
+      "buy_turnover": 0.0011757243941374895,
+      "sell_turnover": 0.0020247532188242406,
+      "holdings_count": 3,
+      "order_count": 2,
+      "rejected_order_count": 0,
+      "filled_count": 2,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000010.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000025.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-09-06",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.4017391276143136,
+      "buy_turnover": 0.20075294951499445,
+      "sell_turnover": 0.20098617809931907,
+      "holdings_count": 3,
+      "order_count": 4,
+      "rejected_order_count": 0,
+      "filled_count": 4,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000002.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    },
+    {
+      "trade_date": "2024-09-09",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0008126398711149618,
+      "buy_turnover": 7.606863953220355e-05,
+      "sell_turnover": 0.0007365712315827583,
+      "holdings_count": 3,
+      "order_count": 2,
+      "rejected_order_count": 0,
+      "filled_count": 2,
+      "rejected_orders": [],
+      "target_weights": [
+        {
+          "ts_code": "000008.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000002.SZ",
+          "target_weight": 0.1
+        },
+        {
+          "ts_code": "000012.SZ",
+          "target_weight": 0.1
+        }
+      ]
+    }
+  ],
+  "snapshots": [
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-02",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0,
+      "excess_return": 0.0
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-03",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.004908160533070934,
+      "excess_return": 0.004908160533070934
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-04",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0017849697768873166,
+      "excess_return": -0.0017849697768873166
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-05",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0054190149620103305,
+      "excess_return": 0.0054190149620103305
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-08",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0017626651595451551,
+      "excess_return": -0.0017626651595451551
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-09",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.00023270181989596035,
+      "excess_return": 0.00023270181989596035
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-10",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0003117722000049117,
+      "excess_return": -0.0003117722000049117
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-11",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0039492574299122155,
+      "excess_return": -0.0039492574299122155
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-12",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0005348182430600682,
+      "excess_return": -0.0005348182430600682
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-15",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.001936465963326602,
+      "excess_return": -0.001936465963326602
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-16",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0028912938532283826,
+      "excess_return": -0.0028912938532283826
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-17",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.003155037517324503,
+      "excess_return": -0.003155037517324503
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-18",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0017494951042104153,
+      "excess_return": 0.0017494951042104153
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-19",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.00544959613654018,
+      "excess_return": -0.00544959613654018
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-22",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0057472569048084106,
+      "excess_return": -0.0057472569048084106
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-23",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.005024101930111883,
+      "excess_return": -0.005024101930111883
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-24",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0002240096163701429,
+      "excess_return": 0.0002240096163701429
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-25",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.003902695839536104,
+      "excess_return": -0.003902695839536104
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-26",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0045228589807204565,
+      "excess_return": 0.0045228589807204565
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-29",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.004939615983417737,
+      "excess_return": -0.004939615983417737
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-30",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.00197692446414968,
+      "excess_return": -0.00197692446414968
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-01-31",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0009506589495702452,
+      "excess_return": 0.0009506589495702452
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-01",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0015305791342116958,
+      "excess_return": -0.0015305791342116958
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-02",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.006725362796455425,
+      "excess_return": 0.006725362796455425
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-05",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.004407693827374929,
+      "excess_return": -0.004407693827374929
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-06",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 4.112819670785139e-05,
+      "excess_return": -4.112819670785139e-05
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-07",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.001178475232566271,
+      "excess_return": 0.001178475232566271
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-08",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0008694222845034145,
+      "excess_return": -0.0008694222845034145
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-09",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0013760062682885025,
+      "excess_return": -0.0013760062682885025
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-12",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0033281014081136483,
+      "excess_return": -0.0033281014081136483
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-13",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.00047642168517652385,
+      "excess_return": 0.00047642168517652385
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-14",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -4.1073889227597844e-05,
+      "excess_return": 4.1073889227597844e-05
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-15",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.00439182242178322,
+      "excess_return": 0.00439182242178322
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-16",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0011664903363212279,
+      "excess_return": 0.0011664903363212279
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-19",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0001791016962817323,
+      "excess_return": -0.0001791016962817323
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-20",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.004957286694418172,
+      "excess_return": -0.004957286694418172
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-21",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.004147797995641278,
+      "excess_return": -0.004147797995641278
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-22",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0026040399082558692,
+      "excess_return": -0.0026040399082558692
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-23",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.00037137753351629645,
+      "excess_return": -0.00037137753351629645
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-26",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0006109097464049862,
+      "excess_return": -0.0006109097464049862
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-27",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0014582480666580262,
+      "excess_return": -0.0014582480666580262
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-28",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.001903155222115697,
+      "excess_return": -0.001903155222115697
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-02-29",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.001327188047908597,
+      "excess_return": 0.001327188047908597
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-01",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0030031397535658015,
+      "excess_return": 0.0030031397535658015
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-04",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0032927199631474983,
+      "excess_return": -0.0032927199631474983
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-05",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0038221494242182833,
+      "excess_return": 0.0038221494242182833
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-06",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0027727698227045313,
+      "excess_return": 0.0027727698227045313
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-07",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.002860345936293481,
+      "excess_return": -0.002860345936293481
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-08",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.00021020972801318502,
+      "excess_return": 0.00021020972801318502
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-11",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -1.3237211702817515e-05,
+      "excess_return": 1.3237211702817515e-05
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-12",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0011126649696101257,
+      "excess_return": -0.0011126649696101257
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-13",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.001580570493750888,
+      "excess_return": 0.001580570493750888
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-14",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.008292299923474222,
+      "excess_return": -0.008292299923474222
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-15",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0038971582663881567,
+      "excess_return": 0.0038971582663881567
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-18",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0009687762340048829,
+      "excess_return": -0.0009687762340048829
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-19",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0003900096851606379,
+      "excess_return": -0.0003900096851606379
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-20",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.000450679168402468,
+      "excess_return": -0.000450679168402468
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-21",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0005639698576371625,
+      "excess_return": -0.0005639698576371625
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-22",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.006034741226988597,
+      "excess_return": -0.006034741226988597
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-25",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0017046412953054832,
+      "excess_return": -0.0017046412953054832
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-26",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.007118523870833785,
+      "excess_return": -0.007118523870833785
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-27",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0025686068333602135,
+      "excess_return": 0.0025686068333602135
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-28",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0011552310681906986,
+      "excess_return": -0.0011552310681906986
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-03-29",
+      "total_asset": 999910.5731071304,
+      "cash": 701820.9302084981,
+      "market_value": 298089.6428986323,
+      "total_position_ratio": 0.2981163025132798,
+      "daily_return": -8.942689286961514e-05,
+      "cum_return": -8.942689286961514e-05,
+      "drawdown": -8.942689286961514e-05,
+      "benchmark_return": -0.0036948696946959053,
+      "excess_return": 0.00360544280182629
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-01",
+      "total_asset": 1003427.255446407,
+      "cash": 701820.9302084981,
+      "market_value": 301606.3252379088,
+      "total_position_ratio": 0.30057617390881963,
+      "daily_return": 0.0035169968533774743,
+      "cum_return": 0.003427255446406985,
+      "drawdown": 0.0,
+      "benchmark_return": 0.00685432579966669,
+      "excess_return": -0.003337328946289216
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-02",
+      "total_asset": 1002916.0596847816,
+      "cash": 701820.9302084981,
+      "market_value": 301095.12947628344,
+      "total_position_ratio": 0.3002196709971104,
+      "daily_return": -0.0005094497472046822,
+      "cum_return": 0.00291605968478148,
+      "drawdown": -0.0005094497472046822,
+      "benchmark_return": 0.0019463344085041319,
+      "excess_return": -0.002455784155708814
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-03",
+      "total_asset": 1001326.8274112721,
+      "cash": 701820.9302084981,
+      "market_value": 299505.897202774,
+      "total_position_ratio": 0.2991090311412967,
+      "daily_return": -0.0015846114519384447,
+      "cum_return": 0.0013268274112721024,
+      "drawdown": -0.002093253919239535,
+      "benchmark_return": -0.0021139769244277037,
+      "excess_return": 0.000529365472489259
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-04",
+      "total_asset": 1000117.1232735061,
+      "cash": 701820.9302084981,
+      "market_value": 298296.19306500786,
+      "total_position_ratio": 0.29826125972990825,
+      "daily_return": -0.0012081011959835797,
+      "cum_return": 0.00011712327350599239,
+      "drawdown": -0.003298826252659759,
+      "benchmark_return": 0.002567560300885515,
+      "excess_return": -0.0037756614968690945
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-05",
+      "total_asset": 1000865.47367322,
+      "cash": 702432.771474222,
+      "market_value": 298432.7021989981,
+      "total_position_ratio": 0.29817463989814436,
+      "daily_return": 0.0007482627607300341,
+      "cum_return": 0.0008654736732200963,
+      "drawdown": -0.002553031880768719,
+      "benchmark_return": -0.005267248216778786,
+      "excess_return": 0.00601551097750882
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-08",
+      "total_asset": 1006399.5198436293,
+      "cash": 702432.771474222,
+      "market_value": 303966.7483694074,
+      "total_position_ratio": 0.30203387658276765,
+      "daily_return": 0.00552926074080573,
+      "cum_return": 0.006399519843629298,
+      "drawdown": 0.0,
+      "benchmark_return": 0.003014751088914003,
+      "excess_return": 0.0025145096518917275
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-09",
+      "total_asset": 1005116.9025743038,
+      "cash": 702432.771474222,
+      "market_value": 302684.1311000818,
+      "total_position_ratio": 0.30114321063037314,
+      "daily_return": -0.0012744613287621886,
+      "cum_return": 0.005116902574303861,
+      "drawdown": -0.0012744613287621886,
+      "benchmark_return": 0.0042805479349948645,
+      "excess_return": -0.005555009263757053
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-10",
+      "total_asset": 1003715.4846880012,
+      "cash": 702432.771474222,
+      "market_value": 301282.71321377927,
+      "total_position_ratio": 0.3001674456655724,
+      "daily_return": -0.0013942834736071497,
+      "cum_return": 0.0037154846880012027,
+      "drawdown": -0.0026669678420009335,
+      "benchmark_return": 0.0031721490182701467,
+      "excess_return": -0.004566432491877296
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-11",
+      "total_asset": 1010225.8562099957,
+      "cash": 702432.771474222,
+      "market_value": 307793.0847357737,
+      "total_position_ratio": 0.3046774964664859,
+      "daily_return": 0.006486271878149097,
+      "cum_return": 0.01022585620999572,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0025369477470309266,
+      "excess_return": 0.003949324131118171
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-12",
+      "total_asset": 1009911.7795782981,
+      "cash": 709463.6847562201,
+      "market_value": 300448.094822078,
+      "total_position_ratio": 0.297499346871203,
+      "daily_return": -0.00031089743918844004,
+      "cum_return": 0.009911779578298141,
+      "drawdown": -0.00031089743918844004,
+      "benchmark_return": 0.0013581780684446228,
+      "excess_return": -0.0016690755076330629
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-15",
+      "total_asset": 1014954.8355237173,
+      "cash": 709463.6847562201,
+      "market_value": 305491.15076749725,
+      "total_position_ratio": 0.3009898963729392,
+      "daily_return": 0.004993560870757419,
+      "cum_return": 0.014954835523717236,
+      "drawdown": 0.0,
+      "benchmark_return": 0.003474633788754474,
+      "excess_return": 0.0015189270820029446
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-16",
+      "total_asset": 1014913.1249864702,
+      "cash": 709463.6847562201,
+      "market_value": 305449.4402302501,
+      "total_position_ratio": 0.30096116870527423,
+      "daily_return": -4.109595401413646e-05,
+      "cum_return": 0.014913124986470239,
+      "drawdown": -4.109595401413646e-05,
+      "benchmark_return": 0.008418038548364364,
+      "excess_return": -0.0084591345023785
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-17",
+      "total_asset": 1017477.97651966,
+      "cash": 709463.6847562201,
+      "market_value": 308014.2917634399,
+      "total_position_ratio": 0.30272330101632267,
+      "daily_return": 0.002527163626171447,
+      "cum_return": 0.017477976519659988,
+      "drawdown": 0.0,
+      "benchmark_return": 0.001982241569033464,
+      "excess_return": 0.0005449220571379829
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-18",
+      "total_asset": 1019143.9216324704,
+      "cash": 709463.6847562201,
+      "market_value": 309680.23687625036,
+      "total_position_ratio": 0.3038631053994835,
+      "daily_return": 0.0016373279336314717,
+      "cum_return": 0.019143921632470473,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0015344182567962662,
+      "excess_return": 0.003171746190427738
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-19",
+      "total_asset": 1023025.8611825643,
+      "cash": 716632.7834753034,
+      "market_value": 306393.07770726085,
+      "total_position_ratio": 0.2994969035808015,
+      "daily_return": 0.003809019970286265,
+      "cum_return": 0.023025861182564222,
+      "drawdown": 0.0,
+      "benchmark_return": 0.002030655113200985,
+      "excess_return": 0.0017783648570852796
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-22",
+      "total_asset": 1022404.5032903376,
+      "cash": 716632.7834753034,
+      "market_value": 305771.7198150342,
+      "total_position_ratio": 0.2990711786098252,
+      "daily_return": -0.0006073726147141079,
+      "cum_return": 0.02240450329033772,
+      "drawdown": -0.0006073726147141079,
+      "benchmark_return": 0.0013351036668725724,
+      "excess_return": -0.0019424762815866802
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-23",
+      "total_asset": 1024250.6081182798,
+      "cash": 716632.7834753036,
+      "market_value": 307617.82464297634,
+      "total_position_ratio": 0.30033452965980845,
+      "daily_return": 0.0018056501335832476,
+      "cum_return": 0.024250608118279837,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0002895050045794045,
+      "excess_return": 0.001516145129003843
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-24",
+      "total_asset": 1024910.3314560909,
+      "cash": 716632.7834753036,
+      "market_value": 308277.54798078735,
+      "total_position_ratio": 0.30078489651169504,
+      "daily_return": 0.0006441034377544508,
+      "cum_return": 0.024910331456091006,
+      "drawdown": 0.0,
+      "benchmark_return": -0.004266600123291512,
+      "excess_return": 0.004910703561045963
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-25",
+      "total_asset": 1026641.1342521791,
+      "cash": 716632.7834753036,
+      "market_value": 310008.3507768755,
+      "total_position_ratio": 0.301963695427702,
+      "daily_return": 0.0016887358268984354,
+      "cum_return": 0.026641134252179066,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0022451334627177372,
+      "excess_return": 0.003933869289616173
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-26",
+      "total_asset": 1024046.3564442843,
+      "cash": 720179.2633517333,
+      "market_value": 303867.09309255093,
+      "total_position_ratio": 0.29673177506108683,
+      "daily_return": -0.0025274438373100727,
+      "cum_return": 0.024046356444284323,
+      "drawdown": -0.0025274438373100727,
+      "benchmark_return": -0.0011572385427639869,
+      "excess_return": -0.0013702052945460859
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-29",
+      "total_asset": 1021143.57984861,
+      "cash": 720179.2633517333,
+      "market_value": 300964.31649687665,
+      "total_position_ratio": 0.29473261394004574,
+      "daily_return": -0.0028346144463160527,
+      "cum_return": 0.021143579848609928,
+      "drawdown": -0.005354893954812701,
+      "benchmark_return": -0.0033188414493070823,
+      "excess_return": 0.00048422700299102957
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-04-30",
+      "total_asset": 1018549.5993234713,
+      "cash": 720179.2633517333,
+      "market_value": 298370.335971738,
+      "total_position_ratio": 0.2929364816106333,
+      "daily_return": -0.0025402701209983336,
+      "cum_return": 0.018549599323471222,
+      "drawdown": -0.00788156119869654,
+      "benchmark_return": -0.0030055177919145284,
+      "excess_return": 0.0004652476709161948
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-01",
+      "total_asset": 1014943.7429122521,
+      "cash": 720179.2633517333,
+      "market_value": 294764.47956051875,
+      "total_position_ratio": 0.290424451225966,
+      "daily_return": -0.003540187354267532,
+      "cum_return": 0.01494374291225209,
+      "drawdown": -0.01139384634967655,
+      "benchmark_return": -0.004202262849266932,
+      "excess_return": 0.0006620754949993998
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-02",
+      "total_asset": 1013903.9549940252,
+      "cash": 720179.2633517333,
+      "market_value": 293724.69164229184,
+      "total_position_ratio": 0.2896967609165927,
+      "daily_return": -0.0010244783767456855,
+      "cum_return": 0.013903954994025192,
+      "drawdown": -0.012406651977209027,
+      "benchmark_return": -0.0037471215219611314,
+      "excess_return": 0.002722643145215446
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-03",
+      "total_asset": 1012648.5916567195,
+      "cash": 711508.945965873,
+      "market_value": 301139.6456908465,
+      "total_position_ratio": 0.29737822989332774,
+      "daily_return": -0.001238148180724985,
+      "cum_return": 0.012648591656719388,
+      "drawdown": -0.013629438884359524,
+      "benchmark_return": -0.002004320941722711,
+      "excess_return": 0.0007661727609977261
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-06",
+      "total_asset": 1011627.3786637993,
+      "cash": 711508.945965873,
+      "market_value": 300118.4326979263,
+      "total_position_ratio": 0.29666895047298497,
+      "daily_return": -0.0010084574267263946,
+      "cum_return": 0.01162737866379926,
+      "drawdown": -0.014624151602220858,
+      "benchmark_return": -0.0010634066810788934,
+      "excess_return": 5.49492543524988e-05
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-07",
+      "total_asset": 1018262.9183211881,
+      "cash": 711508.9459658731,
+      "market_value": 306753.97235531505,
+      "total_position_ratio": 0.30125222752986125,
+      "daily_return": 0.006559272512131287,
+      "cum_return": 0.018262918321187982,
+      "drawdown": -0.008160802885707308,
+      "benchmark_return": 0.0017068781078127407,
+      "excess_return": 0.004852394404318546
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-08",
+      "total_asset": 1016145.0810309375,
+      "cash": 711508.9459658731,
+      "market_value": 304636.1350650644,
+      "total_position_ratio": 0.2997959058720174,
+      "daily_return": -0.0020798531029120326,
+      "cum_return": 0.01614508103093759,
+      "drawdown": -0.01022368271741525,
+      "benchmark_return": -0.006630733639682929,
+      "excess_return": 0.004550880536770896
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-09",
+      "total_asset": 1013470.531200958,
+      "cash": 711508.9459658731,
+      "market_value": 301961.5852350849,
+      "total_position_ratio": 0.2979480665089115,
+      "daily_return": -0.002632055087316898,
+      "cum_return": 0.01347053120095798,
+      "drawdown": -0.012828828508624657,
+      "benchmark_return": -0.007472826430852608,
+      "excess_return": 0.00484077134353571
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-10",
+      "total_asset": 1019352.9652267067,
+      "cash": 715267.0618984388,
+      "market_value": 304085.90332826786,
+      "total_position_ratio": 0.2983126686256692,
+      "daily_return": 0.005804247725662126,
+      "cum_return": 0.019352965226706598,
+      "drawdown": -0.007099042481656603,
+      "benchmark_return": 0.005008953748135214,
+      "excess_return": 0.0007952939775269117
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-13",
+      "total_asset": 1020312.3934462143,
+      "cash": 715267.0618984388,
+      "market_value": 305045.3315477754,
+      "total_position_ratio": 0.2989724848067876,
+      "daily_return": 0.0009412129578632022,
+      "cum_return": 0.02031239344621416,
+      "drawdown": -0.006164511234565628,
+      "benchmark_return": -0.0019046624210912004,
+      "excess_return": 0.002845875378954403
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-14",
+      "total_asset": 1024795.2601555164,
+      "cash": 715267.061898439,
+      "market_value": 309528.19825707754,
+      "total_position_ratio": 0.302039061158524,
+      "daily_return": 0.004393621735947706,
+      "cum_return": 0.024795260155516363,
+      "drawdown": -0.0017979740291695911,
+      "benchmark_return": -0.0005112648229316526,
+      "excess_return": 0.004904886558879358
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-15",
+      "total_asset": 1025714.4816589337,
+      "cash": 715267.061898439,
+      "market_value": 310447.41976049467,
+      "total_position_ratio": 0.302664557546652,
+      "daily_return": 0.0008969806352125964,
+      "cum_return": 0.02571448165893364,
+      "drawdown": -0.0009026061418436759,
+      "benchmark_return": -0.004030381804850103,
+      "excess_return": 0.004927362440062699
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-16",
+      "total_asset": 1019910.762401398,
+      "cash": 715267.061898439,
+      "market_value": 304643.70050295914,
+      "total_position_ratio": 0.2986964269164786,
+      "daily_return": -0.005658221036471067,
+      "cum_return": 0.019910762401398108,
+      "drawdown": -0.00655572003325533,
+      "benchmark_return": 0.002452043298379969,
+      "excess_return": -0.008110264334851036
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-17",
+      "total_asset": 1020157.8736256358,
+      "cash": 716607.3134745216,
+      "market_value": 303550.5601511141,
+      "total_position_ratio": 0.29755253377822494,
+      "daily_return": 0.0002422871032912166,
+      "cum_return": 0.020157873625635814,
+      "drawdown": -0.006315021296381063,
+      "benchmark_return": -0.0038724325575181682,
+      "excess_return": 0.004114719660809385
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-20",
+      "total_asset": 1025720.4542190762,
+      "cash": 716607.3134745216,
+      "market_value": 309113.1407445546,
+      "total_position_ratio": 0.3013619738917026,
+      "daily_return": 0.00545266643257003,
+      "cum_return": 0.025720454219076094,
+      "drawdown": -0.000896788568454876,
+      "benchmark_return": -0.004337097175057528,
+      "excess_return": 0.00978976360762756
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-21",
+      "total_asset": 1028191.5722010129,
+      "cash": 716607.3134745216,
+      "market_value": 311584.25872649124,
+      "total_position_ratio": 0.30304105494610695,
+      "daily_return": 0.002409153460645408,
+      "cum_return": 0.02819157220101287,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0013627852406191466,
+      "excess_return": 0.0010463682200262613
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-22",
+      "total_asset": 1026676.0258380342,
+      "cash": 716607.3134745216,
+      "market_value": 310068.7123635126,
+      "total_position_ratio": 0.30201222640843883,
+      "daily_return": -0.0014739922052992016,
+      "cum_return": 0.0266760258380343,
+      "drawdown": -0.0014739922052992016,
+      "benchmark_return": 0.0007581405392395195,
+      "excess_return": -0.002232132744538721
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-23",
+      "total_asset": 1020109.4664146362,
+      "cash": 716607.3134745217,
+      "market_value": 303502.15294011455,
+      "total_position_ratio": 0.29751920056857145,
+      "daily_return": -0.006395941132489202,
+      "cum_return": 0.02010946641463618,
+      "drawdown": -0.007860505770413528,
+      "benchmark_return": 0.00022235710427196778,
+      "excess_return": -0.0066182982367611705
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-24",
+      "total_asset": 1020005.5995331854,
+      "cash": 715388.8046103657,
+      "market_value": 304616.7949228197,
+      "total_position_ratio": 0.29864227712301805,
+      "daily_return": -0.00010181934867825593,
+      "cum_return": 0.02000559953318537,
+      "drawdown": -0.007961524767513994,
+      "benchmark_return": 0.0029655856894932036,
+      "excess_return": -0.0030674050381714595
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-27",
+      "total_asset": 1025662.6286382849,
+      "cash": 715388.8046103657,
+      "market_value": 310273.8240279192,
+      "total_position_ratio": 0.3025106066698096,
+      "daily_return": 0.005546076519274523,
+      "cum_return": 0.025662628638284835,
+      "drawdown": -0.0024596034738102457,
+      "benchmark_return": -0.004972077693418327,
+      "excess_return": 0.010518154212692851
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-28",
+      "total_asset": 1021802.5133339642,
+      "cash": 715388.8046103658,
+      "market_value": 306413.70872359845,
+      "total_position_ratio": 0.2998756655274058,
+      "daily_return": -0.003763533150706211,
+      "cum_return": 0.021802513333964102,
+      "drawdown": -0.006213879825305191,
+      "benchmark_return": -0.0017300120830032997,
+      "excess_return": -0.002033521067702911
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-29",
+      "total_asset": 1028133.1572071828,
+      "cash": 715388.8046103658,
+      "market_value": 312744.3525968171,
+      "total_position_ratio": 0.3041866225249993,
+      "daily_return": 0.0061955649850213845,
+      "cum_return": 0.02813315720718279,
+      "drawdown": -5.681333655072063e-05,
+      "benchmark_return": 0.0031545486971600273,
+      "excess_return": 0.0030410162878613573
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-30",
+      "total_asset": 1030727.544120631,
+      "cash": 715388.8046103658,
+      "market_value": 315338.73951026524,
+      "total_position_ratio": 0.30593801563661294,
+      "daily_return": 0.0025233958220893804,
+      "cum_return": 0.030727544120630945,
+      "drawdown": 0.0,
+      "benchmark_return": 0.002837644788513734,
+      "excess_return": -0.0003142489664243538
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-05-31",
+      "total_asset": 1035111.8396808635,
+      "cash": 726071.7037564861,
+      "market_value": 309040.13592437754,
+      "total_position_ratio": 0.2985572419108432,
+      "daily_return": 0.004253593090861818,
+      "cum_return": 0.03511183968086362,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0006566822846102845,
+      "excess_return": 0.0035969108062515335
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-03",
+      "total_asset": 1036201.9019232199,
+      "cash": 726071.7037564861,
+      "market_value": 310130.1981667338,
+      "total_position_ratio": 0.2992951446924807,
+      "daily_return": 0.0010530864401014917,
+      "cum_return": 0.036201901923219815,
+      "drawdown": 0.0,
+      "benchmark_return": 0.005650756572443246,
+      "excess_return": -0.004597670132341755
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-04",
+      "total_asset": 1036719.5001494255,
+      "cash": 726071.7037564861,
+      "market_value": 310647.7963929394,
+      "total_position_ratio": 0.2996449824163284,
+      "daily_return": 0.0004995148389950188,
+      "cum_return": 0.03671950014942538,
+      "drawdown": 0.0,
+      "benchmark_return": -0.0024546425331812543,
+      "excess_return": 0.002954157372176273
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-05",
+      "total_asset": 1038055.0909296527,
+      "cash": 726071.7037564861,
+      "market_value": 311983.3871731666,
+      "total_position_ratio": 0.3005460788152998,
+      "daily_return": 0.0012882855777620605,
+      "cum_return": 0.038055090929652646,
+      "drawdown": 0.0,
+      "benchmark_return": 6.286820657536903e-05,
+      "excess_return": 0.0012254173711866915
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-06",
+      "total_asset": 1034658.0919985382,
+      "cash": 726071.7037564861,
+      "market_value": 308586.38824205217,
+      "total_position_ratio": 0.29824962529021437,
+      "daily_return": -0.003272464978782752,
+      "cum_return": 0.0346580919985382,
+      "drawdown": -0.003272464978782752,
+      "benchmark_return": 0.0005924585772135541,
+      "excess_return": -0.003864923555996306
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-07",
+      "total_asset": 1036210.4552486569,
+      "cash": 727060.6976979498,
+      "market_value": 309149.75755070715,
+      "total_position_ratio": 0.2983464951398519,
+      "daily_return": 0.0015003635134387405,
+      "cum_return": 0.03621045524865685,
+      "drawdown": -0.001777011352397273,
+      "benchmark_return": 0.0067832254274221015,
+      "excess_return": -0.005282861913983361
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-10",
+      "total_asset": 1036277.7036482643,
+      "cash": 727060.6976979498,
+      "market_value": 309217.0059503145,
+      "total_position_ratio": 0.29839202837395956,
+      "daily_return": 6.489839903345285e-05,
+      "cum_return": 0.036277703648264215,
+      "drawdown": -0.0017122282785556608,
+      "benchmark_return": 0.0009005538576754309,
+      "excess_return": -0.0008356554586419781
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-11",
+      "total_asset": 1035361.7146519935,
+      "cash": 727060.6976979498,
+      "market_value": 308301.0169540437,
+      "total_position_ratio": 0.29777131276065205,
+      "daily_return": -0.000883922324147357,
+      "cum_return": 0.03536171465199356,
+      "drawdown": -0.002594637125903465,
+      "benchmark_return": -0.005098617042911609,
+      "excess_return": 0.004214694718764252
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-12",
+      "total_asset": 1034105.4391795597,
+      "cash": 727060.6976979498,
+      "market_value": 307044.7414816098,
+      "total_position_ratio": 0.29691821534679624,
+      "daily_return": -0.0012133686755608775,
+      "cum_return": 0.03410543917955966,
+      "drawdown": -0.0038048575500514437,
+      "benchmark_return": 0.0014135410056392516,
+      "excess_return": -0.002626909681200129
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-13",
+      "total_asset": 1032306.3967837096,
+      "cash": 727060.6976979498,
+      "market_value": 305245.6990857598,
+      "total_position_ratio": 0.2956929260893802,
+      "daily_return": -0.0017397088610977551,
+      "cum_return": 0.03230639678370961,
+      "drawdown": -0.005537947066754145,
+      "benchmark_return": 0.0026435620309432067,
+      "excess_return": -0.004383270892040962
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-14",
+      "total_asset": 1031102.1790108464,
+      "cash": 723626.6308968127,
+      "market_value": 307475.54811403377,
+      "total_position_ratio": 0.2982008518389518,
+      "daily_return": -0.0011665313482654982,
+      "cum_return": 0.03110217901084633,
+      "drawdown": -0.006698018226161229,
+      "benchmark_return": -0.002137947297313599,
+      "excess_return": 0.0009714159490481007
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-17",
+      "total_asset": 1026948.599704885,
+      "cash": 723626.6308968127,
+      "market_value": 303321.9688080724,
+      "total_position_ratio": 0.29536236662208626,
+      "daily_return": -0.0040282906878792435,
+      "cum_return": 0.026948599704885057,
+      "drawdown": -0.01069932734959278,
+      "benchmark_return": -0.0031202185752148876,
+      "excess_return": -0.0009080721126643559
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-18",
+      "total_asset": 1018808.9958641066,
+      "cash": 723626.6308968125,
+      "market_value": 295182.364967294,
+      "total_position_ratio": 0.2897327822639944,
+      "daily_return": -0.00792600899705942,
+      "cum_return": 0.01880899586410667,
+      "drawdown": -0.018540533381816826,
+      "benchmark_return": -0.0025808650824069245,
+      "excess_return": -0.0053451439146524945
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-19",
+      "total_asset": 1020371.5138386772,
+      "cash": 723626.6308968125,
+      "market_value": 296744.8829418646,
+      "total_position_ratio": 0.2908204305170171,
+      "daily_return": 0.0015336711600639763,
+      "cum_return": 0.020371513838677302,
+      "drawdown": -0.01703529730309261,
+      "benchmark_return": -0.0013964518077700236,
+      "excess_return": 0.002930122967834
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-20",
+      "total_asset": 1016504.9496719989,
+      "cash": 723626.6308968125,
+      "market_value": 292878.3187751864,
+      "total_position_ratio": 0.28812286538269294,
+      "daily_return": -0.0037893689839813005,
+      "cum_return": 0.016504949671998892,
+      "drawdown": -0.02076011325984073,
+      "benchmark_return": -0.0006116189097814418,
+      "excess_return": -0.003177750074199859
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-21",
+      "total_asset": 1018294.696344432,
+      "cash": 714958.6799404642,
+      "market_value": 303336.0164039678,
+      "total_position_ratio": 0.29788627741351437,
+      "daily_return": 0.0017606866282458,
+      "cum_return": 0.018294696344431927,
+      "drawdown": -0.019035978685412402,
+      "benchmark_return": -0.00042977756149273534,
+      "excess_return": 0.0021904641897385353
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-24",
+      "total_asset": 1019920.7830679856,
+      "cash": 714958.6799404642,
+      "market_value": 304962.10312752135,
+      "total_position_ratio": 0.2990056759213949,
+      "daily_return": 0.001596872427393592,
+      "cum_return": 0.019920783067985504,
+      "drawdown": -0.01746950428750993,
+      "benchmark_return": 0.0008994961712664747,
+      "excess_return": 0.0006973762561271172
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-25",
+      "total_asset": 1022682.7701755897,
+      "cash": 714958.6799404642,
+      "market_value": 307724.0902351255,
+      "total_position_ratio": 0.30089887031370516,
+      "daily_return": 0.002708040814008994,
+      "cum_return": 0.022682770175589617,
+      "drawdown": -0.014808771604111981,
+      "benchmark_return": 0.0034081916566802077,
+      "excess_return": -0.0007001508426712137
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-26",
+      "total_asset": 1024661.6565184016,
+      "cash": 714958.6799404642,
+      "market_value": 309702.9765779374,
+      "total_position_ratio": 0.30224901518248193,
+      "daily_return": 0.0019349952893721323,
+      "cum_return": 0.024661656518401687,
+      "drawdown": -0.012902431218035137,
+      "benchmark_return": 0.0021757047418438794,
+      "excess_return": -0.0002407094524717471
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-27",
+      "total_asset": 1024780.8024854655,
+      "cash": 714958.6799404642,
+      "market_value": 309822.1225450014,
+      "total_position_ratio": 0.3023301390829827,
+      "daily_return": 0.00011627835032768097,
+      "cum_return": 0.024780802485465436,
+      "drawdown": -0.012787653141124733,
+      "benchmark_return": 0.001348088026523231,
+      "excess_return": -0.00123180967619555
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-06-28",
+      "total_asset": 1021440.0528186129,
+      "cash": 716315.7295333995,
+      "market_value": 305124.32328521344,
+      "total_position_ratio": 0.29871975593989886,
+      "daily_return": -0.0032599651152227516,
+      "cum_return": 0.021440052818612942,
+      "drawdown": -0.016005930953201908,
+      "benchmark_return": -0.0016267858242662192,
+      "excess_return": -0.0016331792909565323
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-01",
+      "total_asset": 1022209.2646787774,
+      "cash": 716315.7295333995,
+      "market_value": 305893.5351453779,
+      "total_position_ratio": 0.29924746890403403,
+      "daily_return": 0.0007530660835570746,
+      "cum_return": 0.022209264678777485,
+      "drawdown": -0.0152649183933814,
+      "benchmark_return": 0.008146897496146489,
+      "excess_return": -0.007393831412589414
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-02",
+      "total_asset": 1027538.9490032449,
+      "cash": 716315.7295333995,
+      "market_value": 311223.2194698454,
+      "total_position_ratio": 0.3028821630282188,
+      "daily_return": 0.005213887712260501,
+      "cum_return": 0.02753894900324494,
+      "drawdown": -0.010130620251560862,
+      "benchmark_return": 0.0005580385782088045,
+      "excess_return": 0.004655849134051697
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-03",
+      "total_asset": 1026422.5762253614,
+      "cash": 716315.7295333995,
+      "market_value": 310106.846691962,
+      "total_position_ratio": 0.30212395350107235,
+      "daily_return": -0.001086453004011556,
+      "cum_return": 0.02642257622536137,
+      "drawdown": -0.01120606681276759,
+      "benchmark_return": 0.0004677749906886778,
+      "excess_return": -0.001554227994700234
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-04",
+      "total_asset": 1031195.3228174292,
+      "cash": 716315.7295333995,
+      "market_value": 314879.5932840297,
+      "total_position_ratio": 0.3053539773858909,
+      "daily_return": 0.004649884660194559,
+      "cum_return": 0.031195322817429094,
+      "drawdown": -0.006608289070746731,
+      "benchmark_return": 0.001737848747699396,
+      "excess_return": 0.0029120359124951626
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-05",
+      "total_asset": 1032824.363512268,
+      "cash": 724649.9191925323,
+      "market_value": 308174.4443197358,
+      "total_position_ratio": 0.2983803008594261,
+      "daily_return": 0.001579759584622531,
+      "cum_return": 0.03282436351226803,
+      "drawdown": -0.005038968994121595,
+      "benchmark_return": 0.0015621752126023162,
+      "excess_return": 1.7584372020214723e-05
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-08",
+      "total_asset": 1033994.5876956062,
+      "cash": 724649.9191925323,
+      "market_value": 309344.66850307386,
+      "total_position_ratio": 0.2991743595026831,
+      "daily_return": 0.0011330330932148858,
+      "cum_return": 0.03399458769560626,
+      "drawdown": -0.003911645219532689,
+      "benchmark_return": 0.005624265486430147,
+      "excess_return": -0.004491232393215261
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-09",
+      "total_asset": 1027040.3678899785,
+      "cash": 724649.9191925323,
+      "market_value": 302390.44869744615,
+      "total_position_ratio": 0.294428980740745,
+      "daily_return": -0.006725586273257145,
+      "cum_return": 0.027040367889978434,
+      "drawdown": -0.010610923385395377,
+      "benchmark_return": -0.0029440878550496224,
+      "excess_return": -0.0037814984182075223
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-10",
+      "total_asset": 1027875.5276909468,
+      "cash": 724649.9191925323,
+      "market_value": 303225.60849841445,
+      "total_position_ratio": 0.2950022646998809,
+      "daily_return": 0.0008131713485461933,
+      "cum_return": 0.02787552769094681,
+      "drawdown": -0.00980638053572791,
+      "benchmark_return": -0.0006778322657078709,
+      "excess_return": 0.0014910036142540641
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-11",
+      "total_asset": 1023511.7091906541,
+      "cash": 724649.9191925323,
+      "market_value": 298861.7899981218,
+      "total_position_ratio": 0.2919964542803794,
+      "daily_return": -0.0042454736811331495,
+      "cum_return": 0.02351170919065404,
+      "drawdown": -0.014010221486389418,
+      "benchmark_return": -0.001238376092474658,
+      "excess_return": -0.0030070975886584916
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-12",
+      "total_asset": 1023068.9769139027,
+      "cash": 718146.4532026076,
+      "market_value": 304922.52371129504,
+      "total_position_ratio": 0.2980468869568274,
+      "daily_return": -0.0004325620046902179,
+      "cum_return": 0.02306897691390275,
+      "drawdown": -0.014436723201587398,
+      "benchmark_return": 0.0023846596619673368,
+      "excess_return": -0.0028172216666575546
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-15",
+      "total_asset": 1020441.9513511604,
+      "cash": 718146.4532026076,
+      "market_value": 302295.4981485528,
+      "total_position_ratio": 0.2962397789979972,
+      "daily_return": -0.002567789290871425,
+      "cum_return": 0.020441951351160448,
+      "drawdown": -0.0169674420292264,
+      "benchmark_return": -0.005372100192531696,
+      "excess_return": 0.0028043109016602707
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-16",
+      "total_asset": 1020756.0324716102,
+      "cash": 718146.4532026076,
+      "market_value": 302609.5792690026,
+      "total_position_ratio": 0.2964563222186188,
+      "daily_return": 0.00030778930642161306,
+      "cum_return": 0.020756032471610286,
+      "drawdown": -0.016664875120018796,
+      "benchmark_return": 0.0016821638599607317,
+      "excess_return": -0.0013743745535391187
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-17",
+      "total_asset": 1017815.5877644233,
+      "cash": 718146.4532026076,
+      "market_value": 299669.13456181576,
+      "total_position_ratio": 0.2944238014864979,
+      "daily_return": -0.0028806537641193897,
+      "cum_return": 0.01781558776442327,
+      "drawdown": -0.01949752314889508,
+      "benchmark_return": 0.00037808490170366805,
+      "excess_return": -0.003258738665823058
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-18",
+      "total_asset": 1017423.0173258405,
+      "cash": 718146.4532026076,
+      "market_value": 299276.56412323297,
+      "total_position_ratio": 0.2941515564586313,
+      "daily_return": -0.00038569898447426976,
+      "cum_return": 0.017423017325840506,
+      "drawdown": -0.019875701958491088,
+      "benchmark_return": 0.005053945061380483,
+      "excess_return": -0.005439644045854753
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-19",
+      "total_asset": 1020965.3968105791,
+      "cash": 717402.6039463477,
+      "market_value": 303562.7928642314,
+      "total_position_ratio": 0.2973291688558097,
+      "daily_return": 0.0034817174610903834,
+      "cum_return": 0.020965396810579184,
+      "drawdown": -0.01646318607596109,
+      "benchmark_return": -0.004138337678133071,
+      "excess_return": 0.0076200551392234545
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-22",
+      "total_asset": 1022329.1631664492,
+      "cash": 717402.6039463477,
+      "market_value": 304926.5592201015,
+      "total_position_ratio": 0.29826651748411026,
+      "daily_return": 0.001335761584212669,
+      "cum_return": 0.022329163166449062,
+      "drawdown": -0.015149415383262421,
+      "benchmark_return": 0.0006889424482113382,
+      "excess_return": 0.0006468191360013309
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-23",
+      "total_asset": 1024403.0491829986,
+      "cash": 717402.6039463477,
+      "market_value": 307000.4452366509,
+      "total_position_ratio": 0.29968716461894146,
+      "daily_return": 0.0020285893147429235,
+      "cum_return": 0.024403049182998515,
+      "drawdown": -0.013151558010690678,
+      "benchmark_return": 0.0023297518098301826,
+      "excess_return": -0.00030116249508725917
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-24",
+      "total_asset": 1024963.7290011414,
+      "cash": 717402.6039463477,
+      "market_value": 307561.1250547937,
+      "total_position_ratio": 0.3000702525878857,
+      "daily_return": 0.0005473234569048913,
+      "cum_return": 0.0249637290011413,
+      "drawdown": -0.012611432709979775,
+      "benchmark_return": 4.806764287413889e-05,
+      "excess_return": 0.0004992558140307524
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-25",
+      "total_asset": 1020175.0326083171,
+      "cash": 717402.6039463477,
+      "market_value": 302772.4286619694,
+      "total_position_ratio": 0.2967847859282152,
+      "daily_return": -0.004672064247084107,
+      "cum_return": 0.02017503260831699,
+      "drawdown": -0.01722457553319512,
+      "benchmark_return": -0.0011050416353342103,
+      "excess_return": -0.0035670226117498964
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-26",
+      "total_asset": 1013649.6061219107,
+      "cash": 710800.0176870783,
+      "market_value": 302849.58843483246,
+      "total_position_ratio": 0.29877147547414823,
+      "daily_return": -0.0063963793249502965,
+      "cum_return": 0.013649606121910685,
+      "drawdown": -0.023510779939323934,
+      "benchmark_return": 0.003012824935747449,
+      "excess_return": -0.009409204260697746
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-29",
+      "total_asset": 1013857.6436121308,
+      "cash": 710800.0176870783,
+      "market_value": 303057.6259250524,
+      "total_position_ratio": 0.29891536334956353,
+      "daily_return": 0.00020523609831601952,
+      "cum_return": 0.01385764361213071,
+      "drawdown": -0.023310369101750994,
+      "benchmark_return": 0.002242224260299079,
+      "excess_return": -0.0020369881619830593
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-30",
+      "total_asset": 1017360.2317073368,
+      "cash": 710800.0176870783,
+      "market_value": 306560.2140202586,
+      "total_position_ratio": 0.30132907151854005,
+      "daily_return": 0.003454713901181572,
+      "cum_return": 0.017360231707336915,
+      "drawdown": -0.019936185856746835,
+      "benchmark_return": -0.007437395539283853,
+      "excess_return": 0.010892109440465425
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-07-31",
+      "total_asset": 1014066.3350739703,
+      "cash": 710800.0176870783,
+      "market_value": 303266.31738689187,
+      "total_position_ratio": 0.2990596442241329,
+      "daily_return": -0.0032376895918555526,
+      "cum_return": 0.01406633507397026,
+      "drawdown": -0.02310932826715273,
+      "benchmark_return": 0.00019995207216144673,
+      "excess_return": -0.0034376416640169993
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-01",
+      "total_asset": 1019845.9174364677,
+      "cash": 710800.0176870783,
+      "market_value": 309045.89974938944,
+      "total_position_ratio": 0.3030319526367489,
+      "daily_return": 0.005699412516318114,
+      "cum_return": 0.019845917436467797,
+      "drawdown": -0.017541625345604106,
+      "benchmark_return": -0.0008166117524017043,
+      "excess_return": 0.006516024268719819
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-02",
+      "total_asset": 1013733.171521008,
+      "cash": 711799.7983243058,
+      "market_value": 301933.37319670216,
+      "total_position_ratio": 0.29784304359270447,
+      "daily_return": -0.005993793582882545,
+      "cum_return": 0.013733171521008058,
+      "drawdown": -0.023430278047056885,
+      "benchmark_return": 0.0016036324108675208,
+      "excess_return": -0.007597425993750066
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-05",
+      "total_asset": 1006008.4645615647,
+      "cash": 711799.7983243058,
+      "market_value": 294208.66623725893,
+      "total_position_ratio": 0.29245148187245124,
+      "daily_return": -0.007620059377018373,
+      "cum_return": 0.006008464561564786,
+      "drawdown": -0.030871797314136695,
+      "benchmark_return": -0.00011740468273136647,
+      "excess_return": -0.0075026546942870065
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-06",
+      "total_asset": 1010588.2669639399,
+      "cash": 711799.7983243058,
+      "market_value": 298788.46863963414,
+      "total_position_ratio": 0.2956579631953075,
+      "daily_return": 0.004552449172851691,
+      "cum_return": 0.010588266963939885,
+      "drawdown": -0.026459890429432087,
+      "benchmark_return": 0.004128576663343519,
+      "excess_return": 0.00042387250950817225
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-07",
+      "total_asset": 1011364.2162513682,
+      "cash": 711799.7983243058,
+      "market_value": 299564.4179270624,
+      "total_position_ratio": 0.29619835575891834,
+      "daily_return": 0.0007678194105296132,
+      "cum_return": 0.011364216251368076,
+      "drawdown": -0.02571238743637483,
+      "benchmark_return": -0.001881326080483884,
+      "excess_return": 0.0026491454910134975
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-08",
+      "total_asset": 1008753.8476933741,
+      "cash": 711799.7983243058,
+      "market_value": 296954.0493690684,
+      "total_position_ratio": 0.2943771169231089,
+      "daily_return": -0.002581037094301575,
+      "cum_return": 0.008753847693374173,
+      "drawdown": -0.028227059904920027,
+      "benchmark_return": -0.003320811095776451,
+      "excess_return": 0.0007397740014748761
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-09",
+      "total_asset": 1014924.6214898782,
+      "cash": 712899.0034647379,
+      "market_value": 302025.61802514025,
+      "total_position_ratio": 0.2975842852070885,
+      "daily_return": 0.006117224544534894,
+      "cum_return": 0.014924621489878165,
+      "drawdown": -0.02228250662405551,
+      "benchmark_return": -0.0010484885488103556,
+      "excess_return": 0.00716571309334525
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-12",
+      "total_asset": 1016370.4545569168,
+      "cash": 712899.0034647379,
+      "market_value": 303471.45109217893,
+      "total_position_ratio": 0.2985835034180291,
+      "daily_return": 0.0014245718710776956,
+      "cum_return": 0.01637045455691677,
+      "drawdown": -0.02088967778513151,
+      "benchmark_return": -0.0003319384900320281,
+      "excess_return": 0.0017565103611097237
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-13",
+      "total_asset": 1015225.7092410277,
+      "cash": 712899.0034647379,
+      "market_value": 302326.7057762898,
+      "total_position_ratio": 0.29779260220104764,
+      "daily_return": -0.0011263071557783277,
+      "cum_return": 0.01522570924102773,
+      "drawdown": -0.021992456747338518,
+      "benchmark_return": 0.0034017709390706512,
+      "excess_return": -0.004528078094848979
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-14",
+      "total_asset": 1019548.3992380201,
+      "cash": 712899.0034647379,
+      "market_value": 306649.39577328216,
+      "total_position_ratio": 0.3007698271141054,
+      "daily_return": 0.0042578610427665975,
+      "cum_return": 0.019548399238020098,
+      "drawdown": -0.01782823652939125,
+      "benchmark_return": 0.0036652492726266953,
+      "excess_return": 0.0005926117701399022
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-15",
+      "total_asset": 1022605.2441455735,
+      "cash": 712899.0034647379,
+      "market_value": 309706.24068083556,
+      "total_position_ratio": 0.3028600160755162,
+      "daily_return": 0.0029982342278580543,
+      "cum_return": 0.022605244145573522,
+      "drawdown": -0.014883455530517953,
+      "benchmark_return": 0.0011683342261147756,
+      "excess_return": 0.0018299000017432787
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-16",
+      "total_asset": 1027338.5620943108,
+      "cash": 722156.4969391207,
+      "market_value": 305182.06515519007,
+      "total_position_ratio": 0.29706084869729055,
+      "daily_return": 0.0046286853855244114,
+      "cum_return": 0.027338562094310737,
+      "drawdown": -0.010323660978093674,
+      "benchmark_return": -0.0017085639577933667,
+      "excess_return": 0.006337249343317778
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-19",
+      "total_asset": 1025316.4434719494,
+      "cash": 722156.4969391207,
+      "market_value": 303159.94653282873,
+      "total_position_ratio": 0.2956745192793961,
+      "daily_return": -0.0019683079142275295,
+      "cum_return": 0.0253164434719495,
+      "drawdown": -0.012271648748714226,
+      "benchmark_return": -0.003445096530642137,
+      "excess_return": 0.0014767886164146074
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-20",
+      "total_asset": 1025739.4630843911,
+      "cash": 722156.4969391206,
+      "market_value": 303582.96614527045,
+      "total_position_ratio": 0.29596498630597545,
+      "daily_return": 0.00041257468865829594,
+      "cum_return": 0.025739463084391012,
+      "drawdown": -0.011864137031717736,
+      "benchmark_return": 1.261804153121308e-05,
+      "excess_return": 0.00039995664712708285
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-21",
+      "total_asset": 1025064.9504015857,
+      "cash": 722156.4969391206,
+      "market_value": 302908.4534624651,
+      "total_position_ratio": 0.29550171756803884,
+      "daily_return": -0.0006575867528555435,
+      "cum_return": 0.02506495040158563,
+      "drawdown": -0.012513922085227058,
+      "benchmark_return": -2.818485585515118e-05,
+      "excess_return": -0.0006294018970003923
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-22",
+      "total_asset": 1031177.5109546541,
+      "cash": 722156.4969391206,
+      "market_value": 309021.01401553344,
+      "total_position_ratio": 0.29967780593803367,
+      "daily_return": 0.00596309585131527,
+      "cum_return": 0.031177510954654153,
+      "drawdown": -0.006625447950781904,
+      "benchmark_return": 0.0005072251041269442,
+      "excess_return": 0.005455870747188326
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-23",
+      "total_asset": 1034710.6724476612,
+      "cash": 726034.178226209,
+      "market_value": 308676.4942214521,
+      "total_position_ratio": 0.2983215525275892,
+      "daily_return": 0.0034263368386846516,
+      "cum_return": 0.03471067244766113,
+      "drawdown": -0.0032218121284838253,
+      "benchmark_return": -0.004661669301614809,
+      "excess_return": 0.008088006140299461
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-26",
+      "total_asset": 1036290.8704479879,
+      "cash": 726034.178226209,
+      "market_value": 310256.6922217789,
+      "total_position_ratio": 0.2993915135888972,
+      "daily_return": 0.0015271882685705673,
+      "cum_return": 0.036290870447987844,
+      "drawdown": -0.001699544173599521,
+      "benchmark_return": 0.001053694445634649,
+      "excess_return": 0.00047349382293591837
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-27",
+      "total_asset": 1036760.4317808381,
+      "cash": 726034.178226209,
+      "market_value": 310726.25355462905,
+      "total_position_ratio": 0.29970882764198103,
+      "daily_return": 0.00045311731121122634,
+      "cum_return": 0.0367604317808381,
+      "drawdown": -0.001247196955274421,
+      "benchmark_return": 0.0004521635680392322,
+      "excess_return": 9.53743171994148e-07
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-28",
+      "total_asset": 1036613.8382457733,
+      "cash": 726034.178226209,
+      "market_value": 310579.6600195643,
+      "total_position_ratio": 0.29960979543274074,
+      "daily_return": -0.00014139576566685186,
+      "cum_return": 0.036613838245773245,
+      "drawdown": -0.0013884163725728094,
+      "benchmark_return": 0.004200228359970467,
+      "excess_return": -0.004341624125637319
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-29",
+      "total_asset": 1040228.4838919435,
+      "cash": 726034.178226209,
+      "market_value": 314194.3056657344,
+      "total_position_ratio": 0.30204355151879514,
+      "daily_return": 0.0034869741390748388,
+      "cum_return": 0.040228483891943556,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0021520828124299415,
+      "excess_return": 0.0013348913266448973
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-08-30",
+      "total_asset": 1038439.9337472562,
+      "cash": 728593.2388363046,
+      "market_value": 309846.69491095154,
+      "total_position_ratio": 0.2983770989939265,
+      "daily_return": -0.0017193820130704252,
+      "cum_return": 0.03843993374725607,
+      "drawdown": -0.0017193820130704252,
+      "benchmark_return": 0.0024453346416256996,
+      "excess_return": -0.004164716654696124
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-09-02",
+      "total_asset": 1039553.4043869451,
+      "cash": 728593.2388363046,
+      "market_value": 310960.16555064043,
+      "total_position_ratio": 0.2991286106498999,
+      "daily_return": 0.0010722532941032092,
+      "cum_return": 0.03955340438694499,
+      "drawdown": -0.0006489723319944574,
+      "benchmark_return": 0.002364966529926926,
+      "excess_return": -0.001292713235823717
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-09-03",
+      "total_asset": 1035602.9824521758,
+      "cash": 728593.2388363045,
+      "market_value": 307009.74361587124,
+      "total_position_ratio": 0.2964550593403191,
+      "daily_return": -0.0038001144704046252,
+      "cum_return": 0.035602982452175747,
+      "drawdown": -0.00444662063324941,
+      "benchmark_return": -0.0037738454650487457,
+      "excess_return": -2.6269005355879574e-05
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-09-04",
+      "total_asset": 1036467.423073754,
+      "cash": 728593.2388363045,
+      "market_value": 307874.18423744943,
+      "total_position_ratio": 0.2970418340061436,
+      "daily_return": 0.000834722027867496,
+      "cum_return": 0.03646742307375406,
+      "drawdown": -0.003615610297574068,
+      "benchmark_return": 0.0001918395194983417,
+      "excess_return": 0.0006428825083691544
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-09-05",
+      "total_asset": 1038542.9924422549,
+      "cash": 728593.2388363045,
+      "market_value": 309949.75360595045,
+      "total_position_ratio": 0.29844672378662673,
+      "daily_return": 0.0020025418284210783,
+      "cum_return": 0.0385429924422549,
+      "drawdown": -0.0016203088800091914,
+      "benchmark_return": 0.0016782246409678587,
+      "excess_return": 0.0003243171874532196
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-09-06",
+      "total_asset": 1040965.0453946756,
+      "cash": 731179.2273475088,
+      "market_value": 309785.8180471668,
+      "total_position_ratio": 0.2975948322354219,
+      "daily_return": 0.002332164359151845,
+      "cum_return": 0.04096504539467549,
+      "drawdown": 0.0,
+      "benchmark_return": 0.002456885602328607,
+      "excess_return": -0.0001247212431767621
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2024-09-09",
+      "total_asset": 1045516.788600273,
+      "cash": 734166.2181072804,
+      "market_value": 311350.5704929925,
+      "total_position_ratio": 0.297795859318362,
+      "daily_return": 0.004372618682764395,
+      "cum_return": 0.04551678860027297,
+      "drawdown": 0.0,
+      "benchmark_return": 0.00447064073303692,
+      "excess_return": -9.802205027252455e-05
+    }
+  ]
+}

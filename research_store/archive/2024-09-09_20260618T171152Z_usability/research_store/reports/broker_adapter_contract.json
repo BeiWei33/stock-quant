@@ -1,0 +1,13 @@
+{
+  "status": "OK",
+  "passed": true,
+  "adapter": "dry_run",
+  "mode": "DRY_RUN",
+  "submission_id": "4eb35bd8bbe64d1e8046fb593aae4e9d",
+  "trade_date": "2024-09-09",
+  "strategy_id": "momentum_rank",
+  "order_count": 3,
+  "submitted": false,
+  "issue": "",
+  "result": null
+}

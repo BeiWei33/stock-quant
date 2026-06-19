@@ -1,0 +1,41 @@
+# Broker fill CSV column aliases.
+# Add your broker's exported column names under each canonical field.
+columns:
+  trade_date:
+    - 成交日期
+    - 交易日期
+    - 日期
+  ts_code:
+    - 证券代码
+    - 股票代码
+    - 合约代码
+  side:
+    - 买卖方向
+    - 委托方向
+    - 方向
+  quantity:
+    - 成交数量
+    - 数量
+    - 成交股数
+  price:
+    - 成交价格
+    - 成交均价
+    - 价格
+  amount:
+    - 成交金额
+    - 金额
+  broker_order_id:
+    - 委托编号
+    - 合同编号
+    - 券商订单号
+  order_id:
+    - 客户订单号
+    - 本地订单号
+    - 备注订单号
+  status:
+    - 成交状态
+    - 订单状态
+    - 状态
+  operator_note:
+    - 备注
+    - 说明

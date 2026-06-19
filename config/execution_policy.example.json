@@ -1,0 +1,12 @@
+{
+  "auto_trade_enabled": false,
+  "allowed_modes": ["DRY_RUN"],
+  "allowed_adapters": ["dry_run"],
+  "approved_trade_date": "",
+  "approved_strategy_id": "",
+  "approval_id": "",
+  "approved_by": "",
+  "expires_at": "",
+  "max_order_count": 0,
+  "max_notional": 0
+}

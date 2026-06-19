@@ -1,0 +1,74 @@
+[
+  {
+    "event_id": "21b8c26a921b4539b188156f2bd3fb10",
+    "event_type": "OrderIntentEvent",
+    "source": "sqlite_store",
+    "trace_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+    "correlation_id": "2024-09-09",
+    "event_time": "2026-06-17T13:42:42.226722+00:00",
+    "receive_time": "2026-06-17T13:42:42.226725+00:00",
+    "payload": {
+      "account_id": "paper",
+      "order_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+      "price": 12.485984725518357,
+      "quantity": 8000,
+      "reason": "rebalance_to_target_weight",
+      "side": "BUY",
+      "status": "CREATED",
+      "strategy_id": "momentum_rank",
+      "target_weight": 0.1,
+      "trade_date": "2024-09-09",
+      "ts_code": "000002.SZ"
+    },
+    "created_at": "2026-06-17 13:42:42"
+  },
+  {
+    "event_id": "b082249bcdc047e2bed4a326e104c93f",
+    "event_type": "RiskCheckEvent",
+    "source": "sqlite_store",
+    "trace_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+    "correlation_id": "2024-09-09",
+    "event_time": "2026-06-17T13:42:42.232206+00:00",
+    "receive_time": "2026-06-17T13:42:42.232208+00:00",
+    "payload": {
+      "account_id": "paper",
+      "allowed": true,
+      "order_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+      "price": 12.485984725518357,
+      "quantity": 8000,
+      "reason": "rebalance_to_target_weight",
+      "risk_reasons": [],
+      "side": "BUY",
+      "status": "CREATED",
+      "strategy_id": "momentum_rank",
+      "target_weight": 0.1,
+      "trade_date": "2024-09-09",
+      "ts_code": "000002.SZ"
+    },
+    "created_at": "2026-06-17 13:42:42"
+  },
+  {
+    "event_id": "cb9854653afd42eeb38f31658c6f8463",
+    "event_type": "TradeEvent",
+    "source": "sqlite_store",
+    "trace_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+    "correlation_id": "2024-09-09",
+    "event_time": "2026-06-17T13:42:42.238415+00:00",
+    "receive_time": "2026-06-17T13:42:42.238418+00:00",
+    "payload": {
+      "account_id": "paper",
+      "amount": 99887.87780414685,
+      "fee": 29.96636334124405,
+      "fill_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY:FILL",
+      "order_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+      "price": 12.485984725518357,
+      "quantity": 8000,
+      "side": "BUY",
+      "strategy_id": "momentum_rank",
+      "tax": 0.0,
+      "trade_date": "2024-09-09",
+      "ts_code": "000002.SZ"
+    },
+    "created_at": "2026-06-17 13:42:42"
+  }
+]

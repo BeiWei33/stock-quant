@@ -1,0 +1,143 @@
+{
+  "status": "OK",
+  "error_count": 0,
+  "warning_count": 0,
+  "checks": [
+    {
+      "name": "stocks",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\sample\\stocks.csv",
+      "detail": "columns=8",
+      "passed": true
+    },
+    {
+      "name": "daily_bars",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\sample\\daily_bar.cleaned.csv",
+      "detail": "columns=12",
+      "passed": true
+    },
+    {
+      "name": "daily_config",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "config\\daily.yaml",
+      "detail": "bytes=700",
+      "passed": true
+    },
+    {
+      "name": "cleaning_config",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "config\\cleaning.yaml",
+      "detail": "bytes=316",
+      "passed": true
+    },
+    {
+      "name": "risk_guard_control",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\state\\risk_guard_control.env",
+      "detail": "trade_mode=NORMAL",
+      "passed": true
+    },
+    {
+      "name": "execution_policy",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "config\\execution_policy.generated.json",
+      "detail": "modes=DRY_RUN, adapters=dry_run",
+      "passed": true
+    },
+    {
+      "name": "broker_submission",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\reports\\broker_submission.json",
+      "detail": "fields present",
+      "passed": true
+    },
+    {
+      "name": "execution_authorization",
+      "status": "GO",
+      "severity": "INFO",
+      "path": "research_store\\reports\\execution_authorization.json",
+      "detail": "status=GO",
+      "passed": true
+    },
+    {
+      "name": "broker_adapter_contract",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\reports\\broker_adapter_contract.json",
+      "detail": "adapter=dry_run, mode=DRY_RUN, submitted=False",
+      "passed": true
+    },
+    {
+      "name": "pretrade_gate",
+      "status": "GO",
+      "severity": "INFO",
+      "path": "research_store\\reports\\pretrade_gate.json",
+      "detail": "status=GO",
+      "passed": true
+    },
+    {
+      "name": "manual_order_ticket",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\reports\\manual_order_ticket.csv",
+      "detail": "columns=14",
+      "passed": true
+    },
+    {
+      "name": "manual_fill_template",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\reports\\manual_fill_template.csv",
+      "detail": "columns=10",
+      "passed": true
+    },
+    {
+      "name": "manual_fill_validation",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\reports\\manual_fill_validation.json",
+      "detail": "manual fills validated",
+      "passed": true
+    },
+    {
+      "name": "execution_day_end",
+      "status": "READY",
+      "severity": "INFO",
+      "path": "research_store\\reports\\execution_day_end.json",
+      "detail": "status=READY",
+      "passed": true
+    },
+    {
+      "name": "monitor_status",
+      "status": "INFO",
+      "severity": "INFO",
+      "path": "research_store\\monitoring\\status_summary.json",
+      "detail": "level=INFO",
+      "passed": true
+    },
+    {
+      "name": "readiness",
+      "status": "PAPER_READY",
+      "severity": "INFO",
+      "path": "research_store\\monitoring\\readiness.json",
+      "detail": "status=PAPER_READY",
+      "passed": true
+    },
+    {
+      "name": "monitor_history",
+      "status": "OK",
+      "severity": "INFO",
+      "path": "research_store\\monitoring\\daily_history.csv",
+      "detail": "columns=44",
+      "passed": true
+    }
+  ]
+}

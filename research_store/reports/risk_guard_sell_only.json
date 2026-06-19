@@ -1,0 +1,27 @@
+{
+  "allowed": false,
+  "input_orders": 3,
+  "accepted_orders": 0,
+  "rejected_orders": 3,
+  "total_buy_weight": 0.30000000000000004,
+  "policy": {
+    "trade_mode": "SELL_ONLY",
+    "max_order_amount": 100000,
+    "max_single_weight": 0.1,
+    "max_total_buy_weight": 0.95,
+    "max_daily_loss": 0.05,
+    "daily_loss": 0,
+    "trading_start": "09:30",
+    "trading_end": "15:00",
+    "now": "14:30",
+    "reject_duplicate_orders": true
+  },
+  "rule_counts": {
+    "trade_mode_sell_only": 3
+  },
+  "rejections": [
+    {"order_id":"paper:momentum_rank:2024-09-09:000002.SZ:BUY","account_id":"paper","strategy_id":"momentum_rank","ts_code":"000002.SZ","side":"BUY","trade_date":"2024-09-09","rule":"trade_mode_sell_only","reason":"trade mode SELL_ONLY rejects buy orders"},
+    {"order_id":"paper:momentum_rank:2024-09-09:000008.SZ:BUY","account_id":"paper","strategy_id":"momentum_rank","ts_code":"000008.SZ","side":"BUY","trade_date":"2024-09-09","rule":"trade_mode_sell_only","reason":"trade mode SELL_ONLY rejects buy orders"},
+    {"order_id":"paper:momentum_rank:2024-09-09:000012.SZ:BUY","account_id":"paper","strategy_id":"momentum_rank","ts_code":"000012.SZ","side":"BUY","trade_date":"2024-09-09","rule":"trade_mode_sell_only","reason":"trade mode SELL_ONLY rejects buy orders"}
+  ]
+}

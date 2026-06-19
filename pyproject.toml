@@ -1,0 +1,25 @@
+[project]
+name = "personal-quant-system"
+version = "0.1.0"
+description = "Personal A-share low-frequency quant research and paper-trading system."
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0",
+  "pandas>=2.0",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+data = [
+  "akshare",
+]
+dev = [
+  "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100

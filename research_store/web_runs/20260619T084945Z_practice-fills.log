@@ -1,0 +1,23 @@
+action=practice-fills
+command=D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.start practice-fills
+return_code=1
+
+[stdout]
+[RUN] Practice fill import
+  D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.fill import --source research_store/sample/broker_fills_sample.csv --output-template research_store/sample/broker_fills_sample.imported.csv --report research_store/reports/manual_fill_import_sample.json --report-md research_store/reports/manual_fill_import_sample.md --audit-log research_store/reports/manual_fill_import_sample_audit.jsonl --validate-only
+  [FAIL] Step 'Practice fill import' failed with exit code 1
+
+
+[stderr]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\Agent\codex\workspace\stock-quant\quant\apps\start.py", line 889, in <module>
+    main()
+    ~~~~^^
+  File "D:\Agent\codex\workspace\stock-quant\quant\apps\start.py", line 203, in main
+    run_steps(steps, dry_run=bool(args.dry_run), keep_going=bool(args.keep_going))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Agent\codex\workspace\stock-quant\quant\apps\start.py", line 568, in run_steps
+    raise RuntimeError(msg)
+RuntimeError: Step 'Practice fill import' failed with exit code 1

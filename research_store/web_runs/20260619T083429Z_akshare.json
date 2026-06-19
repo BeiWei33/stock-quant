@@ -1,0 +1,18 @@
+{
+  "run_id": "20260619T083429Z_akshare",
+  "action": "akshare",
+  "status": "ERROR",
+  "return_code": 1,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe",
+    "-m",
+    "quant.apps.start",
+    "akshare"
+  ],
+  "started_at": "2026-06-19T08:34:29.152039+00:00",
+  "ended_at": "2026-06-19T08:34:33.181705+00:00",
+  "stdout": "[RUN] Run AkShare daily paper workflow\n  D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe -m quant.apps.daily --source akshare --no-lock --start-date 2025-10-02 --akshare-limit 30\n  [FAIL] Step 'Run AkShare daily paper workflow' failed with exit code 1\n",
+  "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\apps\\start.py\", line 889, in <module>\n    main()\n    ~~~~^^\n  File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\apps\\start.py\", line 203, in main\n    run_steps(steps, dry_run=bool(args.dry_run), keep_going=bool(args.keep_going))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\apps\\start.py\", line 568, in run_steps\n    raise RuntimeError(msg)\nRuntimeError: Step 'Run AkShare daily paper workflow' failed with exit code 1\n",
+  "log_path": "research_store\\web_runs\\20260619T083429Z_akshare.log",
+  "json_path": "research_store\\web_runs\\20260619T083429Z_akshare.json"
+}

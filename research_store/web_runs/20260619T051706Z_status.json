@@ -1,0 +1,18 @@
+{
+  "run_id": "20260619T051706Z_status",
+  "action": "status",
+  "status": "OK",
+  "return_code": 0,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe",
+    "-m",
+    "quant.apps.start",
+    "status"
+  ],
+  "started_at": "2026-06-19T05:17:06.112284+00:00",
+  "ended_at": "2026-06-19T05:17:06.181876+00:00",
+  "stdout": "Personal Quant System 状态\n  日流程: FAILED\n  数据源: UNKNOWN\n  纸面可用: true\n  实盘可用: false\n  就绪状态: PAPER_READY\n  执行状态: BLOCKED\n  配置健康: WARNING\n  下一步: 填写或导入真实成交，然后运行 `python -m quant.apps.broker refresh --no-console`。\n",
+  "stderr": "",
+  "log_path": "research_store\\web_runs\\20260619T051706Z_status.log",
+  "json_path": "research_store\\web_runs\\20260619T051706Z_status.json"
+}

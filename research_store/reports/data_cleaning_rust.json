@@ -1,0 +1,48 @@
+{
+  "input_rows": 5400,
+  "output_rows": 5400,
+  "changed_row_count": 864,
+  "high_fixed_count": 433,
+  "low_fixed_count": 431,
+  "non_positive_volume_count": 0,
+  "non_positive_amount_count": 0,
+  "auto_fixed_row_count": 864,
+  "manual_review_row_count": 0,
+  "rule_counts": {
+    "ohlc_envelope_high": 433,
+    "ohlc_envelope_low": 431,
+    "zero_volume": 0,
+    "non_positive_price": 0,
+    "non_positive_amount": 0
+  },
+  "policy": {
+    "fix_ohlc_envelope": true,
+    "flag_zero_volume": true,
+    "flag_non_positive_price": true,
+    "flag_non_positive_amount": false,
+    "diff_sample_limit": 20
+  },
+  "diffs": [
+    {"ts_code":"000001.SZ","trade_date":"2024-01-08","field":"low","before":"9.761552015150398","after":"9.683283855095823","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-01-15","field":"high","before":"9.701343308563443","after":"9.730438159374197","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-01-23","field":"high","before":"9.86281409216268","after":"9.863308352634983","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-01-24","field":"low","before":"9.515764027282195","after":"9.489267356109826","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-01-26","field":"low","before":"9.083427601099606","after":"9.070255645785204","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-02-06","field":"low","before":"8.412486023404133","after":"8.397264295047119","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-02-12","field":"low","before":"8.010102064886622","after":"8.004009533529427","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-02-19","field":"low","before":"7.614186046507703","after":"7.568543493220625","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-02-21","field":"high","before":"7.530278441316313","after":"7.530335162461385","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-03-01","field":"high","before":"7.431507042772705","after":"7.456902653758813","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-03-07","field":"high","before":"7.5678087056910766","after":"7.580135807823077","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-03-14","field":"low","before":"7.626954997878479","after":"7.587723703820024","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-03-18","field":"low","before":"7.715110941479474","after":"7.683375331973334","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-03-29","field":"low","before":"7.770902274181845","after":"7.756774709876785","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-04-01","field":"low","before":"7.690593903510112","after":"7.688200744639573","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-04-18","field":"high","before":"7.685731844210526","after":"7.6873126202280595","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-04-23","field":"high","before":"7.770466098072996","after":"7.771716325880574","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-05-07","field":"high","before":"7.746793638096153","after":"7.802325896388522","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-05-31","field":"high","before":"7.450220646491785","after":"7.482374915654467","rule":"ohlc_envelope","action":"AUTO_FIX"},
+    {"ts_code":"000001.SZ","trade_date":"2024-06-03","field":"high","before":"7.4203153271424735","after":"7.420682095675424","rule":"ohlc_envelope","action":"AUTO_FIX"}
+  ],
+  "changed_rows": 864
+}

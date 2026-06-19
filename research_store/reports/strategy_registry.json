@@ -1,0 +1,35 @@
+[
+  {
+    "strategy_id": "momentum_rank",
+    "strategy_version": "v1",
+    "description": "momentum_rank paper-trading strategy",
+    "factor_set_id": "momentum_60d",
+    "code_hash": "be49a0213676fa9f04e677fdaaa55635ec9c6894fc353e161b40053c377eddc8",
+    "config_hash": "3e2b9dc4538b2ee332866f93a5cb9ea5165d01502af3df2a586a0c990685c628",
+    "config_json": "{\"class_path\":\"quant.core.strategy.momentum.MomentumRankStrategy\",\"code_hash\":\"be49a0213676fa9f04e677fdaaa55635ec9c6894fc353e161b40053c377eddc8\",\"factor_set_id\":\"momentum_60d\",\"parameters\":{\"class_path\":\"quant.core.strategy.momentum.MomentumRankStrategy\",\"fields\":{\"factor_name\":\"momentum_60d\",\"max_holdings\":20,\"strategy_id\":\"momentum_rank\",\"strategy_version\":\"v1\",\"top_pct\":0.1}},\"required_factors\":[\"momentum_60d\"],\"strategy_id\":\"momentum_rank\",\"strategy_version\":\"v1\"}",
+    "research_report_path": "research_store/reports/alpha/momentum_60d_h5.md",
+    "status": "paper"
+  },
+  {
+    "strategy_id": "quality_rank",
+    "strategy_version": "v1",
+    "description": "quality_rank paper-trading strategy",
+    "factor_set_id": "quality_score",
+    "code_hash": "f5bd01632418aa986759a6d9fb2ca8d37098f10e704b3313738413dc65eca76e",
+    "config_hash": "e29ceb55b45cdd7fb25593ab0f44adfba4108cc2b50a8d16bdaf73699dc51987",
+    "config_json": "{\"class_path\":\"quant.core.strategy.quality.QualityRankStrategy\",\"code_hash\":\"f5bd01632418aa986759a6d9fb2ca8d37098f10e704b3313738413dc65eca76e\",\"factor_set_id\":\"quality_score\",\"parameters\":{\"class_path\":\"quant.core.strategy.quality.QualityRankStrategy\",\"fields\":{\"factor_name\":\"quality_score\",\"max_holdings\":20,\"min_score\":0.0,\"strategy_id\":\"quality_rank\",\"strategy_version\":\"v1\",\"top_pct\":0.1}},\"required_factors\":[\"quality_score\"],\"strategy_id\":\"quality_rank\",\"strategy_version\":\"v1\"}",
+    "research_report_path": "research_store/reports/alpha/quality_score_h5.md",
+    "status": "paper"
+  },
+  {
+    "strategy_id": "quality_rank_trend",
+    "strategy_version": "v1",
+    "description": "quality_rank_trend paper-trading strategy",
+    "factor_set_id": "quality_score",
+    "code_hash": "3bbf9b51f39167a55a40b6a1d9423e1ed94a378fae7fedf693c1e6c421d065e0",
+    "config_hash": "e7ec99b1a784204b1bf9fc3ef1d7ac02bffae383764869a9fde635c924ac3f87",
+    "config_json": "{\"class_path\":\"quant.core.strategy.trend.TrendFilterStrategy\",\"code_hash\":\"3bbf9b51f39167a55a40b6a1d9423e1ed94a378fae7fedf693c1e6c421d065e0\",\"factor_set_id\":\"quality_score\",\"parameters\":{\"class_path\":\"quant.core.strategy.trend.TrendFilterStrategy\",\"fields\":{\"allow_on_insufficient_history\":true,\"base_strategy\":{\"class_path\":\"quant.core.strategy.quality.QualityRankStrategy\",\"fields\":{\"factor_name\":\"quality_score\",\"max_holdings\":20,\"min_score\":0.0,\"strategy_id\":\"quality_rank\",\"strategy_version\":\"v1\",\"top_pct\":0.1}},\"ma_window\":120}},\"required_factors\":[\"quality_score\"],\"strategy_id\":\"quality_rank_trend\",\"strategy_version\":\"v1\"}",
+    "research_report_path": "research_store/reports/alpha/quality_score_h5.md",
+    "status": "paper"
+  }
+]

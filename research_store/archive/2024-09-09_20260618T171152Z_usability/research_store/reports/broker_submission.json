@@ -1,0 +1,55 @@
+{
+  "submission_id": "4eb35bd8bbe64d1e8046fb593aae4e9d",
+  "adapter": "dry_run",
+  "mode": "DRY_RUN",
+  "created_at": "2026-06-18T14:07:18.523893+00:00",
+  "trade_date": "2024-09-09",
+  "strategy_id": "momentum_rank",
+  "risk_guard_allowed": true,
+  "risk_guard_report_path": "research_store\\reports\\risk_guard.json",
+  "order_count": 3,
+  "orders": [
+    {
+      "broker_order_id": "DRYRUN:paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+      "order_id": "paper:momentum_rank:2024-09-09:000002.SZ:BUY",
+      "account_id": "paper",
+      "strategy_id": "momentum_rank",
+      "ts_code": "000002.SZ",
+      "side": "BUY",
+      "quantity": 8000,
+      "price": 12.485984725518357,
+      "target_weight": 0.1,
+      "trade_date": "2024-09-09",
+      "status": "DRY_RUN_ACCEPTED",
+      "adapter": "dry_run"
+    },
+    {
+      "broker_order_id": "DRYRUN:paper:momentum_rank:2024-09-09:000008.SZ:BUY",
+      "order_id": "paper:momentum_rank:2024-09-09:000008.SZ:BUY",
+      "account_id": "paper",
+      "strategy_id": "momentum_rank",
+      "ts_code": "000008.SZ",
+      "side": "BUY",
+      "quantity": 5700,
+      "price": 17.498915322222285,
+      "target_weight": 0.1,
+      "trade_date": "2024-09-09",
+      "status": "DRY_RUN_ACCEPTED",
+      "adapter": "dry_run"
+    },
+    {
+      "broker_order_id": "DRYRUN:paper:momentum_rank:2024-09-09:000012.SZ:BUY",
+      "order_id": "paper:momentum_rank:2024-09-09:000012.SZ:BUY",
+      "account_id": "paper",
+      "strategy_id": "momentum_rank",
+      "ts_code": "000012.SZ",
+      "side": "BUY",
+      "quantity": 5000,
+      "price": 19.71194280567523,
+      "target_weight": 0.1,
+      "trade_date": "2024-09-09",
+      "status": "DRY_RUN_ACCEPTED",
+      "adapter": "dry_run"
+    }
+  ]
+}

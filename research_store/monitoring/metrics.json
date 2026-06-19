@@ -1,0 +1,205 @@
+{
+  "metrics": [
+    {
+      "name": "quant_monitor_level",
+      "value": 0.0,
+      "help": "Monitor level as INFO=0, WARNING=1, CRITICAL=2.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc",
+        "level": "INFO"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_latest_ok",
+      "value": 1.0,
+      "help": "Whether the latest daily run is OK.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_success_rate",
+      "value": 1.0,
+      "help": "Success rate in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_total_runs",
+      "value": 20.0,
+      "help": "Total runs in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_consecutive_unhealthy_runs",
+      "value": 0.0,
+      "help": "Trailing unhealthy run count.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_total_asset",
+      "value": 999910.5425772492,
+      "help": "Latest total account asset.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_daily_return",
+      "value": -8.945742275079382e-05,
+      "help": "Latest daily return.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_drawdown",
+      "value": -8.945742275079382e-05,
+      "help": "Latest drawdown.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_max_drawdown",
+      "value": -0.0045428634070925,
+      "help": "Maximum drawdown in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_position_ratio",
+      "value": 0.2982180869906699,
+      "help": "Latest total position ratio.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_total_orders",
+      "value": 59.0,
+      "help": "Total accepted orders in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_rejected_orders",
+      "value": 0.0,
+      "help": "Total rejected orders in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_data_quality_issues",
+      "value": 0.0,
+      "help": "Data quality issue count in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_reconciliation_diffs",
+      "value": 0.0,
+      "help": "Reconciliation diff count in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_risk_guard_rejected_runs",
+      "value": 0.0,
+      "help": "Risk Guard rejected run count in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_risk_guard_rejected_orders",
+      "value": 0.0,
+      "help": "Risk Guard rejected order count in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_pretrade_gate_passed",
+      "value": 1.0,
+      "help": "Whether the latest pre-trade gate passed.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc",
+        "status": "GO"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_pretrade_gate_block_runs",
+      "value": 0.0,
+      "help": "Pre-trade gate BLOCK count in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_failed_health_checks",
+      "value": 0.0,
+      "help": "Failed health check count in the monitor window.",
+      "labels": {
+        "trade_date": "2024-09-09",
+        "run_id": "50e066d179404d5f8f44236a46cf7acc"
+      },
+      "metric_type": "gauge"
+    },
+    {
+      "name": "quant_monitor_history_rows",
+      "value": 22.0,
+      "help": "Rows available in the monitoring history CSV.",
+      "labels": {
+        "history_path": "research_store\\monitoring\\daily_history.csv"
+      },
+      "metric_type": "gauge"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "bar_count": 5100,
+  "stock_count": 30,
+  "code_count": 30,
+  "trading_days": 170,
+  "start_date": "2024-01-02",
+  "end_date": "2024-08-26",
+  "ok": true,
+  "level": "INFO",
+  "issues": []
+}

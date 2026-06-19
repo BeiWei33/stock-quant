@@ -1,0 +1,18 @@
+{
+  "run_id": "20260619T090809Z_akshare",
+  "action": "akshare",
+  "status": "OK",
+  "return_code": 0,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\python.exe",
+    "-m",
+    "quant.apps.start",
+    "akshare"
+  ],
+  "started_at": "2026-06-19T09:08:09.586163+00:00",
+  "ended_at": "2026-06-19T09:08:47.364552+00:00",
+  "stdout": "Wrote daily workflow summary to research_store\\reports\\daily_summary.json\nDaily workflow status: SUCCESS\nWrote daily report for 2026-06-18 to research_store\\reports\\daily_report.md\nWrote HTML report to research_store\\reports\\daily_report.html\n[RUN] Run AkShare daily paper workflow\n  D:\\AI\\apps\\exe\\anaconda3\\python.exe -m quant.apps.daily --source akshare --no-lock --start-date 2025-10-02 --end-date 2026-06-19 --akshare-limit 30\n[RUN] Render daily report\n  D:\\AI\\apps\\exe\\anaconda3\\python.exe -m quant.apps.report daily --summary research_store/reports/daily_summary.json --paper-sqlite research_store/paper_trading.sqlite3 --output-md research_store/reports/daily_report.md --output-html research_store/reports/daily_report.html\n\nAkShare daily workflow completed.\nNext files to open:\n  - D:\\Agent\\codex\\workspace\\stock-quant\\research_store\\reports\\operator_home.html\n  - research_store/reports/daily_report.html\n  - research_store/reports/daily_summary.json\n\nReminder: this is still paper trading. QMT live trading is not connected.\n",
+  "stderr": "\n  0%|          | 0/17 [00:00<?, ?it/s]\n  6%|��         | 1/17 [00:00<00:05,  2.80it/s]\n 12%|����        | 2/17 [00:00<00:04,  3.54it/s]\n 18%|����        | 3/17 [00:00<00:03,  3.56it/s]\n 24%|������       | 4/17 [00:01<00:03,  3.72it/s]\n 29%|������       | 5/17 [00:01<00:03,  3.76it/s]\n 35%|��������      | 6/17 [00:01<00:02,  4.00it/s]\n 41%|��������      | 7/17 [00:01<00:02,  4.09it/s]\n 47%|����������     | 8/17 [00:02<00:02,  3.99it/s]\n 53%|������������    | 9/17 [00:02<00:01,  4.07it/s]\n 59%|������������    | 10/17 [00:02<00:01,  4.15it/s]\n 65%|��������������   | 11/17 [00:02<00:01,  3.83it/s]\n 71%|��������������   | 12/17 [00:03<00:01,  3.95it/s]\n 76%|����������������  | 13/17 [00:03<00:00,  4.04it/s]\n 82%|������������������ | 14/17 [00:03<00:00,  4.00it/s]\n 88%|������������������ | 15/17 [00:03<00:00,  4.02it/s]\n 94%|��������������������| 16/17 [00:04<00:00,  4.01it/s]\n100%|��������������������| 17/17 [00:04<00:00,  4.16it/s]\n                                               \nD:\\Agent\\codex\\workspace\\stock-quant\\quant\\core\\factor\\technical.py:21: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n  return close.pct_change(self.window).stack().rename(self.name).reset_index()\nD:\\Agent\\codex\\workspace\\stock-quant\\quant\\core\\factor\\technical.py:21: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.\n  return close.pct_change(self.window).stack().rename(self.name).reset_index()\n",
+  "log_path": "research_store\\web_runs\\20260619T090809Z_akshare.log",
+  "json_path": "research_store\\web_runs\\20260619T090809Z_akshare.json"
+}

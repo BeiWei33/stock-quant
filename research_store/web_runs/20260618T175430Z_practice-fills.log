@@ -1,0 +1,25 @@
+action=practice-fills
+command=D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.start practice-fills
+return_code=0
+
+[stdout]
+[1] Import sample broker fills
+    D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.broker import-fills --order-ticket research_store/reports/manual_order_ticket.csv --source research_store/sample/broker_fills_sample.csv --output research_store/sample/manual_fill_template.imported.csv --report-json research_store/reports/manual_fill_import_sample.json --report-md research_store/reports/manual_fill_import_sample.md --validate --validation-json research_store/reports/manual_fill_validation_sample.json --validation-md research_store/reports/manual_fill_validation_sample.md --audit-log research_store/reports/manual_fill_import_sample_audit.jsonl --no-console
+    note: Safe practice mode: writes to research_store/sample, not the real manual fill template.
+    Wrote manual fill import JSON to research_store\reports\manual_fill_import_sample.json
+    Wrote manual fill import Markdown to research_store\reports\manual_fill_import_sample.md
+    Wrote manual fill template CSV to research_store/sample/manual_fill_template.imported.csv
+    Wrote manual fill validation JSON to research_store\reports\manual_fill_validation_sample.json
+    Wrote manual fill validation Markdown to research_store\reports\manual_fill_validation_sample.md
+
+Sample fill import completed.
+This did not overwrite the real manual fill template.
+Practice files:
+  - research_store\reports\operator_home.html
+  - research_store/sample/manual_fill_template.imported.csv
+  - research_store/reports/manual_fill_import_sample.md
+  - research_store/reports/manual_fill_validation_sample.md
+  - research_store/reports/manual_fill_import_sample_audit.jsonl
+
+
+[stderr]

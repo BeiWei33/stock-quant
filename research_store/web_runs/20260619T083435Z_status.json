@@ -1,0 +1,18 @@
+{
+  "run_id": "20260619T083435Z_status",
+  "action": "status",
+  "status": "OK",
+  "return_code": 0,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe",
+    "-m",
+    "quant.apps.start",
+    "status"
+  ],
+  "started_at": "2026-06-19T08:34:35.445724+00:00",
+  "ended_at": "2026-06-19T08:34:35.510858+00:00",
+  "stdout": "========================================\n  Personal Quant System Status\n========================================\n\n  Status:       FAILED\n  Data source:  csv\n  Paper:        true\n  Live:         false\n",
+  "stderr": "",
+  "log_path": "research_store\\web_runs\\20260619T083435Z_status.log",
+  "json_path": "research_store\\web_runs\\20260619T083435Z_status.json"
+}

@@ -1,0 +1,4803 @@
+{
+  "factor_name": "quality_score",
+  "horizon": 5,
+  "quantiles": 5,
+  "summary": {
+    "ic_mean": 0.013556941172197507,
+    "icir": 0.09409610444321312,
+    "rank_ic_mean": 0.01160604185851573,
+    "rank_icir": 0.0813718513958176,
+    "rank_ic_positive_rate": 0.591304347826087,
+    "sample_days": 115.0,
+    "top_group_return_mean": 0.002283347966417983,
+    "bottom_group_return_mean": 0.0006375324414525364,
+    "long_short_return_mean": 0.0016458155249654467,
+    "group_monotonicity": 0.25,
+    "top_quantile_turnover_mean": 0.13333333333333333,
+    "oos_rank_ic_mean": -0.005535581716367175,
+    "oos_rank_icir": -0.037688466501501976,
+    "oos_long_short_return_mean": 0.0022364303856313847,
+    "rank_ic_train_test_delta": -0.024641083888894175,
+    "long_short_train_test_delta": 0.0008490088622072854
+  },
+  "split_summary": {
+    "train": {
+      "ic_mean": 0.019610645274933815,
+      "icir": 0.13801372359027478,
+      "rank_ic_mean": 0.019105502172527,
+      "rank_icir": 0.1363968092285099,
+      "rank_ic_positive_rate": 0.5875,
+      "sample_days": 80.0,
+      "top_group_return_mean": 0.0012184911323544839,
+      "bottom_group_return_mean": -0.00016893039106961535,
+      "long_short_return_mean": 0.0013874215234240992,
+      "group_monotonicity": 0.25,
+      "top_quantile_turnover_mean": 0.11249999999999998,
+      "start_date": "2024-03-26",
+      "end_date": "2024-07-15",
+      "period": "train"
+    },
+    "test": {
+      "ic_mean": -0.00028009677691403974,
+      "icir": -0.0018979297153993867,
+      "rank_ic_mean": -0.005535581716367175,
+      "rank_icir": -0.037688466501501976,
+      "rank_ic_positive_rate": 0.6,
+      "sample_days": 35.0,
+      "top_group_return_mean": 0.004717306444277411,
+      "bottom_group_return_mean": 0.0024808760586460263,
+      "long_short_return_mean": 0.0022364303856313847,
+      "group_monotonicity": 0.5,
+      "top_quantile_turnover_mean": 0.1857142857142857,
+      "start_date": "2024-07-16",
+      "end_date": "2024-09-02",
+      "period": "test"
+    }
+  },
+  "ic_by_date": [
+    {
+      "trade_date": "2024-03-26",
+      "ic": 0.018640373785163512,
+      "rank_ic": 0.05531411080690127,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-03-27",
+      "ic": 0.010452547654303725,
+      "rank_ic": 0.03234452810078985,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-03-28",
+      "ic": 0.1650618979630764,
+      "rank_ic": 0.14034318617701116,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-03-29",
+      "ic": 0.24311028692455194,
+      "rank_ic": 0.21112520877559507,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-01",
+      "ic": 0.20741287390900745,
+      "rank_ic": 0.04682809134298639,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-02",
+      "ic": 0.022052867535643735,
+      "rank_ic": 0.03189126456086149,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-03",
+      "ic": -0.06920550632132706,
+      "rank_ic": -0.07600593157143916,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-04",
+      "ic": -0.24366701922019882,
+      "rank_ic": -0.12628070190670004,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-05",
+      "ic": -0.22433349083552653,
+      "rank_ic": -0.06856635545157523,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-08",
+      "ic": -0.08400190971482359,
+      "rank_ic": -0.01470754143247885,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-09",
+      "ic": 0.019298193140461634,
+      "rank_ic": 0.13657138081090112,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-10",
+      "ic": 0.12127704323458005,
+      "rank_ic": 0.12672613648132683,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-11",
+      "ic": 0.12269630530411878,
+      "rank_ic": 0.14894805813615855,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-12",
+      "ic": 0.13329020923850848,
+      "rank_ic": 0.14562464025987867,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-15",
+      "ic": 0.07963679621018621,
+      "rank_ic": 0.11098747304023326,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-16",
+      "ic": 0.08305243851400704,
+      "rank_ic": 0.07676036166853609,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-17",
+      "ic": -0.007953405490007108,
+      "rank_ic": 0.006012026432747283,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-18",
+      "ic": 0.10556261401845171,
+      "rank_ic": 0.147009799592848,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-19",
+      "ic": 0.1447433391671364,
+      "rank_ic": 0.10332930252373716,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-22",
+      "ic": -0.012655401081948969,
+      "rank_ic": 0.016922741069955314,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-23",
+      "ic": -0.040996727709353385,
+      "rank_ic": -0.09686042586092845,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-24",
+      "ic": -0.08038203447336709,
+      "rank_ic": -0.12389989449179152,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-25",
+      "ic": -0.2780977416530594,
+      "rank_ic": -0.3727871819498621,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-26",
+      "ic": 0.022193798901368435,
+      "rank_ic": 0.04875335014251615,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-29",
+      "ic": 0.17836185500808108,
+      "rank_ic": 0.14215646261687975,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-04-30",
+      "ic": 0.061420270933821484,
+      "rank_ic": -0.0022264283727377963,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-01",
+      "ic": 0.08298560957461994,
+      "rank_ic": 0.09193101033891231,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-02",
+      "ic": 0.2752130649203644,
+      "rank_ic": 0.26559747101112957,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-03",
+      "ic": 0.1820253724242104,
+      "rank_ic": 0.2189555045451054,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-06",
+      "ic": 0.007329305425018547,
+      "rank_ic": -0.005567311558391011,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-07",
+      "ic": 0.05549276502886056,
+      "rank_ic": 0.04450873731907878,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-08",
+      "ic": 0.15234675412521323,
+      "rank_ic": 0.2715032976463806,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-09",
+      "ic": -0.03287498790970385,
+      "rank_ic": -0.04164813272760653,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-10",
+      "ic": -0.054415962450406814,
+      "rank_ic": -0.039866394429099304,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-13",
+      "ic": -0.0961038689168727,
+      "rank_ic": -0.08501168827944047,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-14",
+      "ic": -0.08979558667321515,
+      "rank_ic": 0.010238149244909421,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-15",
+      "ic": -0.031151271631911222,
+      "rank_ic": -0.06167206592483694,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-16",
+      "ic": -0.06865815101927153,
+      "rank_ic": -0.043657455636663955,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-17",
+      "ic": -0.20208485883511132,
+      "rank_ic": -0.2561477832712984,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-20",
+      "ic": 0.03079948776401957,
+      "rank_ic": -0.154034525797887,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-21",
+      "ic": 0.012762507450763448,
+      "rank_ic": 0.021845786274156464,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-22",
+      "ic": -0.04138095348795504,
+      "rank_ic": 0.08391765350549624,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-23",
+      "ic": -0.026438408440257057,
+      "rank_ic": 0.025372804650427697,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-24",
+      "ic": 0.159877844284931,
+      "rank_ic": 0.22652873664534307,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-27",
+      "ic": 0.12387448010177024,
+      "rank_ic": 0.11193947435748314,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-28",
+      "ic": 0.18045365300195543,
+      "rank_ic": 0.13155260801524743,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-29",
+      "ic": 0.1888934567143638,
+      "rank_ic": 0.15645222103261797,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-30",
+      "ic": 0.25980994172357774,
+      "rank_ic": 0.3016138474799666,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-05-31",
+      "ic": 0.18466742437244302,
+      "rank_ic": 0.11223700101716279,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-03",
+      "ic": -0.07001743586031128,
+      "rank_ic": -0.06590227983303876,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-04",
+      "ic": 0.17601485793578173,
+      "rank_ic": 0.08460427816403625,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-05",
+      "ic": 0.09732852668231526,
+      "rank_ic": 0.0718896131762118,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-06",
+      "ic": -0.0026715589607047095,
+      "rank_ic": 0.005562972990416859,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-07",
+      "ic": -0.1829688538237419,
+      "rank_ic": -0.09514271822294657,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-10",
+      "ic": -0.10465778282289881,
+      "rank_ic": -0.08792433192220427,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-11",
+      "ic": -0.2040833457100519,
+      "rank_ic": -0.23733726453384907,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-12",
+      "ic": -0.15917976153721658,
+      "rank_ic": -0.1428889525050402,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-13",
+      "ic": -0.23754818682377501,
+      "rank_ic": -0.25734645098058756,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-14",
+      "ic": 0.018323837271743235,
+      "rank_ic": -0.04207949624474434,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-17",
+      "ic": 0.025679490216559863,
+      "rank_ic": -0.015818218658358855,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-18",
+      "ic": -0.2359981810676943,
+      "rank_ic": -0.2903301214156894,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-19",
+      "ic": -0.12742930109120856,
+      "rank_ic": -0.07611841395128308,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-20",
+      "ic": -0.16456097699408692,
+      "rank_ic": -0.12462446449342059,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-21",
+      "ic": -0.13653961702140024,
+      "rank_ic": -0.24487984089848294,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-24",
+      "ic": -0.07732763892799042,
+      "rank_ic": -0.10215892398724837,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-25",
+      "ic": 0.0732412435799671,
+      "rank_ic": 0.09284206314316609,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-26",
+      "ic": -0.026226012744080512,
+      "rank_ic": -0.04744407168678276,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-27",
+      "ic": 0.12100327813252748,
+      "rank_ic": 0.16165671074720472,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-06-28",
+      "ic": -0.001662869674769579,
+      "rank_ic": -0.01046421335186764,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-01",
+      "ic": 0.016358982103676846,
+      "rank_ic": 0.010459553269983513,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-02",
+      "ic": 0.05502723514111259,
+      "rank_ic": 0.11329996189468855,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-03",
+      "ic": 0.1965113428539611,
+      "rank_ic": 0.3143016624662087,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-04",
+      "ic": 0.12382892191632958,
+      "rank_ic": 0.06636975161939439,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-05",
+      "ic": 0.2302053064744679,
+      "rank_ic": 0.13158191682880374,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-08",
+      "ic": 0.3713571340741106,
+      "rank_ic": 0.17578273973866393,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-09",
+      "ic": 0.20977431599314686,
+      "rank_ic": 0.17035973368676494,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-10",
+      "ic": 0.0758703090857981,
+      "rank_ic": 0.009796284840046302,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-11",
+      "ic": -0.005382675087858215,
+      "rank_ic": 0.09086907721529025,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-12",
+      "ic": -0.17722255683961138,
+      "rank_ic": -0.19409497860134967,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-15",
+      "ic": -0.25879449696965573,
+      "rank_ic": -0.16928401165237042,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-16",
+      "ic": -0.12310125587069469,
+      "rank_ic": -0.11400583457654108,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-17",
+      "ic": -0.04830395740584452,
+      "rank_ic": 0.03272485146552454,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-18",
+      "ic": -0.03430418703450485,
+      "rank_ic": -0.02874335047016419,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-19",
+      "ic": -0.001497488334548245,
+      "rank_ic": -0.004675499582749371,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-22",
+      "ic": 0.06951337365624136,
+      "rank_ic": 0.0784227178555256,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-23",
+      "ic": 0.1859205746360415,
+      "rank_ic": 0.06356661927405992,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-24",
+      "ic": 0.10779852400418768,
+      "rank_ic": 0.04697240584507264,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-25",
+      "ic": 0.2788314634662727,
+      "rank_ic": 0.34595709227444177,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-26",
+      "ic": 0.2704869268033176,
+      "rank_ic": 0.3077952910671242,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-29",
+      "ic": 0.24753107791826978,
+      "rank_ic": 0.17360340023976845,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-30",
+      "ic": 0.11270741130257493,
+      "rank_ic": 0.02650040301794121,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-07-31",
+      "ic": 0.15663602970205318,
+      "rank_ic": 0.04230685267488829,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-01",
+      "ic": 0.07509435828666093,
+      "rank_ic": 0.022036731291894235,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-02",
+      "ic": 0.15208019450750065,
+      "rank_ic": 0.12938432061700708,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-05",
+      "ic": 0.029930461663322878,
+      "rank_ic": 0.0815509013339542,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-06",
+      "ic": 0.11303301525517845,
+      "rank_ic": 0.08885429247192053,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-07",
+      "ic": 0.07736301853821917,
+      "rank_ic": 0.08789497324858636,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-08",
+      "ic": -0.04314771077628791,
+      "rank_ic": 0.024265366052667856,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-09",
+      "ic": -0.03431571295570803,
+      "rank_ic": 0.013820803561201026,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-12",
+      "ic": -0.08138178699679821,
+      "rank_ic": 0.0026705242391447267,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-13",
+      "ic": 0.006227776334335167,
+      "rank_ic": 0.0526082200071523,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-14",
+      "ic": -0.11257910835349519,
+      "rank_ic": -0.04586953500540519,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-15",
+      "ic": -0.32825634959074185,
+      "rank_ic": -0.28705058395064054,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-16",
+      "ic": -0.16073688630585467,
+      "rank_ic": -0.16759554161898677,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-19",
+      "ic": 0.00309711912999343,
+      "rank_ic": -0.012690641724605435,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-20",
+      "ic": -0.09213109434459153,
+      "rank_ic": -0.04319271043111324,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-21",
+      "ic": 0.07875120299980792,
+      "rank_ic": 0.04207012337543445,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-22",
+      "ic": 0.09414846086217142,
+      "rank_ic": 0.05630355270863465,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-23",
+      "ic": 0.05403618273299707,
+      "rank_ic": 0.031166525205261465,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-26",
+      "ic": -0.10337654818073554,
+      "rank_ic": -0.13110742152450208,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-27",
+      "ic": -0.28037181667192623,
+      "rank_ic": -0.2810726761699825,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-28",
+      "ic": -0.19763971384914725,
+      "rank_ic": -0.40008946408557466,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-29",
+      "ic": -0.1280368796636317,
+      "rank_ic": -0.11961251875963541,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-08-30",
+      "ic": -0.12699590283145254,
+      "rank_ic": -0.15132970688486785,
+      "count": 30
+    },
+    {
+      "trade_date": "2024-09-02",
+      "ic": -0.22681415982517422,
+      "rank_ic": -0.1571858431152884,
+      "count": 30
+    }
+  ],
+  "group_returns": [
+    {
+      "trade_date": "2024-03-26",
+      "quantile": 1,
+      "mean_forward_return": 0.019931798467326567,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-26",
+      "quantile": 2,
+      "mean_forward_return": -0.02752785780888552,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-26",
+      "quantile": 3,
+      "mean_forward_return": -0.016000445014721032,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-26",
+      "quantile": 4,
+      "mean_forward_return": 0.019120465415771042,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-26",
+      "quantile": 5,
+      "mean_forward_return": 0.023882977835512353,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-27",
+      "quantile": 1,
+      "mean_forward_return": 0.014312281731039858,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-27",
+      "quantile": 2,
+      "mean_forward_return": -0.015689566020851236,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-27",
+      "quantile": 3,
+      "mean_forward_return": 0.001667350577888101,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-27",
+      "quantile": 4,
+      "mean_forward_return": 0.027087541518784303,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-27",
+      "quantile": 5,
+      "mean_forward_return": -0.006223543088013465,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-28",
+      "quantile": 1,
+      "mean_forward_return": 0.009111750070933547,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-28",
+      "quantile": 2,
+      "mean_forward_return": -0.021387289413695443,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-28",
+      "quantile": 3,
+      "mean_forward_return": 0.008439825850105645,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-28",
+      "quantile": 4,
+      "mean_forward_return": 0.020416212180782507,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-28",
+      "quantile": 5,
+      "mean_forward_return": 0.011109721974080241,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-29",
+      "quantile": 1,
+      "mean_forward_return": 0.0029094728932273863,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-29",
+      "quantile": 2,
+      "mean_forward_return": -0.014938264529299342,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-29",
+      "quantile": 3,
+      "mean_forward_return": 0.0043990026369167086,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-29",
+      "quantile": 4,
+      "mean_forward_return": 0.014589849727704404,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-03-29",
+      "quantile": 5,
+      "mean_forward_return": 0.012502439281424896,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-01",
+      "quantile": 1,
+      "mean_forward_return": 0.00412314022867305,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-01",
+      "quantile": 2,
+      "mean_forward_return": -0.01139956864173223,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-01",
+      "quantile": 3,
+      "mean_forward_return": -0.011412386569588298,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-01",
+      "quantile": 4,
+      "mean_forward_return": 0.006085016479078516,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-01",
+      "quantile": 5,
+      "mean_forward_return": 0.012328279290403235,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-02",
+      "quantile": 1,
+      "mean_forward_return": 0.008747445565886136,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-02",
+      "quantile": 2,
+      "mean_forward_return": -0.0026010232600956473,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-02",
+      "quantile": 3,
+      "mean_forward_return": -0.019657649609836403,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-02",
+      "quantile": 4,
+      "mean_forward_return": 0.02965916701348914,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-02",
+      "quantile": 5,
+      "mean_forward_return": -0.004314422054570721,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-03",
+      "quantile": 1,
+      "mean_forward_return": 0.01399866412214982,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-03",
+      "quantile": 2,
+      "mean_forward_return": 0.007251140749173675,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-03",
+      "quantile": 3,
+      "mean_forward_return": -0.007740128238273396,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-03",
+      "quantile": 4,
+      "mean_forward_return": 0.01586372956572968,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-03",
+      "quantile": 5,
+      "mean_forward_return": 0.009146782044571514,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-04",
+      "quantile": 1,
+      "mean_forward_return": 0.02450171085137759,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-04",
+      "quantile": 2,
+      "mean_forward_return": 0.0096993062367234,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-04",
+      "quantile": 3,
+      "mean_forward_return": -0.006962786747712076,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-04",
+      "quantile": 4,
+      "mean_forward_return": 0.008655219129883393,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-04",
+      "quantile": 5,
+      "mean_forward_return": 0.001972270183769017,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-05",
+      "quantile": 1,
+      "mean_forward_return": 0.022799763262225565,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-05",
+      "quantile": 2,
+      "mean_forward_return": 0.02142771157488928,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-05",
+      "quantile": 3,
+      "mean_forward_return": 0.010212375046840527,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-05",
+      "quantile": 4,
+      "mean_forward_return": -0.0009770798522038178,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-05",
+      "quantile": 5,
+      "mean_forward_return": 0.018503022226140253,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-08",
+      "quantile": 1,
+      "mean_forward_return": 0.03187444437347834,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-08",
+      "quantile": 2,
+      "mean_forward_return": -0.008423069814049852,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-08",
+      "quantile": 3,
+      "mean_forward_return": 0.016104751400462154,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-08",
+      "quantile": 4,
+      "mean_forward_return": 0.005716322702049322,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-08",
+      "quantile": 5,
+      "mean_forward_return": 0.028418754549235925,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-09",
+      "quantile": 1,
+      "mean_forward_return": 0.016774622085554858,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-09",
+      "quantile": 2,
+      "mean_forward_return": 0.015707087349998317,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-09",
+      "quantile": 3,
+      "mean_forward_return": 0.024987364280191993,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-09",
+      "quantile": 4,
+      "mean_forward_return": 0.01896435159360116,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-09",
+      "quantile": 5,
+      "mean_forward_return": 0.018065977791754895,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-10",
+      "quantile": 1,
+      "mean_forward_return": 0.014781266696980358,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-10",
+      "quantile": 2,
+      "mean_forward_return": 0.026936639807591218,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-10",
+      "quantile": 3,
+      "mean_forward_return": 0.017991208472562803,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-10",
+      "quantile": 4,
+      "mean_forward_return": -0.010153688869934544,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-10",
+      "quantile": 5,
+      "mean_forward_return": 0.04023255695950886,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-11",
+      "quantile": 1,
+      "mean_forward_return": 0.00016805454041440848,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-11",
+      "quantile": 2,
+      "mean_forward_return": 0.020098674909616348,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-11",
+      "quantile": 3,
+      "mean_forward_return": 0.018475551081570823,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-11",
+      "quantile": 4,
+      "mean_forward_return": 0.013613592031150904,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-11",
+      "quantile": 5,
+      "mean_forward_return": 0.0161427090160788,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-12",
+      "quantile": 1,
+      "mean_forward_return": 0.009024964534932326,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-12",
+      "quantile": 2,
+      "mean_forward_return": 0.02140474276864396,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-12",
+      "quantile": 3,
+      "mean_forward_return": -0.010526079456480542,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-12",
+      "quantile": 4,
+      "mean_forward_return": 0.03901648153371743,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-12",
+      "quantile": 5,
+      "mean_forward_return": 0.013231886414835303,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-15",
+      "quantile": 1,
+      "mean_forward_return": -0.004937154690614287,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-15",
+      "quantile": 2,
+      "mean_forward_return": 0.025333788713527334,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-15",
+      "quantile": 3,
+      "mean_forward_return": 0.00456368784158286,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-15",
+      "quantile": 4,
+      "mean_forward_return": 0.0318320301799185,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-15",
+      "quantile": 5,
+      "mean_forward_return": 0.005013857395389287,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-16",
+      "quantile": 1,
+      "mean_forward_return": -0.016805601209999816,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-16",
+      "quantile": 2,
+      "mean_forward_return": 0.012255487308057441,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-16",
+      "quantile": 3,
+      "mean_forward_return": -0.0023869581212397164,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-16",
+      "quantile": 4,
+      "mean_forward_return": 0.027286201441527252,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-16",
+      "quantile": 5,
+      "mean_forward_return": 0.0013248241358035373,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-17",
+      "quantile": 1,
+      "mean_forward_return": -0.009517474876535684,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-17",
+      "quantile": 2,
+      "mean_forward_return": -0.014153829963183687,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-17",
+      "quantile": 3,
+      "mean_forward_return": -0.008487112902904067,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-17",
+      "quantile": 4,
+      "mean_forward_return": 0.035289225203518536,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-17",
+      "quantile": 5,
+      "mean_forward_return": -0.012468474179701502,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-18",
+      "quantile": 1,
+      "mean_forward_return": -0.0008639617884557693,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-18",
+      "quantile": 2,
+      "mean_forward_return": -0.0019434147844148986,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-18",
+      "quantile": 3,
+      "mean_forward_return": -0.03948184644971888,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-18",
+      "quantile": 4,
+      "mean_forward_return": 0.030592533752286193,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-18",
+      "quantile": 5,
+      "mean_forward_return": -0.0030168226486053293,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-19",
+      "quantile": 1,
+      "mean_forward_return": 0.006435674609785984,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-19",
+      "quantile": 2,
+      "mean_forward_return": -0.017865043757000893,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-19",
+      "quantile": 3,
+      "mean_forward_return": -0.031211931433107482,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-19",
+      "quantile": 4,
+      "mean_forward_return": 0.011515212118858809,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-19",
+      "quantile": 5,
+      "mean_forward_return": 0.0005010521855936719,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-22",
+      "quantile": 1,
+      "mean_forward_return": -0.005538495873223563,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-22",
+      "quantile": 2,
+      "mean_forward_return": 0.0003502392470474125,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-22",
+      "quantile": 3,
+      "mean_forward_return": -0.030974879517742433,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-22",
+      "quantile": 4,
+      "mean_forward_return": -0.0057701489920613525,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-22",
+      "quantile": 5,
+      "mean_forward_return": -0.01247122336728316,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-23",
+      "quantile": 1,
+      "mean_forward_return": -0.010576355432227402,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-23",
+      "quantile": 2,
+      "mean_forward_return": -0.020602099036435655,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-23",
+      "quantile": 3,
+      "mean_forward_return": -0.00574977283662087,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-23",
+      "quantile": 4,
+      "mean_forward_return": -0.024516106402248068,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-23",
+      "quantile": 5,
+      "mean_forward_return": -0.009833147925566665,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-24",
+      "quantile": 1,
+      "mean_forward_return": -0.0021548979848968197,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-24",
+      "quantile": 2,
+      "mean_forward_return": -0.016258167151766367,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-24",
+      "quantile": 3,
+      "mean_forward_return": -0.027163163377093142,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-24",
+      "quantile": 4,
+      "mean_forward_return": -0.017383319543689952,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-24",
+      "quantile": 5,
+      "mean_forward_return": -0.007460532187581785,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-25",
+      "quantile": 1,
+      "mean_forward_return": 0.006539326967466212,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-25",
+      "quantile": 2,
+      "mean_forward_return": -0.01619337745574369,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-25",
+      "quantile": 3,
+      "mean_forward_return": -0.0168872682264077,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-25",
+      "quantile": 4,
+      "mean_forward_return": -0.024258761650517584,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-25",
+      "quantile": 5,
+      "mean_forward_return": -0.027020132306631733,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-26",
+      "quantile": 1,
+      "mean_forward_return": -0.0014845410888898274,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-26",
+      "quantile": 2,
+      "mean_forward_return": -0.03665021824386592,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-26",
+      "quantile": 3,
+      "mean_forward_return": -0.014406585356309657,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-26",
+      "quantile": 4,
+      "mean_forward_return": -0.011823686776960737,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-26",
+      "quantile": 5,
+      "mean_forward_return": -0.017225846978542958,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-29",
+      "quantile": 1,
+      "mean_forward_return": -0.015490759107297988,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-29",
+      "quantile": 2,
+      "mean_forward_return": -0.029271106411064673,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-29",
+      "quantile": 3,
+      "mean_forward_return": -0.012042216718381646,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-29",
+      "quantile": 4,
+      "mean_forward_return": 0.0007503010048927431,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-29",
+      "quantile": 5,
+      "mean_forward_return": -0.014212759165105357,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-30",
+      "quantile": 1,
+      "mean_forward_return": -0.0046086336730645034,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-30",
+      "quantile": 2,
+      "mean_forward_return": -0.014482505609140087,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-30",
+      "quantile": 3,
+      "mean_forward_return": 1.712085679056452e-05,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-30",
+      "quantile": 4,
+      "mean_forward_return": -0.03100007446860222,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-04-30",
+      "quantile": 5,
+      "mean_forward_return": 0.0038476674753147497,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-01",
+      "quantile": 1,
+      "mean_forward_return": -0.005818354200142761,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-01",
+      "quantile": 2,
+      "mean_forward_return": -0.023707311310525243,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-01",
+      "quantile": 3,
+      "mean_forward_return": -0.01144366260447364,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-01",
+      "quantile": 4,
+      "mean_forward_return": -0.019594786776156874,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-01",
+      "quantile": 5,
+      "mean_forward_return": 0.003840921704722037,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-02",
+      "quantile": 1,
+      "mean_forward_return": -0.026541930231350264,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-02",
+      "quantile": 2,
+      "mean_forward_return": -0.04302744837530894,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-02",
+      "quantile": 3,
+      "mean_forward_return": 0.002849101230877745,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-02",
+      "quantile": 4,
+      "mean_forward_return": -0.012503665460932104,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-02",
+      "quantile": 5,
+      "mean_forward_return": 0.004964004362172795,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-03",
+      "quantile": 1,
+      "mean_forward_return": -0.02373686742275355,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-03",
+      "quantile": 2,
+      "mean_forward_return": -3.929772093284415e-05,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-03",
+      "quantile": 3,
+      "mean_forward_return": -0.042039671547100976,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-03",
+      "quantile": 4,
+      "mean_forward_return": 0.012332218612727245,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-03",
+      "quantile": 5,
+      "mean_forward_return": 0.013214112646960319,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-06",
+      "quantile": 1,
+      "mean_forward_return": 0.006831378303974178,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-06",
+      "quantile": 2,
+      "mean_forward_return": -0.01456307780989254,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-06",
+      "quantile": 3,
+      "mean_forward_return": -0.028409435531890886,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-06",
+      "quantile": 4,
+      "mean_forward_return": -0.005315088084654381,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-06",
+      "quantile": 5,
+      "mean_forward_return": -0.0023472474238023047,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-07",
+      "quantile": 1,
+      "mean_forward_return": -0.010335668411962503,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-07",
+      "quantile": 2,
+      "mean_forward_return": -0.01565727673988737,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-07",
+      "quantile": 3,
+      "mean_forward_return": -0.020668324460015486,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-07",
+      "quantile": 4,
+      "mean_forward_return": -0.0037696971126298475,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-07",
+      "quantile": 5,
+      "mean_forward_return": -0.0060285209859837026,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-08",
+      "quantile": 1,
+      "mean_forward_return": -0.020697787017363373,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-08",
+      "quantile": 2,
+      "mean_forward_return": -0.03723132337006472,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-08",
+      "quantile": 3,
+      "mean_forward_return": 0.008599602743025533,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-08",
+      "quantile": 4,
+      "mean_forward_return": 0.011666489110439382,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-08",
+      "quantile": 5,
+      "mean_forward_return": -0.005840431360004987,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-09",
+      "quantile": 1,
+      "mean_forward_return": -0.0021165312767758384,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-09",
+      "quantile": 2,
+      "mean_forward_return": -0.019155893469093726,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-09",
+      "quantile": 3,
+      "mean_forward_return": 0.03514125051073593,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-09",
+      "quantile": 4,
+      "mean_forward_return": 3.73836925267231e-05,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-09",
+      "quantile": 5,
+      "mean_forward_return": -0.007825481570107262,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-10",
+      "quantile": 1,
+      "mean_forward_return": -0.010508086077888612,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-10",
+      "quantile": 2,
+      "mean_forward_return": -0.01113138563710997,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-10",
+      "quantile": 3,
+      "mean_forward_return": -0.012107078154969994,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-10",
+      "quantile": 4,
+      "mean_forward_return": 0.014154664046912199,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-10",
+      "quantile": 5,
+      "mean_forward_return": -0.018787895095319085,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-13",
+      "quantile": 1,
+      "mean_forward_return": -0.016744252282498946,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-13",
+      "quantile": 2,
+      "mean_forward_return": 0.010295262286846426,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-13",
+      "quantile": 3,
+      "mean_forward_return": -0.02636328928658142,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-13",
+      "quantile": 4,
+      "mean_forward_return": 0.013266449224303497,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-13",
+      "quantile": 5,
+      "mean_forward_return": -0.030100880908330796,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-14",
+      "quantile": 1,
+      "mean_forward_return": -0.012931496818808489,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-14",
+      "quantile": 2,
+      "mean_forward_return": -0.03134672481268108,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-14",
+      "quantile": 3,
+      "mean_forward_return": 0.0301858053094818,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-14",
+      "quantile": 4,
+      "mean_forward_return": 0.005585451518313966,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-14",
+      "quantile": 5,
+      "mean_forward_return": -0.03261952043679158,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-15",
+      "quantile": 1,
+      "mean_forward_return": -0.0001827100373684165,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-15",
+      "quantile": 2,
+      "mean_forward_return": -0.01000936643109466,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-15",
+      "quantile": 3,
+      "mean_forward_return": 0.01086318958679483,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-15",
+      "quantile": 4,
+      "mean_forward_return": -0.00391773953127685,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-15",
+      "quantile": 5,
+      "mean_forward_return": -0.01486070755789004,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-16",
+      "quantile": 1,
+      "mean_forward_return": -0.003068528402662122,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-16",
+      "quantile": 2,
+      "mean_forward_return": -0.0153367368129708,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-16",
+      "quantile": 3,
+      "mean_forward_return": 0.011957077440677014,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-16",
+      "quantile": 4,
+      "mean_forward_return": -0.01433694268992508,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-16",
+      "quantile": 5,
+      "mean_forward_return": -0.009432794953378473,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-17",
+      "quantile": 1,
+      "mean_forward_return": 0.006356852905865591,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-17",
+      "quantile": 2,
+      "mean_forward_return": 0.009604850219838331,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-17",
+      "quantile": 3,
+      "mean_forward_return": 0.023072394041111405,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-17",
+      "quantile": 4,
+      "mean_forward_return": -0.03237185343324509,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-17",
+      "quantile": 5,
+      "mean_forward_return": -0.00296656107194924,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-20",
+      "quantile": 1,
+      "mean_forward_return": -0.006806249828183823,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-20",
+      "quantile": 2,
+      "mean_forward_return": 0.013701371962128653,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-20",
+      "quantile": 3,
+      "mean_forward_return": 0.010266555721034612,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-20",
+      "quantile": 4,
+      "mean_forward_return": -0.01681386513238751,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-20",
+      "quantile": 5,
+      "mean_forward_return": 0.0006099328822401495,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-21",
+      "quantile": 1,
+      "mean_forward_return": -0.00866351175432776,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-21",
+      "quantile": 2,
+      "mean_forward_return": 0.013497054938074534,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-21",
+      "quantile": 3,
+      "mean_forward_return": -0.014147906314035064,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-21",
+      "quantile": 4,
+      "mean_forward_return": 0.008612184180455285,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-21",
+      "quantile": 5,
+      "mean_forward_return": -0.013587859426925456,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-22",
+      "quantile": 1,
+      "mean_forward_return": -0.015822914895317636,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-22",
+      "quantile": 2,
+      "mean_forward_return": 0.02775549765570255,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-22",
+      "quantile": 3,
+      "mean_forward_return": -0.004198640724317471,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-22",
+      "quantile": 4,
+      "mean_forward_return": 0.011810397287064548,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-22",
+      "quantile": 5,
+      "mean_forward_return": -0.02173465511615417,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-23",
+      "quantile": 1,
+      "mean_forward_return": -0.014755798132309724,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-23",
+      "quantile": 2,
+      "mean_forward_return": 0.013329643142048339,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-23",
+      "quantile": 3,
+      "mean_forward_return": 0.024878850062179086,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-23",
+      "quantile": 4,
+      "mean_forward_return": 0.008362755412845202,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-23",
+      "quantile": 5,
+      "mean_forward_return": -0.019504696866167015,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-24",
+      "quantile": 1,
+      "mean_forward_return": -0.01852061923459118,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-24",
+      "quantile": 2,
+      "mean_forward_return": 0.0008267356618565924,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-24",
+      "quantile": 3,
+      "mean_forward_return": 0.00380693019515721,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-24",
+      "quantile": 4,
+      "mean_forward_return": 0.015793921598471556,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-24",
+      "quantile": 5,
+      "mean_forward_return": -0.0008670955936666928,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-27",
+      "quantile": 1,
+      "mean_forward_return": -0.0063606193483500455,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-27",
+      "quantile": 2,
+      "mean_forward_return": 0.010988228510474355,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-27",
+      "quantile": 3,
+      "mean_forward_return": 0.002708411530943496,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-27",
+      "quantile": 4,
+      "mean_forward_return": 0.04127479646366827,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-27",
+      "quantile": 5,
+      "mean_forward_return": 0.0052318477440201905,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-28",
+      "quantile": 1,
+      "mean_forward_return": -0.010265375301010885,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-28",
+      "quantile": 2,
+      "mean_forward_return": 0.009750413517163067,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-28",
+      "quantile": 3,
+      "mean_forward_return": -0.0017713860775585382,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-28",
+      "quantile": 4,
+      "mean_forward_return": 0.03771388772822839,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-28",
+      "quantile": 5,
+      "mean_forward_return": 0.015229707941972074,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-29",
+      "quantile": 1,
+      "mean_forward_return": 0.006644990081448032,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-29",
+      "quantile": 2,
+      "mean_forward_return": -0.013441633632131503,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-29",
+      "quantile": 3,
+      "mean_forward_return": -0.0019472560917663066,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-29",
+      "quantile": 4,
+      "mean_forward_return": 0.0375313962118771,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-29",
+      "quantile": 5,
+      "mean_forward_return": 0.005770553841854782,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-30",
+      "quantile": 1,
+      "mean_forward_return": -0.019133402473726063,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-30",
+      "quantile": 2,
+      "mean_forward_return": 0.006400327643262926,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-30",
+      "quantile": 3,
+      "mean_forward_return": 0.01266205691806723,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-30",
+      "quantile": 4,
+      "mean_forward_return": 0.016733049606051875,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-30",
+      "quantile": 5,
+      "mean_forward_return": 0.005306929156121539,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-31",
+      "quantile": 1,
+      "mean_forward_return": -0.010155347900330588,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-31",
+      "quantile": 2,
+      "mean_forward_return": 0.01949855957261924,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-31",
+      "quantile": 3,
+      "mean_forward_return": 0.018025753631881875,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-31",
+      "quantile": 4,
+      "mean_forward_return": 0.010464271921021284,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-05-31",
+      "quantile": 5,
+      "mean_forward_return": 0.01427382773819443,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-03",
+      "quantile": 1,
+      "mean_forward_return": 0.01440362362737461,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-03",
+      "quantile": 2,
+      "mean_forward_return": 0.011102999906115093,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-03",
+      "quantile": 3,
+      "mean_forward_return": 0.0010413789519850096,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-03",
+      "quantile": 4,
+      "mean_forward_return": 0.000589321289183283,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-03",
+      "quantile": 5,
+      "mean_forward_return": 0.0013601944183046129,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-04",
+      "quantile": 1,
+      "mean_forward_return": -0.009299871972640594,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-04",
+      "quantile": 2,
+      "mean_forward_return": 0.001441553088323407,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-04",
+      "quantile": 3,
+      "mean_forward_return": 0.00047409392063006245,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-04",
+      "quantile": 4,
+      "mean_forward_return": 0.02127396581965983,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-04",
+      "quantile": 5,
+      "mean_forward_return": 0.0013212316705857319,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-05",
+      "quantile": 1,
+      "mean_forward_return": 0.014214545982545271,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-05",
+      "quantile": 2,
+      "mean_forward_return": -0.013750546898368743,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-05",
+      "quantile": 3,
+      "mean_forward_return": -0.015020877973991523,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-05",
+      "quantile": 4,
+      "mean_forward_return": 0.029737480130536897,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-05",
+      "quantile": 5,
+      "mean_forward_return": 0.008589285198280857,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-06",
+      "quantile": 1,
+      "mean_forward_return": 0.006549144810720202,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-06",
+      "quantile": 2,
+      "mean_forward_return": 0.004959463818618541,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-06",
+      "quantile": 3,
+      "mean_forward_return": 0.009565127194910095,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-06",
+      "quantile": 4,
+      "mean_forward_return": -0.005511806567936521,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-06",
+      "quantile": 5,
+      "mean_forward_return": 0.017107359634264834,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-07",
+      "quantile": 1,
+      "mean_forward_return": 0.007071268498647291,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-07",
+      "quantile": 2,
+      "mean_forward_return": -0.014047215126990698,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-07",
+      "quantile": 3,
+      "mean_forward_return": -0.0009104352190426416,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-07",
+      "quantile": 4,
+      "mean_forward_return": 0.0043186059844371,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-07",
+      "quantile": 5,
+      "mean_forward_return": -0.009084009037454266,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-10",
+      "quantile": 1,
+      "mean_forward_return": 0.009333482691512981,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-10",
+      "quantile": 2,
+      "mean_forward_return": -0.02658058924035654,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-10",
+      "quantile": 3,
+      "mean_forward_return": -0.006378048079126027,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-10",
+      "quantile": 4,
+      "mean_forward_return": 0.005389723271616427,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-10",
+      "quantile": 5,
+      "mean_forward_return": -0.014232300304051981,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-11",
+      "quantile": 1,
+      "mean_forward_return": 0.01890516011100803,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-11",
+      "quantile": 2,
+      "mean_forward_return": -0.023331135128220843,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-11",
+      "quantile": 3,
+      "mean_forward_return": 0.00982878844760369,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-11",
+      "quantile": 4,
+      "mean_forward_return": -0.002151652241756896,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-11",
+      "quantile": 5,
+      "mean_forward_return": -0.0221249201203851,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-12",
+      "quantile": 1,
+      "mean_forward_return": 0.015840285451203934,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-12",
+      "quantile": 2,
+      "mean_forward_return": -0.019740699076257178,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-12",
+      "quantile": 3,
+      "mean_forward_return": -0.006368166701294586,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-12",
+      "quantile": 4,
+      "mean_forward_return": -0.025905010124022725,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-12",
+      "quantile": 5,
+      "mean_forward_return": 0.00365495636064204,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-13",
+      "quantile": 1,
+      "mean_forward_return": 0.012680225570525597,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-13",
+      "quantile": 2,
+      "mean_forward_return": -0.007615248592885722,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-13",
+      "quantile": 3,
+      "mean_forward_return": -0.003940038951732228,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-13",
+      "quantile": 4,
+      "mean_forward_return": -0.039348961651713234,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-13",
+      "quantile": 5,
+      "mean_forward_return": -0.010789475210013463,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-14",
+      "quantile": 1,
+      "mean_forward_return": -0.013157408617835006,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-14",
+      "quantile": 2,
+      "mean_forward_return": -0.001453756251334648,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-14",
+      "quantile": 3,
+      "mean_forward_return": 0.009320927965472755,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-14",
+      "quantile": 4,
+      "mean_forward_return": -0.03665609066019813,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-14",
+      "quantile": 5,
+      "mean_forward_return": 0.0018968664896304444,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-17",
+      "quantile": 1,
+      "mean_forward_return": -0.015375927433231962,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-17",
+      "quantile": 2,
+      "mean_forward_return": 0.010038976739736083,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-17",
+      "quantile": 3,
+      "mean_forward_return": 0.013490047512918732,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-17",
+      "quantile": 4,
+      "mean_forward_return": -0.03079315206779243,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-17",
+      "quantile": 5,
+      "mean_forward_return": 0.0014652814706668609,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-18",
+      "quantile": 1,
+      "mean_forward_return": 0.004535637949502717,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-18",
+      "quantile": 2,
+      "mean_forward_return": 0.004962976966475352,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-18",
+      "quantile": 3,
+      "mean_forward_return": 0.01714977207764658,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-18",
+      "quantile": 4,
+      "mean_forward_return": -0.012825089586312307,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-18",
+      "quantile": 5,
+      "mean_forward_return": -0.005960165693055186,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-19",
+      "quantile": 1,
+      "mean_forward_return": 0.0014654742903564648,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-19",
+      "quantile": 2,
+      "mean_forward_return": 0.013806277618547488,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-19",
+      "quantile": 3,
+      "mean_forward_return": 0.004487923416930643,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-19",
+      "quantile": 4,
+      "mean_forward_return": 0.013936038353686083,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-19",
+      "quantile": 5,
+      "mean_forward_return": -0.007824871137004993,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-20",
+      "quantile": 1,
+      "mean_forward_return": 0.0005006193543228843,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-20",
+      "quantile": 2,
+      "mean_forward_return": 0.02230402026695259,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-20",
+      "quantile": 3,
+      "mean_forward_return": 0.01898961688206463,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-20",
+      "quantile": 4,
+      "mean_forward_return": 0.005778836779472589,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-20",
+      "quantile": 5,
+      "mean_forward_return": -0.01128529021196704,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-21",
+      "quantile": 1,
+      "mean_forward_return": 0.007893349070632919,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-21",
+      "quantile": 2,
+      "mean_forward_return": 0.016419950726910864,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-21",
+      "quantile": 3,
+      "mean_forward_return": 0.005570108572513259,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-21",
+      "quantile": 4,
+      "mean_forward_return": 0.01155063953026945,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-21",
+      "quantile": 5,
+      "mean_forward_return": -0.010805342604839488,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-24",
+      "quantile": 1,
+      "mean_forward_return": 0.009562809398879102,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-24",
+      "quantile": 2,
+      "mean_forward_return": 0.02875386588792143,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-24",
+      "quantile": 3,
+      "mean_forward_return": 0.014832799646808134,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-24",
+      "quantile": 4,
+      "mean_forward_return": -0.0011735972789502225,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-24",
+      "quantile": 5,
+      "mean_forward_return": 0.015875685115416465,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-25",
+      "quantile": 1,
+      "mean_forward_return": 0.0015717864474783516,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-25",
+      "quantile": 2,
+      "mean_forward_return": 0.013637860146495798,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-25",
+      "quantile": 3,
+      "mean_forward_return": 0.006027047004615205,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-25",
+      "quantile": 4,
+      "mean_forward_return": 0.013269684224046582,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-25",
+      "quantile": 5,
+      "mean_forward_return": 0.019157715203692544,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-26",
+      "quantile": 1,
+      "mean_forward_return": 0.0028738508088252956,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-26",
+      "quantile": 2,
+      "mean_forward_return": 0.027187335724496553,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-26",
+      "quantile": 3,
+      "mean_forward_return": -0.004578963312076874,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-26",
+      "quantile": 4,
+      "mean_forward_return": 0.015143410577862781,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-26",
+      "quantile": 5,
+      "mean_forward_return": 0.004515828508104558,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-27",
+      "quantile": 1,
+      "mean_forward_return": -0.003534107422301036,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-27",
+      "quantile": 2,
+      "mean_forward_return": 0.005924437324283216,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-27",
+      "quantile": 3,
+      "mean_forward_return": 0.008401505351679753,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-27",
+      "quantile": 4,
+      "mean_forward_return": 0.02737278234490705,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-27",
+      "quantile": 5,
+      "mean_forward_return": 0.01029957797987946,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-28",
+      "quantile": 1,
+      "mean_forward_return": 0.0043249844859716835,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-28",
+      "quantile": 2,
+      "mean_forward_return": 0.02563115045014012,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-28",
+      "quantile": 3,
+      "mean_forward_return": -0.003932668759072611,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-28",
+      "quantile": 4,
+      "mean_forward_return": 0.026750871582283047,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-06-28",
+      "quantile": 5,
+      "mean_forward_return": 0.011328369369725052,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-01",
+      "quantile": 1,
+      "mean_forward_return": 8.893964895090312e-05,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-01",
+      "quantile": 2,
+      "mean_forward_return": 0.010640834092177235,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-01",
+      "quantile": 3,
+      "mean_forward_return": 0.01080572430927366,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-01",
+      "quantile": 4,
+      "mean_forward_return": 0.028436857229008294,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-01",
+      "quantile": 5,
+      "mean_forward_return": 0.0006584827282493655,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-02",
+      "quantile": 1,
+      "mean_forward_return": -0.0009315083305471336,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-02",
+      "quantile": 2,
+      "mean_forward_return": -0.005857196476196462,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-02",
+      "quantile": 3,
+      "mean_forward_return": 0.03149179828373148,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-02",
+      "quantile": 4,
+      "mean_forward_return": 0.0029095436633649516,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-02",
+      "quantile": 5,
+      "mean_forward_return": 0.005072605956074172,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-03",
+      "quantile": 1,
+      "mean_forward_return": -0.009655795272922152,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-03",
+      "quantile": 2,
+      "mean_forward_return": 0.0017290707438407105,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-03",
+      "quantile": 3,
+      "mean_forward_return": 0.010673505041987627,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-03",
+      "quantile": 4,
+      "mean_forward_return": 0.007526599038833515,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-03",
+      "quantile": 5,
+      "mean_forward_return": 0.015809661092275273,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-04",
+      "quantile": 1,
+      "mean_forward_return": -0.010883195220099562,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-04",
+      "quantile": 2,
+      "mean_forward_return": 0.017744788426215685,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-04",
+      "quantile": 3,
+      "mean_forward_return": 0.0047170898429027735,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-04",
+      "quantile": 4,
+      "mean_forward_return": -0.014182211599788516,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-04",
+      "quantile": 5,
+      "mean_forward_return": 0.015054082854805362,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-05",
+      "quantile": 1,
+      "mean_forward_return": -0.015379577943034775,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-05",
+      "quantile": 2,
+      "mean_forward_return": 0.041866767778411994,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-05",
+      "quantile": 3,
+      "mean_forward_return": -0.027471364620788936,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-05",
+      "quantile": 4,
+      "mean_forward_return": -0.01071734711628993,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-05",
+      "quantile": 5,
+      "mean_forward_return": 0.029883479424389698,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-08",
+      "quantile": 1,
+      "mean_forward_return": -0.023919806260389625,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-08",
+      "quantile": 2,
+      "mean_forward_return": 0.005188642028866708,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-08",
+      "quantile": 3,
+      "mean_forward_return": -0.006870395991118365,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-08",
+      "quantile": 4,
+      "mean_forward_return": -0.03839115080881689,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-08",
+      "quantile": 5,
+      "mean_forward_return": 0.02594741635295635,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-09",
+      "quantile": 1,
+      "mean_forward_return": -0.005499685624861121,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-09",
+      "quantile": 2,
+      "mean_forward_return": -0.021784215749346286,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-09",
+      "quantile": 3,
+      "mean_forward_return": 0.003583464986092207,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-09",
+      "quantile": 4,
+      "mean_forward_return": 0.0041637590474302155,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-09",
+      "quantile": 5,
+      "mean_forward_return": 0.0022677771302925622,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-10",
+      "quantile": 1,
+      "mean_forward_return": 0.011942619056423706,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-10",
+      "quantile": 2,
+      "mean_forward_return": -0.007052676758214378,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-10",
+      "quantile": 3,
+      "mean_forward_return": -0.01952726420089686,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-10",
+      "quantile": 4,
+      "mean_forward_return": -0.007007454597636502,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-10",
+      "quantile": 5,
+      "mean_forward_return": 0.010810197390049606,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-11",
+      "quantile": 1,
+      "mean_forward_return": -0.0004988963213872951,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-11",
+      "quantile": 2,
+      "mean_forward_return": 0.006375585023975727,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-11",
+      "quantile": 3,
+      "mean_forward_return": 0.005850407156317905,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-11",
+      "quantile": 4,
+      "mean_forward_return": -0.0028773170258212244,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-11",
+      "quantile": 5,
+      "mean_forward_return": 0.011790854192229064,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-12",
+      "quantile": 1,
+      "mean_forward_return": 0.001013330335504492,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-12",
+      "quantile": 2,
+      "mean_forward_return": 0.02622988357177593,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-12",
+      "quantile": 3,
+      "mean_forward_return": -0.017369633434321814,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-12",
+      "quantile": 4,
+      "mean_forward_return": -0.012236544255823064,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-12",
+      "quantile": 5,
+      "mean_forward_return": -0.00900777020950616,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-15",
+      "quantile": 1,
+      "mean_forward_return": 0.03912653602348304,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-15",
+      "quantile": 2,
+      "mean_forward_return": -0.00726695599253437,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-15",
+      "quantile": 3,
+      "mean_forward_return": -0.03734759697355261,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-15",
+      "quantile": 4,
+      "mean_forward_return": 0.024091946071332155,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-15",
+      "quantile": 5,
+      "mean_forward_return": 0.0008111620665200991,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-16",
+      "quantile": 1,
+      "mean_forward_return": 0.031169115543455122,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-16",
+      "quantile": 2,
+      "mean_forward_return": -0.02467243284945253,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-16",
+      "quantile": 3,
+      "mean_forward_return": 0.005212335045561363,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-16",
+      "quantile": 4,
+      "mean_forward_return": 0.006105470232129003,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-16",
+      "quantile": 5,
+      "mean_forward_return": 0.0039007403097412094,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-17",
+      "quantile": 1,
+      "mean_forward_return": 0.008551151371280171,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-17",
+      "quantile": 2,
+      "mean_forward_return": -0.005110081308293398,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-17",
+      "quantile": 3,
+      "mean_forward_return": -0.016037981929734806,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-17",
+      "quantile": 4,
+      "mean_forward_return": 0.03098447178915298,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-17",
+      "quantile": 5,
+      "mean_forward_return": 0.0007507995665369527,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-18",
+      "quantile": 1,
+      "mean_forward_return": -0.00897191119131722,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-18",
+      "quantile": 2,
+      "mean_forward_return": 0.005819807054071239,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-18",
+      "quantile": 3,
+      "mean_forward_return": -0.00989194789909087,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-18",
+      "quantile": 4,
+      "mean_forward_return": 0.0048932341961279895,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-18",
+      "quantile": 5,
+      "mean_forward_return": -0.0036333908499207404,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-19",
+      "quantile": 1,
+      "mean_forward_return": 0.014698431948861446,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-19",
+      "quantile": 2,
+      "mean_forward_return": -0.02270267185664454,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-19",
+      "quantile": 3,
+      "mean_forward_return": 0.029983002439506173,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-19",
+      "quantile": 4,
+      "mean_forward_return": -0.01503242922424125,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-19",
+      "quantile": 5,
+      "mean_forward_return": 0.018436823787751133,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-22",
+      "quantile": 1,
+      "mean_forward_return": -0.005461643820622235,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-22",
+      "quantile": 2,
+      "mean_forward_return": 0.005158455221309051,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-22",
+      "quantile": 3,
+      "mean_forward_return": 0.021089458829295454,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-22",
+      "quantile": 4,
+      "mean_forward_return": 0.003049934529740339,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-22",
+      "quantile": 5,
+      "mean_forward_return": 0.009441994722180805,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-23",
+      "quantile": 1,
+      "mean_forward_return": -0.008424956553027052,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-23",
+      "quantile": 2,
+      "mean_forward_return": 0.006424769423014065,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-23",
+      "quantile": 3,
+      "mean_forward_return": -0.008579800691604375,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-23",
+      "quantile": 4,
+      "mean_forward_return": -0.011369283776694569,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-23",
+      "quantile": 5,
+      "mean_forward_return": 0.005318048784746472,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-24",
+      "quantile": 1,
+      "mean_forward_return": -9.781338282767911e-05,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-24",
+      "quantile": 2,
+      "mean_forward_return": 0.01926040559164366,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-24",
+      "quantile": 3,
+      "mean_forward_return": -0.027188248982344232,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-24",
+      "quantile": 4,
+      "mean_forward_return": -0.02240730377966062,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-24",
+      "quantile": 5,
+      "mean_forward_return": 0.015241781444531977,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-25",
+      "quantile": 1,
+      "mean_forward_return": -0.015064795229958164,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-25",
+      "quantile": 2,
+      "mean_forward_return": -0.01245158450982392,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-25",
+      "quantile": 3,
+      "mean_forward_return": 0.01603771834445757,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-25",
+      "quantile": 4,
+      "mean_forward_return": -0.02108779825680135,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-25",
+      "quantile": 5,
+      "mean_forward_return": 0.018075259259794734,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-26",
+      "quantile": 1,
+      "mean_forward_return": -0.01667675787992275,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-26",
+      "quantile": 2,
+      "mean_forward_return": -0.03856364776004504,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-26",
+      "quantile": 3,
+      "mean_forward_return": 0.020877524721658713,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-26",
+      "quantile": 4,
+      "mean_forward_return": 0.022375871373044753,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-26",
+      "quantile": 5,
+      "mean_forward_return": -0.00887671224822432,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-29",
+      "quantile": 1,
+      "mean_forward_return": -0.0064956460567542895,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-29",
+      "quantile": 2,
+      "mean_forward_return": -0.028264913548923038,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-29",
+      "quantile": 3,
+      "mean_forward_return": -0.002763129523460972,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-29",
+      "quantile": 4,
+      "mean_forward_return": -0.01714388832492536,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-29",
+      "quantile": 5,
+      "mean_forward_return": 0.021886495251885223,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-30",
+      "quantile": 1,
+      "mean_forward_return": 0.0025484053017575023,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-30",
+      "quantile": 2,
+      "mean_forward_return": -0.008712898752871753,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-30",
+      "quantile": 3,
+      "mean_forward_return": 0.016285414266803022,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-30",
+      "quantile": 4,
+      "mean_forward_return": 0.0020899978435594546,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-30",
+      "quantile": 5,
+      "mean_forward_return": 0.011954091177856433,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-31",
+      "quantile": 1,
+      "mean_forward_return": 0.003393599837395548,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-31",
+      "quantile": 2,
+      "mean_forward_return": -0.005442957283406232,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-31",
+      "quantile": 3,
+      "mean_forward_return": 0.007332710518702064,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-31",
+      "quantile": 4,
+      "mean_forward_return": -0.009373449353224686,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-07-31",
+      "quantile": 5,
+      "mean_forward_return": 0.016390292434043514,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-01",
+      "quantile": 1,
+      "mean_forward_return": 0.005701137760484328,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-01",
+      "quantile": 2,
+      "mean_forward_return": 0.001912962891840268,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-01",
+      "quantile": 3,
+      "mean_forward_return": -0.013436594147035519,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-01",
+      "quantile": 4,
+      "mean_forward_return": -0.021550263557579257,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-01",
+      "quantile": 5,
+      "mean_forward_return": 0.028353111386036762,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-02",
+      "quantile": 1,
+      "mean_forward_return": -0.000695432397344542,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-02",
+      "quantile": 2,
+      "mean_forward_return": -0.02646897446882372,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-02",
+      "quantile": 3,
+      "mean_forward_return": 0.013924895932993805,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-02",
+      "quantile": 4,
+      "mean_forward_return": -0.013030271385150135,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-02",
+      "quantile": 5,
+      "mean_forward_return": 0.014105774356276043,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-05",
+      "quantile": 1,
+      "mean_forward_return": -0.006443924329450716,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-05",
+      "quantile": 2,
+      "mean_forward_return": -0.010705121419638827,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-05",
+      "quantile": 3,
+      "mean_forward_return": 0.0023242926108535586,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-05",
+      "quantile": 4,
+      "mean_forward_return": -0.002194875688079412,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-05",
+      "quantile": 5,
+      "mean_forward_return": 0.004514152971661578,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-06",
+      "quantile": 1,
+      "mean_forward_return": 0.007448190593627428,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-06",
+      "quantile": 2,
+      "mean_forward_return": -0.02811998423545194,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-06",
+      "quantile": 3,
+      "mean_forward_return": -0.005304931836401498,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-06",
+      "quantile": 4,
+      "mean_forward_return": 0.005612597086381306,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-06",
+      "quantile": 5,
+      "mean_forward_return": 0.004640160108331219,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-07",
+      "quantile": 1,
+      "mean_forward_return": 0.011081794766892325,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-07",
+      "quantile": 2,
+      "mean_forward_return": -0.009342481843011211,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-07",
+      "quantile": 3,
+      "mean_forward_return": -0.0031753694188177972,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-07",
+      "quantile": 4,
+      "mean_forward_return": 0.0028332701950118944,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-07",
+      "quantile": 5,
+      "mean_forward_return": 0.009900784040434688,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-08",
+      "quantile": 1,
+      "mean_forward_return": 0.018070422343674546,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-08",
+      "quantile": 2,
+      "mean_forward_return": -0.0005084440995112108,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-08",
+      "quantile": 3,
+      "mean_forward_return": 0.011150002605015863,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-08",
+      "quantile": 4,
+      "mean_forward_return": 0.0064683938360488025,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-08",
+      "quantile": 5,
+      "mean_forward_return": -0.000283583307043922,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-09",
+      "quantile": 1,
+      "mean_forward_return": 0.0034107972585085875,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-09",
+      "quantile": 2,
+      "mean_forward_return": 0.0034819819807591266,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-09",
+      "quantile": 3,
+      "mean_forward_return": 0.01811731602774902,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-09",
+      "quantile": 4,
+      "mean_forward_return": -0.004095387809856281,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-09",
+      "quantile": 5,
+      "mean_forward_return": 0.010325280127997327,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-12",
+      "quantile": 1,
+      "mean_forward_return": 0.01958395175740359,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-12",
+      "quantile": 2,
+      "mean_forward_return": 0.0016435604089226434,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-12",
+      "quantile": 3,
+      "mean_forward_return": -0.008530478387522597,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-12",
+      "quantile": 4,
+      "mean_forward_return": -0.017655081418246954,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-12",
+      "quantile": 5,
+      "mean_forward_return": 0.020067629926984354,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-13",
+      "quantile": 1,
+      "mean_forward_return": -0.003908654243735432,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-13",
+      "quantile": 2,
+      "mean_forward_return": 0.0055840226954432986,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-13",
+      "quantile": 3,
+      "mean_forward_return": -0.003908128529778195,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-13",
+      "quantile": 4,
+      "mean_forward_return": -0.018375048817735218,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-13",
+      "quantile": 5,
+      "mean_forward_return": 0.01900011695115132,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-14",
+      "quantile": 1,
+      "mean_forward_return": 0.0006337725245377235,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-14",
+      "quantile": 2,
+      "mean_forward_return": -0.004375184379591705,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-14",
+      "quantile": 3,
+      "mean_forward_return": -0.00022973306425115117,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-14",
+      "quantile": 4,
+      "mean_forward_return": -0.014876055205042371,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-14",
+      "quantile": 5,
+      "mean_forward_return": -0.0020284549167980206,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-15",
+      "quantile": 1,
+      "mean_forward_return": 0.003234603312787928,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-15",
+      "quantile": 2,
+      "mean_forward_return": 0.007560347548802156,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-15",
+      "quantile": 3,
+      "mean_forward_return": -0.001667363448693393,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-15",
+      "quantile": 4,
+      "mean_forward_return": -0.024126942238216303,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-15",
+      "quantile": 5,
+      "mean_forward_return": -0.008863549727418318,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-16",
+      "quantile": 1,
+      "mean_forward_return": -0.002000416511065417,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-16",
+      "quantile": 2,
+      "mean_forward_return": -0.016897928227945818,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-16",
+      "quantile": 3,
+      "mean_forward_return": 0.0022034212044530857,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-16",
+      "quantile": 4,
+      "mean_forward_return": 0.005055740539238056,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-16",
+      "quantile": 5,
+      "mean_forward_return": -0.026439082434874323,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-19",
+      "quantile": 1,
+      "mean_forward_return": -0.003219414778639037,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-19",
+      "quantile": 2,
+      "mean_forward_return": -0.0017284237101628703,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-19",
+      "quantile": 3,
+      "mean_forward_return": -0.009308748233972505,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-19",
+      "quantile": 4,
+      "mean_forward_return": 0.005497889730651906,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-19",
+      "quantile": 5,
+      "mean_forward_return": -0.005763707474442011,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-20",
+      "quantile": 1,
+      "mean_forward_return": -0.001696792842900326,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-20",
+      "quantile": 2,
+      "mean_forward_return": 0.0035299661461163554,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-20",
+      "quantile": 3,
+      "mean_forward_return": -0.005261703380503228,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-20",
+      "quantile": 4,
+      "mean_forward_return": -0.005314799791965197,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-20",
+      "quantile": 5,
+      "mean_forward_return": -0.0037782555916058835,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-21",
+      "quantile": 1,
+      "mean_forward_return": -0.02285843070159521,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-21",
+      "quantile": 2,
+      "mean_forward_return": 0.01786742917016058,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-21",
+      "quantile": 3,
+      "mean_forward_return": 0.005790821461335934,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-21",
+      "quantile": 4,
+      "mean_forward_return": 0.007182219266455736,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-21",
+      "quantile": 5,
+      "mean_forward_return": 1.1233758257696753e-06,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-22",
+      "quantile": 1,
+      "mean_forward_return": -0.021741683578522075,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-22",
+      "quantile": 2,
+      "mean_forward_return": 0.017623175163870002,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-22",
+      "quantile": 3,
+      "mean_forward_return": 0.008994120542934803,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-22",
+      "quantile": 4,
+      "mean_forward_return": 0.01987622826517066,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-22",
+      "quantile": 5,
+      "mean_forward_return": -0.00811112594394836,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-23",
+      "quantile": 1,
+      "mean_forward_return": 0.005619404484790813,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-23",
+      "quantile": 2,
+      "mean_forward_return": 0.009713558921251345,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-23",
+      "quantile": 3,
+      "mean_forward_return": 0.013816492783853329,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-23",
+      "quantile": 4,
+      "mean_forward_return": 0.010926616647325952,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-23",
+      "quantile": 5,
+      "mean_forward_return": 0.01140523785456804,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-26",
+      "quantile": 1,
+      "mean_forward_return": 0.022105150235646853,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-26",
+      "quantile": 2,
+      "mean_forward_return": 0.018561082731378558,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-26",
+      "quantile": 3,
+      "mean_forward_return": 0.0026015461157833006,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-26",
+      "quantile": 4,
+      "mean_forward_return": 0.015294898844277241,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-26",
+      "quantile": 5,
+      "mean_forward_return": -0.00041122869570697773,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-27",
+      "quantile": 1,
+      "mean_forward_return": 0.019195619771130396,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-27",
+      "quantile": 2,
+      "mean_forward_return": 0.027163530364336108,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-27",
+      "quantile": 3,
+      "mean_forward_return": -0.0008218514623216655,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-27",
+      "quantile": 4,
+      "mean_forward_return": -0.0055099177576815594,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-27",
+      "quantile": 5,
+      "mean_forward_return": -0.0028718037365156324,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-28",
+      "quantile": 1,
+      "mean_forward_return": 0.012663756612328325,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-28",
+      "quantile": 2,
+      "mean_forward_return": 0.02850912080144835,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-28",
+      "quantile": 3,
+      "mean_forward_return": -0.003514524859859628,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-28",
+      "quantile": 4,
+      "mean_forward_return": -0.01677316274221093,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-28",
+      "quantile": 5,
+      "mean_forward_return": -0.0025639569631379735,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-29",
+      "quantile": 1,
+      "mean_forward_return": 9.555697636785358e-05,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-29",
+      "quantile": 2,
+      "mean_forward_return": 0.02388716934636642,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-29",
+      "quantile": 3,
+      "mean_forward_return": -0.010255438999074828,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-29",
+      "quantile": 4,
+      "mean_forward_return": 0.0015574566862402068,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-29",
+      "quantile": 5,
+      "mean_forward_return": -0.0005792690488413318,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-30",
+      "quantile": 1,
+      "mean_forward_return": 0.0013219755958222001,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-30",
+      "quantile": 2,
+      "mean_forward_return": 0.02833262620696675,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-30",
+      "quantile": 3,
+      "mean_forward_return": -0.005830787461309976,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-30",
+      "quantile": 4,
+      "mean_forward_return": -0.0010669504347734688,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-08-30",
+      "quantile": 5,
+      "mean_forward_return": -0.008208113289224531,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-09-02",
+      "quantile": 1,
+      "mean_forward_return": 0.02006209755354038,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-09-02",
+      "quantile": 2,
+      "mean_forward_return": 0.03133793598457776,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-09-02",
+      "quantile": 3,
+      "mean_forward_return": -0.03368153300727913,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-09-02",
+      "quantile": 4,
+      "mean_forward_return": 0.004521838460240883,
+      "count": 6
+    },
+    {
+      "trade_date": "2024-09-02",
+      "quantile": 5,
+      "mean_forward_return": 0.0038082619390761483,
+      "count": 6
+    }
+  ],
+  "turnover": [
+    {
+      "trade_date": "2024-03-26",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-03-27",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-03-28",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-03-29",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-01",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-02",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-03",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-04",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-05",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-08",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-09",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-10",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-11",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-12",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-15",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-16",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-17",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-18",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-19",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-22",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-23",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-24",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-25",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-26",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-29",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-04-30",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-01",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-02",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-03",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-06",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-07",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-08",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-09",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-10",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-13",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-14",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-15",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-16",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-17",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-20",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-21",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-22",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-23",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-24",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-27",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-28",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-29",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-30",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-05-31",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-03",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-04",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-05",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-06",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-07",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-10",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-11",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-12",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-13",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-14",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-17",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-18",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-19",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-20",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-21",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-24",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-25",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-26",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-27",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-06-28",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-01",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-02",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-03",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-04",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-05",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-08",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-09",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-10",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-11",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-12",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-15",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-16",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-17",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-18",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-19",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-22",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-23",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-24",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-25",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-26",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-29",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-30",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-07-31",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-01",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-02",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-05",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-06",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-07",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-08",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-09",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-12",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-13",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-14",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-15",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-16",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-19",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-20",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-21",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-22",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-23",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-26",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-27",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-28",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-29",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-08-30",
+      "turnover": 0.33333333333333337,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-09-02",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-09-03",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-09-04",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-09-05",
+      "turnover": 0.16666666666666663,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-09-06",
+      "turnover": 0.0,
+      "selected_count": 6
+    },
+    {
+      "trade_date": "2024-09-09",
+      "turnover": 0.0,
+      "selected_count": 6
+    }
+  ]
+}

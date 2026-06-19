@@ -1,0 +1,63 @@
+{
+  "trade_date": "2024-08-23",
+  "collected_stocks": 30,
+  "collected_daily_bars": 5070,
+  "collected_benchmark_bars": 0,
+  "data_quality_json_path": "research_store\\monitoring\\observation_runs\\2024-08-23\\reports\\data_quality.json",
+  "data_quality_markdown_path": "research_store\\monitoring\\observation_runs\\2024-08-23\\reports\\data_quality.md",
+  "data_quality_level": "INFO",
+  "research_json_path": "research_store\\monitoring\\observation_runs\\2024-08-23\\reports\\alpha\\momentum_60d_h5.json",
+  "research_markdown_path": "research_store\\monitoring\\observation_runs\\2024-08-23\\reports\\alpha\\momentum_60d_h5.md",
+  "order_count": 3,
+  "rejected_order_count": 0,
+  "fill_count": 3,
+  "fill_rejected_count": 0,
+  "snapshot": {
+    "account_id": "paper",
+    "trade_date": "2024-08-23",
+    "total_asset": 1015655.9677796059,
+    "cash": 714072.0112432654,
+    "market_value": 301583.9565363405,
+    "total_position_ratio": 0.2969351494046292,
+    "daily_return": 0.003364135679623015,
+    "cum_return": 0.015655967779605984,
+    "drawdown": 0.0,
+    "benchmark_return": 0.0,
+    "excess_return": 0.0
+  },
+  "health_checks": [
+    {
+      "name": "collected_stocks",
+      "ok": true,
+      "detail": "count=30"
+    },
+    {
+      "name": "collected_daily_bars",
+      "ok": true,
+      "detail": "count=5070"
+    },
+    {
+      "name": "data_quality_ok",
+      "ok": true,
+      "detail": "level=INFO; report=research_store\\monitoring\\observation_runs\\2024-08-23\\reports\\data_quality.md"
+    },
+    {
+      "name": "research_report_exists",
+      "ok": true,
+      "detail": "research_store\\monitoring\\observation_runs\\2024-08-23\\reports\\alpha\\momentum_60d_h5.md"
+    },
+    {
+      "name": "orders_evaluated",
+      "ok": true,
+      "detail": "count=3"
+    },
+    {
+      "name": "portfolio_snapshot_created",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "ok": true,
+  "run_id": "06bfb83f55d4468d86d9d592b115472d",
+  "run_status": "SUCCESS"
+}

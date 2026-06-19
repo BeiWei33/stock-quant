@@ -1,0 +1,41 @@
+{
+  "status": "PAPER_READY",
+  "paper_ready": true,
+  "live_ready": false,
+  "checks": [
+    {
+      "name": "alerts",
+      "passed": true,
+      "severity": "INFO",
+      "detail": "alerts status=OK"
+    },
+    {
+      "name": "pretrade_gate",
+      "passed": true,
+      "severity": "CRITICAL",
+      "detail": "pretrade status=GO"
+    },
+    {
+      "name": "latest_stability",
+      "passed": true,
+      "severity": "WARNING",
+      "detail": "latest_trade_date=2024-09-09"
+    },
+    {
+      "name": "stability_window",
+      "passed": true,
+      "severity": "WARNING",
+      "detail": "observed=20/20, unstable_days=0"
+    },
+    {
+      "name": "qmt_interface",
+      "passed": false,
+      "severity": "CRITICAL",
+      "detail": "qmt interface not configured"
+    }
+  ],
+  "alerts_path": "research_store\\monitoring\\alerts.json",
+  "pretrade_gate_path": "research_store\\reports\\pretrade_gate.json",
+  "stability_path": "research_store\\monitoring\\stability.json",
+  "qmt_available": false
+}

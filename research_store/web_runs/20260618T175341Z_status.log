@@ -1,0 +1,16 @@
+action=status
+command=D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.start status
+return_code=0
+
+[stdout]
+Personal Quant System 状态
+  日流程: SUCCESS
+  纸面可用: true
+  实盘可用: false
+  就绪状态: PAPER_READY
+  执行状态: READY
+  配置健康: OK
+  下一步: 纸面/手工流程已可用；实盘等待 QMT 接口配置。
+
+
+[stderr]

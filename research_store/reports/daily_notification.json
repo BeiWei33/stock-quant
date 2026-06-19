@@ -1,0 +1,11 @@
+{
+  "title": "[INFO] Quant Daily 2024-09-09 SUCCESS",
+  "level": "INFO",
+  "trade_date": "2024-09-09",
+  "status": "SUCCESS",
+  "body": "Run ID: 50e066d179404d5f8f44236a46cf7acc\nOrders: 3 accepted, 0 rejected\nFills: 3 filled, 0 rejected\nData: 30 stocks, 5400 daily bars\nData Quality: INFO\nData Quality Report: research_store\\reports\\data_quality.md\nTotal Asset: 999,910.54\nCash: 701,719.13\nMarket Value: 298,191.41\nPosition Ratio: 29.82%\nDaily Return: -0.01%\nDrawdown: -0.01%",
+  "summary_path": "research_store\\reports\\daily_summary.json",
+  "report_markdown_path": "research_store\\reports\\daily_report.md",
+  "report_html_path": "research_store\\reports\\daily_report.html",
+  "text": "[INFO] Quant Daily 2024-09-09 SUCCESS\n\nRun ID: 50e066d179404d5f8f44236a46cf7acc\nOrders: 3 accepted, 0 rejected\nFills: 3 filled, 0 rejected\nData: 30 stocks, 5400 daily bars\nData Quality: INFO\nData Quality Report: research_store\\reports\\data_quality.md\nTotal Asset: 999,910.54\nCash: 701,719.13\nMarket Value: 298,191.41\nPosition Ratio: 29.82%\nDaily Return: -0.01%\nDrawdown: -0.01%\n\nSummary: research_store\\reports\\daily_summary.json\nMarkdown Report: research_store\\reports\\daily_report.md\nHTML Report: research_store\\reports\\daily_report.html"
+}

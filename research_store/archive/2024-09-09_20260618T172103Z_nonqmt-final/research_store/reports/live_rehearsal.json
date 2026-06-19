@@ -1,0 +1,133 @@
+{
+  "rehearsal_id": "2548c6c9a46d45c4b8e48d24200a0038",
+  "status": "POLICY_BLOCKED",
+  "source_submission_path": "research_store\\reports\\broker_submission.json",
+  "policy_path": "config\\execution_policy.generated.json",
+  "live_adapter": "qmt",
+  "trade_date": "2024-09-09",
+  "strategy_id": "momentum_rank",
+  "order_count": 3,
+  "notional": 298191.40916919004,
+  "default_authorization": {
+    "status": "BLOCK",
+    "passed": false,
+    "mode": "LIVE",
+    "adapter": "qmt",
+    "trade_date": "2024-09-09",
+    "strategy_id": "momentum_rank",
+    "order_count": 3,
+    "notional": 298191.40916919004,
+    "policy_path": "default dry-run only",
+    "checks": [
+      {
+        "name": "execution_mode_allowed",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "mode=LIVE, allowed=DRY_RUN"
+      },
+      {
+        "name": "execution_adapter_allowed",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "adapter=qmt, allowed=dry_run"
+      },
+      {
+        "name": "auto_trade_enabled",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "auto_trade_enabled=False"
+      },
+      {
+        "name": "manual_approval_present",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "approval_id=-, approved_by=-"
+      },
+      {
+        "name": "manual_approval_scope",
+        "passed": true,
+        "severity": "CRITICAL",
+        "detail": "trade_date=2024-09-09 expected=*, strategy=momentum_rank expected=*"
+      },
+      {
+        "name": "manual_approval_not_expired",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "expires_at is required for non-dry-run execution"
+      },
+      {
+        "name": "order_count_limit",
+        "passed": true,
+        "severity": "CRITICAL",
+        "detail": "order_count=3, max=unlimited"
+      },
+      {
+        "name": "notional_limit",
+        "passed": true,
+        "severity": "CRITICAL",
+        "detail": "notional=298191.41, max=unlimited"
+      }
+    ]
+  },
+  "policy_authorization": {
+    "status": "BLOCK",
+    "passed": false,
+    "mode": "LIVE",
+    "adapter": "qmt",
+    "trade_date": "2024-09-09",
+    "strategy_id": "momentum_rank",
+    "order_count": 3,
+    "notional": 298191.40916919004,
+    "policy_path": "config\\execution_policy.generated.json",
+    "checks": [
+      {
+        "name": "execution_mode_allowed",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "mode=LIVE, allowed=DRY_RUN"
+      },
+      {
+        "name": "execution_adapter_allowed",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "adapter=qmt, allowed=dry_run"
+      },
+      {
+        "name": "auto_trade_enabled",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "auto_trade_enabled=False"
+      },
+      {
+        "name": "manual_approval_present",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "approval_id=-, approved_by=-"
+      },
+      {
+        "name": "manual_approval_scope",
+        "passed": true,
+        "severity": "CRITICAL",
+        "detail": "trade_date=2024-09-09 expected=*, strategy=momentum_rank expected=*"
+      },
+      {
+        "name": "manual_approval_not_expired",
+        "passed": false,
+        "severity": "CRITICAL",
+        "detail": "expires_at is required for non-dry-run execution"
+      },
+      {
+        "name": "order_count_limit",
+        "passed": true,
+        "severity": "CRITICAL",
+        "detail": "order_count=3, max=unlimited"
+      },
+      {
+        "name": "notional_limit",
+        "passed": true,
+        "severity": "CRITICAL",
+        "detail": "notional=298191.41, max=unlimited"
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "status": "SUCCESS",
+  "attempted_days": 4,
+  "succeeded_days": 4,
+  "failed_days": 0,
+  "skipped_days": 0,
+  "days": [
+    {
+      "trade_date": "2024-08-27",
+      "run_id": "4e6c9e813dad48f38ee9b206f7e2ded9",
+      "status": "SUCCESS",
+      "ok": true,
+      "summary_path": "research_store\\monitoring\\observation_runs\\2024-08-27\\daily_summary.json",
+      "report_dir": "research_store\\monitoring\\observation_runs\\2024-08-27\\reports",
+      "error_msg": ""
+    },
+    {
+      "trade_date": "2024-08-28",
+      "run_id": "6d254149ea0f42cbb2967b7633acc0fb",
+      "status": "SUCCESS",
+      "ok": true,
+      "summary_path": "research_store\\monitoring\\observation_runs\\2024-08-28\\daily_summary.json",
+      "report_dir": "research_store\\monitoring\\observation_runs\\2024-08-28\\reports",
+      "error_msg": ""
+    },
+    {
+      "trade_date": "2024-08-29",
+      "run_id": "02618adc04a74ebbbb472066db2e798b",
+      "status": "SUCCESS",
+      "ok": true,
+      "summary_path": "research_store\\monitoring\\observation_runs\\2024-08-29\\daily_summary.json",
+      "report_dir": "research_store\\monitoring\\observation_runs\\2024-08-29\\reports",
+      "error_msg": ""
+    },
+    {
+      "trade_date": "2024-08-30",
+      "run_id": "05b382b531d3455b93f205e77bcf2606",
+      "status": "SUCCESS",
+      "ok": true,
+      "summary_path": "research_store\\monitoring\\observation_runs\\2024-08-30\\daily_summary.json",
+      "report_dir": "research_store\\monitoring\\observation_runs\\2024-08-30\\reports",
+      "error_msg": ""
+    }
+  ],
+  "history_csv_path": "research_store\\monitoring\\daily_history.csv",
+  "history_jsonl_path": "research_store\\monitoring\\daily_history.jsonl",
+  "refresh_result": {
+    "level": "INFO",
+    "alerts_status": "OK",
+    "readiness_status": "PAPER_READY",
+    "stability_status": "READY",
+    "written_paths": {
+      "status_json": "research_store\\monitoring\\status_summary.json",
+      "status_md": "research_store\\monitoring\\status_summary.md",
+      "alerts_json": "research_store\\monitoring\\alerts.json",
+      "alerts_md": "research_store\\monitoring\\alerts.md",
+      "metrics_prom": "research_store\\monitoring\\metrics.prom",
+      "metrics_json": "research_store\\monitoring\\metrics.json",
+      "stability_json": "research_store\\monitoring\\stability.json",
+      "stability_md": "research_store\\monitoring\\stability.md",
+      "readiness_json": "research_store\\monitoring\\readiness.json",
+      "readiness_md": "research_store\\monitoring\\readiness.md"
+    }
+  },
+  "observation_plan_path": "research_store\\monitoring\\observation_plan.json"
+}

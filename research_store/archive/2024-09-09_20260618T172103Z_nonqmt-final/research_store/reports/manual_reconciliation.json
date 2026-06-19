@@ -1,0 +1,60 @@
+{
+  "validation": {
+    "status": "OK",
+    "passed": true,
+    "order_count": 3,
+    "fill_count": 3,
+    "matched_fill_count": 3,
+    "total_fill_quantity": 0,
+    "total_fill_amount": 0.0,
+    "issues": [],
+    "order_ticket_path": "research_store\\reports\\manual_order_ticket.csv",
+    "fill_template_path": "research_store\\reports\\manual_fill_template.csv"
+  },
+  "reconciliation": {
+    "report_id": "paper:2024-09-09:trades",
+    "account_id": "paper",
+    "trade_date": "2024-09-09",
+    "status": "DIFF",
+    "local_order_count": 3,
+    "broker_order_count": 3,
+    "local_fill_count": 3,
+    "broker_fill_count": 0,
+    "order_differences": [],
+    "fill_differences": [
+      {
+        "ts_code": "000002.SZ",
+        "side": "BUY",
+        "local_fill_quantity": 8000,
+        "local_amount": 99888.0,
+        "broker_fill_quantity": 0,
+        "broker_amount": 0,
+        "quantity_diff": 8000,
+        "amount_diff": 99888.0
+      },
+      {
+        "ts_code": "000008.SZ",
+        "side": "BUY",
+        "local_fill_quantity": 5700,
+        "local_amount": 99743.73,
+        "broker_fill_quantity": 0,
+        "broker_amount": 0,
+        "quantity_diff": 5700,
+        "amount_diff": 99743.73
+      },
+      {
+        "ts_code": "000012.SZ",
+        "side": "BUY",
+        "local_fill_quantity": 5000,
+        "local_amount": 98559.5,
+        "broker_fill_quantity": 0,
+        "broker_amount": 0,
+        "quantity_diff": 5000,
+        "amount_diff": 98559.5
+      }
+    ]
+  },
+  "local_orders_path": "research_store\\reports\\manual_local_orders.csv",
+  "broker_orders_path": "research_store\\reports\\manual_broker_orders.csv",
+  "broker_fills_path": "research_store\\reports\\manual_broker_fills.csv"
+}

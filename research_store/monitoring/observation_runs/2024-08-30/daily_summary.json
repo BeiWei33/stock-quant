@@ -1,0 +1,63 @@
+{
+  "trade_date": "2024-08-30",
+  "collected_stocks": 30,
+  "collected_daily_bars": 5220,
+  "collected_benchmark_bars": 0,
+  "data_quality_json_path": "research_store\\monitoring\\observation_runs\\2024-08-30\\reports\\data_quality.json",
+  "data_quality_markdown_path": "research_store\\monitoring\\observation_runs\\2024-08-30\\reports\\data_quality.md",
+  "data_quality_level": "INFO",
+  "research_json_path": "research_store\\monitoring\\observation_runs\\2024-08-30\\reports\\alpha\\momentum_60d_h5.json",
+  "research_markdown_path": "research_store\\monitoring\\observation_runs\\2024-08-30\\reports\\alpha\\momentum_60d_h5.md",
+  "order_count": 4,
+  "rejected_order_count": 0,
+  "fill_count": 4,
+  "fill_rejected_count": 0,
+  "snapshot": {
+    "account_id": "paper",
+    "trade_date": "2024-08-30",
+    "total_asset": 1019655.3119148475,
+    "cash": 715241.5579028791,
+    "market_value": 304413.7540119684,
+    "total_position_ratio": 0.2985457442871541,
+    "daily_return": -0.0045428634070925344,
+    "cum_return": 0.019655311914847484,
+    "drawdown": -0.0045428634070925344,
+    "benchmark_return": 0.0,
+    "excess_return": 0.0
+  },
+  "health_checks": [
+    {
+      "name": "collected_stocks",
+      "ok": true,
+      "detail": "count=30"
+    },
+    {
+      "name": "collected_daily_bars",
+      "ok": true,
+      "detail": "count=5220"
+    },
+    {
+      "name": "data_quality_ok",
+      "ok": true,
+      "detail": "level=INFO; report=research_store\\monitoring\\observation_runs\\2024-08-30\\reports\\data_quality.md"
+    },
+    {
+      "name": "research_report_exists",
+      "ok": true,
+      "detail": "research_store\\monitoring\\observation_runs\\2024-08-30\\reports\\alpha\\momentum_60d_h5.md"
+    },
+    {
+      "name": "orders_evaluated",
+      "ok": true,
+      "detail": "count=4"
+    },
+    {
+      "name": "portfolio_snapshot_created",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "ok": true,
+  "run_id": "05b382b531d3455b93f205e77bcf2606",
+  "run_status": "SUCCESS"
+}

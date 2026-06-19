@@ -1,0 +1,63 @@
+{
+  "trade_date": "2024-08-16",
+  "collected_stocks": 30,
+  "collected_daily_bars": 4920,
+  "collected_benchmark_bars": 0,
+  "data_quality_json_path": "research_store\\monitoring\\observation_runs\\2024-08-16\\reports\\data_quality.json",
+  "data_quality_markdown_path": "research_store\\monitoring\\observation_runs\\2024-08-16\\reports\\data_quality.md",
+  "data_quality_level": "INFO",
+  "research_json_path": "research_store\\monitoring\\observation_runs\\2024-08-16\\reports\\alpha\\momentum_60d_h5.json",
+  "research_markdown_path": "research_store\\monitoring\\observation_runs\\2024-08-16\\reports\\alpha\\momentum_60d_h5.md",
+  "order_count": 4,
+  "rejected_order_count": 0,
+  "fill_count": 4,
+  "fill_rejected_count": 0,
+  "snapshot": {
+    "account_id": "paper",
+    "trade_date": "2024-08-16",
+    "total_asset": 1008477.6757884258,
+    "cash": 708155.9166720168,
+    "market_value": 300321.75911640894,
+    "total_position_ratio": 0.29779713158411564,
+    "daily_return": -0.0001846081388654497,
+    "cum_return": 0.008477675788425953,
+    "drawdown": -0.0001846081388654497,
+    "benchmark_return": 0.0,
+    "excess_return": 0.0
+  },
+  "health_checks": [
+    {
+      "name": "collected_stocks",
+      "ok": true,
+      "detail": "count=30"
+    },
+    {
+      "name": "collected_daily_bars",
+      "ok": true,
+      "detail": "count=4920"
+    },
+    {
+      "name": "data_quality_ok",
+      "ok": true,
+      "detail": "level=INFO; report=research_store\\monitoring\\observation_runs\\2024-08-16\\reports\\data_quality.md"
+    },
+    {
+      "name": "research_report_exists",
+      "ok": true,
+      "detail": "research_store\\monitoring\\observation_runs\\2024-08-16\\reports\\alpha\\momentum_60d_h5.md"
+    },
+    {
+      "name": "orders_evaluated",
+      "ok": true,
+      "detail": "count=4"
+    },
+    {
+      "name": "portfolio_snapshot_created",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "ok": true,
+  "run_id": "e57bf8f7b9eb43a5ba7ec355044ec088",
+  "run_status": "SUCCESS"
+}

@@ -1,0 +1,10 @@
+{
+  "snapshot_ts": "2026-06-19T07:25:14.718956+00:00",
+  "snapshot_dir": "archive\\20260619T072514Z_demo",
+  "label": "demo",
+  "files": {
+    "execution_day_end.json": "C:\\Users\\admin\\AppData\\Local\\Temp\\pytest-of-admin\\pytest-179\\test_snapshot_copies_existing_0\\research_store\\reports\\execution_day_end.json"
+  },
+  "copied": 1,
+  "skipped": 0
+}

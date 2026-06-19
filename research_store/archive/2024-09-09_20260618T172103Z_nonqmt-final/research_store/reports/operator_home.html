@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Quant Operator Home</title>
+<style>
+
+:root { color-scheme: light; --ink:#172033; --muted:#667085; --line:#d7deea; --bg:#f5f7fb; --panel:#ffffff; --accent:#0f766e; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; color: var(--ink); background: var(--bg); }
+.shell { width: min(1100px, calc(100% - 32px)); margin: 28px auto 48px; }
+.hero { padding: 24px 0 18px; border-bottom: 1px solid var(--line); }
+.eyebrow { margin: 0 0 8px; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0; }
+h1 { margin: 0; font-size: 42px; line-height: 1; }
+h2 { margin: 0 0 14px; font-size: 20px; }
+.hero p:last-child { max-width: 760px; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.metric, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+.metric { padding: 14px; min-width: 0; }
+.metric span { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+.metric strong { display: block; font-size: 22px; overflow-wrap: anywhere; }
+.panel { padding: 16px; margin-top: 14px; }
+.actions, .links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.command { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: #fbfcfe; min-width: 0; }
+.command span { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+code { display: block; color: var(--accent); white-space: normal; overflow-wrap: anywhere; }
+a { display: block; border: 1px solid var(--line); border-radius: 8px; padding: 12px; color: var(--accent); text-decoration: none; background: #fbfcfe; }
+ul { margin: 0; padding-left: 20px; }
+li { margin: 8px 0; line-height: 1.4; }
+.empty { margin: 0; color: var(--muted); }
+@media (max-width: 760px) { .grid, .actions, .links { grid-template-columns: 1fr; } h1 { font-size: 34px; } }
+
+</style>
+</head>
+<body>
+<main class="shell">
+<section class="hero">
+<p class="eyebrow">Personal Quant System</p>
+<h1>Operator Home</h1>
+<p>纸面/手工流程已可用；实盘等待 QMT 接口配置。</p>
+</section>
+<section class="grid">
+<div class="metric"><span>Daily</span><strong>SUCCESS</strong></div>
+<div class="metric"><span>Paper</span><strong>true</strong></div>
+<div class="metric"><span>Live</span><strong>false</strong></div>
+<div class="metric"><span>Execution</span><strong>READY</strong></div>
+</section>
+<section class="panel">
+<h2>Start Here</h2>
+<div class="actions">
+<div class="command"><span>Run full safe demo</span><code>python -m quant.apps.start</code></div>
+<div class="command"><span>Python-only daily run</span><code>python -m quant.apps.start daily</code></div>
+<div class="command"><span>Check status</span><code>python -m quant.apps.start status</code></div>
+<div class="command"><span>Run doctor</span><code>python -m quant.apps.start doctor</code></div>
+<div class="command"><span>Practice fill import</span><code>python -m quant.apps.start practice-fills</code></div>
+<div class="command"><span>Import real fills</span><code>python -m quant.apps.start import-fills --source path\to\broker_fills.csv</code></div>
+<div class="command"><span>Archive latest reports</span><code>python -m quant.apps.start snapshot</code></div>
+</div>
+</section>
+<section class="panel">
+<h2>Reports</h2>
+<div class="links">
+<a href="daily_report.html">Daily report</a>
+<a href="operator_doctor.md">Doctor report</a>
+<a href="execution_dashboard.html">Execution dashboard</a>
+<a href="execution_day_end.md">Execution day-end</a>
+<a href="../monitoring/readiness.md">Readiness</a>
+<a href="../monitoring/config_health.md">Config health</a>
+<a href="manual_order_ticket.csv">Manual order ticket</a>
+<a href="manual_fill_template.csv">Manual fill template</a>
+<a href="manual_fill_import_sample.md">Practice fill import</a>
+</div>
+</section>
+<section class="panel">
+<h2>Recent Snapshots</h2>
+<p class="empty">No snapshots yet.</p>
+</section>
+<section class="panel">
+<h2>Needs Attention</h2>
+<ul><li><strong>manual_reconciliation</strong>: DIFF - report_id=paper:2024-09-09:trades</li><li><strong>qmt_interface</strong>: qmt interface not configured</li></ul>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,16 @@
+action=status
+command=D:\AI\apps\exe\anaconda3\python.exe -m quant.apps.start status
+return_code=0
+
+[stdout]
+========================================
+  Personal Quant System Status
+========================================
+
+  Status:       SUCCESS
+  Data source:  akshare
+  Paper:        true
+  Live:         false
+
+
+[stderr]

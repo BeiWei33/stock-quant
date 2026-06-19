@@ -1,0 +1,19 @@
+{
+  "run_id": "20260618T175424Z_refresh",
+  "action": "refresh",
+  "status": "OK",
+  "return_code": 0,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe",
+    "-m",
+    "quant.apps.broker",
+    "refresh",
+    "--no-console"
+  ],
+  "started_at": "2026-06-18T17:54:24.866382+00:00",
+  "ended_at": "2026-06-18T17:54:31.834692+00:00",
+  "stdout": "Wrote execution refresh audit to research_store/reports/execution_audit.jsonl\n",
+  "stderr": "",
+  "log_path": "research_store\\web_runs\\20260618T175424Z_refresh.log",
+  "json_path": "research_store\\web_runs\\20260618T175424Z_refresh.json"
+}

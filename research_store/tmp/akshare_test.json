@@ -1,0 +1,104 @@
+{
+  "trade_date": "2026-06-18",
+  "collected_stocks": 5,
+  "collected_daily_bars": 845,
+  "collected_benchmark_bars": 0,
+  "data_quality_json_path": "research_store\\reports\\data_quality.json",
+  "data_quality_markdown_path": "research_store\\reports\\data_quality.md",
+  "data_quality_level": "WARNING",
+  "research_json_path": "research_store\\reports\\alpha\\momentum_60d_h5.json",
+  "research_markdown_path": "research_store\\reports\\alpha\\momentum_60d_h5.md",
+  "order_count": 10,
+  "rejected_order_count": 0,
+  "fill_count": 10,
+  "fill_rejected_count": 0,
+  "snapshot": {
+    "account_id": "paper",
+    "trade_date": "2026-06-18",
+    "total_asset": 1150486.5985744582,
+    "cash": 662404.6960341182,
+    "market_value": 488081.9025403401,
+    "total_position_ratio": 0.4242395375531634,
+    "daily_return": 0.14274094628103118,
+    "cum_return": 0.1504865985744579,
+    "drawdown": 0.0,
+    "benchmark_return": 0.0,
+    "excess_return": 0.0
+  },
+  "health_checks": [
+    {
+      "name": "collected_stocks",
+      "ok": true,
+      "detail": "count=5"
+    },
+    {
+      "name": "collected_daily_bars",
+      "ok": true,
+      "detail": "count=845"
+    },
+    {
+      "name": "data_quality_ok",
+      "ok": true,
+      "detail": "level=WARNING; report=research_store\\reports\\data_quality.md"
+    },
+    {
+      "name": "research_report_exists",
+      "ok": true,
+      "detail": "research_store\\reports\\alpha\\momentum_60d_h5.md"
+    },
+    {
+      "name": "orders_evaluated",
+      "ok": true,
+      "detail": "count=10"
+    },
+    {
+      "name": "portfolio_snapshot_created",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "ok": true,
+  "run_id": "c51da5fd72434f9ab4662b24f5e23e29",
+  "run_status": "SUCCESS",
+  "data_source": "akshare",
+  "market_data_mode": {
+    "source": "akshare",
+    "label": "AkShare 真实 A 股行情",
+    "tradable": false,
+    "note": "通过 AkShare 获取公开 A 股行情数据，仅用于研究和模拟盘，不代表已经接入实盘交易。",
+    "symbols": [
+      "600519.SH",
+      "000001.SZ",
+      "300750.SZ",
+      "601318.SH",
+      "000858.SZ",
+      "600036.SH",
+      "601899.SH",
+      "002594.SZ",
+      "600276.SH",
+      "600030.SH",
+      "601398.SH",
+      "601088.SH",
+      "600309.SH",
+      "600887.SH",
+      "600900.SH",
+      "601012.SH",
+      "002415.SZ",
+      "000002.SZ",
+      "000333.SZ",
+      "000568.SZ",
+      "000651.SZ",
+      "002352.SZ",
+      "002714.SZ",
+      "300059.SZ",
+      "300124.SZ",
+      "300760.SZ",
+      "000008.SZ",
+      "000012.SZ",
+      "600438.SH",
+      "601166.SH"
+    ],
+    "limit": 5,
+    "all_market": false
+  }
+}

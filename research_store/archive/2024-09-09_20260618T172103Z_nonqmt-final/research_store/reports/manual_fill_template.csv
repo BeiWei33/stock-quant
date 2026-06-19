@@ -1,0 +1,4 @@
+trade_date,ts_code,side,quantity,price,amount,broker_order_id,order_id,status,operator_note
+2024-09-09,000002.SZ,BUY,,,,DRYRUN:paper:momentum_rank:2024-09-09:000002.SZ:BUY,paper:momentum_rank:2024-09-09:000002.SZ:BUY,,
+2024-09-09,000008.SZ,BUY,,,,DRYRUN:paper:momentum_rank:2024-09-09:000008.SZ:BUY,paper:momentum_rank:2024-09-09:000008.SZ:BUY,,
+2024-09-09,000012.SZ,BUY,,,,DRYRUN:paper:momentum_rank:2024-09-09:000012.SZ:BUY,paper:momentum_rank:2024-09-09:000012.SZ:BUY,,

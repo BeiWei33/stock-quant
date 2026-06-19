@@ -1,0 +1,15 @@
+cleaning:
+  diff_sample_limit: 20
+  rules:
+    ohlc_envelope:
+      enabled: true
+      action: AUTO_FIX
+    zero_volume:
+      enabled: true
+      action: MANUAL_REVIEW
+    non_positive_price:
+      enabled: true
+      action: MANUAL_REVIEW
+    non_positive_amount:
+      enabled: false
+      action: MANUAL_REVIEW

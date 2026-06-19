@@ -1,0 +1,30 @@
+quality:
+  check_weekday_gaps: true
+  enabled: true
+  fail_on_error: false
+run:
+  lock_ttl_minutes: 120
+  use_lock: true
+source:
+  bars: research_store/sample/daily_bar.cleaned.csv
+  benchmark_bars: null
+  benchmark_code: equal_weight
+  end_date: null
+  start_date: null
+  stocks: research_store/sample/stocks.csv
+  trade_date: null
+  tushare_token: null
+  type: csv
+storage:
+  market_sqlite: research_store/market_data.sqlite3
+  output: research_store/reports/daily_summary.json
+  paper_sqlite: research_store/paper_trading.sqlite3
+  report_dir: research_store/reports
+workflow:
+  account_id: paper
+  apply_fills: true
+  factor: momentum_60d
+  horizon: 5
+  initial_cash: 2000000
+  quantiles: 5
+  strategy: momentum_rank

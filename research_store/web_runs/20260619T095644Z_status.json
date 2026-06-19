@@ -1,0 +1,18 @@
+{
+  "run_id": "20260619T095644Z_status",
+  "action": "status",
+  "status": "OK",
+  "return_code": 0,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\python.exe",
+    "-m",
+    "quant.apps.start",
+    "status"
+  ],
+  "started_at": "2026-06-19T09:56:44.770524+00:00",
+  "ended_at": "2026-06-19T09:56:44.842289+00:00",
+  "stdout": "========================================\n  Personal Quant System Status\n========================================\n\n  Status:       SUCCESS\n  Data source:  akshare\n  Paper:        true\n  Live:         false\n",
+  "stderr": "",
+  "log_path": "research_store\\web_runs\\20260619T095644Z_status.log",
+  "json_path": "research_store\\web_runs\\20260619T095644Z_status.json"
+}

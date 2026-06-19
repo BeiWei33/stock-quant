@@ -1,0 +1,13 @@
+{
+  "status": "OK",
+  "passed": true,
+  "order_count": 3,
+  "imported_count": 3,
+  "matched_count": 3,
+  "unmatched_source_count": 0,
+  "total_fill_quantity": 18700,
+  "total_fill_amount": 298191.23,
+  "source_path": "research_store\\sample\\broker_fills_sample.csv",
+  "output_path": "research_store\\sample\\manual_fill_template.imported.csv",
+  "issues": []
+}

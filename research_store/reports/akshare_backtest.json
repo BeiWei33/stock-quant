@@ -1,0 +1,132 @@
+{
+  "benchmark_code": "equal_weight",
+  "start_date": "2026-06-17",
+  "end_date": "2026-06-18",
+  "strategy": {
+    "strategy_id": "momentum_rank",
+    "strategy_version": "v1",
+    "status": "research",
+    "factor_set_id": "momentum_60d",
+    "research_report_path": "",
+    "code_hash": "be49a0213676fa9f04e677fdaaa55635ec9c6894fc353e161b40053c377eddc8",
+    "config_hash": "3e2b9dc4538b2ee332866f93a5cb9ea5165d01502af3df2a586a0c990685c628",
+    "config_json": "{\"class_path\":\"quant.core.strategy.momentum.MomentumRankStrategy\",\"code_hash\":\"be49a0213676fa9f04e677fdaaa55635ec9c6894fc353e161b40053c377eddc8\",\"factor_set_id\":\"momentum_60d\",\"parameters\":{\"class_path\":\"quant.core.strategy.momentum.MomentumRankStrategy\",\"fields\":{\"factor_name\":\"momentum_60d\",\"max_holdings\":20,\"strategy_id\":\"momentum_rank\",\"strategy_version\":\"v1\",\"top_pct\":0.1}},\"required_factors\":[\"momentum_60d\"],\"strategy_id\":\"momentum_rank\",\"strategy_version\":\"v1\"}"
+  },
+  "metrics": {
+    "annual_return": 0.0,
+    "volatility": 0.0,
+    "sharpe": 0.0,
+    "max_drawdown": 0.0,
+    "total_return": 0.0,
+    "benchmark_total_return": 0.013618500698080016,
+    "benchmark_annual_return": 4.497821333996974,
+    "benchmark_volatility": 0.10809349823003701,
+    "excess_return": -0.013618500698080016,
+    "tracking_error": 0.10809349823003701,
+    "information_ratio": -15.874507866387543,
+    "active_win_rate": 0.0,
+    "benchmark_correlation": 0.0,
+    "beta": 0.0,
+    "benchmark_code": "equal_weight",
+    "rebalance_count": 1.0,
+    "rejected_rebalance_count": 0.0,
+    "rejected_order_count": 0.0,
+    "filled_order_count": 0.0,
+    "average_turnover": 0.0,
+    "max_turnover": 0.0
+  },
+  "returns": [
+    {
+      "trade_date": "2026-06-17",
+      "strategy_return": 0.0
+    },
+    {
+      "trade_date": "2026-06-18",
+      "strategy_return": 0.0
+    }
+  ],
+  "benchmark_returns": [
+    {
+      "trade_date": "2026-06-17",
+      "benchmark_return": 0.0
+    },
+    {
+      "trade_date": "2026-06-18",
+      "benchmark_return": 0.013618500698079924
+    }
+  ],
+  "active_returns": [
+    {
+      "trade_date": "2026-06-17",
+      "active_return": 0.0
+    },
+    {
+      "trade_date": "2026-06-18",
+      "active_return": -0.013618500698079924
+    }
+  ],
+  "equity_curve": [
+    {
+      "trade_date": "2026-06-17",
+      "strategy_equity": 1000000.0
+    },
+    {
+      "trade_date": "2026-06-18",
+      "strategy_equity": 1000000.0
+    }
+  ],
+  "benchmark_equity_curve": [
+    {
+      "trade_date": "2026-06-17",
+      "benchmark_equity": 1000000.0
+    },
+    {
+      "trade_date": "2026-06-18",
+      "benchmark_equity": 1013618.50069808
+    }
+  ],
+  "rebalance_records": [
+    {
+      "trade_date": "2026-06-18",
+      "allowed": true,
+      "reasons": [],
+      "turnover": 0.0,
+      "buy_turnover": 0.0,
+      "sell_turnover": 0.0,
+      "holdings_count": 0,
+      "order_count": 0,
+      "rejected_order_count": 0,
+      "filled_count": 0,
+      "rejected_orders": [],
+      "target_weights": []
+    }
+  ],
+  "snapshots": [
+    {
+      "account_id": "paper",
+      "trade_date": "2026-06-17",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.0,
+      "excess_return": 0.0
+    },
+    {
+      "account_id": "paper",
+      "trade_date": "2026-06-18",
+      "total_asset": 1000000.0,
+      "cash": 1000000.0,
+      "market_value": 0.0,
+      "total_position_ratio": 0.0,
+      "daily_return": 0.0,
+      "cum_return": 0.0,
+      "drawdown": 0.0,
+      "benchmark_return": 0.013618500698079924,
+      "excess_return": -0.013618500698079924
+    }
+  ]
+}

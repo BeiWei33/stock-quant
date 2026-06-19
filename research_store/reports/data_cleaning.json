@@ -1,0 +1,208 @@
+{
+  "input_rows": 5400,
+  "output_rows": 5400,
+  "changed_row_count": 864,
+  "high_fixed_count": 433,
+  "low_fixed_count": 431,
+  "non_positive_volume_count": 0,
+  "non_positive_amount_count": 0,
+  "auto_fixed_row_count": 864,
+  "manual_review_row_count": 0,
+  "rule_counts": {
+    "ohlc_envelope_high": 433,
+    "ohlc_envelope_low": 431,
+    "zero_volume": 0,
+    "non_positive_price": 0,
+    "non_positive_amount": 0
+  },
+  "diffs": [
+    {
+      "ts_code": "000013.SZ",
+      "trade_date": "2024-01-02",
+      "field": "high",
+      "before": 10.01156920779233,
+      "after": 10.045096459824045,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000020.SZ",
+      "trade_date": "2024-01-02",
+      "field": "high",
+      "before": 9.863589936876744,
+      "after": 9.868363105430712,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000021.SZ",
+      "trade_date": "2024-01-02",
+      "field": "high",
+      "before": 10.202649554631144,
+      "after": 10.21573011696229,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000007.SZ",
+      "trade_date": "2024-01-03",
+      "field": "high",
+      "before": 9.893198277910304,
+      "after": 9.940201226684094,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000009.SZ",
+      "trade_date": "2024-01-03",
+      "field": "high",
+      "before": 10.361409911173176,
+      "after": 10.376912712589773,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000015.SZ",
+      "trade_date": "2024-01-03",
+      "field": "high",
+      "before": 10.202047360521078,
+      "after": 10.221282732244472,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000024.SZ",
+      "trade_date": "2024-01-03",
+      "field": "high",
+      "before": 9.98159351924595,
+      "after": 10.054653703754967,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000006.SZ",
+      "trade_date": "2024-01-04",
+      "field": "high",
+      "before": 10.16105166022948,
+      "after": 10.173743979077551,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000016.SZ",
+      "trade_date": "2024-01-04",
+      "field": "high",
+      "before": 9.634814334999628,
+      "after": 9.635261131632165,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000022.SZ",
+      "trade_date": "2024-01-04",
+      "field": "high",
+      "before": 9.821107443516995,
+      "after": 9.873632682089266,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000003.SZ",
+      "trade_date": "2024-01-05",
+      "field": "high",
+      "before": 9.34759360212321,
+      "after": 9.350504450490943,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000017.SZ",
+      "trade_date": "2024-01-05",
+      "field": "high",
+      "before": 10.056456607288352,
+      "after": 10.075210753145791,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000027.SZ",
+      "trade_date": "2024-01-05",
+      "field": "high",
+      "before": 9.951240677754852,
+      "after": 9.995340991376576,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000007.SZ",
+      "trade_date": "2024-01-08",
+      "field": "high",
+      "before": 9.72556357687652,
+      "after": 9.728722508531188,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000008.SZ",
+      "trade_date": "2024-01-08",
+      "field": "high",
+      "before": 10.01822515882692,
+      "after": 10.107100798208617,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000020.SZ",
+      "trade_date": "2024-01-08",
+      "field": "high",
+      "before": 9.679977929284853,
+      "after": 9.684650522257304,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000006.SZ",
+      "trade_date": "2024-01-09",
+      "field": "high",
+      "before": 9.41770654591072,
+      "after": 9.467383420603376,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000004.SZ",
+      "trade_date": "2024-01-10",
+      "field": "high",
+      "before": 11.079717400981831,
+      "after": 11.18532570581258,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000009.SZ",
+      "trade_date": "2024-01-10",
+      "field": "high",
+      "before": 9.94241320274955,
+      "after": 9.951580555132669,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    },
+    {
+      "ts_code": "000014.SZ",
+      "trade_date": "2024-01-10",
+      "field": "high",
+      "before": 10.244717503338885,
+      "after": 10.323852375273644,
+      "rule": "ohlc_envelope",
+      "action": "AUTO_FIX"
+    }
+  ],
+  "policy": {
+    "fix_ohlc_envelope": true,
+    "flag_zero_volume": true,
+    "flag_non_positive_price": true,
+    "flag_non_positive_amount": false,
+    "diff_sample_limit": 20
+  },
+  "changed_rows": 864
+}

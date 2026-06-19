@@ -1,0 +1,18 @@
+{
+  "run_id": "20260618T175652Z_doctor",
+  "action": "doctor",
+  "status": "OK",
+  "return_code": 0,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe",
+    "-m",
+    "quant.apps.start",
+    "doctor"
+  ],
+  "started_at": "2026-06-18T17:56:52.586611+00:00",
+  "ended_at": "2026-06-18T17:56:52.661516+00:00",
+  "stdout": "Personal Quant System 体检\n\n摘要\n  日流程: SUCCESS\n  纸面可用: true\n  实盘可用: false\n  执行状态: BLOCKED\n  配置健康: WARNING\n\n含义\n  填写或导入真实成交，然后运行 `python -m quant.apps.broker refresh --no-console`。\n\n执行阻塞\n  - manual_fill_validation: ERROR (issues=3) -> research_store\\reports\\manual_fill_validation.json\n\n执行提醒\n  - manual_reconciliation: SKIPPED (manual validation did not pass) -> research_store\\reports\\manual_reconciliation.json\n\n就绪阻塞\n  - qmt_interface: qmt interface not configured\n\n配置问题\n  - manual_fill_validation: issues=3\n  - execution_day_end: status=BLOCKED\n\n常用文件\n  - 日报: research_store/reports/daily_report.html\n  - 执行看板: research_store/reports/execution_dashboard.html\n  - 日终执行: research_store/reports/execution_day_end.md\n  - 就绪状态: research_store/monitoring/readiness.md\n  - 手工下单票据: research_store/reports/manual_order_ticket.csv\n  - 手工成交模板: research_store/reports/manual_fill_template.csv\n\n常用命令\n  - 完整演示: python -m quant.apps.start\n  - 纯 Python 日流程: python -m quant.apps.start daily\n  - 状态: python -m quant.apps.start status\n  - 路径导航: python -m quant.apps.start paths\n  - 练习成交导入: python -m quant.apps.start practice-fills\n  - 导入真实成交: python -m quant.apps.start import-fills --source path\\to\\broker_fills.csv\n  - 归档当前报告: python -m quant.apps.start snapshot\n  - 刷新执行链路: python -m quant.apps.broker refresh --no-console\n\n已写入体检报告: research_store\\reports\\operator_doctor.md\n",
+  "stderr": "",
+  "log_path": "research_store\\web_runs\\20260618T175652Z_doctor.log",
+  "json_path": "research_store\\web_runs\\20260618T175652Z_doctor.json"
+}

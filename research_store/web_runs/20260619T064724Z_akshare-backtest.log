@@ -1,0 +1,23 @@
+action=akshare-backtest
+command=D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.start akshare-backtest --start-date 2026-06-17 --end-date 2026-06-18 --rebalance weekly --limit 1
+return_code=0
+
+[stdout]
+[1] Collect full-market AkShare data
+    D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.collect --source akshare --akshare-all --start-date 2026-06-17 --end-date 2026-06-18 --sqlite research_store/market_data.sqlite3 --akshare-limit 1
+    note: Full-market collection can take a while because AkShare fetches daily bars stock by stock.
+     94%|█████████▍| 16/17 [00:04<00:00,  3.67it/s]
+    100%|██████████| 17/17 [00:04<00:00,  3.78it/s]
+[2] Run full-market backtest
+    D:\AI\apps\exe\anaconda3\pythonw.exe -m quant.apps.backtest --sqlite research_store/market_data.sqlite3 --start-date 2026-06-17 --end-date 2026-06-18 --rebalance weekly --initial-cash 1e+06 --output research_store/reports/akshare_backtest.json --output-md research_store/reports/akshare_backtest.md
+    Wrote backtest report to research_store\reports\akshare_backtest.json
+    Wrote backtest Markdown report to research_store/reports/akshare_backtest.md
+
+AkShare full-market backtest completed.
+Backtest files:
+  - research_store/reports/akshare_backtest.md
+  - research_store/reports/akshare_backtest.json
+  - research_store/market_data.sqlite3
+
+
+[stderr]

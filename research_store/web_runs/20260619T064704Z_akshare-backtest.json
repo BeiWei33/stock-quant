@@ -1,0 +1,24 @@
+{
+  "run_id": "20260619T064704Z_akshare-backtest",
+  "action": "akshare-backtest",
+  "status": "ERROR",
+  "return_code": 1,
+  "command": [
+    "D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe",
+    "-m",
+    "quant.apps.start",
+    "akshare-backtest",
+    "--start-date",
+    "2024-01-01",
+    "--end-date",
+    "2026-06-18",
+    "--rebalance",
+    "weekly"
+  ],
+  "started_at": "2026-06-19T06:47:04.081895+00:00",
+  "ended_at": "2026-06-19T07:03:55.423152+00:00",
+  "stdout": "[1] Collect full-market AkShare data\n    D:\\AI\\apps\\exe\\anaconda3\\pythonw.exe -m quant.apps.collect --source akshare --akshare-all --start-date 2024-01-01 --end-date 2026-06-18 --sqlite research_store/market_data.sqlite3\n    note: Full-market collection can take a while because AkShare fetches daily bars stock by stock.\n    failed with exit code 1\n      File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\apps\\collect.py\", line 107, in <module>\n        main()\n        ~~~~^^\n      File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\apps\\collect.py\", line 43, in main\n        result = source.collect(start_date=start_date, end_date=end_date)\n      File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\core\\collector\\akshare_source.py\", line 84, in collect\n        daily_bars=self.fetch_daily_bars(start_date, end_date),\n                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n      File \"D:\\Agent\\codex\\workspace\\stock-quant\\quant\\core\\collector\\akshare_source.py\", line 132, in fetch_daily_bars\n        frames.append(pd.concat(symbol_frames, ignore_index=True))\n                      ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n      File \"D:\\AI\\apps\\exe\\anaconda3\\Lib\\site-packages\\pandas\\core\\reshape\\concat.py\", line 395, in concat\n        return op.get_result()\n               ~~~~~~~~~~~~~^^\n      File \"D:\\AI\\apps\\exe\\anaconda3\\Lib\\site-packages\\pandas\\core\\reshape\\concat.py\", line 680, in get_result\n        indexers[ax] = obj_labels.get_indexer(new_labels)\n                       ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n      File \"D:\\AI\\apps\\exe\\anaconda3\\Lib\\site-packages\\pandas\\core\\indexes\\base.py\", line 3892, in get_indexer\n        raise InvalidIndexError(self._requires_unique_msg)\n    pandas.errors.InvalidIndexError: Reindexing only valid with uniquely valued Index objects\n",
+  "stderr": "",
+  "log_path": "research_store\\web_runs\\20260619T064704Z_akshare-backtest.log",
+  "json_path": "research_store\\web_runs\\20260619T064704Z_akshare-backtest.json"
+}
