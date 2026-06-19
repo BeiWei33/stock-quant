@@ -122,6 +122,24 @@ class QuantWebHandler(BaseHTTPRequestHandler):
                 self._send_html(render_console_html(f"????: {exc}"))
             return
 
+        if parsed.path == "/stock-pick":
+            from quant.core.web.control import run_stock_pick
+            try:
+                fields = self._parse_urlencoded()
+                result = run_stock_pick(
+                    scope=fields.get("scope", "30"),
+                    price_min=fields.get("price_min", ""),
+                    price_max=fields.get("price_max", ""),
+                )
+                self._send_html(
+                    render_console_html(
+                        f"选股完成: {result.status}, 范围={fields.get('scope','30')}, 股价 {fields.get('price_min','不限')}-{fields.get('price_max','不限')} 元"
+                    )
+                )
+            except Exception as exc:
+                self._send_html(render_console_html(f"选股失败: {exc}"))
+            return
+
         if parsed.path == '/reset-paper':
             from quant.core.web.control import reset_paper_trading
             try:

@@ -40,7 +40,6 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--tushare-token")
     parser.add_argument("--price-min", type=float)
     parser.add_argument("--price-max", type=float)
-    parser.add_argument("--akshare-symbols"
     parser.add_argument("--start-date")
     parser.add_argument("--end-date")
     parser.add_argument("--trade-date")
@@ -289,9 +288,9 @@ def _market_data_mode(config: DailyAppConfig) -> dict[str, object]:
     if config.source == "akshare":
         return {
             "source": "akshare",
-            "label": "AkShare 鐪熷疄 A 鑲¤鎯?,
+            "label": "AkShare 真实 A 股行情",
             "tradable": False,
-            "note": "閫氳繃 AkShare 鑾峰彇鍏紑 A 鑲¤鎯呮暟鎹紝浠呯敤浜庣爺绌跺拰妯℃嫙鐩橈紝涓嶄唬琛ㄥ凡缁忔帴鍏ュ疄鐩樹氦鏄撱€?,
+            "note": "通过 AkShare 获取公开 A 股行情数据，仅用于研究和模拟盘，不代表已经接入实盘交易。",
             "symbols": list(_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS),
             "limit": config.akshare_limit,
             "all_market": config.akshare_all_market,
@@ -299,15 +298,15 @@ def _market_data_mode(config: DailyAppConfig) -> dict[str, object]:
     if config.source == "tushare":
         return {
             "source": "tushare",
-            "label": "Tushare 琛屾儏鏁版嵁",
+            "label": "Tushare 行情数据",
             "tradable": False,
-            "note": "閫氳繃 Tushare 鑾峰彇琛屾儏鏁版嵁锛屼粎鐢ㄤ簬鐮旂┒鍜屾ā鎷熺洏锛屼笉浠ｈ〃宸茬粡鎺ュ叆瀹炵洏浜ゆ槗銆?,
+            "note": "通过 Tushare 获取行情数据，仅用于研究和模拟盘，不代表已经接入实盘交易。",
         }
     return {
         "source": "csv",
-        "label": "鏈湴鏍蜂緥/CSV 鏁版嵁",
+        "label": "本地样本/CSV 数据",
         "tradable": False,
-        "note": "榛樿鏈湴娴佺▼浣跨敤鏍蜂緥鎴?CSV 鏁版嵁锛涜涓嶈褰撴垚鐪熷疄鍙氦鏄撹鎯呫€?,
+        "note": "默认本地流程使用样本或 CSV 数据；请不要当成真实可交易行情。",
     }
 
 
