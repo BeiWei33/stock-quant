@@ -21,6 +21,9 @@ def test_web_console_renders_chinese_dashboard(tmp_path, monkeypatch) -> None:
     assert "上传真实成交 CSV" in html
     assert "全市场选股" in html
     assert "AkShare 全市场回测" in html
+    assert "多策略组合回测" in html
+    assert 'name="multi_strategy"' in html
+    assert 'name="allocation_method"' in html
     assert 'name="start_date"' in html
     assert "刷新执行链路" in html
     assert "/file/research_store/reports/execution_dashboard.html" in html
@@ -44,19 +47,7 @@ def test_run_akshare_backtest_builds_start_command(monkeypatch) -> None:
     def fake_run_command(action: str, command: list[str]):
         seen["action"] = action
         seen["command"] = command
-        return control.WebRunResult(
-            run_id="run",
-            action=action,
-            status="OK",
-            return_code=0,
-            command=command,
-            started_at="",
-            ended_at="",
-            stdout="",
-            stderr="",
-            log_path="log",
-            json_path="json",
-        )
+        return _web_result(action, command)
 
     monkeypatch.setattr(control, "run_command", fake_run_command)
 
@@ -75,6 +66,40 @@ def test_run_akshare_backtest_builds_start_command(monkeypatch) -> None:
     assert "2024-12-31" in command
     assert "--limit" in command
     assert "10" in command
+
+
+def test_run_akshare_backtest_builds_multi_strategy_command(monkeypatch) -> None:
+    seen: dict[str, object] = {}
+
+    def fake_run_command(action: str, command: list[str]):
+        seen["action"] = action
+        seen["command"] = command
+        return _web_result(action, command)
+
+    monkeypatch.setattr(control, "run_command", fake_run_command)
+
+    result = control.run_akshare_backtest(
+        start_date="2024-01-01",
+        end_date="2024-12-31",
+        rebalance="monthly",
+        limit="10",
+        multi_strategy="momentum_rank,quality_rank",
+        allocation_method="equal",
+        target_volatility="0.10",
+        max_strategy_weight="0.50",
+    )
+
+    assert result.status == "OK"
+    command = seen["command"]
+    assert seen["action"] == "akshare-backtest"
+    assert "--multi-strategy" in command
+    assert "momentum_rank,quality_rank" in command
+    assert "--allocation-method" in command
+    assert "equal" in command
+    assert "--target-volatility" in command
+    assert "0.10" in command
+    assert "--max-strategy-weight" in command
+    assert "0.50" in command
 
 
 def test_file_response_path_is_limited_to_report_roots(tmp_path, monkeypatch) -> None:
@@ -104,19 +129,7 @@ def test_import_uploaded_fills_saves_upload_and_runs_command(tmp_path, monkeypat
     def fake_run_command(action: str, command: list[str]):
         seen["action"] = action
         seen["command"] = command
-        return control.WebRunResult(
-            run_id="run",
-            action=action,
-            status="OK",
-            return_code=0,
-            command=command,
-            started_at="",
-            ended_at="",
-            stdout="",
-            stderr="",
-            log_path="log",
-            json_path="json",
-        )
+        return _web_result(action, command)
 
     monkeypatch.setattr(control, "run_command", fake_run_command)
 
@@ -129,6 +142,22 @@ def test_import_uploaded_fills_saves_upload_and_runs_command(tmp_path, monkeypat
     assert "--skip-refresh" in command
     uploads = list((tmp_path / "research_store/web_uploads").glob("*fills.csv"))
     assert len(uploads) == 1
+
+
+def _web_result(action: str, command: list[str]) -> control.WebRunResult:
+    return control.WebRunResult(
+        run_id="run",
+        action=action,
+        status="OK",
+        return_code=0,
+        command=command,
+        started_at="",
+        ended_at="",
+        stdout="",
+        stderr="",
+        log_path="log",
+        json_path="json",
+    )
 
 
 def _write_json(path, payload) -> None:

@@ -133,6 +133,10 @@ def run_akshare_backtest(
     end_date: str = "",
     rebalance: str = "weekly",
     limit: str = "",
+    multi_strategy: str = "",
+    allocation_method: str = "risk_parity",
+    target_volatility: str = "",
+    max_strategy_weight: str = "",
 ) -> WebRunResult:
     python = [sys.executable, "-X", "utf8", "-m", "quant.apps.start", "akshare-backtest"]
     if start_date:
@@ -143,6 +147,14 @@ def run_akshare_backtest(
         python.extend(["--rebalance", rebalance])
     if limit:
         python.extend(["--limit", limit])
+    if multi_strategy:
+        python.extend(["--multi-strategy", multi_strategy])
+        if allocation_method:
+            python.extend(["--allocation-method", allocation_method])
+        if target_volatility:
+            python.extend(["--target-volatility", target_volatility])
+        if max_strategy_weight:
+            python.extend(["--max-strategy-weight", max_strategy_weight])
     return run_command("akshare-backtest", python)
 
 
@@ -668,6 +680,28 @@ def _backtest_section() -> str:
       <label for="lim">股票数</label>
       <input type=text id=lim name="limit" value=30 placeholder="默认全市场">
       <button class="btn btn-warning" type=submit>开始回测</button>
+    </form>
+  </div>
+  <div class="form-card">
+    <p>多策略组合回测：同时跑多个策略，再按资金分配规则合成组合收益。</p>
+    <form method=POST action="/akshare-backtest" class="form-inline">
+      <label for="msd">开始日期</label>
+      <input type=date id=msd name="start_date" value="2025-01-01">
+      <label for="med">结束日期</label>
+      <input type=date id=med name="end_date" value="2026-06-19">
+      <label for="mrb">再平衡</label>
+      <select id=mrb name="rebalance"><option value=weekly>周</option><option value=monthly>月</option></select>
+      <label for="mlim">股票数</label>
+      <input type=text id=mlim name="limit" value=30 placeholder="默认全市场">
+      <label for="ms">策略</label>
+      <input type=text id=ms name="multi_strategy" value="momentum_rank,quality_rank">
+      <label for="am">资金分配</label>
+      <select id=am name="allocation_method"><option value=risk_parity>风险平价</option><option value=equal>等权</option></select>
+      <label for="tv">目标波动率</label>
+      <input type=number id=tv name="target_volatility" value="0.12" min=0 step=0.01>
+      <label for="mw">单策略上限</label>
+      <input type=number id=mw name="max_strategy_weight" value="0.60" min=0.05 max=1 step=0.05>
+      <button class="btn btn-warning" type=submit>开始多策略回测</button>
     </form>
   </div>
 </section>"""

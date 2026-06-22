@@ -54,6 +54,29 @@ def test_akshare_backtest_steps_collect_full_market_then_backtest() -> None:
     assert "research_store/reports/akshare_backtest.md" in backtest_command
 
 
+def test_akshare_backtest_steps_can_run_multi_strategy_allocation() -> None:
+    steps = start.build_akshare_backtest_steps(
+        start_date="2024-01-01",
+        end_date="2024-12-31",
+        limit=30,
+        rebalance="weekly",
+        multi_strategy="momentum_rank,quality_rank",
+        allocation_method="risk_parity",
+        target_volatility=0.12,
+        max_strategy_weight=0.55,
+    )
+    backtest_command = steps[1].command
+
+    assert "--multi-strategy" in backtest_command
+    assert "momentum_rank,quality_rank" in backtest_command
+    assert "--allocation-method" in backtest_command
+    assert "risk_parity" in backtest_command
+    assert "--target-volatility" in backtest_command
+    assert "0.12" in backtest_command
+    assert "--max-strategy-weight" in backtest_command
+    assert "0.55" in backtest_command
+
+
 def test_demo_steps_include_execution_refresh() -> None:
     steps = start.build_demo_steps()
 

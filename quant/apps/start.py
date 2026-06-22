@@ -76,6 +76,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     akshare_backtest.add_argument("--rebalance", choices=["weekly", "monthly"], default="weekly")
     akshare_backtest.add_argument("--initial-cash", type=float, default=1_000_000)
+    akshare_backtest.add_argument("--multi-strategy", help="Comma-separated strategy ids for portfolio backtest.")
+    akshare_backtest.add_argument("--allocation-method", choices=["equal", "risk_parity"], default="risk_parity")
+    akshare_backtest.add_argument("--target-volatility", type=float)
+    akshare_backtest.add_argument("--max-strategy-weight", type=float, default=0.60)
     _add_common_flags(akshare_backtest)
 
     practice_fills = subparsers.add_parser(
@@ -168,6 +172,10 @@ def main(argv: list[str] | None = None) -> None:
             limit=args.limit,
             rebalance=args.rebalance,
             initial_cash=args.initial_cash,
+            multi_strategy=args.multi_strategy,
+            allocation_method=args.allocation_method,
+            target_volatility=args.target_volatility,
+            max_strategy_weight=args.max_strategy_weight,
         )
     elif args.command == "demo":
         steps = build_demo_steps()
@@ -411,9 +419,38 @@ def build_akshare_backtest_steps(
     limit: int | None = None,
     rebalance: str = "weekly",
     initial_cash: float = 1_000_000,
+    multi_strategy: str | None = None,
+    allocation_method: str = "risk_parity",
+    target_volatility: float | None = None,
+    max_strategy_weight: float = 0.60,
 ) -> list[Step]:
     """Build steps for AkShare full-market backtest."""
     py = sys.executable
+    backtest_cmd: list[str] = [
+        py,
+        "-m",
+        "quant.apps.backtest",
+        "--sqlite",
+        "research_store/market_data.sqlite3",
+        "--start-date",
+        start_date,
+        "--end-date",
+        end_date,
+        "--rebalance",
+        rebalance,
+        "--initial-cash",
+        str(initial_cash),
+        "--output",
+        "research_store/reports/akshare_backtest.json",
+        "--output-md",
+        "research_store/reports/akshare_backtest.md",
+    ]
+    if multi_strategy:
+        backtest_cmd.extend(["--multi-strategy", multi_strategy])
+        backtest_cmd.extend(["--allocation-method", allocation_method])
+        backtest_cmd.extend(["--max-strategy-weight", str(max_strategy_weight)])
+        if target_volatility is not None:
+            backtest_cmd.extend(["--target-volatility", str(target_volatility)])
     return [
         Step(
             "Collect full-market AkShare data",
@@ -435,25 +472,7 @@ def build_akshare_backtest_steps(
         ),
         Step(
             "Run backtest on collected data",
-            (
-                py,
-                "-m",
-                "quant.apps.backtest",
-                "--sqlite",
-                "research_store/market_data.sqlite3",
-                "--start-date",
-                start_date,
-                "--end-date",
-                end_date,
-                "--rebalance",
-                rebalance,
-                "--initial-cash",
-                str(initial_cash),
-                "--output",
-                "research_store/reports/akshare_backtest.json",
-                "--output-md",
-                "research_store/reports/akshare_backtest.md",
-            ),
+            tuple(backtest_cmd),
         ),
     ]
 

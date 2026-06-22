@@ -95,6 +95,10 @@ class QuantWebHandler(BaseHTTPRequestHandler):
                     end_date=fields.get("end_date", ""),
                     rebalance=fields.get("rebalance", "weekly"),
                     limit=fields.get("limit", ""),
+                    multi_strategy=fields.get("multi_strategy", ""),
+                    allocation_method=fields.get("allocation_method", "risk_parity"),
+                    target_volatility=fields.get("target_volatility", ""),
+                    max_strategy_weight=fields.get("max_strategy_weight", ""),
                 )
                 self._send_html(
                     render_console_html(
