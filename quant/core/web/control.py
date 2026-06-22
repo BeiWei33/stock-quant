@@ -137,6 +137,7 @@ def run_akshare_backtest(
     allocation_method: str = "risk_parity",
     target_volatility: str = "",
     max_strategy_weight: str = "",
+    experiment_name: str = "",
 ) -> WebRunResult:
     python = [sys.executable, "-X", "utf8", "-m", "quant.apps.start", "akshare-backtest"]
     if start_date:
@@ -155,7 +156,70 @@ def run_akshare_backtest(
             python.extend(["--target-volatility", target_volatility])
         if max_strategy_weight:
             python.extend(["--max-strategy-weight", max_strategy_weight])
-    return run_command("akshare-backtest", python)
+    result = run_command("akshare-backtest", python)
+    if result.status == "OK":
+        try:
+            save_backtest_experiment(
+                params={
+                    "experiment_name": experiment_name,
+                    "start_date": start_date,
+                    "end_date": end_date,
+                    "rebalance": rebalance,
+                    "limit": limit,
+                    "multi_strategy": multi_strategy,
+                    "allocation_method": allocation_method,
+                    "target_volatility": target_volatility,
+                    "max_strategy_weight": max_strategy_weight,
+                },
+                result=result,
+            )
+        except FileNotFoundError:
+            pass
+    return result
+
+
+def save_backtest_experiment(
+    *,
+    params: dict[str, str],
+    result: WebRunResult,
+    report_path: Path | None = None,
+) -> Path:
+    report = report_path or ROOT / "research_store" / "reports" / "akshare_backtest.json"
+    if not report.exists():
+        raise FileNotFoundError(str(report))
+    payload = json.loads(report.read_text(encoding="utf-8"))
+    metrics = payload.get("metrics", {}) if isinstance(payload, dict) else {}
+    experiment = {
+        "experiment_id": result.run_id,
+        "experiment_name": params.get("experiment_name") or _default_experiment_name(params),
+        "created_at": result.ended_at or datetime.now(UTC).isoformat(),
+        "status": result.status,
+        "return_code": result.return_code,
+        "mode": payload.get("mode", ""),
+        "strategies": payload.get("strategies", []),
+        "allocation": payload.get("allocation", {}),
+        "params": params,
+        "metrics": {
+            "total_return": float(metrics.get("total_return", 0.0) or 0.0),
+            "annual_return": float(metrics.get("annual_return", 0.0) or 0.0),
+            "sharpe": float(metrics.get("sharpe", 0.0) or 0.0),
+            "max_drawdown": float(metrics.get("max_drawdown", 0.0) or 0.0),
+            "average_cash_weight": float(metrics.get("average_cash_weight", 0.0) or 0.0),
+        },
+        "report_path": str(report.relative_to(ROOT)) if report.is_relative_to(ROOT) else str(report),
+    }
+    path = ROOT / "research_store" / "reports" / "backtest_experiments.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    records = _load_backtest_experiments(path)
+    records = [item for item in records if item.get("experiment_id") != experiment["experiment_id"]]
+    records.append(experiment)
+    records = records[-100:]
+    path.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
+    (path.parent / "backtest_experiments.md").write_text(
+        _render_backtest_experiments_markdown(records),
+        encoding="utf-8",
+    )
+    return path
 
 
 def run_stock_pick(
@@ -191,6 +255,104 @@ def import_uploaded_fills(
     if skip_refresh:
         python.append("--skip-refresh")
     return run_command("import-fills", python)
+
+
+def _default_experiment_name(params: dict[str, str]) -> str:
+    strategies = params.get("multi_strategy") or "single_strategy"
+    method = params.get("allocation_method") or "-"
+    target_vol = params.get("target_volatility") or "-"
+    max_weight = params.get("max_strategy_weight") or "-"
+    return f"{strategies} | {method} | vol={target_vol} | cap={max_weight}"
+
+
+def _load_backtest_experiments(path: Path | None = None) -> list[dict[str, object]]:
+    fp = path or ROOT / "research_store" / "reports" / "backtest_experiments.json"
+    if not fp.exists():
+        return []
+    try:
+        data = json.loads(fp.read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    if not isinstance(data, list):
+        return []
+    return [item for item in data if isinstance(item, dict)]
+
+
+def _render_backtest_experiments_markdown(records: list[dict[str, object]]) -> str:
+    rows = []
+    for record in sorted(records, key=lambda item: str(item.get("created_at", "")), reverse=True):
+        metrics = record.get("metrics", {}) if isinstance(record.get("metrics"), dict) else {}
+        rows.append(
+            [
+                record.get("experiment_name", "-"),
+                ", ".join(str(item) for item in record.get("strategies", []) or []),
+                _pct(metrics.get("total_return", 0.0)),
+                _decimal(metrics.get("sharpe", 0.0)),
+                _pct(metrics.get("max_drawdown", 0.0)),
+                _pct(metrics.get("average_cash_weight", 0.0)),
+                record.get("created_at", "-"),
+            ]
+        )
+    return "\n".join(
+        [
+            "# 参数实验记录",
+            "",
+            _table(
+                ["实验名称", "策略", "总收益", "夏普", "最大回撤", "平均现金", "时间"],
+                rows or [["暂无", "-", "-", "-", "-", "-", "-"]],
+            ),
+            "",
+        ]
+    )
+
+
+def _table(headers: list[str], rows: list[list[object]]) -> str:
+    header = "| " + " | ".join(headers) + " |"
+    separator = "| " + " | ".join(["---"] * len(headers)) + " |"
+    body = ["| " + " | ".join(str(value) for value in row) + " |" for row in rows]
+    return "\n".join([header, separator, *body])
+
+
+def _pct(value: object) -> str:
+    try:
+        return f"{float(value) * 100:.2f}%"
+    except (TypeError, ValueError):
+        return "0.00%"
+
+
+def _decimal(value: object) -> str:
+    try:
+        return f"{float(value):.4f}"
+    except (TypeError, ValueError):
+        return "0.0000"
+
+
+def _backtest_experiments_html() -> str:
+    records = _load_backtest_experiments()
+    if not records:
+        body = "<tr><td colspan=7>暂无实验记录</td></tr>"
+    else:
+        rows = []
+        for record in sorted(records, key=lambda item: str(item.get("created_at", "")), reverse=True)[:10]:
+            metrics = record.get("metrics", {}) if isinstance(record.get("metrics"), dict) else {}
+            strategies = ", ".join(str(item) for item in record.get("strategies", []) or [])
+            rows.append(
+                "<tr>"
+                f"<td>{html.escape(str(record.get('experiment_name', '-')))}</td>"
+                f"<td>{html.escape(strategies or '-')}</td>"
+                f"<td>{_pct(metrics.get('total_return', 0.0))}</td>"
+                f"<td>{_decimal(metrics.get('sharpe', 0.0))}</td>"
+                f"<td>{_pct(metrics.get('max_drawdown', 0.0))}</td>"
+                f"<td>{_pct(metrics.get('average_cash_weight', 0.0))}</td>"
+                f"<td>{html.escape(str(record.get('created_at', '-'))[:19])}</td>"
+                "</tr>"
+            )
+        body = "".join(rows)
+    return f"""<section class="panel">
+  <h2>参数实验记录</h2>
+  <table><thead><tr><th>实验名称</th><th>策略</th><th>总收益</th><th>夏普</th><th>最大回撤</th><th>平均现金</th><th>时间</th></tr></thead><tbody>{body}</tbody></table>
+  <div class="links" style="margin-top:10px"><a href="/file/research_store/reports/backtest_experiments.md">打开实验记录</a></div>
+</section>"""
 
 
 def file_response_path(url_path: str) -> Path:
@@ -495,6 +657,9 @@ def render_console_html(message: str = "") -> str:
     # 回测
     sections += _backtest_section()
 
+    # 参数实验记录
+    sections += _backtest_experiments_html()
+
     # 快速链接
     sections += _links_section()
 
@@ -701,6 +866,8 @@ def _backtest_section() -> str:
       <input type=number id=tv name="target_volatility" value="0.12" min=0 step=0.01>
       <label for="mw">单策略上限</label>
       <input type=number id=mw name="max_strategy_weight" value="0.60" min=0.05 max=1 step=0.05>
+      <label for="en">实验名称</label>
+      <input type=text id=en name="experiment_name" value="默认组合实验">
       <button class="btn btn-warning" type=submit>开始多策略回测</button>
     </form>
   </div>

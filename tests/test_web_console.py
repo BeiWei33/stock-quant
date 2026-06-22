@@ -22,8 +22,10 @@ def test_web_console_renders_chinese_dashboard(tmp_path, monkeypatch) -> None:
     assert "全市场选股" in html
     assert "AkShare 全市场回测" in html
     assert "多策略组合回测" in html
+    assert "参数实验记录" in html
     assert 'name="multi_strategy"' in html
     assert 'name="allocation_method"' in html
+    assert 'name="experiment_name"' in html
     assert 'name="start_date"' in html
     assert "刷新执行链路" in html
     assert "/file/research_store/reports/execution_dashboard.html" in html
@@ -87,6 +89,7 @@ def test_run_akshare_backtest_builds_multi_strategy_command(monkeypatch) -> None
         allocation_method="equal",
         target_volatility="0.10",
         max_strategy_weight="0.50",
+        experiment_name="risk parity 10 vol",
     )
 
     assert result.status == "OK"
@@ -100,6 +103,47 @@ def test_run_akshare_backtest_builds_multi_strategy_command(monkeypatch) -> None
     assert "0.10" in command
     assert "--max-strategy-weight" in command
     assert "0.50" in command
+
+
+def test_save_backtest_experiment_writes_json_and_markdown(tmp_path, monkeypatch) -> None:
+    monkeypatch.setattr(control, "ROOT", tmp_path)
+    report = tmp_path / "research_store/reports/akshare_backtest.json"
+    _write_json(
+        report,
+        {
+            "mode": "multi_strategy",
+            "strategies": ["momentum_rank", "quality_rank"],
+            "metrics": {
+                "total_return": 0.12,
+                "annual_return": 0.10,
+                "sharpe": 1.23,
+                "max_drawdown": -0.08,
+                "average_cash_weight": 0.20,
+            },
+            "allocation": {"method": "risk_parity"},
+        },
+    )
+
+    path = control.save_backtest_experiment(
+        params={
+            "experiment_name": "risk parity 12 vol",
+            "start_date": "2024-01-01",
+            "end_date": "2024-12-31",
+            "multi_strategy": "momentum_rank,quality_rank",
+            "target_volatility": "0.12",
+            "max_strategy_weight": "0.60",
+        },
+        result=_web_result("akshare-backtest", ["python"]),
+    )
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload[0]["experiment_name"] == "risk parity 12 vol"
+    assert payload[0]["strategies"] == ["momentum_rank", "quality_rank"]
+    assert payload[0]["metrics"]["sharpe"] == 1.23
+    markdown = (tmp_path / "research_store/reports/backtest_experiments.md").read_text(encoding="utf-8")
+    assert "参数实验记录" in markdown
+    assert "risk parity 12 vol" in markdown
+    assert "momentum_rank, quality_rank" in markdown
 
 
 def test_file_response_path_is_limited_to_report_roots(tmp_path, monkeypatch) -> None:

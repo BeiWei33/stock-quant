@@ -99,6 +99,7 @@ class QuantWebHandler(BaseHTTPRequestHandler):
                     allocation_method=fields.get("allocation_method", "risk_parity"),
                     target_volatility=fields.get("target_volatility", ""),
                     max_strategy_weight=fields.get("max_strategy_weight", ""),
+                    experiment_name=fields.get("experiment_name", ""),
                 )
                 self._send_html(
                     render_console_html(
