@@ -600,7 +600,7 @@ def _stock_pick_section() -> str:
     except:
         pass
     return f"""<section class="panel">
-  <h2>选股设置</h2>
+  <h2>全市场选股设置</h2>
   <div class="form-card">
     <form method=POST action="/stock-pick" class="form-inline">
       <label for="scope">选股范围</label>

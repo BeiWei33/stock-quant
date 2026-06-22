@@ -5,13 +5,15 @@ import json
 from pathlib import Path
 
 from quant.core.backtest.engine import BacktestEngine, BacktestRequest
+from quant.core.backtest.multi_strategy import MultiStrategyBacktestEngine, MultiStrategyBacktestRequest
+from quant.core.capital_allocation import AllocationConfig
 from quant.core.data.repository import CsvDailyBarRepository, CsvStockRepository
 from quant.core.persistence.sqlite_store import SqliteStore
-from quant.core.strategy.momentum import MomentumRankStrategy
+from quant.core.strategy.factory import build_strategy
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Run a local momentum backtest.")
+    parser = argparse.ArgumentParser(description="Run a local strategy backtest.")
     parser.add_argument("--bars", help="CSV file containing daily_bar rows.")
     parser.add_argument("--stocks", help="CSV file containing stock master rows.")
     parser.add_argument("--benchmark-bars", help="Optional CSV file containing benchmark_bar rows.")
@@ -23,6 +25,15 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-md")
     parser.add_argument("--initial-cash", type=float, default=1_000_000)
     parser.add_argument("--rebalance", choices=["weekly", "monthly"], default="weekly")
+    parser.add_argument("--strategy", default="momentum_rank")
+    parser.add_argument(
+        "--multi-strategy",
+        help="Comma-separated strategy ids, for example: momentum_rank,quality_rank.",
+    )
+    parser.add_argument("--allocation-method", choices=["equal", "risk_parity"], default="risk_parity")
+    parser.add_argument("--allocation-lookback-days", type=int, default=60)
+    parser.add_argument("--target-volatility", type=float)
+    parser.add_argument("--max-strategy-weight", type=float, default=0.60)
     return parser
 
 
@@ -54,22 +65,65 @@ def main() -> None:
     if stocks.empty:
         raise ValueError("backtest has no stocks")
 
-    engine = BacktestEngine()
-    result = engine.run(
-        BacktestRequest(
-            bars=bars,
-            stocks=stocks,
-            strategy=MomentumRankStrategy(),
-            benchmark_bars=benchmark_bars,
-            benchmark_code=args.benchmark_code,
-            initial_cash=args.initial_cash,
-            rebalance=args.rebalance,
+    if args.multi_strategy:
+        strategies = [build_strategy(name.strip()) for name in args.multi_strategy.split(",") if name.strip()]
+        result = MultiStrategyBacktestEngine().run(
+            MultiStrategyBacktestRequest(
+                bars=bars,
+                stocks=stocks,
+                strategies=strategies,
+                allocation_config=AllocationConfig(
+                    method=args.allocation_method,
+                    lookback_days=args.allocation_lookback_days,
+                    target_volatility=args.target_volatility,
+                    max_strategy_weight=args.max_strategy_weight,
+                ),
+                benchmark_bars=benchmark_bars,
+                benchmark_code=args.benchmark_code,
+                initial_cash=args.initial_cash,
+                rebalance=args.rebalance,
+            )
         )
-    )
+        payload = _multi_strategy_payload(result, args)
+    else:
+        engine = BacktestEngine()
+        result = engine.run(
+            BacktestRequest(
+                bars=bars,
+                stocks=stocks,
+                strategy=build_strategy(args.strategy),
+                benchmark_bars=benchmark_bars,
+                benchmark_code=args.benchmark_code,
+                initial_cash=args.initial_cash,
+                rebalance=args.rebalance,
+            )
+        )
+        payload = _single_strategy_payload(result, args)
 
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
-    payload = {
+    output.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    if args.output_md:
+        if args.multi_strategy:
+            markdown = _render_multi_strategy_markdown_report(payload)
+        else:
+            markdown = _render_markdown_report(
+                result.metrics,
+                args.rebalance,
+                result.benchmark_code,
+                _strategy_record(result.strategy_registration),
+            )
+        markdown_output = Path(args.output_md)
+        markdown_output.parent.mkdir(parents=True, exist_ok=True)
+        markdown_output.write_text(markdown, encoding="utf-8")
+    print(f"Wrote backtest report to {output}")
+    if args.output_md:
+        print(f"Wrote backtest Markdown report to {args.output_md}")
+
+
+def _single_strategy_payload(result, args) -> dict[str, object]:
+    return {
+        "mode": "single_strategy",
         "benchmark_code": result.benchmark_code,
         "start_date": args.start_date,
         "end_date": args.end_date,
@@ -85,20 +139,33 @@ def main() -> None:
         "rebalance_records": [record.to_dict() for record in result.rebalance_records],
         "snapshots": [snapshot.to_dict() for snapshot in result.snapshots],
     }
-    output.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    if args.output_md:
-        markdown = _render_markdown_report(
-            result.metrics,
-            args.rebalance,
-            result.benchmark_code,
-            _strategy_record(result.strategy_registration),
-        )
-        markdown_output = Path(args.output_md)
-        markdown_output.parent.mkdir(parents=True, exist_ok=True)
-        markdown_output.write_text(markdown, encoding="utf-8")
-    print(f"Wrote backtest report to {output}")
-    if args.output_md:
-        print(f"Wrote backtest Markdown report to {args.output_md}")
+
+
+def _multi_strategy_payload(result, args) -> dict[str, object]:
+    return {
+        "mode": "multi_strategy",
+        "benchmark_code": args.benchmark_code,
+        "start_date": args.start_date,
+        "end_date": args.end_date,
+        "strategies": list(result.strategy_results.keys()),
+        "allocation": {
+            "method": args.allocation_method,
+            "lookback_days": args.allocation_lookback_days,
+            "target_volatility": args.target_volatility,
+            "max_strategy_weight": args.max_strategy_weight,
+        },
+        "metrics": result.metrics,
+        "returns": _series_records(result.portfolio_returns, "portfolio_return"),
+        "benchmark_returns": _series_records(result.benchmark_returns, "benchmark_return"),
+        "active_returns": _series_records(result.active_returns, "active_return"),
+        "equity_curve": _series_records(result.equity_curve, "portfolio_equity"),
+        "benchmark_equity_curve": _series_records(
+            result.benchmark_equity_curve, "benchmark_equity"
+        ),
+        "strategy_returns": _frame_records(result.strategy_returns),
+        "allocation_history": _frame_records(result.allocation_history),
+        "allocation_records": [record.to_dict() for record in result.allocation_records],
+    }
 
 
 def _series_records(series, value_name: str) -> list[dict[str, object]]:
@@ -106,6 +173,25 @@ def _series_records(series, value_name: str) -> list[dict[str, object]]:
     for index, value in series.items():
         trade_date = index.isoformat() if hasattr(index, "isoformat") else str(index)
         records.append({"trade_date": trade_date, value_name: float(value)})
+    return records
+
+
+def _frame_records(frame) -> list[dict[str, object]]:
+    records = []
+    if "trade_date" in frame.columns:
+        raw_records = frame.to_dict(orient="records")
+    else:
+        indexed = frame.copy()
+        indexed.index.name = indexed.index.name or "trade_date"
+        raw_records = indexed.reset_index().to_dict(orient="records")
+    for row in raw_records:
+        normalized = {}
+        for key, value in row.items():
+            if hasattr(value, "isoformat"):
+                normalized[str(key)] = value.isoformat()
+            else:
+                normalized[str(key)] = value
+        records.append(normalized)
     return records
 
 
@@ -188,6 +274,37 @@ def _render_markdown_report(
     return "\n".join(
         [
             "# 回测报告",
+            "",
+            _table(["指标", "数值"], rows),
+            "",
+        ]
+    )
+
+
+def _render_multi_strategy_markdown_report(payload: dict[str, object]) -> str:
+    metrics = payload["metrics"]
+    allocation = payload["allocation"]
+    rows = [
+        ["策略组合", ", ".join(payload["strategies"])],
+        ["资金分配方法", allocation["method"]],
+        ["回看天数", allocation["lookback_days"]],
+        [
+            "目标波动率",
+            "-" if allocation["target_volatility"] is None else _percent(allocation["target_volatility"]),
+        ],
+        ["单策略上限", _percent(allocation["max_strategy_weight"])],
+        ["总收益", _percent(metrics.get("total_return", 0.0))],
+        ["基准总收益", _percent(metrics.get("benchmark_total_return", 0.0))],
+        ["超额收益", _percent(metrics.get("excess_return", 0.0))],
+        ["年化收益", _percent(metrics.get("annual_return", 0.0))],
+        ["年化波动", _percent(metrics.get("volatility", 0.0))],
+        ["夏普比率", _decimal(metrics.get("sharpe", 0.0))],
+        ["最大回撤", _percent(metrics.get("max_drawdown", 0.0))],
+        ["平均现金权重", _percent(metrics.get("average_cash_weight", 0.0))],
+    ]
+    return "\n".join(
+        [
+            "# 多策略组合回测报告",
             "",
             _table(["指标", "数值"], rows),
             "",
