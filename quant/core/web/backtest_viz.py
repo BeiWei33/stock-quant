@@ -44,6 +44,9 @@ def _build_multi_strategy_page(payload: dict[str, object]) -> str:
     benchmark_equity = payload.get("benchmark_equity_curve", [])
     allocation_history = payload.get("allocation_history", [])
     strategy_name = ", ".join(str(item) for item in strategies) or "多策略组合"
+    strategy_return_rows = _strategy_return_rows(payload.get("strategy_returns", []))
+    allocation_weight_rows = _allocation_weight_rows(payload.get("allocation_records", []))
+    cash_chart = _cash_weight_chart(allocation_history)
     cards = _metric_cards(
         metrics,
         [
@@ -69,6 +72,13 @@ def _build_multi_strategy_page(payload: dict[str, object]) -> str:
 <section class="panel"><h2>资金分配历史</h2>
 <table><thead><tr><th>日期</th><th>策略仓位</th><th>现金权重</th><th>单策略最大权重</th></tr></thead>
 <tbody>{allocation_rows}</tbody></table></section>
+<section class="panel"><h2>策略收益拆解</h2>
+<table><thead><tr><th>策略</th><th>累计收益</th><th>最近日收益</th></tr></thead>
+<tbody>{strategy_return_rows}</tbody></table></section>
+<section class="panel"><h2>资金权重变化</h2>
+<table><thead><tr><th>日期</th><th>权重明细</th></tr></thead>
+<tbody>{allocation_weight_rows}</tbody></table></section>
+<section class="panel"><h2>现金仓位曲线</h2>{cash_chart}</section>
 <section class="panel"><h2>指标明细</h2>{_metrics_table(metrics)}</section>
 """,
     )
@@ -189,6 +199,78 @@ def _allocation_rows(records: object) -> str:
     return "".join(rows) if rows else '<tr><td colspan="4">暂无资金分配记录</td></tr>'
 
 
+def _strategy_return_rows(records: object) -> str:
+    if not isinstance(records, list) or not records:
+        return '<tr><td colspan="3">暂无策略收益数据</td></tr>'
+    strategy_ids = sorted(
+        {
+            str(key)
+            for record in records
+            if isinstance(record, dict)
+            for key in record
+            if key not in {"trade_date", "index"}
+        }
+    )
+    rows = []
+    for strategy_id in strategy_ids:
+        returns = [
+            float(record.get(strategy_id, 0.0) or 0.0)
+            for record in records
+            if isinstance(record, dict)
+        ]
+        cumulative = 1.0
+        for value in returns:
+            cumulative *= 1.0 + value
+        latest = returns[-1] if returns else 0.0
+        rows.append(
+            "<tr>"
+            f"<td>{html.escape(strategy_id)}</td>"
+            f"<td>{_pct(cumulative - 1.0)}</td>"
+            f"<td>{_pct(latest)}</td>"
+            "</tr>"
+        )
+    return "".join(rows) if rows else '<tr><td colspan="3">暂无策略收益数据</td></tr>'
+
+
+def _allocation_weight_rows(records: object) -> str:
+    if not isinstance(records, list) or not records:
+        return '<tr><td colspan="2">暂无权重记录</td></tr>'
+    rows = []
+    for record in records[-20:]:
+        if not isinstance(record, dict):
+            continue
+        weights = record.get("weights", [])
+        if not isinstance(weights, list):
+            weights = []
+        parts = []
+        for item in weights:
+            if not isinstance(item, dict):
+                continue
+            strategy_id = str(item.get("strategy_id", "-"))
+            weight = float(item.get("capital_weight", 0.0) or 0.0)
+            parts.append(f"{html.escape(strategy_id)} {_pct(weight, digits=1)}")
+        rows.append(
+            "<tr>"
+            f"<td>{html.escape(str(record.get('allocation_date', '-')))}</td>"
+            f"<td>{' / '.join(parts) if parts else '-'}</td>"
+            "</tr>"
+        )
+    return "".join(rows) if rows else '<tr><td colspan="2">暂无权重记录</td></tr>'
+
+
+def _cash_weight_chart(records: object) -> str:
+    if not isinstance(records, list) or not records:
+        return "<p>暂无现金仓位数据</p>"
+    points = [
+        (str(record.get("trade_date", "")), float(record.get("cash_weight", 0.0) or 0.0))
+        for record in records
+        if isinstance(record, dict)
+    ]
+    if not points:
+        return "<p>暂无现金仓位数据</p>"
+    return _line_chart(points, low=0.0, high=max(1.0, max(value for _, value in points)))
+
+
 def _rebalance_rows(records: object) -> str:
     if not isinstance(records, list) or not records:
         return '<tr><td colspan="4">暂无调仓记录</td></tr>'
@@ -247,6 +329,29 @@ def _equity_chart(
 {labels}
 <path d="{path(strategy)}" fill="none" stroke="#0f766e" stroke-width="2"/>
 <path d="{path(benchmark)}" fill="none" stroke="#667085" stroke-dasharray="4,3" stroke-width="1.5"/>
+</svg>"""
+
+
+def _line_chart(points: list[tuple[str, float]], *, low: float, high: float) -> str:
+    width, height, left, top = 720, 180, 54, 18
+    inner_width, inner_height = width - 80, height - 52
+    if high <= low:
+        high = low + 1.0
+    max_index = max(len(points) - 1, 1)
+    chunks = []
+    for idx, (_, value) in enumerate(points):
+        x = left + idx * inner_width / max_index
+        y = top + inner_height - ((value - low) / (high - low) * inner_height)
+        chunks.append(("M" if idx == 0 else "L") + f"{x:.1f},{y:.1f}")
+    labels = "".join(
+        f"<text x='{left - 8}' y='{top + inner_height - ratio * inner_height + 4:.1f}' text-anchor='end' fill='#667085' font-size='11'>{_pct(low + (high - low) * ratio, digits=0)}</text>"
+        for ratio in [0, 0.5, 1.0]
+    )
+    return f"""
+<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}">
+<rect x="{left}" y="{top}" width="{inner_width}" height="{inner_height}" fill="none" stroke="#d7deea"/>
+{labels}
+<path d="{' '.join(chunks)}" fill="none" stroke="#b45309" stroke-width="2"/>
 </svg>"""
 
 

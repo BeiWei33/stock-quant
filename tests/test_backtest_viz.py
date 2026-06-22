@@ -39,6 +39,40 @@ def test_backtest_viz_renders_multi_strategy_report(tmp_path, monkeypatch) -> No
                         "max_strategy_weight": 0.5,
                     }
                 ],
+                "strategy_returns": [
+                    {
+                        "trade_date": "2024-01-01",
+                        "momentum_rank": 0.01,
+                        "quality_rank": 0.00,
+                    },
+                    {
+                        "trade_date": "2024-01-02",
+                        "momentum_rank": 0.02,
+                        "quality_rank": 0.01,
+                    },
+                ],
+                "allocation_records": [
+                    {
+                        "allocation_date": "2024-01-02",
+                        "weights": [
+                            {
+                                "strategy_id": "momentum_rank",
+                                "capital_weight": 0.5,
+                                "is_cash": False,
+                            },
+                            {
+                                "strategy_id": "quality_rank",
+                                "capital_weight": 0.3,
+                                "is_cash": False,
+                            },
+                            {
+                                "strategy_id": "CASH",
+                                "capital_weight": 0.2,
+                                "is_cash": True,
+                            },
+                        ],
+                    }
+                ],
             }
         ),
         encoding="utf-8",
@@ -51,3 +85,9 @@ def test_backtest_viz_renders_multi_strategy_report(tmp_path, monkeypatch) -> No
     assert "平均现金权重" in html
     assert "资金分配历史" in html
     assert "20.0%" in html
+    assert "策略收益拆解" in html
+    assert "资金权重变化" in html
+    assert "现金仓位曲线" in html
+    assert "momentum_rank" in html
+    assert "quality_rank" in html
+    assert "3.02%" in html
