@@ -136,6 +136,7 @@ def test_backtest_app_writes_multi_strategy_report(tmp_path, monkeypatch) -> Non
     bars_path = tmp_path / "bars.csv"
     stocks_path = tmp_path / "stocks.csv"
     output_path = tmp_path / "multi_backtest.json"
+    output_md_path = tmp_path / "multi_backtest.md"
     bars.to_csv(bars_path, index=False)
     stocks.to_csv(stocks_path, index=False)
 
@@ -152,8 +153,12 @@ def test_backtest_app_writes_multi_strategy_report(tmp_path, monkeypatch) -> Non
             "momentum_rank,quality_rank",
             "--allocation-method",
             "equal",
+            "--max-strategy-weight",
+            "0.40",
             "--output",
             str(output_path),
+            "--output-md",
+            str(output_md_path),
         ],
     )
 
@@ -164,4 +169,15 @@ def test_backtest_app_writes_multi_strategy_report(tmp_path, monkeypatch) -> Non
     assert payload["strategies"] == ["momentum_rank", "quality_rank"]
     assert payload["metrics"]["strategy_count"] == 2.0
     assert payload["allocation_history"]
+    assert payload["strategy_summary"]
+    assert payload["latest_allocation"]
+    assert payload["latest_allocation"][-1]["strategy_id"] == "CASH"
     assert "index" not in payload["allocation_history"][0]
+
+    markdown = output_md_path.read_text(encoding="utf-8")
+    assert "多策略组合回测报告" in markdown
+    assert "策略收益拆解" in markdown
+    assert "资金权重变化" in markdown
+    assert "现金仓位" in markdown
+    assert "momentum_rank" in markdown
+    assert "quality_rank" in markdown

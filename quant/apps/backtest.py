@@ -142,6 +142,8 @@ def _single_strategy_payload(result, args) -> dict[str, object]:
 
 
 def _multi_strategy_payload(result, args) -> dict[str, object]:
+    strategy_returns = _frame_records(result.strategy_returns)
+    allocation_records = [record.to_dict() for record in result.allocation_records]
     return {
         "mode": "multi_strategy",
         "benchmark_code": args.benchmark_code,
@@ -162,9 +164,11 @@ def _multi_strategy_payload(result, args) -> dict[str, object]:
         "benchmark_equity_curve": _series_records(
             result.benchmark_equity_curve, "benchmark_equity"
         ),
-        "strategy_returns": _frame_records(result.strategy_returns),
+        "strategy_returns": strategy_returns,
+        "strategy_summary": _strategy_return_summary(strategy_returns),
         "allocation_history": _frame_records(result.allocation_history),
-        "allocation_records": [record.to_dict() for record in result.allocation_records],
+        "allocation_records": allocation_records,
+        "latest_allocation": _latest_allocation(allocation_records),
     }
 
 
@@ -193,6 +197,55 @@ def _frame_records(frame) -> list[dict[str, object]]:
                 normalized[str(key)] = value
         records.append(normalized)
     return records
+
+
+def _strategy_return_summary(records: list[dict[str, object]]) -> list[dict[str, object]]:
+    strategy_ids = sorted(
+        {
+            str(key)
+            for record in records
+            for key in record
+            if key not in {"trade_date", "index"}
+        }
+    )
+    summary = []
+    for strategy_id in strategy_ids:
+        values = [float(record.get(strategy_id, 0.0) or 0.0) for record in records]
+        cumulative = 1.0
+        positive_days = 0
+        for value in values:
+            cumulative *= 1.0 + value
+            if value > 0:
+                positive_days += 1
+        summary.append(
+            {
+                "strategy_id": strategy_id,
+                "cumulative_return": cumulative - 1.0,
+                "latest_return": values[-1] if values else 0.0,
+                "positive_day_ratio": positive_days / len(values) if values else 0.0,
+            }
+        )
+    return summary
+
+
+def _latest_allocation(records: list[dict[str, object]]) -> list[dict[str, object]]:
+    if not records:
+        return []
+    weights = records[-1].get("weights", [])
+    if not isinstance(weights, list):
+        return []
+    normalized = []
+    for item in weights:
+        if not isinstance(item, dict):
+            continue
+        normalized.append(
+            {
+                "strategy_id": str(item.get("strategy_id", "")),
+                "capital_weight": float(item.get("capital_weight", 0.0) or 0.0),
+                "is_cash": bool(item.get("is_cash", False)),
+            }
+        )
+    return sorted(normalized, key=lambda row: (row["is_cash"], row["strategy_id"]))
 
 
 def _strategy_record(registration) -> dict[str, object]:
@@ -329,6 +382,76 @@ def _decimal(value: float) -> str:
 
 def _integer(value: float) -> str:
     return str(int(value))
+
+
+def _render_multi_strategy_markdown_report(payload: dict[str, object]) -> str:  # type: ignore[no-redef]
+    metrics = payload["metrics"]
+    allocation = payload["allocation"]
+    overview_rows = [
+        ["策略组合", ", ".join(payload["strategies"])],
+        ["资金分配方法", allocation["method"]],
+        ["回看天数", allocation["lookback_days"]],
+        [
+            "目标波动率",
+            "-" if allocation["target_volatility"] is None else _percent(allocation["target_volatility"]),
+        ],
+        ["单策略上限", _percent(allocation["max_strategy_weight"])],
+        ["总收益", _percent(metrics.get("total_return", 0.0))],
+        ["基准总收益", _percent(metrics.get("benchmark_total_return", 0.0))],
+        ["超额收益", _percent(metrics.get("excess_return", 0.0))],
+        ["年化收益", _percent(metrics.get("annual_return", 0.0))],
+        ["年化波动", _percent(metrics.get("volatility", 0.0))],
+        ["夏普比率", _decimal(metrics.get("sharpe", 0.0))],
+        ["最大回撤", _percent(metrics.get("max_drawdown", 0.0))],
+        ["平均现金权重", _percent(metrics.get("average_cash_weight", 0.0))],
+    ]
+    strategy_rows = [
+        [
+            item["strategy_id"],
+            _percent(item["cumulative_return"]),
+            _percent(item["latest_return"]),
+            _percent(item["positive_day_ratio"]),
+        ]
+        for item in payload.get("strategy_summary", [])
+    ]
+    allocation_rows = [
+        [
+            item["strategy_id"],
+            _percent(item["capital_weight"]),
+            "是" if item["is_cash"] else "否",
+        ]
+        for item in payload.get("latest_allocation", [])
+    ]
+    cash_rows = [
+        [
+            row.get("trade_date", "-"),
+            _percent(row.get("allocated_weight", 0.0)),
+            _percent(row.get("cash_weight", 0.0)),
+        ]
+        for row in payload.get("allocation_history", [])[-10:]
+    ]
+    return "\n".join(
+        [
+            "# 多策略组合回测报告",
+            "",
+            "## 组合指标",
+            "",
+            _table(["指标", "数值"], overview_rows),
+            "",
+            "## 策略收益拆解",
+            "",
+            _table(["策略", "累计收益", "最近日收益", "胜率"], strategy_rows),
+            "",
+            "## 资金权重变化",
+            "",
+            _table(["策略/现金", "最新权重", "是否现金"], allocation_rows),
+            "",
+            "## 现金仓位",
+            "",
+            _table(["日期", "策略仓位", "现金权重"], cash_rows),
+            "",
+        ]
+    )
 
 
 if __name__ == "__main__":
