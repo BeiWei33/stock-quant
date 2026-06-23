@@ -1,0 +1,40 @@
+# Personal Quant Web Console Configuration
+
+server:
+  host: "127.0.0.1"
+  port: 8000
+  reload: false
+
+# JWT Configuration
+jwt:
+  secret: "change-me-in-production-use-openssl-rand-hex-32"
+  expire_hours: 24
+
+# CORS Origins (for development)
+cors:
+  origins:
+    - "http://localhost:5173"
+    - "http://localhost:5174"
+    - "http://127.0.0.1:5173"
+
+# Users (optional, defaults to admin/admin)
+# Remove this section to use default admin/admin credentials
+# users:
+#   admin:
+#     role: admin
+#     hashed_password: "xxx"
+
+# Notification Configuration
+notification:
+  enabled: false
+  notify_on_buy: true
+  notify_on_sell: true
+  min_score: 0.5
+
+  # DingTalk Webhook
+  # Create a custom robot in DingTalk group and get the webhook URL
+  dingtalk_webhook: ""
+
+  # WeChat Work Webhook
+  # Create a bot in WeChat Work group and get the webhook URL
+  wechat_webhook: ""
