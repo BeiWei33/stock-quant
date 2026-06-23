@@ -65,7 +65,7 @@ async def run_stock_pick(
     price_max: str = "",
 ):
     """Run stock picking with async execution."""
-    cmd = [sys.executable, "-X", "utf8", "-m", "quant.apps.daily", "--source", "akshare", "--no-lock"]
+    cmd = [sys.executable, "-X", "utf8", "-m", "quant.apps.daily", "--source", "auto", "--no-lock"]
     if scope == "all":
         cmd.append("--akshare-all")
     else:

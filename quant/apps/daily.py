@@ -14,7 +14,11 @@ from quant.core.collector.akshare_source import (
     AkShareDataSourceConfig,
 )
 from quant.core.collector.base import MarketDataSource
+from quant.core.collector.baidu_source import BaiduDataSource, BaiduDataSourceConfig
 from quant.core.collector.csv_source import CsvDataSource, CsvDataSourceConfig
+from quant.core.collector.fallback_source import FallbackMarketDataSource, LazyMarketDataSource
+from quant.core.collector.mootdx_source import MootdxDataSource, MootdxDataSourceConfig
+from quant.core.collector.tencent_source import TencentDataSource, TencentDataSourceConfig
 from quant.core.collector.tushare_source import TushareDataSource
 from quant.core.config.daily import DailyAppConfig
 from quant.core.models import WorkflowLock, WorkflowRun
@@ -25,7 +29,10 @@ from quant.core.workflow.daily import DailyWorkflow, DailyWorkflowConfig
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run the daily paper-trading workflow.")
     parser.add_argument("--config")
-    parser.add_argument("--source", choices=["csv", "akshare", "tushare"])
+    parser.add_argument(
+        "--source",
+        choices=["csv", "auto", "mootdx", "tencent", "baidu", "akshare", "tushare"],
+    )
     parser.add_argument("--stocks")
     parser.add_argument("--bars")
     parser.add_argument("--benchmark-bars")
@@ -140,8 +147,9 @@ def main() -> None:
         )
     )
     try:
+        source = _build_source(config)
         result = workflow.run(
-            source=_build_source(config),
+            source=source,
             start_date=_parse_date(config.start_date),
             end_date=_parse_date(config.end_date),
             trade_date=_parse_date(config.trade_date),
@@ -152,6 +160,10 @@ def main() -> None:
         payload["run_status"] = status
         payload["data_source"] = config.source
         payload["market_data_mode"] = _market_data_mode(config)
+        if hasattr(source, "attempts"):
+            payload["data_source_attempts"] = [
+                attempt.__dict__ for attempt in getattr(source, "attempts", [])
+            ]
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         run_store.save_workflow_run(
@@ -263,9 +275,85 @@ def _build_source(config: DailyAppConfig) -> MarketDataSource:
                 all_market=config.akshare_all_market,
             )
         )
+    if config.source == "mootdx":
+        return MootdxDataSource(
+            MootdxDataSourceConfig(
+                symbols=_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS,
+                max_symbols=config.akshare_limit,
+                all_market=config.akshare_all_market,
+            )
+        )
+    if config.source == "tencent":
+        return TencentDataSource(
+            TencentDataSourceConfig(
+                symbols=_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS,
+                max_symbols=config.akshare_limit,
+                all_market=config.akshare_all_market,
+            )
+        )
+    if config.source == "baidu":
+        return BaiduDataSource(
+            BaiduDataSourceConfig(
+                symbols=_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS,
+                max_symbols=config.akshare_limit,
+                all_market=config.akshare_all_market,
+            )
+        )
     if config.source == "tushare":
         return TushareDataSource(token=config.tushare_token or "")
+    if config.source == "auto":
+        return FallbackMarketDataSource(_auto_sources(config))
     raise ValueError(f"unsupported source: {config.source}")
+
+
+def _auto_sources(config: DailyAppConfig) -> list[MarketDataSource]:
+    symbols = _akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS
+    sources: list[MarketDataSource] = [
+        LazyMarketDataSource(
+            "mootdx",
+            lambda: MootdxDataSource(
+                MootdxDataSourceConfig(
+                    symbols=symbols,
+                    max_symbols=config.akshare_limit,
+                    all_market=config.akshare_all_market,
+                )
+            ),
+        ),
+        TencentDataSource(
+            TencentDataSourceConfig(
+                symbols=symbols,
+                max_symbols=config.akshare_limit,
+                all_market=config.akshare_all_market,
+            )
+        ),
+        BaiduDataSource(
+            BaiduDataSourceConfig(
+                symbols=symbols,
+                max_symbols=config.akshare_limit,
+                all_market=config.akshare_all_market,
+            )
+        ),
+    ]
+    if config.tushare_token:
+        sources.append(
+            LazyMarketDataSource(
+                "tushare",
+                lambda: TushareDataSource(token=config.tushare_token or ""),
+            )
+        )
+    sources.append(
+        LazyMarketDataSource(
+            "akshare",
+            lambda: AkShareDataSource(
+                AkShareDataSourceConfig(
+                    symbols=symbols,
+                    max_symbols=config.akshare_limit,
+                    all_market=config.akshare_all_market,
+                )
+            ),
+        )
+    )
+    return sources
 
 
 def _parse_date(value: str | None) -> date | None:
@@ -289,6 +377,46 @@ def _akshare_symbols(config: DailyAppConfig) -> tuple[str, ...]:
 
 
 def _market_data_mode(config: DailyAppConfig) -> dict[str, object]:
+    if config.source == "auto":
+        return {
+            "source": "auto",
+            "label": "自动真实 A 股行情",
+            "tradable": False,
+            "note": "按 mootdx/腾讯/百度/Tushare/AkShare 顺序自动尝试；AkShare 仅作为最后兜底。仅用于研究和模拟盘。",
+            "symbols": list(_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS),
+            "limit": config.akshare_limit,
+            "all_market": config.akshare_all_market,
+        }
+    if config.source == "mootdx":
+        return {
+            "source": "mootdx",
+            "label": "mootdx 通达信 A 股日线",
+            "tradable": False,
+            "note": "通过 mootdx/通达信 TCP 行情获取 A 股日线，仅用于研究和模拟盘。",
+            "symbols": list(_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS),
+            "limit": config.akshare_limit,
+            "all_market": config.akshare_all_market,
+        }
+    if config.source == "tencent":
+        return {
+            "source": "tencent",
+            "label": "腾讯直连 A 股日线",
+            "tradable": False,
+            "note": "通过腾讯公开历史 K 线接口获取 A 股日线，仅用于研究和模拟盘。",
+            "symbols": list(_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS),
+            "limit": config.akshare_limit,
+            "all_market": config.akshare_all_market,
+        }
+    if config.source == "baidu":
+        return {
+            "source": "baidu",
+            "label": "百度股市通 A 股日线",
+            "tradable": False,
+            "note": "通过百度股市通公开 K 线接口获取 A 股日线，仅用于研究和模拟盘。",
+            "symbols": list(_akshare_symbols(config) or DEFAULT_A_SHARE_SYMBOLS),
+            "limit": config.akshare_limit,
+            "all_market": config.akshare_all_market,
+        }
     if config.source == "akshare":
         return {
             "source": "akshare",

@@ -79,9 +79,20 @@ class AkShareDataSource(MarketDataSource):
 
     def collect(self, start_date: date | None = None, end_date: date | None = None) -> CollectionResult:
         stocks = self.fetch_stocks()
+        daily_bars = self.fetch_daily_bars(start_date, end_date)
+        if self.config.all_market and self.config.max_symbols is not None:
+            collected_codes = list(dict.fromkeys(daily_bars["ts_code"].astype(str)))
+            stocks = _filter_symbols(stocks, tuple(collected_codes))
+            order = {ts_code: index for index, ts_code in enumerate(collected_codes)}
+            stocks = (
+                stocks.assign(_order=stocks["ts_code"].map(order))
+                .sort_values("_order")
+                .drop(columns=["_order"])
+                .reset_index(drop=True)
+            )
         return CollectionResult(
             stocks=stocks,
-            daily_bars=self.fetch_daily_bars(start_date, end_date),
+            daily_bars=daily_bars,
             benchmark_bars=self.fetch_benchmark_bars(start_date, end_date),
         )
 

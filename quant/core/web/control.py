@@ -227,10 +227,10 @@ def run_stock_pick(
     price_min: str = '',
     price_max: str = '',
 ) -> WebRunResult:
-    """Run stock picking with AkShare, supports 30-blue-chip or full-market."""
+    """Run stock picking with automatic market-data fallback."""
     import subprocess
     py = sys.executable
-    cmd = [py, '-X', 'utf8', '-m', 'quant.apps.daily', '--source', 'akshare', '--no-lock']
+    cmd = [py, '-X', 'utf8', '-m', 'quant.apps.daily', '--source', 'auto', '--no-lock']
     if scope == 'all':
         cmd.append('--akshare-all')
     else:
@@ -832,9 +832,9 @@ def _account_section() -> str:
 
 def _backtest_section() -> str:
     return f"""<section class="panel">
-  <h2>AkShare 全市场回测</h2>
+  <h2>自动数据源全市场回测</h2>
   <div class="form-card">
-    <p>设置回测参数，使用 AkShare 获取全市场数据</p>
+    <p>设置回测参数，按 mootdx/腾讯/百度/Tushare/AkShare 顺序自动获取全市场数据</p>
     <form method=POST action="/akshare-backtest" class="form-inline">
       <label for="sd">开始日期</label>
       <input type=date id=sd name="start_date" value="2025-01-01">

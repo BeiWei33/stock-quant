@@ -17,7 +17,7 @@ def test_daily_steps_are_python_only() -> None:
     assert all(step.command[0] != "cargo" for step in steps)
 
 
-def test_akshare_steps_run_daily_with_real_market_source() -> None:
+def test_akshare_steps_run_daily_with_auto_market_source() -> None:
     steps = start.build_akshare_steps(
         start_date="2024-01-01",
         end_date="2024-09-01",
@@ -26,9 +26,9 @@ def test_akshare_steps_run_daily_with_real_market_source() -> None:
     )
     command = steps[0].command
 
-    assert steps[0].name == "Run AkShare daily paper workflow"
+    assert steps[0].name == "Run auto A-share daily paper workflow"
     assert "--source" in command
-    assert "akshare" in command
+    assert "auto" in command
     assert "--akshare-symbols" in command
     assert "600519.SH,000001.SZ" in command
     assert "--akshare-limit" in command
@@ -45,9 +45,15 @@ def test_akshare_backtest_steps_collect_full_market_then_backtest() -> None:
     collect_command = steps[0].command
     backtest_command = steps[1].command
 
-    assert steps[0].name == "Collect full-market AkShare data"
+    assert steps[0].name == "Collect full-market market data"
+    assert "auto" in collect_command
     assert "--akshare-all" in collect_command
     assert "--akshare-limit" not in collect_command
+    collect_sqlite = collect_command[collect_command.index("--sqlite") + 1]
+    backtest_sqlite = backtest_command[backtest_command.index("--sqlite") + 1]
+    assert collect_sqlite == backtest_sqlite
+    assert "research_store/backtest_runs/market_data_" in collect_sqlite
+    assert collect_sqlite != "research_store/market_data.sqlite3"
     assert "2024-01-01" in collect_command
     assert "2024-12-31" in backtest_command
     assert "monthly" in backtest_command

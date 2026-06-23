@@ -11,7 +11,7 @@ source:
   end_date: null
   start_date: null
   trade_date: null
-  type: akshare
+  type: auto
 storage:
   market_sqlite: research_store/market_data.sqlite3
   output: research_store/reports/daily_summary.json

@@ -222,6 +222,7 @@ def test_akshare_full_market_limit_counts_successful_symbols() -> None:
 
     result = source.collect(start_date=date(2024, 1, 1), end_date=date(2024, 1, 31))
 
+    assert result.stocks["ts_code"].tolist() == ["600519.SH"]
     assert result.daily_bars["ts_code"].tolist() == ["600519.SH"]
 
 
@@ -263,6 +264,7 @@ def test_akshare_full_market_prioritizes_stable_default_symbols() -> None:
     result = source.collect(start_date=date(2024, 1, 1), end_date=date(2024, 1, 31))
 
     assert fake.symbols == ["600519"]
+    assert result.stocks["ts_code"].tolist() == ["600519.SH"]
     assert result.daily_bars["ts_code"].tolist() == ["600519.SH"]
 
 

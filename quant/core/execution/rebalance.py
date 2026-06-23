@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
+import math
 
 import pandas as pd
 
@@ -39,12 +40,12 @@ class RebalancePlanner:
             price = price_map.get(ts_code)
             curr_qty = current_quantity.get(ts_code, 0)
             # 如果是持仓股但缺少当天价格，从持仓记录获取买入成本作为卖出价
-            if (price is None or price <= 0) and curr_qty > 0:
+            if not _is_valid_price(price) and curr_qty > 0:
                 if current_positions is not None and not current_positions.empty:
                     pos_row = current_positions[current_positions["ts_code"] == ts_code]
                     if not pos_row.empty and "avg_cost" in pos_row.columns:
                         price = float(pos_row["avg_cost"].iloc[0])
-            if price is None or price <= 0:
+            if not _is_valid_price(price):
                 continue
 
             current_qty = current_quantity.get(ts_code, 0)
@@ -85,3 +86,13 @@ class RebalancePlanner:
             str(row.ts_code): int(row.quantity)
             for row in current_positions[["ts_code", "quantity"]].itertuples(index=False)
         }
+
+
+def _is_valid_price(price: object) -> bool:
+    if price is None:
+        return False
+    try:
+        value = float(price)
+    except (TypeError, ValueError):
+        return False
+    return math.isfinite(value) and value > 0

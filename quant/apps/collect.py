@@ -12,14 +12,22 @@ from quant.core.collector.akshare_source import (
     AkShareDataSourceConfig,
 )
 from quant.core.collector.base import MarketDataSource
+from quant.core.collector.baidu_source import BaiduDataSource, BaiduDataSourceConfig
 from quant.core.collector.csv_source import CsvDataSource, CsvDataSourceConfig
+from quant.core.collector.fallback_source import FallbackMarketDataSource, LazyMarketDataSource
+from quant.core.collector.mootdx_source import MootdxDataSource, MootdxDataSourceConfig
+from quant.core.collector.tencent_source import TencentDataSource, TencentDataSourceConfig
 from quant.core.collector.tushare_source import TushareDataSource
 from quant.core.persistence.sqlite_store import SqliteStore
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Collect market data into the local store.")
-    parser.add_argument("--source", choices=["csv", "akshare", "tushare"], default="csv")
+    parser.add_argument(
+        "--source",
+        choices=["csv", "auto", "mootdx", "tencent", "baidu", "akshare", "tushare"],
+        default="csv",
+    )
     parser.add_argument("--sqlite", default="research_store/market_data.sqlite3")
     parser.add_argument("--start-date")
     parser.add_argument("--end-date")
@@ -55,6 +63,10 @@ def main() -> None:
         f"benchmark_bars={len(result.benchmark_bars)} "
         f"into {args.sqlite}"
     )
+    if hasattr(source, "attempts"):
+        for attempt in getattr(source, "attempts", []):
+            detail = f": {attempt.error}" if attempt.error else ""
+            print(f"Source attempt {attempt.source_name}: {attempt.status}{detail}")
 
 
 def _build_source(args: argparse.Namespace) -> MarketDataSource:
@@ -77,10 +89,86 @@ def _build_source(args: argparse.Namespace) -> MarketDataSource:
                 all_market=bool(args.akshare_all),
             )
         )
+    if args.source == "mootdx":
+        return MootdxDataSource(
+            MootdxDataSourceConfig(
+                symbols=_akshare_symbols(args) or DEFAULT_A_SHARE_SYMBOLS,
+                max_symbols=args.akshare_limit,
+                all_market=bool(args.akshare_all),
+            )
+        )
+    if args.source == "tencent":
+        return TencentDataSource(
+            TencentDataSourceConfig(
+                symbols=_akshare_symbols(args) or DEFAULT_A_SHARE_SYMBOLS,
+                max_symbols=args.akshare_limit,
+                all_market=bool(args.akshare_all),
+            )
+        )
+    if args.source == "baidu":
+        return BaiduDataSource(
+            BaiduDataSourceConfig(
+                symbols=_akshare_symbols(args) or DEFAULT_A_SHARE_SYMBOLS,
+                max_symbols=args.akshare_limit,
+                all_market=bool(args.akshare_all),
+            )
+        )
     if args.source == "tushare":
         token = args.tushare_token or ""
         return TushareDataSource(token=token)
+    if args.source == "auto":
+        return FallbackMarketDataSource(_auto_sources(args))
     raise ValueError(f"unsupported source: {args.source}")
+
+
+def _auto_sources(args: argparse.Namespace) -> list[MarketDataSource]:
+    symbols = _akshare_symbols(args) or DEFAULT_A_SHARE_SYMBOLS
+    sources: list[MarketDataSource] = [
+        LazyMarketDataSource(
+            "mootdx",
+            lambda: MootdxDataSource(
+                MootdxDataSourceConfig(
+                    symbols=symbols,
+                    max_symbols=args.akshare_limit,
+                    all_market=bool(args.akshare_all),
+                )
+            ),
+        ),
+        TencentDataSource(
+            TencentDataSourceConfig(
+                symbols=symbols,
+                max_symbols=args.akshare_limit,
+                all_market=bool(args.akshare_all),
+            )
+        ),
+        BaiduDataSource(
+            BaiduDataSourceConfig(
+                symbols=symbols,
+                max_symbols=args.akshare_limit,
+                all_market=bool(args.akshare_all),
+            )
+        ),
+    ]
+    if args.tushare_token:
+        sources.append(
+            LazyMarketDataSource(
+                "tushare",
+                lambda: TushareDataSource(token=args.tushare_token or ""),
+            )
+        )
+    sources.append(
+        LazyMarketDataSource(
+            "akshare",
+            lambda: AkShareDataSource(
+                AkShareDataSourceConfig(
+                    symbols=symbols,
+                    max_symbols=args.akshare_limit,
+                    all_market=bool(args.akshare_all),
+                )
+            ),
+        )
+    )
+    return sources
 
 
 def _parse_date(value: str | None) -> date | None:

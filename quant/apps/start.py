@@ -54,25 +54,25 @@ def build_parser() -> argparse.ArgumentParser:
 
     akshare = subparsers.add_parser(
         "akshare",
-        help="Run the daily workflow with AkShare A-share market data.",
+        help="Run the daily workflow with automatic A-share market data fallback.",
     )
     akshare.add_argument("--start-date", help="Start date, default is about 260 calendar days ago.")
     akshare.add_argument("--end-date", help="End date, default is today.")
     akshare.add_argument("--symbols", help="Comma-separated A-share symbols, e.g. 600519.SH,000001.SZ.")
     akshare.add_argument("--symbols-file", help="Text file with one A-share symbol per line.")
-    akshare.add_argument("--limit", type=int, default=30, help="Limit AkShare collection size.")
+    akshare.add_argument("--limit", type=int, default=30, help="Limit A-share collection size.")
     _add_common_flags(akshare)
 
     akshare_backtest = subparsers.add_parser(
         "akshare-backtest",
-        help="Collect full-market AkShare data for a date range and run a backtest.",
+        help="Collect full-market A-share data for a date range and run a backtest.",
     )
     akshare_backtest.add_argument("--start-date", required=True, help="Backtest start date.")
     akshare_backtest.add_argument("--end-date", required=True, help="Backtest end date.")
     akshare_backtest.add_argument(
         "--limit",
         type=int,
-        help="Optional test limit. Omit it for the full AkShare A-share universe.",
+        help="Optional test limit. Omit it for the full A-share universe.",
     )
     akshare_backtest.add_argument("--rebalance", choices=["weekly", "monthly"], default="weekly")
     akshare_backtest.add_argument("--initial-cash", type=float, default=1_000_000)
@@ -225,7 +225,7 @@ def main(argv: list[str] | None = None) -> None:
             return
         if args.command == "akshare":
             print()
-            print("AkShare daily workflow completed.")
+            print("Auto A-share daily workflow completed.")
             print("Next files to open:")
             print(f"  - {home_path}")
             print("  - research_store/reports/daily_report.html")
@@ -235,11 +235,11 @@ def main(argv: list[str] | None = None) -> None:
             return
         if args.command == "akshare-backtest":
             print()
-            print("AkShare full-market backtest completed.")
+            print("Auto A-share full-market backtest completed.")
             print("Backtest files:")
             print("  - research_store/reports/akshare_backtest.md")
             print("  - research_store/reports/akshare_backtest.json")
-            print("  - research_store/market_data.sqlite3")
+            print("  - research_store/backtest_runs/market_data_*.sqlite3")
             return
         if args.command == "practice-fills":
             print()
@@ -348,11 +348,11 @@ def build_akshare_steps(
     symbols_file: str | None = None,
     limit: int = 30,
 ) -> list[Step]:
-    """Build steps for the AkShare daily workflow."""
+    """Build steps for the automatic A-share daily workflow."""
     py = sys.executable
     steps = [
         Step(
-            "Run AkShare daily paper workflow",
+            "Run auto A-share daily paper workflow",
             _collect_cmd(py, start_date, end_date, symbols, symbols_file, limit),
         ),
         Step(
@@ -384,13 +384,13 @@ def _collect_cmd(
     symbols_file: str | None,
     limit: int = 30,
 ) -> tuple[str, ...]:
-    """Build the AkShare collect command."""
+    """Build the auto market-data collect command."""
     cmd: list[str] = [
         py,
         "-m",
         "quant.apps.daily",
         "--source",
-        "akshare",
+        "auto",
         "--no-lock",
     ]
     if start_date:
@@ -424,14 +424,16 @@ def build_akshare_backtest_steps(
     target_volatility: float | None = None,
     max_strategy_weight: float = 0.60,
 ) -> list[Step]:
-    """Build steps for AkShare full-market backtest."""
+    """Build steps for automatic A-share full-market backtest."""
     py = sys.executable
+    run_stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    market_sqlite = f"research_store/backtest_runs/market_data_{run_stamp}.sqlite3"
     backtest_cmd: list[str] = [
         py,
         "-m",
         "quant.apps.backtest",
         "--sqlite",
-        "research_store/market_data.sqlite3",
+        market_sqlite,
         "--start-date",
         start_date,
         "--end-date",
@@ -453,20 +455,20 @@ def build_akshare_backtest_steps(
             backtest_cmd.extend(["--target-volatility", str(target_volatility)])
     return [
         Step(
-            "Collect full-market AkShare data",
+            "Collect full-market market data",
             (
                 py,
                 "-m",
                 "quant.apps.collect",
                 "--source",
-                "akshare",
+                "auto",
                 "--akshare-all",
                 "--start-date",
                 start_date,
                 "--end-date",
                 end_date,
                 "--sqlite",
-                "research_store/market_data.sqlite3",
+                market_sqlite,
                 *(["--akshare-limit", str(limit)] if limit else []),
             ),
         ),
@@ -789,8 +791,8 @@ ul{{margin:0;padding-left:20px;}}li{{margin:8px 0;}}
 <section class="panel"><h2>\u5f00\u59cb\u4f7f\u7528</h2><div class="actions">
 <div class="command"><span>\u5b8c\u6574\u6f14\u793a</span><code>python -m quant.apps.start</code></div>
 <div class="command"><span>\u65e5\u6d41\u7a0b</span><code>python -m quant.apps.start daily</code></div>
-<div class="command"><span>AkShare \u884c\u60c5</span><code>python -m quant.apps.start akshare</code></div>
-<div class="command"><span>AkShare \u56de\u6d4b</span><code>python -m quant.apps.start akshare-backtest</code></div>
+<div class="command"><span>\u81ea\u52a8\u884c\u60c5</span><code>python -m quant.apps.start akshare</code></div>
+<div class="command"><span>\u81ea\u52a8\u56de\u6d4b</span><code>python -m quant.apps.start akshare-backtest</code></div>
 <div class="command"><span>\u72b6\u6001</span><code>python -m quant.apps.start status</code></div>
 <div class="command"><span>\u4f53\u68c0</span><code>python -m quant.apps.start doctor</code></div>
 <div class="command"><span>\u7ec3\u4e60\u6210\u4ea4</span><code>python -m quant.apps.start practice-fills</code></div>

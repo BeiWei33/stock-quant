@@ -20,7 +20,7 @@ def test_web_console_renders_chinese_dashboard(tmp_path, monkeypatch) -> None:
     assert "本地控制台" in html
     assert "上传真实成交 CSV" in html
     assert "全市场选股" in html
-    assert "AkShare 全市场回测" in html
+    assert "自动数据源全市场回测" in html
     assert "多策略组合回测" in html
     assert "参数实验记录" in html
     assert 'name="multi_strategy"' in html
