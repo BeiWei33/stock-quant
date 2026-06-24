@@ -56,6 +56,7 @@ def create_app() -> FastAPI:
     from quant.core.web.api.auth import router as auth_router
     from quant.core.web.api.backtest import router as backtest_router
     from quant.core.web.api.dashboard import router as dashboard_router
+    from quant.core.web.api.experiments import router as experiments_router
     from quant.core.web.api.market import router as market_router
     from quant.core.web.api.monitoring import router as monitoring_router
     from quant.core.web.api.notification import router as notification_router
@@ -77,6 +78,7 @@ def create_app() -> FastAPI:
     app.include_router(monitoring_router, prefix="/api/monitoring", tags=["monitoring"])
     app.include_router(tasks_router, prefix="/api/tasks", tags=["tasks"])
     app.include_router(backtest_router, prefix="/api/backtest", tags=["backtest"])
+    app.include_router(experiments_router, prefix="/api/experiments", tags=["experiments"])
     app.include_router(market_router, prefix="/api/market", tags=["market"])
     app.include_router(notification_router, prefix="/api/notification", tags=["notification"])
 
