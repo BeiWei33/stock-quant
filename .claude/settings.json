@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "stock-quant": {
+      "command": "D:/AI/apps/exe/anaconda3/python.exe",
+      "args": ["-m", "quant.mcp.server"],
+      "cwd": "d:/Agent/codex/workspace/stock-quant"
+    }
+  }
+}
