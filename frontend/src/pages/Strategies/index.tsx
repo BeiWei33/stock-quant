@@ -142,38 +142,64 @@ export default function StrategiesPage() {
 
   const fetchScriptTypes = async () => {
     try {
-      // 脚本策略类型 - 映射到后端支持的策略类型
+      // 脚本策略类型 - 支持自定义参数
       const types: ScriptStrategy[] = [
         {
-          type: 'momentum_rank',
-          name: '动量排名策略',
-          description: '基于动量因子选股，持有排名靠前的股票',
+          type: 'momentum',
+          name: '动量策略',
+          description: '基于价格动量选股',
           params: [
-            { name: 'max_holdings', type: 'int', default: 20, description: '最大持仓数量' },
+            { name: 'lookback', type: 'int', default: 20, description: '回看周期' },
+            { name: 'threshold', type: 'float', default: 0, description: '动量阈值' },
+            { name: 'position_size', type: 'float', default: 0.05, description: '仓位大小' },
           ],
         },
         {
-          type: 'quality_rank',
-          name: '质量排名策略',
-          description: '基于质量因子选股，持有质量评分最高的股票',
+          type: 'ma_cross',
+          name: '均线交叉策略',
+          description: '快慢均线金叉死叉',
           params: [
-            { name: 'max_holdings', type: 'int', default: 20, description: '最大持仓数量' },
+            { name: 'fast_period', type: 'int', default: 5, description: '快线周期' },
+            { name: 'slow_period', type: 'int', default: 20, description: '慢线周期' },
+            { name: 'position_size', type: 'float', default: 0.05, description: '仓位大小' },
           ],
         },
         {
-          type: 'momentum_rank_trend',
-          name: '动量+趋势策略',
-          description: '动量因子选股，叠加趋势过滤',
+          type: 'rsi',
+          name: 'RSI 策略',
+          description: '基于 RSI 超买超卖',
           params: [
-            { name: 'max_holdings', type: 'int', default: 20, description: '最大持仓数量' },
+            { name: 'period', type: 'int', default: 14, description: 'RSI 周期' },
+            { name: 'oversold', type: 'float', default: 30, description: '超卖阈值' },
+            { name: 'overbought', type: 'float', default: 70, description: '超买阈值' },
           ],
         },
         {
-          type: 'quality_rank_trend',
-          name: '质量+趋势策略',
-          description: '质量因子选股，叠加趋势过滤',
+          type: 'bollinger',
+          name: '布林带策略',
+          description: '基于布林带突破',
           params: [
-            { name: 'max_holdings', type: 'int', default: 20, description: '最大持仓数量' },
+            { name: 'period', type: 'int', default: 20, description: '周期' },
+            { name: 'std_dev', type: 'float', default: 2, description: '标准差倍数' },
+          ],
+        },
+        {
+          type: 'dual_ma',
+          name: '双均线策略',
+          description: '双均线 + 止损止盈',
+          params: [
+            { name: 'fast_period', type: 'int', default: 5, description: '快线周期' },
+            { name: 'slow_period', type: 'int', default: 20, description: '慢线周期' },
+            { name: 'stop_loss', type: 'float', default: 0.05, description: '止损比例' },
+            { name: 'take_profit', type: 'float', default: 0.10, description: '止盈比例' },
+          ],
+        },
+        {
+          type: 'custom',
+          name: '自定义脚本',
+          description: '用户自定义 Python 脚本',
+          params: [
+            { name: 'code', type: 'text', default: '', description: 'Python 代码' },
           ],
         },
       ];
