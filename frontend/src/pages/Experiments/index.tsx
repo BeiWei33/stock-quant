@@ -17,6 +17,7 @@ import {
   Spin,
   Alert,
   Steps,
+  Popconfirm,
 } from 'antd';
 import {
   ExperimentOutlined,
@@ -24,6 +25,7 @@ import {
   EyeOutlined,
   TrophyOutlined,
   InfoCircleOutlined,
+  DeleteOutlined,
 } from '@ant-design/icons';
 import ReactECharts from 'echarts-for-react';
 import api from '../../api/client';
@@ -104,13 +106,23 @@ export default function ExperimentsPage() {
     try {
       const response = await api.post(`/api/experiments/${experimentId}/run`);
       if (response.data.code === 200) {
-        message.success('实验已提交运行');
+        message.info('实验已提交运行，请等待完成');
         fetchExperiments();
       } else {
         message.error(response.data.message || '运行失败');
       }
     } catch (error: any) {
       message.error('运行失败: ' + (error.message || '未知错误'));
+    }
+  };
+
+  const handleDelete = async (experimentId: string) => {
+    try {
+      await api.delete(`/api/experiments/${experimentId}`);
+      message.success('已删除');
+      fetchExperiments();
+    } catch (error: any) {
+      message.error('删除失败');
     }
   };
 
@@ -182,7 +194,7 @@ export default function ExperimentsPage() {
     {
       title: '操作',
       key: 'actions',
-      width: 150,
+      width: 180,
       render: (_: any, record: Experiment) => (
         <Space>
           <Tooltip title="查看详情">
@@ -199,6 +211,14 @@ export default function ExperimentsPage() {
               onClick={() => handleRun(record.experiment_id)}
             />
           </Tooltip>
+          <Popconfirm
+            title="确定删除此实验？"
+            onConfirm={() => handleDelete(record.experiment_id)}
+          >
+            <Tooltip title="删除">
+              <Button type="link" danger icon={<DeleteOutlined />} />
+            </Tooltip>
+          </Popconfirm>
         </Space>
       ),
     },

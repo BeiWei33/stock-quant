@@ -1,13 +1,15 @@
-"""Experiments API router."""
+"""Experiments API router with async execution."""
 from __future__ import annotations
 
+import asyncio
 import json
 import sqlite3
+import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, BackgroundTasks, Body
 from pydantic import BaseModel
 
 from quant.apps.web_auth import CurrentUser
@@ -16,6 +18,9 @@ from quant.core.web.schemas.common import ApiResponse
 
 router = APIRouter()
 engine = ExperimentEngine()
+
+# In-memory task storage
+_experiment_tasks: dict[str, dict[str, Any]] = {}
 
 
 class CreateExperimentRequest(BaseModel):
@@ -28,6 +33,58 @@ class CreateExperimentRequest(BaseModel):
     end_date: str = ""
     rebalance: str = "weekly"
     benchmark_code: str = "000300.SH"
+
+
+async def _run_experiment_task(task_id: str, experiment_id: str):
+    """Run experiment in background."""
+    _experiment_tasks[task_id]["status"] = "running"
+    _experiment_tasks[task_id]["started_at"] = datetime.now(UTC).isoformat()
+
+    try:
+        # Get experiment config
+        experiment = engine.get_experiment(experiment_id)
+        if not experiment:
+            _experiment_tasks[task_id].update({
+                "status": "failed",
+                "error": "Experiment not found",
+                "completed_at": datetime.now(UTC).isoformat(),
+            })
+            return
+
+        # Create config
+        config = ExperimentConfig(
+            experiment_id=experiment_id,
+            name=experiment["name"],
+            strategy_id=experiment["strategy_id"],
+            param_grid=experiment["param_grid"],
+            metric=experiment.get("metric", "sharpe"),
+            start_date="2025-01-01",
+            end_date="",
+            rebalance="weekly",
+            benchmark_code="000300.SH",
+        )
+
+        # Run in executor to avoid blocking
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(None, engine.run_grid_search, config)
+
+        _experiment_tasks[task_id].update({
+            "status": "completed",
+            "total_runs": result.total_runs,
+            "best_run": {
+                "params": result.best_run.params if result.best_run else {},
+                "metrics": result.best_run.metrics if result.best_run else {},
+                "score": result.best_run.score if result.best_run else {},
+            } if result.best_run else None,
+            "completed_at": datetime.now(UTC).isoformat(),
+        })
+
+    except Exception as e:
+        _experiment_tasks[task_id].update({
+            "status": "failed",
+            "error": str(e),
+            "completed_at": datetime.now(UTC).isoformat(),
+        })
 
 
 @router.get("")
@@ -52,8 +109,6 @@ async def create_experiment(
     request: CreateExperimentRequest = Body(...),
 ):
     """Create a new experiment."""
-    import uuid
-
     experiment_id = f"exp_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:4]}"
 
     # Save experiment config
@@ -100,37 +155,70 @@ async def create_experiment(
 
 
 @router.post("/{experiment_id}/run")
-async def run_experiment(experiment_id: str, current_user: CurrentUser):
-    """Run an experiment."""
+async def run_experiment(
+    experiment_id: str,
+    current_user: CurrentUser,
+    background_tasks: BackgroundTasks,
+):
+    """Run an experiment (async)."""
     experiment = engine.get_experiment(experiment_id)
     if not experiment:
         return ApiResponse(code=404, message="Experiment not found")
 
-    # Create config from saved experiment
-    config = ExperimentConfig(
-        experiment_id=experiment_id,
-        name=experiment["name"],
-        strategy_id=experiment["strategy_id"],
-        param_grid=experiment["param_grid"],
-        metric=experiment.get("metric", "sharpe"),
-        start_date="2025-01-01",
-        end_date="",
-        rebalance="weekly",
-        benchmark_code="000300.SH",
-    )
+    task_id = f"exp_run_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:4]}"
 
-    # Run experiment
+    _experiment_tasks[task_id] = {
+        "task_id": task_id,
+        "experiment_id": experiment_id,
+        "status": "pending",
+        "created_at": datetime.now(UTC).isoformat(),
+    }
+
+    # Run in background
+    background_tasks.add_task(_run_experiment_task, task_id, experiment_id)
+
+    return ApiResponse(data={
+        "task_id": task_id,
+        "experiment_id": experiment_id,
+        "status": "pending",
+        "message": "实验已提交运行，请等待完成",
+    })
+
+
+@router.get("/status/{task_id}")
+async def get_experiment_status(task_id: str, current_user: CurrentUser):
+    """Get experiment task status."""
+    task = _experiment_tasks.get(task_id)
+    if not task:
+        return ApiResponse(code=404, message="Task not found")
+    return ApiResponse(data=task)
+
+
+@router.delete("/{experiment_id}")
+async def delete_experiment(experiment_id: str, current_user: CurrentUser):
+    """Delete an experiment."""
+    db_path = Path("research_store/experiments.sqlite3")
+    if not db_path.exists():
+        return ApiResponse(code=404, message="Experiment not found")
+
+    conn = sqlite3.connect(str(db_path))
     try:
-        result = engine.run_grid_search(config)
-        return ApiResponse(data={
-            "experiment_id": experiment_id,
-            "status": "completed",
-            "total_runs": result.total_runs,
-            "best_run": {
-                "params": result.best_run.params if result.best_run else {},
-                "metrics": result.best_run.metrics if result.best_run else {},
-                "score": result.best_run.score if result.best_run else {},
-            } if result.best_run else None,
-        })
-    except Exception as e:
-        return ApiResponse(code=500, message=f"Experiment failed: {str(e)}")
+        # Delete experiment runs first
+        conn.execute(
+            "DELETE FROM experiment_runs WHERE experiment_id = ?",
+            (experiment_id,),
+        )
+        # Delete experiment
+        cursor = conn.execute(
+            "DELETE FROM experiments WHERE experiment_id = ?",
+            (experiment_id,),
+        )
+        conn.commit()
+
+        if cursor.rowcount == 0:
+            return ApiResponse(code=404, message="Experiment not found")
+
+    finally:
+        conn.close()
+
+    return ApiResponse(message="Experiment deleted")

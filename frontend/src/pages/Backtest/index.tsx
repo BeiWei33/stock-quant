@@ -15,12 +15,34 @@ import {
   message,
   Tabs,
   Checkbox,
+  Space,
+  Popconfirm,
+  Badge,
 } from 'antd';
+import {
+  ReloadOutlined,
+  DeleteOutlined,
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+  LoadingOutlined,
+  ClockCircleOutlined,
+} from '@ant-design/icons';
 import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
 import api from '../../api/client';
 
 const { RangePicker } = DatePicker;
+
+interface BacktestTask {
+  task_id: string;
+  status: string;
+  params: any;
+  result?: any;
+  error?: string;
+  created_at: string;
+  started_at?: string;
+  completed_at?: string;
+}
 
 interface BacktestMetrics {
   total_return: number;
@@ -46,13 +68,43 @@ interface Experiment {
 export default function BacktestPage() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<any>(null);
-  const [experiments, setExperiments] = useState<Experiment[]>([]);
+  const [tasks, setTasks] = useState<BacktestTask[]>([]);
+  const [polling, setPolling] = useState<string | null>(null);
   const [form] = Form.useForm();
 
   useEffect(() => {
     fetchResults();
-    fetchExperiments();
+    fetchTasks();
   }, []);
+
+  // Polling for running tasks
+  useEffect(() => {
+    if (!polling) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const response = await api.get(`/api/backtest/status/${polling}`);
+        const task = response.data.data;
+
+        if (task.status === 'completed') {
+          message.success('回测完成');
+          setResults(task.result);
+          setPolling(null);
+          fetchTasks();
+          setLoading(false);
+        } else if (task.status === 'failed') {
+          message.error(`回测失败: ${task.error || '未知错误'}`);
+          setPolling(null);
+          fetchTasks();
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('轮询失败', error);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [polling]);
 
   const fetchResults = async () => {
     try {
@@ -63,12 +115,22 @@ export default function BacktestPage() {
     }
   };
 
-  const fetchExperiments = async () => {
+  const fetchTasks = async () => {
     try {
-      const response = await api.get('/api/backtest/experiments');
-      setExperiments(response.data.data || []);
+      const response = await api.get('/api/backtest/tasks');
+      setTasks(response.data.data || []);
     } catch (error) {
-      console.error('获取实验列表失败', error);
+      console.error('获取任务列表失败', error);
+    }
+  };
+
+  const handleDeleteTask = async (taskId: string) => {
+    try {
+      await api.delete(`/api/backtest/tasks/${taskId}`);
+      message.success('已删除');
+      fetchTasks();
+    } catch (error) {
+      message.error('删除失败');
     }
   };
 
@@ -88,19 +150,16 @@ export default function BacktestPage() {
       const response = await api.post('/api/backtest/run', null, { params });
       const result = response.data;
 
-      if (result.code === 200 && result.data?.status === 'OK') {
-        message.success('回测完成');
-        setResults(result.data.result);
-        fetchExperiments();
+      if (result.code === 200 && result.data?.task_id) {
+        message.info('回测任务已提交，请等待完成');
+        setPolling(result.data.task_id);
+        fetchTasks();
       } else {
-        const errorDetail = result.data?.stderr || result.data?.stdout || result.message || 'Unknown error';
-        message.error(`回测失败: ${errorDetail.substring(0, 200)}`);
+        message.error(result.message || '提交失败');
+        setLoading(false);
       }
     } catch (error: any) {
-      const errorData = error.response?.data;
-      const errorMsg = errorData?.data?.stderr || errorData?.data?.stdout || errorData?.message || error.message || '回测执行失败';
-      message.error(`回测失败: ${errorMsg.substring(0, 200)}`);
-    } finally {
+      message.error('提交失败: ' + (error.message || '未知错误'));
       setLoading(false);
     }
   };
@@ -275,6 +334,17 @@ export default function BacktestPage() {
                   </Form>
                 </Card>
 
+                {/* Running Task */}
+                {polling && (
+                  <Card style={{ marginBottom: 16 }}>
+                    <Space>
+                      <Spin />
+                      <span>回测运行中，请等待...</span>
+                      <Tag color="processing">任务ID: {polling}</Tag>
+                    </Space>
+                  </Card>
+                )}
+
                 {/* Results */}
                 {results?.metrics && (
                   <>
@@ -334,14 +404,87 @@ export default function BacktestPage() {
             ),
           },
           {
-            key: 'experiments',
-            label: `实验记录 (${experiments.length})`,
+            key: 'tasks',
+            label: `任务记录 (${tasks.length})`,
             children: (
               <Card>
                 <Table
-                  dataSource={experiments}
-                  columns={experimentColumns}
-                  rowKey="experiment_id"
+                  dataSource={tasks}
+                  columns={[
+                    {
+                      title: '任务ID',
+                      dataIndex: 'task_id',
+                      key: 'task_id',
+                      width: 200,
+                      ellipsis: true,
+                    },
+                    {
+                      title: '策略',
+                      key: 'strategy',
+                      width: 120,
+                      render: (_: any, record: BacktestTask) => record.params?.strategy || '-',
+                    },
+                    {
+                      title: '股票池',
+                      key: 'universe',
+                      width: 100,
+                      render: (_: any, record: BacktestTask) => {
+                        const map: Record<string, string> = { all: '全市场', csi300: '沪深300', csi500: '中证500', csi800: '沪深800' };
+                        return map[record.params?.universe] || record.params?.universe;
+                      },
+                    },
+                    {
+                      title: '状态',
+                      dataIndex: 'status',
+                      key: 'status',
+                      width: 100,
+                      render: (status: string) => {
+                        const config: Record<string, { color: string; icon: any; text: string }> = {
+                          pending: { color: 'default', icon: <ClockCircleOutlined />, text: '等待中' },
+                          running: { color: 'processing', icon: <LoadingOutlined />, text: '运行中' },
+                          completed: { color: 'success', icon: <CheckCircleOutlined />, text: '已完成' },
+                          failed: { color: 'error', icon: <CloseCircleOutlined />, text: '失败' },
+                        };
+                        const c = config[status] || config.pending;
+                        return <Tag icon={c.icon} color={c.color}>{c.text}</Tag>;
+                      },
+                    },
+                    {
+                      title: '创建时间',
+                      dataIndex: 'created_at',
+                      key: 'created_at',
+                      width: 180,
+                      render: (val: string) => val ? new Date(val).toLocaleString() : '-',
+                    },
+                    {
+                      title: '操作',
+                      key: 'actions',
+                      width: 120,
+                      render: (_: any, record: BacktestTask) => (
+                        <Space>
+                          {record.status === 'completed' && (
+                            <Button
+                              type="link"
+                              size="small"
+                              onClick={() => {
+                                setResults(record.result);
+                                message.success('已加载结果');
+                              }}
+                            >
+                              查看
+                            </Button>
+                          )}
+                          <Popconfirm
+                            title="确定删除此任务？"
+                            onConfirm={() => handleDeleteTask(record.task_id)}
+                          >
+                            <Button type="link" size="small" danger icon={<DeleteOutlined />} />
+                          </Popconfirm>
+                        </Space>
+                      ),
+                    },
+                  ]}
+                  rowKey="task_id"
                   pagination={{ pageSize: 20 }}
                   scroll={{ x: 1000 }}
                   size="small"
