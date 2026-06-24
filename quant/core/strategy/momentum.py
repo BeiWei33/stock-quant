@@ -14,7 +14,6 @@ class MomentumRankStrategy(Strategy):
     strategy_id: str = "momentum_rank"
     strategy_version: str = "v1"
     factor_name: str = "momentum_60d"
-    top_pct: float = 0.10
     max_holdings: int = 20
 
     def required_factors(self) -> list[Factor]:
@@ -43,9 +42,8 @@ class MomentumRankStrategy(Strategy):
                 ]
             )
 
-        # 计算选股数量：取 top_pct 比例和 max_holdings 的较小值
-        # 但 top_pct 至少选 1 只，最多选 max_holdings 只
-        top_n = max(1, min(self.max_holdings, int(len(today_factor) * self.top_pct)))
+        # 直接按 max_holdings 选股
+        top_n = min(self.max_holdings, len(today_factor))
         selected = today_factor.nlargest(top_n, self.factor_name).copy()
         selected["trade_date"] = context.trade_date
         selected["strategy_id"] = self.strategy_id

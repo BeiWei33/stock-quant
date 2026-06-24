@@ -441,18 +441,13 @@ export default function ExperimentsPage() {
             rules={[{ required: true, message: '请输入参数搜索空间' }]}
           >
             <Input.TextArea
-              rows={5}
-              placeholder={`动量策略参数示例：
+              rows={4}
+              placeholder={`参数示例（只支持 max_holdings）：
 {
-  "top_pct": [0.1, 0.2, 0.3],
-  "max_holdings": [10, 20, 30]
+  "max_holdings": [10, 15, 20, 25, 30]
 }
 
-质量策略参数示例：
-{
-  "top_pct": [0.1, 0.2],
-  "max_holdings": [15, 20, 25]
-}`}
+这会测试持有 10、15、20、25、30 只股票的效果`}
             />
           </Form.Item>
 
