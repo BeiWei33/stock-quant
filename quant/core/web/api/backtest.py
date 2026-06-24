@@ -86,6 +86,7 @@ async def run_backtest(
     rebalance: str = Query("weekly", description="Rebalance frequency"),
     limit: str = Query("", description="Stock limit"),
     use_local: bool = Query(False, description="Use local market data instead of fetching"),
+    universe: str = Query("all", description="Stock universe (all/csi300/csi500/csi800)"),
 ):
     """Submit a backtest task."""
     import os
@@ -102,6 +103,10 @@ async def run_backtest(
             f'--rebalance={rebalance}',
             f'--output={ROOT / "research_store" / "reports" / "akshare_backtest.json"}',
         ]
+
+        # Add universe filter
+        if universe and universe != "all":
+            cmd_parts.append(f'--universe={universe}')
     else:
         # Fetch new data and run backtest
         cmd_parts = [

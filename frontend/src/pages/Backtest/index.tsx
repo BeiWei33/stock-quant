@@ -80,6 +80,7 @@ export default function BacktestPage() {
         end_date: values.dateRange?.[1]?.format('YYYY-MM-DD') || new Date().toISOString().split('T')[0],
         rebalance: values.rebalance || 'weekly',
         use_local: values.useLocal || false,
+        universe: values.universe || 'all',
       };
       if (values.limit) params.limit = values.limit;
 
@@ -230,12 +231,20 @@ export default function BacktestPage() {
                     form={form}
                     onFinish={handleRunBacktest}
                     layout="inline"
-                    initialValues={{ rebalance: 'weekly' }}
+                    initialValues={{ rebalance: 'weekly', universe: 'all' }}
                   >
                     <Form.Item label="日期范围" name="dateRange">
                       <RangePicker
                         defaultValue={[dayjs('2025-01-01'), dayjs()]}
                       />
+                    </Form.Item>
+                    <Form.Item label="股票池" name="universe">
+                      <Select style={{ width: 150 }}>
+                        <Select.Option value="all">全市场 (717只)</Select.Option>
+                        <Select.Option value="csi300">沪深300 (300只)</Select.Option>
+                        <Select.Option value="csi500">中证500 (500只)</Select.Option>
+                        <Select.Option value="csi800">沪深300+中证500</Select.Option>
+                      </Select>
                     </Form.Item>
                     <Form.Item label="再平衡" name="rebalance">
                       <Select style={{ width: 120 }}>
@@ -244,7 +253,7 @@ export default function BacktestPage() {
                       </Select>
                     </Form.Item>
                     <Form.Item label="股票数" name="limit">
-                      <Input placeholder="默认全市场" style={{ width: 120 }} />
+                      <Input placeholder="默认全池" style={{ width: 120 }} />
                     </Form.Item>
                     <Form.Item name="useLocal" valuePropName="checked">
                       <Checkbox>使用本地数据</Checkbox>

@@ -26,6 +26,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--initial-cash", type=float, default=1_000_000)
     parser.add_argument("--rebalance", choices=["weekly", "monthly"], default="weekly")
     parser.add_argument("--strategy", default="momentum_rank")
+    parser.add_argument("--universe", choices=["all", "csi300", "csi500", "csi800"], default="all",
+                        help="Stock universe filter")
     parser.add_argument(
         "--multi-strategy",
         help="Comma-separated strategy ids, for example: momentum_rank,quality_rank.",
@@ -53,6 +55,11 @@ def main() -> None:
             )
         stocks = store.load_stocks()
         benchmark_bars = store.load_benchmark_bars(args.benchmark_code)
+
+        # Apply universe filter
+        if args.universe and args.universe != "all":
+            bars = _filter_by_universe(bars, args.universe)
+            print(f"[Universe] Filtered to {args.universe}: {bars['ts_code'].nunique()} stocks")
     else:
         if not args.bars or not args.stocks:
             raise ValueError("either --sqlite or both --bars and --stocks are required")
@@ -289,6 +296,55 @@ def _filter_bars(bars, start_date: str | None, end_date: str | None):
     if end is not None:
         bars = bars[bars["trade_date"] <= end]
     return bars.reset_index(drop=True)
+
+
+def _filter_by_universe(bars, universe: str):
+    """Filter bars by stock universe (csi300/csi500/csi800)."""
+    import akshare as ak
+
+    # Get index components
+    csi300_codes = set()
+    csi500_codes = set()
+
+    if universe in ["csi300", "csi800"]:
+        try:
+            df = ak.index_stock_cons(symbol="000300")
+            for code in df["品种代码"]:
+                if code.startswith("6"):
+                    csi300_codes.add(f"{code}.SH")
+                else:
+                    csi300_codes.add(f"{code}.SZ")
+        except Exception as e:
+            print(f"[Warning] Failed to get CSI 300 components: {e}")
+
+    if universe in ["csi500", "csi800"]:
+        try:
+            df = ak.index_stock_cons(symbol="000905")
+            for code in df["品种代码"]:
+                if code.startswith("6"):
+                    csi500_codes.add(f"{code}.SH")
+                else:
+                    csi500_codes.add(f"{code}.SZ")
+        except Exception as e:
+            print(f"[Warning] Failed to get CSI 500 components: {e}")
+
+    # Combine codes
+    if universe == "csi300":
+        valid_codes = csi300_codes
+    elif universe == "csi500":
+        valid_codes = csi500_codes
+    elif universe == "csi800":
+        valid_codes = csi300_codes | csi500_codes
+    else:
+        return bars
+
+    if not valid_codes:
+        print(f"[Warning] No stock codes found for {universe}, using all stocks")
+        return bars
+
+    # Filter bars
+    filtered = bars[bars["ts_code"].isin(valid_codes)]
+    return filtered.reset_index(drop=True)
 
 
 def _render_markdown_report(
