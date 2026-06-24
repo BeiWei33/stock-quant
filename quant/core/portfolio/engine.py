@@ -10,7 +10,6 @@ class PortfolioConfig:
     max_single_weight: float = 0.10
     max_industry_weight: float = 0.30
     cash_reserve: float = 0.10
-    max_holdings: int = 20
 
 
 class PortfolioEngine:
@@ -21,7 +20,8 @@ class PortfolioEngine:
         if signals.empty:
             return pd.DataFrame(columns=["ts_code", "target_weight"])
 
-        selected = signals.head(self.config.max_holdings).copy()
+        # 直接使用所有信号，不再限制数量（由策略控制）
+        selected = signals.copy()
         budget = max(0.0, 1.0 - self.config.cash_reserve)
         n_buy = len(selected[selected["signal_type"] == "BUY"])
         if n_buy == 0:
