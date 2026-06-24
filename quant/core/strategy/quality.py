@@ -42,7 +42,8 @@ class QualityRankStrategy(Strategy):
                 ]
             )
 
-        top_n = min(self.max_holdings, max(1, int(len(today_factor) * self.top_pct)))
+        # 计算选股数量：取 top_pct 比例和 max_holdings 的较小值
+        top_n = max(1, min(self.max_holdings, int(len(today_factor) * self.top_pct)))
         selected = today_factor.nlargest(top_n, self.factor_name).copy()
         selected["trade_date"] = context.trade_date
         selected["strategy_id"] = self.strategy_id
