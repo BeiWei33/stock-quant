@@ -10,6 +10,7 @@ import {
   ThunderboltOutlined,
   LogoutOutlined,
   UserOutlined,
+  SettingOutlined,
 } from '@ant-design/icons';
 import { useAuthStore } from '../../store/auth';
 
@@ -30,6 +31,11 @@ const menuItems = [
     key: '/positions',
     icon: <FundOutlined />,
     label: '持仓管理',
+  },
+  {
+    key: '/strategies',
+    icon: <SettingOutlined />,
+    label: '策略管理',
   },
   {
     key: '/backtest',
