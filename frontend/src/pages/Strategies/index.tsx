@@ -581,48 +581,128 @@ export default function StrategiesPage() {
 
       {/* 脚本策略 Modal */}
       <Modal
-        title="脚本策略配置"
+        title="创建脚本策略"
         open={scriptVisible}
-        onCancel={() => setScriptVisible(false)}
+        onCancel={() => {
+          setScriptVisible(false);
+          scriptForm.resetFields();
+        }}
         footer={null}
-        width={800}
+        width={900}
       >
         <Alert
           message="脚本策略说明"
-          description="选择策略类型，配置参数，系统会自动生成可执行的 Python 脚本。"
+          description="选择策略类型，配置参数，系统会自动生成可执行的 Python 脚本并创建策略。"
           type="info"
+          showIcon
           style={{ marginBottom: 16 }}
         />
 
-        <Form form={scriptForm} layout="vertical">
-          <Form.Item label="策略类型">
-            <Select placeholder="选择策略类型">
-              {scriptTypes.map(type => (
-                <Select.Option key={type.type} value={type.type}>
-                  {type.name} - {type.description}
-                </Select.Option>
-              ))}
-            </Select>
+        <Form
+          form={scriptForm}
+          layout="vertical"
+          onFinish={(values) => {
+            // 创建脚本策略
+            const newStrategy: StrategyConfig = {
+              strategy_id: `script_${values.script_type}_${Date.now()}`,
+              strategy_name: values.strategy_name || `${values.script_type} 策略`,
+              strategy_type: values.script_type,
+              strategy_version: 'v1',
+              description: values.description || `基于 ${values.script_type} 的脚本策略`,
+              status: 'draft',
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            };
+
+            const updated = [...strategies, newStrategy];
+            setStrategies(updated);
+            localStorage.setItem('strategies', JSON.stringify(updated));
+            setScriptVisible(false);
+            scriptForm.resetFields();
+            message.success('脚本策略创建成功！');
+          }}
+        >
+          <Card title="步骤1: 选择策略类型" size="small" style={{ marginBottom: 16 }}>
+            <Form.Item
+              label="策略类型"
+              name="script_type"
+              rules={[{ required: true, message: '请选择策略类型' }]}
+            >
+              <Select placeholder="选择策略类型" size="large">
+                {scriptTypes.map(type => (
+                  <Select.Option key={type.type} value={type.type}>
+                    <div>
+                      <strong>{type.name}</strong>
+                      <div style={{ fontSize: 12, color: '#666' }}>{type.description}</div>
+                    </div>
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              noStyle
+              shouldUpdate={(prevValues, currentValues) => prevValues.script_type !== currentValues.script_type}
+            >
+              {({ getFieldValue }) => {
+                const selectedType = getFieldValue('script_type');
+                const typeInfo = scriptTypes.find(t => t.type === selectedType);
+                if (!typeInfo) return null;
+
+                return (
+                  <Card size="small" style={{ background: '#f5f5f5' }}>
+                    <Descriptions column={2} size="small">
+                      <Descriptions.Item label="策略名称">{typeInfo.name}</Descriptions.Item>
+                      <Descriptions.Item label="类型">{typeInfo.type}</Descriptions.Item>
+                      <Descriptions.Item label="描述" span={2}>{typeInfo.description}</Descriptions.Item>
+                    </Descriptions>
+                    <div style={{ marginTop: 8 }}>
+                      <strong>参数列表：</strong>
+                      <ul style={{ margin: '4px 0', paddingLeft: 20 }}>
+                        {typeInfo.params.map(p => (
+                          <li key={p.name}>
+                            {p.name} ({p.type}): {p.description} - 默认值: {String(p.default)}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Card>
+                );
+              }}
+            </Form.Item>
+          </Card>
+
+          <Card title="步骤2: 配置策略信息" size="small" style={{ marginBottom: 16 }}>
+            <Form.Item
+              label="策略名称"
+              name="strategy_name"
+              rules={[{ required: true, message: '请输入策略名称' }]}
+            >
+              <Input placeholder="例如: 我的动量策略" />
+            </Form.Item>
+
+            <Form.Item
+              label="策略描述"
+              name="description"
+            >
+              <TextArea rows={2} placeholder="描述这个策略的用途..." />
+            </Form.Item>
+          </Card>
+
+          <Form.Item>
+            <Space>
+              <Button type="primary" htmlType="submit" size="large">
+                创建脚本策略
+              </Button>
+              <Button onClick={() => {
+                setScriptVisible(false);
+                scriptForm.resetFields();
+              }}>
+                取消
+              </Button>
+            </Space>
           </Form.Item>
         </Form>
-
-        <Table
-          dataSource={scriptTypes}
-          rowKey="type"
-          size="small"
-          pagination={false}
-          columns={[
-            { title: '类型', dataIndex: 'type', key: 'type', width: 100 },
-            { title: '名称', dataIndex: 'name', key: 'name', width: 120 },
-            { title: '描述', dataIndex: 'description', key: 'description' },
-            {
-              title: '参数',
-              dataIndex: 'params',
-              key: 'params',
-              render: (params: any[]) => params.map(p => p.name).join(', '),
-            },
-          ]}
-        />
       </Modal>
     </div>
   );
