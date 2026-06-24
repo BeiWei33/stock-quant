@@ -16,3 +16,4 @@ test.txt
 *.db
 frontend/node_modules/
 frontend/dist/
+docs/
