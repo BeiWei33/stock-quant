@@ -70,12 +70,47 @@ export default function BacktestPage() {
   const [results, setResults] = useState<any>(null);
   const [tasks, setTasks] = useState<BacktestTask[]>([]);
   const [polling, setPolling] = useState<string | null>(null);
+  const [strategies, setStrategies] = useState<any[]>([]);
   const [form] = Form.useForm();
 
   useEffect(() => {
     fetchResults();
     fetchTasks();
+    loadStrategies();
   }, []);
+
+  // 从 localStorage 加载策略列表
+  const loadStrategies = () => {
+    const defaultStrategies = [
+      { strategy_id: 'momentum_rank', strategy_name: '动量排名策略', strategy_type: 'momentum_rank' },
+      { strategy_id: 'quality_rank', strategy_name: '质量排名策略', strategy_type: 'quality_rank' },
+      { strategy_id: 'momentum_rank_trend', strategy_name: '动量+趋势策略', strategy_type: 'momentum_rank_trend' },
+      { strategy_id: 'quality_rank_trend', strategy_name: '质量+趋势策略', strategy_type: 'quality_rank_trend' },
+    ];
+
+    try {
+      const saved = localStorage.getItem('strategies');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // 合并默认策略和用户创建的策略
+        const allStrategies = [...defaultStrategies];
+        parsed.forEach((s: any) => {
+          if (!allStrategies.find(d => d.strategy_id === s.strategy_id)) {
+            allStrategies.push({
+              strategy_id: s.strategy_id,
+              strategy_name: s.strategy_name,
+              strategy_type: s.strategy_type,
+            });
+          }
+        });
+        setStrategies(allStrategies);
+      } else {
+        setStrategies(defaultStrategies);
+      }
+    } catch {
+      setStrategies(defaultStrategies);
+    }
+  };
 
   // Polling for running tasks
   useEffect(() => {
@@ -300,10 +335,11 @@ export default function BacktestPage() {
                     </Form.Item>
                     <Form.Item label="策略" name="strategy">
                       <Select style={{ width: 180 }}>
-                        <Select.Option value="momentum_rank">动量排名</Select.Option>
-                        <Select.Option value="quality_rank">质量排名</Select.Option>
-                        <Select.Option value="momentum_rank_trend">动量+趋势</Select.Option>
-                        <Select.Option value="quality_rank_trend">质量+趋势</Select.Option>
+                        {strategies.map(s => (
+                          <Select.Option key={s.strategy_id} value={s.strategy_type}>
+                            {s.strategy_name}
+                          </Select.Option>
+                        ))}
                       </Select>
                     </Form.Item>
                     <Form.Item label="股票池" name="universe">

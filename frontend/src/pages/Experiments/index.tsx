@@ -60,10 +60,44 @@ export default function ExperimentsPage() {
   const [detailVisible, setDetailVisible] = useState(false);
   const [createVisible, setCreateVisible] = useState(false);
   const [createForm] = Form.useForm();
+  const [strategies, setStrategies] = useState<any[]>([]);
 
   useEffect(() => {
     fetchExperiments();
+    loadStrategies();
   }, []);
+
+  // 从 localStorage 加载策略列表
+  const loadStrategies = () => {
+    const defaultStrategies = [
+      { strategy_id: 'momentum_rank', strategy_name: '动量排名策略', strategy_type: 'momentum_rank' },
+      { strategy_id: 'quality_rank', strategy_name: '质量排名策略', strategy_type: 'quality_rank' },
+      { strategy_id: 'momentum_rank_trend', strategy_name: '动量+趋势策略', strategy_type: 'momentum_rank_trend' },
+      { strategy_id: 'quality_rank_trend', strategy_name: '质量+趋势策略', strategy_type: 'quality_rank_trend' },
+    ];
+
+    try {
+      const saved = localStorage.getItem('strategies');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const allStrategies = [...defaultStrategies];
+        parsed.forEach((s: any) => {
+          if (!allStrategies.find(d => d.strategy_id === s.strategy_id)) {
+            allStrategies.push({
+              strategy_id: s.strategy_id,
+              strategy_name: s.strategy_name,
+              strategy_type: s.strategy_type,
+            });
+          }
+        });
+        setStrategies(allStrategies);
+      } else {
+        setStrategies(defaultStrategies);
+      }
+    } catch {
+      setStrategies(defaultStrategies);
+    }
+  };
 
   const fetchExperiments = async () => {
     setLoading(true);
@@ -419,12 +453,10 @@ export default function ExperimentsPage() {
             rules={[{ required: true, message: '请选择策略' }]}
           >
             <Select
-              options={[
-                { label: '动量排名策略 (momentum_rank)', value: 'momentum_rank' },
-                { label: '质量排名策略 (quality_rank)', value: 'quality_rank' },
-                { label: '动量+趋势过滤 (momentum_rank_trend)', value: 'momentum_rank_trend' },
-                { label: '质量+趋势过滤 (quality_rank_trend)', value: 'quality_rank_trend' },
-              ]}
+              options={strategies.map(s => ({
+                label: `${s.strategy_name} (${s.strategy_type})`,
+                value: s.strategy_type,
+              }))}
             />
           </Form.Item>
 

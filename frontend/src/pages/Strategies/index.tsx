@@ -602,6 +602,21 @@ export default function StrategiesPage() {
           form={scriptForm}
           layout="vertical"
           onFinish={(values) => {
+            // 收集参数
+            const params: Record<string, any> = {};
+            const selectedType = scriptTypes.find(t => t.type === values.script_type);
+            if (selectedType) {
+              selectedType.params.forEach(p => {
+                const value = values[`param_${p.name}`];
+                if (value !== undefined && value !== '') {
+                  params[p.name] = p.type === 'int' ? parseInt(value) :
+                                   p.type === 'float' ? parseFloat(value) : value;
+                } else {
+                  params[p.name] = p.default;
+                }
+              });
+            }
+
             // 创建脚本策略
             const newStrategy: StrategyConfig = {
               strategy_id: `script_${values.script_type}_${Date.now()}`,
@@ -639,55 +654,68 @@ export default function StrategiesPage() {
                 ))}
               </Select>
             </Form.Item>
+          </Card>
 
-            <Form.Item
-              noStyle
-              shouldUpdate={(prevValues, currentValues) => prevValues.script_type !== currentValues.script_type}
-            >
-              {({ getFieldValue }) => {
-                const selectedType = getFieldValue('script_type');
-                const typeInfo = scriptTypes.find(t => t.type === selectedType);
-                if (!typeInfo) return null;
+          <Form.Item
+            noStyle
+            shouldUpdate={(prevValues, currentValues) => prevValues.script_type !== currentValues.script_type}
+          >
+            {({ getFieldValue }) => {
+              const selectedType = getFieldValue('script_type');
+              const typeInfo = scriptTypes.find(t => t.type === selectedType);
+              if (!typeInfo) return null;
 
-                return (
-                  <Card size="small" style={{ background: '#f5f5f5' }}>
-                    <Descriptions column={2} size="small">
-                      <Descriptions.Item label="策略名称">{typeInfo.name}</Descriptions.Item>
-                      <Descriptions.Item label="类型">{typeInfo.type}</Descriptions.Item>
-                      <Descriptions.Item label="描述" span={2}>{typeInfo.description}</Descriptions.Item>
-                    </Descriptions>
-                    <div style={{ marginTop: 8 }}>
-                      <strong>参数列表：</strong>
-                      <ul style={{ margin: '4px 0', paddingLeft: 20 }}>
-                        {typeInfo.params.map(p => (
-                          <li key={p.name}>
-                            {p.name} ({p.type}): {p.description} - 默认值: {String(p.default)}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+              return (
+                <>
+                  <Card title="步骤2: 配置策略参数" size="small" style={{ marginBottom: 16 }}>
+                    <Alert
+                      message={`${typeInfo.name} 参数配置`}
+                      description={typeInfo.description}
+                      type="info"
+                      style={{ marginBottom: 16 }}
+                    />
+                    {typeInfo.params.filter(p => p.type !== 'text').map(param => (
+                      <Form.Item
+                        key={param.name}
+                        label={
+                          <Space>
+                            {param.description}
+                            <Tag>{param.type}</Tag>
+                          </Space>
+                        }
+                        name={`param_${param.name}`}
+                        initialValue={String(param.default)}
+                        rules={[{ required: true, message: `请输入${param.description}` }]}
+                      >
+                        <Input
+                          type={param.type === 'int' || param.type === 'float' ? 'number' : 'text'}
+                          placeholder={`默认值: ${param.default}`}
+                          step={param.type === 'float' ? '0.01' : '1'}
+                        />
+                      </Form.Item>
+                    ))}
                   </Card>
-                );
-              }}
-            </Form.Item>
-          </Card>
 
-          <Card title="步骤2: 配置策略信息" size="small" style={{ marginBottom: 16 }}>
-            <Form.Item
-              label="策略名称"
-              name="strategy_name"
-              rules={[{ required: true, message: '请输入策略名称' }]}
-            >
-              <Input placeholder="例如: 我的动量策略" />
-            </Form.Item>
+                  <Card title="步骤3: 配置策略信息" size="small" style={{ marginBottom: 16 }}>
+                    <Form.Item
+                      label="策略名称"
+                      name="strategy_name"
+                      rules={[{ required: true, message: '请输入策略名称' }]}
+                    >
+                      <Input placeholder={`例如: 我的${typeInfo.name}`} />
+                    </Form.Item>
 
-            <Form.Item
-              label="策略描述"
-              name="description"
-            >
-              <TextArea rows={2} placeholder="描述这个策略的用途..." />
-            </Form.Item>
-          </Card>
+                    <Form.Item
+                      label="策略描述"
+                      name="description"
+                    >
+                      <TextArea rows={2} placeholder="描述这个策略的用途..." />
+                    </Form.Item>
+                  </Card>
+                </>
+              );
+            }}
+          </Form.Item>
 
           <Form.Item>
             <Space>
