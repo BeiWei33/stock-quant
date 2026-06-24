@@ -2,10 +2,13 @@
 from __future__ import annotations
 
 import json
+import sqlite3
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Body
+from pydantic import BaseModel
 
 from quant.apps.web_auth import CurrentUser
 from quant.core.experiment.engine import ExperimentConfig, ExperimentEngine
@@ -13,6 +16,18 @@ from quant.core.web.schemas.common import ApiResponse
 
 router = APIRouter()
 engine = ExperimentEngine()
+
+
+class CreateExperimentRequest(BaseModel):
+    """Request model for creating experiment."""
+    name: str
+    strategy_id: str
+    param_grid: dict[str, Any]
+    metric: str = "sharpe"
+    start_date: str = "2025-01-01"
+    end_date: str = ""
+    rebalance: str = "weekly"
+    benchmark_code: str = "000300.SH"
 
 
 @router.get("")
@@ -34,55 +49,40 @@ async def get_experiment(experiment_id: str, current_user: CurrentUser):
 @router.post("")
 async def create_experiment(
     current_user: CurrentUser,
-    name: str = Query(..., description="Experiment name"),
-    strategy_id: str = Query(..., description="Strategy ID"),
-    param_grid: str = Query(..., description="Parameter grid (JSON)"),
-    metric: str = Query("sharpe", description="Optimization metric"),
-    start_date: str = Query("2025-01-01", description="Start date"),
-    end_date: str = Query("", description="End date"),
-    rebalance: str = Query("weekly", description="Rebalance frequency"),
-    benchmark_code: str = Query("000300.SH", description="Benchmark code"),
+    request: CreateExperimentRequest = Body(...),
 ):
     """Create a new experiment."""
     import uuid
-    from datetime import UTC, datetime
-
-    try:
-        params = json.loads(param_grid)
-    except json.JSONDecodeError as e:
-        return ApiResponse(code=400, message=f"Invalid param_grid JSON: {e}")
 
     experiment_id = f"exp_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:4]}"
 
-    config = ExperimentConfig(
-        experiment_id=experiment_id,
-        name=name,
-        strategy_id=strategy_id,
-        param_grid=params,
-        metric=metric,
-        start_date=start_date,
-        end_date=end_date,
-        rebalance=rebalance,
-        benchmark_code=benchmark_code,
-    )
-
-    # Save experiment config (don't run yet)
-    import sqlite3
-    from datetime import UTC, datetime
-
+    # Save experiment config
     db_path = Path("research_store/experiments.sqlite3")
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+
     conn = sqlite3.connect(str(db_path))
     try:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS experiments (
+                experiment_id TEXT PRIMARY KEY,
+                name TEXT,
+                strategy_id TEXT,
+                param_grid TEXT,
+                metric TEXT,
+                status TEXT,
+                created_at TEXT
+            )
+        """)
         conn.execute(
-            """INSERT OR REPLACE INTO experiments
+            """INSERT INTO experiments
                (experiment_id, name, strategy_id, param_grid, metric, status, created_at)
                VALUES (?, ?, ?, ?, ?, ?, ?)""",
             (
                 experiment_id,
-                name,
-                strategy_id,
-                json.dumps(params),
-                metric,
+                request.name,
+                request.strategy_id,
+                json.dumps(request.param_grid),
+                request.metric,
                 "created",
                 datetime.now(UTC).isoformat(),
             ),
@@ -93,8 +93,8 @@ async def create_experiment(
 
     return ApiResponse(data={
         "experiment_id": experiment_id,
-        "name": name,
-        "strategy_id": strategy_id,
+        "name": request.name,
+        "strategy_id": request.strategy_id,
         "status": "created",
     })
 
