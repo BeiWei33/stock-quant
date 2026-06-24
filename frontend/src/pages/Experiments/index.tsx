@@ -445,6 +445,24 @@ export default function ExperimentsPage() {
               </Descriptions.Item>
             </Descriptions>
 
+            {selectedExperiment.status !== 'completed' && (
+              <Card size="small" style={{ marginBottom: 16, textAlign: 'center' }}>
+                <Space direction="vertical">
+                  <span>实验尚未运行</span>
+                  <Button
+                    type="primary"
+                    icon={<PlayCircleOutlined />}
+                    onClick={() => {
+                      handleRun(selectedExperiment.experiment_id);
+                      setDetailVisible(false);
+                    }}
+                  >
+                    运行实验
+                  </Button>
+                </Space>
+              </Card>
+            )}
+
             {selectedExperiment.runs && selectedExperiment.runs.length > 0 && (
               <>
                 <Card title="评分雷达图（最优参数）" size="small" style={{ marginBottom: 16 }}>
@@ -462,6 +480,12 @@ export default function ExperimentsPage() {
                   />
                 </Card>
               </>
+            )}
+
+            {selectedExperiment.status === 'completed' && (!selectedExperiment.runs || selectedExperiment.runs.length === 0) && (
+              <Card size="small" style={{ textAlign: 'center' }}>
+                <span>实验已完成但无运行结果</span>
+              </Card>
             )}
           </div>
         )}
