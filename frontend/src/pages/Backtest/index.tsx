@@ -14,6 +14,7 @@ import {
   Spin,
   message,
   Tabs,
+  Checkbox,
 } from 'antd';
 import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
@@ -78,21 +79,25 @@ export default function BacktestPage() {
         start_date: values.dateRange?.[0]?.format('YYYY-MM-DD') || '2025-01-01',
         end_date: values.dateRange?.[1]?.format('YYYY-MM-DD') || new Date().toISOString().split('T')[0],
         rebalance: values.rebalance || 'weekly',
+        use_local: values.useLocal || false,
       };
       if (values.limit) params.limit = values.limit;
 
       const response = await api.post('/api/backtest/run', null, { params });
-      const data = response.data.data;
+      const result = response.data;
 
-      if (data.status === 'OK') {
+      if (result.code === 200 && result.data?.status === 'OK') {
         message.success('回测完成');
-        setResults(data.result);
+        setResults(result.data.result);
         fetchExperiments();
       } else {
-        message.error(`回测失败: ${data.stderr || 'Unknown error'}`);
+        const errorDetail = result.data?.stderr || result.data?.stdout || result.message || 'Unknown error';
+        message.error(`回测失败: ${errorDetail.substring(0, 200)}`);
       }
     } catch (error: any) {
-      message.error('回测执行失败');
+      const errorData = error.response?.data;
+      const errorMsg = errorData?.data?.stderr || errorData?.data?.stdout || errorData?.message || error.message || '回测执行失败';
+      message.error(`回测失败: ${errorMsg.substring(0, 200)}`);
     } finally {
       setLoading(false);
     }
@@ -240,6 +245,9 @@ export default function BacktestPage() {
                     </Form.Item>
                     <Form.Item label="股票数" name="limit">
                       <Input placeholder="默认全市场" style={{ width: 120 }} />
+                    </Form.Item>
+                    <Form.Item name="useLocal" valuePropName="checked">
+                      <Checkbox>使用本地数据</Checkbox>
                     </Form.Item>
                     <Form.Item>
                       <Button type="primary" htmlType="submit" loading={loading}>

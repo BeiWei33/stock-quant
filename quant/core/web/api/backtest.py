@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -15,6 +16,31 @@ from quant.core.web.schemas.common import ApiResponse
 router = APIRouter()
 # backtest.py is at quant/core/web/api/backtest.py, so parents[4] is project root
 ROOT = Path(__file__).resolve().parents[4]
+
+
+def _get_python_exe() -> str:
+    """Get the correct Python executable path, avoiding Windows Store stub."""
+    exe = Path(sys.executable)
+    if exe.exists() and "WindowsApps" not in str(exe):
+        return str(exe)
+
+    candidates = [
+        Path(r"D:\AI\apps\exe\anaconda3\python.exe"),
+        Path.home() / "anaconda3" / "python.exe",
+        Path.home() / "miniconda3" / "python.exe",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return str(candidate)
+
+    python_path = shutil.which("python")
+    if python_path and "WindowsApps" not in python_path:
+        return python_path
+
+    return sys.executable
+
+
+PYTHON_EXE = _get_python_exe()
 
 
 @router.get("/results")
@@ -59,24 +85,36 @@ async def run_backtest(
     end_date: str = Query(..., description="End date (YYYY-MM-DD)", min_length=10),
     rebalance: str = Query("weekly", description="Rebalance frequency"),
     limit: str = Query("", description="Stock limit"),
+    use_local: bool = Query(False, description="Use local market data instead of fetching"),
 ):
     """Submit a backtest task."""
     import os
 
-    # Use python command directly (not sys.executable which might be different)
-    python_cmd = "python"
+    # Check if using local data
+    local_db = ROOT / "research_store" / "market_data.sqlite3"
+    if use_local and local_db.exists():
+        # Run backtest directly on local data
+        cmd_parts = [
+            PYTHON_EXE, "-m", "quant.apps.backtest",
+            f'--sqlite={local_db}',
+            f'--start-date={start_date}',
+            f'--end-date={end_date}',
+            f'--rebalance={rebalance}',
+            f'--output={ROOT / "research_store" / "reports" / "akshare_backtest.json"}',
+        ]
+    else:
+        # Fetch new data and run backtest
+        cmd_parts = [
+            PYTHON_EXE, "-X", "utf8", "-m",
+            "quant.apps.start", "akshare-backtest",
+            f'--start-date={start_date}',
+            f'--end-date={end_date}',
+        ]
 
-    cmd_parts = [
-        python_cmd, "-X", "utf8", "-m",
-        "quant.apps.start", "akshare-backtest",
-        f'--start-date={start_date}',
-        f'--end-date={end_date}',
-    ]
-
-    if rebalance:
-        cmd_parts.append(f'--rebalance={rebalance}')
-    if limit:
-        cmd_parts.append(f'--limit={limit}')
+        if rebalance:
+            cmd_parts.append(f'--rebalance={rebalance}')
+        if limit:
+            cmd_parts.append(f'--limit={limit}')
 
     # Set PYTHONPATH and run
     python_path = str(ROOT)

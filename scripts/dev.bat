@@ -7,12 +7,27 @@ echo  Personal Quant Web Console - Dev Mode
 echo ==========================================
 echo.
 
-REM Check Python
+REM Find Python (prefer Anaconda over Windows Store)
+set "PYTHON_CMD="
 where python >nul 2>nul
-if %errorlevel% neq 0 (
-    echo Error: Python not found
+if %errorlevel% equ 0 (
+    for /f "tokens=*" %%i in ('where python') do (
+        echo %%i | findstr /I "WindowsApps" >nul
+        if errorlevel 1 set "PYTHON_CMD=%%i"
+    )
+)
+REM Fallback to common Anaconda path
+if "%PYTHON_CMD%"=="" (
+    if exist "D:\AI\apps\exe\anaconda3\python.exe" set "PYTHON_CMD=D:\AI\apps\exe\anaconda3\python.exe"
+    if exist "%USERPROFILE%\anaconda3\python.exe" set "PYTHON_CMD=%USERPROFILE%\anaconda3\python.exe"
+    if exist "%USERPROFILE%\miniconda3\python.exe" set "PYTHON_CMD=%USERPROFILE%\miniconda3\python.exe"
+)
+if "%PYTHON_CMD%"=="" (
+    echo Error: Python not found. Please add Anaconda to PATH
+    pause
     exit /b 1
 )
+echo Using Python: %PYTHON_CMD%
 
 REM Check Node.js
 where node >nul 2>nul
@@ -23,7 +38,7 @@ if %errorlevel% neq 0 (
 
 REM Install Python dependencies if needed
 echo Checking Python dependencies...
-pip install fastapi uvicorn python-jose passlib python-multipart pyyaml 2>nul
+"%PYTHON_CMD%" -m pip install fastapi uvicorn python-jose python-multipart pyyaml httpx websockets 2>nul
 
 REM Install frontend dependencies if needed
 echo Checking frontend dependencies...
@@ -37,7 +52,7 @@ REM Start FastAPI backend
 echo.
 echo Starting FastAPI backend on port 8000...
 cd /d "%~dp0.."
-start "FastAPI Backend" python -m quant.apps.web --port 8000
+start "FastAPI Backend" "%PYTHON_CMD%" -m quant.apps.web --port 8000
 
 REM Wait for backend to start
 timeout /t 2 /nobreak >nul

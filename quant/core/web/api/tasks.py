@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import random
+import shutil
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -17,6 +19,35 @@ router = APIRouter()
 
 ROOT = Path(__file__).resolve().parents[4]
 RUN_DIR = ROOT / "research_store" / "web_runs"
+
+
+def _get_python_exe() -> str:
+    """Get the correct Python executable path, avoiding Windows Store stub."""
+    # Check if current sys.executable is valid (not Windows Store stub)
+    exe = Path(sys.executable)
+    if exe.exists() and "WindowsApps" not in str(exe):
+        return str(exe)
+
+    # Try to find Anaconda Python
+    candidates = [
+        Path(r"D:\AI\apps\exe\anaconda3\python.exe"),
+        Path.home() / "anaconda3" / "python.exe",
+        Path.home() / "miniconda3" / "python.exe",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return str(candidate)
+
+    # Fallback: try to find python in PATH (excluding WindowsApps)
+    python_path = shutil.which("python")
+    if python_path and "WindowsApps" not in python_path:
+        return python_path
+
+    # Last resort: use sys.executable
+    return sys.executable
+
+
+PYTHON_EXE = _get_python_exe()
 
 
 @router.websocket("/ws")
@@ -54,7 +85,7 @@ async def get_task_status(task_id: str, current_user: CurrentUser):
 @router.post("/daily")
 async def run_daily(current_user: CurrentUser):
     """Run daily workflow with async execution."""
-    return await _run_task_async("daily", [sys.executable, "-m", "quant.apps.start", "daily"])
+    return await _run_task_async("daily", [PYTHON_EXE, "-m", "quant.apps.start", "daily"])
 
 
 @router.post("/stock-pick")
@@ -65,7 +96,7 @@ async def run_stock_pick(
     price_max: str = "",
 ):
     """Run stock picking with async execution."""
-    cmd = [sys.executable, "-X", "utf8", "-m", "quant.apps.daily", "--source", "auto", "--no-lock"]
+    cmd = [PYTHON_EXE, "-X", "utf8", "-m", "quant.apps.daily", "--source", "auto", "--no-lock"]
     if scope == "all":
         cmd.append("--akshare-all")
     else:
@@ -81,13 +112,13 @@ async def run_stock_pick(
 @router.post("/doctor")
 async def run_doctor(current_user: CurrentUser):
     """Run system doctor check."""
-    return await _run_task_async("doctor", [sys.executable, "-m", "quant.apps.start", "doctor"])
+    return await _run_task_async("doctor", [PYTHON_EXE, "-m", "quant.apps.start", "doctor"])
 
 
 @router.post("/snapshot")
 async def run_snapshot(current_user: CurrentUser):
     """Run snapshot archive."""
-    return await _run_task_async("snapshot", [sys.executable, "-m", "quant.apps.start", "snapshot"])
+    return await _run_task_async("snapshot", [PYTHON_EXE, "-m", "quant.apps.start", "snapshot"])
 
 
 @router.post("/reset-paper")
@@ -158,18 +189,36 @@ async def run_backtest_task(
     end_date: str = "",
     rebalance: str = "weekly",
     limit: str = "",
+    use_local: bool = False,
 ):
     """Run backtest with async execution."""
-    cmd = [sys.executable, "-X", "utf8", "-m", "quant.apps.start", "akshare-backtest"]
+    local_db = ROOT / "research_store" / "market_data.sqlite3"
 
-    if start_date:
-        cmd.extend(["--start-date", start_date])
-    if end_date:
-        cmd.extend(["--end-date", end_date])
-    if rebalance:
-        cmd.extend(["--rebalance", rebalance])
-    if limit:
-        cmd.extend(["--limit", limit])
+    if use_local and local_db.exists():
+        # Run backtest directly on local data
+        cmd = [
+            PYTHON_EXE, "-m", "quant.apps.backtest",
+            f"--sqlite={local_db}",
+            f"--output={ROOT / 'research_store' / 'reports' / 'akshare_backtest.json'}",
+        ]
+        if start_date:
+            cmd.extend(["--start-date", start_date])
+        if end_date:
+            cmd.extend(["--end-date", end_date])
+        if rebalance:
+            cmd.extend(["--rebalance", rebalance])
+    else:
+        # Fetch new data and run backtest
+        cmd = [PYTHON_EXE, "-X", "utf8", "-m", "quant.apps.start", "akshare-backtest"]
+
+        if start_date:
+            cmd.extend(["--start-date", start_date])
+        if end_date:
+            cmd.extend(["--end-date", end_date])
+        if rebalance:
+            cmd.extend(["--rebalance", rebalance])
+        if limit:
+            cmd.extend(["--limit", limit])
 
     return await _run_task_async("backtest", cmd)
 

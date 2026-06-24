@@ -12,11 +12,38 @@ echo " Personal Quant Web Console - Dev Mode"
 echo "=========================================="
 echo ""
 
-# Check Python
-if ! command -v python &> /dev/null; then
-    echo "Error: Python not found"
+# Find Python (prefer Anaconda over system Python)
+PYTHON_CMD=""
+if command -v python3 &> /dev/null; then
+    PYTHON_PATH=$(which python3)
+    if [[ "$PYTHON_PATH" != *"WindowsApps"* ]]; then
+        PYTHON_CMD="$PYTHON_PATH"
+    fi
+fi
+if [ -z "$PYTHON_CMD" ] && command -v python &> /dev/null; then
+    PYTHON_PATH=$(which python)
+    if [[ "$PYTHON_PATH" != *"WindowsApps"* ]]; then
+        PYTHON_CMD="$PYTHON_PATH"
+    fi
+fi
+# Fallback to common Anaconda paths
+if [ -z "$PYTHON_CMD" ]; then
+    for path in \
+        "$HOME/anaconda3/bin/python" \
+        "$HOME/miniconda3/bin/python" \
+        "/d/AI/apps/exe/anaconda3/python.exe" \
+        "D:/AI/apps/exe/anaconda3/python.exe"; do
+        if [ -x "$path" ]; then
+            PYTHON_CMD="$path"
+            break
+        fi
+    done
+fi
+if [ -z "$PYTHON_CMD" ]; then
+    echo "Error: Python not found. Please add Anaconda to PATH"
     exit 1
 fi
+echo "Using Python: $PYTHON_CMD"
 
 # Check Node.js
 if ! command -v node &> /dev/null; then
@@ -26,7 +53,7 @@ fi
 
 # Install Python dependencies if needed
 echo "Checking Python dependencies..."
-pip install fastapi uvicorn python-jose passlib python-multipart pyyaml 2>/dev/null || true
+"$PYTHON_CMD" -m pip install fastapi uvicorn python-jose python-multipart pyyaml httpx websockets 2>/dev/null || true
 
 # Install frontend dependencies if needed
 echo "Checking frontend dependencies..."
@@ -40,7 +67,7 @@ fi
 echo ""
 echo "Starting FastAPI backend on port 8000..."
 cd "$ROOT_DIR"
-python -m quant.apps.web --port 8000 &
+"$PYTHON_CMD" -m quant.apps.web --port 8000 &
 BACKEND_PID=$!
 
 # Wait for backend to start
