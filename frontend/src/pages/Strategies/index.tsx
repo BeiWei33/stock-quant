@@ -41,6 +41,7 @@ interface StrategyConfig {
   strategy_version: string;
   description: string;
   status: string;
+  params?: Record<string, any>;
   created_at: string;
   updated_at: string;
 }
@@ -234,16 +235,36 @@ export default function StrategiesPage() {
 
   const handleEdit = (strategy: StrategyConfig) => {
     setEditingStrategy(strategy);
-    editForm.setFieldsValue({
+    const formValues: any = {
       strategy_name: strategy.strategy_name,
       description: strategy.description,
       status: strategy.status,
-    });
+    };
+
+    // 设置参数初始值
+    if (strategy.params) {
+      Object.entries(strategy.params).forEach(([key, value]) => {
+        formValues[`param_${key}`] = String(value);
+      });
+    }
+
+    editForm.setFieldsValue(formValues);
     setEditVisible(true);
   };
 
   const handleEditSave = (values: any) => {
     if (!editingStrategy) return;
+
+    // 收集参数
+    const params: Record<string, any> = {};
+    Object.entries(values).forEach(([key, value]) => {
+      if (key.startsWith('param_') && value !== undefined && value !== '') {
+        const paramName = key.replace('param_', '');
+        // 尝试转换为数字
+        const numValue = Number(value);
+        params[paramName] = isNaN(numValue) ? value : numValue;
+      }
+    });
 
     const updated = strategies.map(s =>
       s.strategy_id === editingStrategy.strategy_id
@@ -252,6 +273,7 @@ export default function StrategiesPage() {
             strategy_name: values.strategy_name,
             description: values.description,
             status: values.status,
+            params: Object.keys(params).length > 0 ? params : s.params,
             updated_at: new Date().toISOString(),
           }
         : s
@@ -480,7 +502,7 @@ export default function StrategiesPage() {
           setEditingStrategy(null);
         }}
         footer={null}
-        width={600}
+        width={700}
       >
         {editingStrategy && (
           <Form form={editForm} onFinish={handleEditSave} layout="vertical">
@@ -509,8 +531,89 @@ export default function StrategiesPage() {
               </Select>
             </Form.Item>
             <Form.Item label="描述" name="description">
-              <TextArea rows={3} placeholder="策略描述..." />
+              <TextArea rows={2} placeholder="策略描述..." />
             </Form.Item>
+
+            {/* 策略参数编辑 */}
+            <Card title="策略参数" size="small" style={{ marginBottom: 16 }}>
+              {editingStrategy.strategy_type === 'momentum_rank' && (
+                <>
+                  <Form.Item label="最大持仓数量" name="param_max_holdings">
+                    <Input type="number" placeholder="20" />
+                  </Form.Item>
+                </>
+              )}
+              {editingStrategy.strategy_type === 'quality_rank' && (
+                <>
+                  <Form.Item label="最大持仓数量" name="param_max_holdings">
+                    <Input type="number" placeholder="20" />
+                  </Form.Item>
+                </>
+              )}
+              {editingStrategy.strategy_type === 'momentum' && (
+                <>
+                  <Form.Item label="回看周期" name="param_lookback">
+                    <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="动量阈值" name="param_threshold">
+                    <Input type="number" placeholder="0" step="0.01" />
+                  </Form.Item>
+                </>
+              )}
+              {editingStrategy.strategy_type === 'ma_cross' && (
+                <>
+                  <Form.Item label="快线周期" name="param_fast_period">
+                    <Input type="number" placeholder="5" />
+                  </Form.Item>
+                  <Form.Item label="慢线周期" name="param_slow_period">
+                    <Input type="number" placeholder="20" />
+                  </Form.Item>
+                </>
+              )}
+              {editingStrategy.strategy_type === 'rsi' && (
+                <>
+                  <Form.Item label="RSI 周期" name="param_period">
+                    <Input type="number" placeholder="14" />
+                  </Form.Item>
+                  <Form.Item label="超卖阈值" name="param_oversold">
+                    <Input type="number" placeholder="30" />
+                  </Form.Item>
+                  <Form.Item label="超买阈值" name="param_overbought">
+                    <Input type="number" placeholder="70" />
+                  </Form.Item>
+                </>
+              )}
+              {editingStrategy.strategy_type === 'bollinger' && (
+                <>
+                  <Form.Item label="周期" name="param_period">
+                    <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="标准差倍数" name="param_std_dev">
+                    <Input type="number" placeholder="2" step="0.1" />
+                  </Form.Item>
+                </>
+              )}
+              {editingStrategy.strategy_type === 'dual_ma' && (
+                <>
+                  <Form.Item label="快线周期" name="param_fast_period">
+                    <Input type="number" placeholder="5" />
+                  </Form.Item>
+                  <Form.Item label="慢线周期" name="param_slow_period">
+                    <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="止损比例" name="param_stop_loss">
+                    <Input type="number" placeholder="0.05" step="0.01" />
+                  </Form.Item>
+                  <Form.Item label="止盈比例" name="param_take_profit">
+                    <Input type="number" placeholder="0.10" step="0.01" />
+                  </Form.Item>
+                </>
+              )}
+              {!['momentum_rank', 'quality_rank', 'momentum', 'ma_cross', 'rsi', 'bollinger', 'dual_ma'].includes(editingStrategy.strategy_type) && (
+                <Alert message="该策略类型暂不支持参数编辑" type="info" />
+              )}
+            </Card>
+
             <Form.Item>
               <Space>
                 <Button type="primary" htmlType="submit">保存</Button>
@@ -729,6 +832,7 @@ export default function StrategiesPage() {
               strategy_version: 'v1',
               description: values.description || `基于 ${values.script_type} 的脚本策略`,
               status: 'draft',
+              params: params,
               created_at: new Date().toISOString(),
               updated_at: new Date().toISOString(),
             };
