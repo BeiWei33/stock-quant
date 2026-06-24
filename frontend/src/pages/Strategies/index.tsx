@@ -213,6 +213,339 @@ export default function StrategiesPage() {
     }
   };
 
+  // 生成策略 Python 代码
+  const generateStrategyCode = (strategy: StrategyConfig): string => {
+    const params = strategy.params || {};
+    const strategyType = strategy.strategy_type;
+
+    if (strategyType === 'momentum_rank') {
+      const maxHoldings = params.max_holdings || 20;
+      return `# 动量排名策略
+# 策略名称: ${strategy.strategy_name}
+# 最大持仓: ${maxHoldings}
+
+from quant.core.strategy.momentum import MomentumRankStrategy
+from quant.core.factor.technical import MomentumFactor, FactorEngine
+from quant.core.backtest.engine import BacktestEngine, BacktestRequest
+
+# 创建策略
+strategy = MomentumRankStrategy(
+    factor_name="momentum_60d",
+    max_holdings=${maxHoldings},
+)
+
+# 创建因子引擎
+factor_engine = FactorEngine([MomentumFactor(60)])
+
+# 运行回测
+engine = BacktestEngine(factor_engine=factor_engine)
+result = engine.run(BacktestRequest(
+    bars=bars,
+    stocks=stocks,
+    strategy=strategy,
+    benchmark_bars=benchmark_bars,
+    benchmark_code="000300.SH",
+    initial_cash=1_000_000,
+    rebalance="weekly",
+))
+
+# 查看结果
+print(f"年化收益: {result.metrics['annual_return']*100:.2f}%")
+print(f"夏普比率: {result.metrics['sharpe']:.4f}")
+print(f"最大回撤: {result.metrics['max_drawdown']*100:.2f}%")`;
+    }
+
+    if (strategyType === 'quality_rank') {
+      const maxHoldings = params.max_holdings || 20;
+      return `# 质量排名策略
+# 策略名称: ${strategy.strategy_name}
+# 最大持仓: ${maxHoldings}
+
+from quant.core.strategy.quality import QualityRankStrategy
+from quant.core.factor.quality import QualityScoreFactor
+from quant.core.factor.technical import FactorEngine
+from quant.core.backtest.engine import BacktestEngine, BacktestRequest
+
+# 创建策略
+strategy = QualityRankStrategy(
+    factor_name="quality_score",
+    max_holdings=${maxHoldings},
+)
+
+# 创建因子引擎
+factor_engine = FactorEngine([QualityScoreFactor()])
+
+# 运行回测
+engine = BacktestEngine(factor_engine=factor_engine)
+result = engine.run(BacktestRequest(
+    bars=bars,
+    stocks=stocks,
+    strategy=strategy,
+    benchmark_bars=benchmark_bars,
+    benchmark_code="000300.SH",
+    initial_cash=1_000_000,
+    rebalance="weekly",
+))
+
+# 查看结果
+print(f"年化收益: {result.metrics['annual_return']*100:.2f}%")
+print(f"夏普比率: {result.metrics['sharpe']:.4f}")
+print(f"最大回撤: {result.metrics['max_drawdown']*100:.2f}%")`;
+    }
+
+    if (strategyType === 'momentum') {
+      const lookback = params.lookback || 20;
+      const threshold = params.threshold || 0;
+      return `# 动量策略 (脚本版)
+# 策略名称: ${strategy.strategy_name}
+# 回看周期: ${lookback}
+# 动量阈值: ${threshold}
+
+def on_init(ctx):
+    ctx.set_param("lookback", ${lookback})
+    ctx.set_param("threshold", ${threshold})
+    ctx.set_param("prices", {})
+
+def on_bar(ctx, bar):
+    prices = ctx.param("prices")
+    if bar.ts_code not in prices:
+        prices[bar.ts_code] = []
+    prices[bar.ts_code].append(bar.close)
+
+    lookback = ctx.param("lookback")
+    if len(prices[bar.ts_code]) < lookback + 1:
+        return
+
+    # 计算动量
+    current = prices[bar.ts_code][-1]
+    past = prices[bar.ts_code][-(lookback + 1)]
+    momentum = (current - past) / past
+
+    threshold = ctx.param("threshold")
+
+    # 买入条件：动量超过阈值且无持仓
+    if momentum > threshold and not ctx.has_position(bar.ts_code):
+        ctx.buy(bar.ts_code, weight=0.05, reason=f"momentum={momentum:.4f}")
+
+    # 卖出条件：动量转负且有持仓
+    elif momentum < 0 and ctx.has_position(bar.ts_code):
+        ctx.sell(bar.ts_code, reason=f"momentum={momentum:.4f}")`;
+    }
+
+    if (strategyType === 'ma_cross') {
+      const fastPeriod = params.fast_period || 5;
+      const slowPeriod = params.slow_period || 20;
+      return `# 均线交叉策略
+# 策略名称: ${strategy.strategy_name}
+# 快线周期: ${fastPeriod}
+# 慢线周期: ${slowPeriod}
+
+def on_init(ctx):
+    ctx.set_param("fast_period", ${fastPeriod})
+    ctx.set_param("slow_period", ${slowPeriod})
+    ctx.set_param("prices", {})
+
+def on_bar(ctx, bar):
+    prices = ctx.param("prices")
+    if bar.ts_code not in prices:
+        prices[bar.ts_code] = []
+    prices[bar.ts_code].append(bar.close)
+
+    fast_period = ctx.param("fast_period")
+    slow_period = ctx.param("slow_period")
+
+    if len(prices[bar.ts_code]) < slow_period:
+        return
+
+    # 计算均线
+    fast_ma = sum(prices[bar.ts_code][-fast_period:]) / fast_period
+    slow_ma = sum(prices[bar.ts_code][-slow_period:]) / slow_period
+
+    # 金叉买入
+    if fast_ma > slow_ma and not ctx.has_position(bar.ts_code):
+        ctx.buy(bar.ts_code, weight=0.05, reason="golden_cross")
+
+    # 死叉卖出
+    elif fast_ma < slow_ma and ctx.has_position(bar.ts_code):
+        ctx.sell(bar.ts_code, reason="death_cross")`;
+    }
+
+    if (strategyType === 'rsi') {
+      const period = params.period || 14;
+      const oversold = params.oversold || 30;
+      const overbought = params.overbought || 70;
+      return `# RSI 策略
+# 策略名称: ${strategy.strategy_name}
+# RSI 周期: ${period}
+# 超卖阈值: ${oversold}
+# 超买阈值: ${overbought}
+
+def on_init(ctx):
+    ctx.set_param("period", ${period})
+    ctx.set_param("oversold", ${oversold})
+    ctx.set_param("overbought", ${overbought})
+    ctx.set_param("prices", {})
+
+def _calculate_rsi(prices, period):
+    if len(prices) < period + 1:
+        return None
+    deltas = [prices[i] - prices[i-1] for i in range(1, len(prices))]
+    recent = deltas[-period:]
+    gains = [d for d in recent if d > 0]
+    losses = [-d for d in recent if d < 0]
+    avg_gain = sum(gains) / period if gains else 0
+    avg_loss = sum(losses) / period if losses else 0.0001
+    rs = avg_gain / avg_loss
+    return 100 - (100 / (1 + rs))
+
+def on_bar(ctx, bar):
+    prices = ctx.param("prices")
+    if bar.ts_code not in prices:
+        prices[bar.ts_code] = []
+    prices[bar.ts_code].append(bar.close)
+
+    period = ctx.param("period")
+    rsi = _calculate_rsi(prices[bar.ts_code], period)
+    if rsi is None:
+        return
+
+    oversold = ctx.param("oversold")
+    overbought = ctx.param("overbought")
+
+    # 超卖买入
+    if rsi < oversold and not ctx.has_position(bar.ts_code):
+        ctx.buy(bar.ts_code, weight=0.05, reason=f"rsi_oversold={rsi:.1f}")
+
+    # 超买卖出
+    elif rsi > overbought and ctx.has_position(bar.ts_code):
+        ctx.sell(bar.ts_code, reason=f"rsi_overbought={rsi:.1f}")`;
+    }
+
+    if (strategyType === 'bollinger') {
+      const period = params.period || 20;
+      const stdDev = params.std_dev || 2;
+      return `# 布林带策略
+# 策略名称: ${strategy.strategy_name}
+# 周期: ${period}
+# 标准差倍数: ${stdDev}
+
+import math
+
+def on_init(ctx):
+    ctx.set_param("period", ${period})
+    ctx.set_param("std_dev", ${stdDev})
+    ctx.set_param("prices", {})
+
+def _calculate_bollinger(prices, period, std_dev):
+    if len(prices) < period:
+        return None, None, None
+    recent = prices[-period:]
+    middle = sum(recent) / period
+    variance = sum((p - middle) ** 2 for p in recent) / period
+    std = math.sqrt(variance)
+    upper = middle + std_dev * std
+    lower = middle - std_dev * std
+    return upper, middle, lower
+
+def on_bar(ctx, bar):
+    prices = ctx.param("prices")
+    if bar.ts_code not in prices:
+        prices[bar.ts_code] = []
+    prices[bar.ts_code].append(bar.close)
+
+    period = ctx.param("period")
+    std_dev = ctx.param("std_dev")
+    upper, middle, lower = _calculate_bollinger(prices[bar.ts_code], period, std_dev)
+
+    if upper is None:
+        return
+
+    # 跌破下轨买入
+    if bar.close < lower and not ctx.has_position(bar.ts_code):
+        ctx.buy(bar.ts_code, weight=0.05, reason="bollinger_lower")
+
+    # 突破上轨卖出
+    elif bar.close > upper and ctx.has_position(bar.ts_code):
+        ctx.sell(bar.ts_code, reason="bollinger_upper")`;
+    }
+
+    if (strategyType === 'dual_ma') {
+      const fastPeriod = params.fast_period || 5;
+      const slowPeriod = params.slow_period || 20;
+      const stopLoss = params.stop_loss || 0.05;
+      const takeProfit = params.take_profit || 0.10;
+      return `# 双均线策略 (带止损止盈)
+# 策略名称: ${strategy.strategy_name}
+# 快线周期: ${fastPeriod}
+# 慢线周期: ${slowPeriod}
+# 止损比例: ${stopLoss}
+# 止盈比例: ${takeProfit}
+
+def on_init(ctx):
+    ctx.set_param("fast_period", ${fastPeriod})
+    ctx.set_param("slow_period", ${slowPeriod})
+    ctx.set_param("stop_loss", ${stopLoss})
+    ctx.set_param("take_profit", ${takeProfit})
+    ctx.set_param("prices", {})
+    ctx.set_param("entry_prices", {})
+
+def on_bar(ctx, bar):
+    prices = ctx.param("prices")
+    if bar.ts_code not in prices:
+        prices[bar.ts_code] = []
+    prices[bar.ts_code].append(bar.close)
+
+    fast_period = ctx.param("fast_period")
+    slow_period = ctx.param("slow_period")
+
+    if len(prices[bar.ts_code]) < slow_period:
+        return
+
+    fast_ma = sum(prices[bar.ts_code][-fast_period:]) / fast_period
+    slow_ma = sum(prices[bar.ts_code][-slow_period:]) / slow_period
+
+    stop_loss = ctx.param("stop_loss")
+    take_profit = ctx.param("take_profit")
+    entry_prices = ctx.param("entry_prices")
+
+    # 止损止盈检查
+    if ctx.has_position(bar.ts_code):
+        entry_price = entry_prices.get(bar.ts_code, 0)
+        if entry_price > 0:
+            pnl_pct = (bar.close - entry_price) / entry_price
+            if stop_loss > 0 and pnl_pct < -stop_loss:
+                ctx.sell(bar.ts_code, reason=f"stop_loss={pnl_pct:.4f}")
+                return
+            if take_profit > 0 and pnl_pct > take_profit:
+                ctx.sell(bar.ts_code, reason=f"take_profit={pnl_pct:.4f}")
+                return
+
+    # 金叉买入
+    if fast_ma > slow_ma and not ctx.has_position(bar.ts_code):
+        ctx.buy(bar.ts_code, weight=0.05, reason="golden_cross")
+        entry_prices[bar.ts_code] = bar.close
+
+    # 死叉卖出
+    elif fast_ma < slow_ma and ctx.has_position(bar.ts_code):
+        ctx.sell(bar.ts_code, reason="death_cross")
+        entry_prices.pop(bar.ts_code, None)`;
+    }
+
+    // 自定义脚本
+    return params.code || `# 自定义脚本策略
+# 请编写 on_init 和 on_bar 函数
+
+def on_init(ctx):
+    # 初始化参数
+    pass
+
+def on_bar(ctx, bar):
+    # 每根K线触发
+    # 买入: ctx.buy(ts_code, weight=0.05)
+    # 卖出: ctx.sell(ts_code)
+    pass`;
+  };
+
   const handleCreate = (values: any) => {
     const newStrategy: StrategyConfig = {
       strategy_id: values.strategy_id,
@@ -614,6 +947,31 @@ export default function StrategiesPage() {
               )}
             </Card>
 
+            {/* 自定义脚本代码编辑 */}
+            {editingStrategy.strategy_type === 'custom' && (
+              <Card title="策略代码" size="small" style={{ marginBottom: 16 }}>
+                <Form.Item
+                  label="Python 代码"
+                  name="param_code"
+                  rules={[{ required: true, message: '请输入策略代码' }]}
+                >
+                  <Input.TextArea
+                    rows={15}
+                    placeholder={`def on_init(ctx):
+    # 初始化参数
+    ctx.set_param("lookback", 20)
+
+def on_bar(ctx, bar):
+    # 每根K线触发
+    # 买入: ctx.buy(bar.ts_code, weight=0.05)
+    # 卖出: ctx.sell(bar.ts_code)
+    pass`}
+                    style={{ fontFamily: 'Monaco, Consolas, monospace', fontSize: 13 }}
+                  />
+                </Form.Item>
+              </Card>
+            )}
+
             <Form.Item>
               <Space>
                 <Button type="primary" htmlType="submit">保存</Button>
@@ -634,7 +992,7 @@ export default function StrategiesPage() {
         open={detailVisible}
         onCancel={() => setDetailVisible(false)}
         footer={null}
-        width={800}
+        width={900}
       >
         {selectedStrategy && (
           <Tabs
@@ -653,7 +1011,56 @@ export default function StrategiesPage() {
                       {selectedStrategy.updated_at ? new Date(selectedStrategy.updated_at).toLocaleString() : '-'}
                     </Descriptions.Item>
                     <Descriptions.Item label="描述" span={2}>{selectedStrategy.description || '-'}</Descriptions.Item>
+                    {selectedStrategy.params && Object.keys(selectedStrategy.params).length > 0 && (
+                      <Descriptions.Item label="参数" span={2}>
+                        {Object.entries(selectedStrategy.params).map(([key, value]) => (
+                          <Tag key={key} style={{ margin: '2px' }}>
+                            {key}: {String(value)}
+                          </Tag>
+                        ))}
+                      </Descriptions.Item>
+                    )}
                   </Descriptions>
+                ),
+              },
+              {
+                key: 'code',
+                label: '策略代码',
+                children: (
+                  <div>
+                    <Alert
+                      message="策略 Python 代码"
+                      description="这是该策略对应的可执行 Python 代码，可用于回测和实盘。"
+                      type="info"
+                      style={{ marginBottom: 16 }}
+                    />
+                    <Card
+                      size="small"
+                      extra={
+                        <Button
+                          size="small"
+                          onClick={() => {
+                            navigator.clipboard.writeText(generateStrategyCode(selectedStrategy));
+                            message.success('代码已复制到剪贴板');
+                          }}
+                        >
+                          复制代码
+                        </Button>
+                      }
+                    >
+                      <pre style={{
+                        background: '#f5f5f5',
+                        padding: 16,
+                        borderRadius: 4,
+                        maxHeight: 400,
+                        overflow: 'auto',
+                        fontSize: 13,
+                        fontFamily: 'Monaco, Consolas, monospace',
+                      }}>
+                        {generateStrategyCode(selectedStrategy)}
+                      </pre>
+                    </Card>
+                  </div>
                 ),
               },
               {
@@ -902,6 +1309,29 @@ export default function StrategiesPage() {
                         />
                       </Form.Item>
                     ))}
+
+                    {/* 自定义脚本代码编辑 */}
+                    {selectedType === 'custom' && (
+                      <Form.Item
+                        label="Python 代码"
+                        name="param_code"
+                        rules={[{ required: true, message: '请输入策略代码' }]}
+                      >
+                        <Input.TextArea
+                          rows={15}
+                          placeholder={`def on_init(ctx):
+    # 初始化参数
+    ctx.set_param("lookback", 20)
+
+def on_bar(ctx, bar):
+    # 每根K线触发
+    # 买入: ctx.buy(bar.ts_code, weight=0.05)
+    # 卖出: ctx.sell(bar.ts_code)
+    pass`}
+                          style={{ fontFamily: 'Monaco, Consolas, monospace', fontSize: 13 }}
+                        />
+                      </Form.Item>
+                    )}
                   </Card>
 
                   <Card title="步骤3: 配置策略信息" size="small" style={{ marginBottom: 16 }}>
