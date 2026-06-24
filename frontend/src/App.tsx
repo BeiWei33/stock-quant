@@ -9,6 +9,7 @@ import BacktestPage from './pages/Backtest';
 import MonitoringPage from './pages/Monitoring';
 import TasksPage from './pages/Tasks';
 import KLinePage from './pages/KLine';
+import ExperimentsPage from './pages/Experiments';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuthStore();
@@ -37,6 +38,7 @@ function App() {
         <Route path="signals" element={<SignalsPage />} />
         <Route path="positions" element={<PositionsPage />} />
         <Route path="backtest" element={<BacktestPage />} />
+        <Route path="experiments" element={<ExperimentsPage />} />
         <Route path="kline" element={<KLinePage />} />
         <Route path="monitoring" element={<MonitoringPage />} />
         <Route path="tasks" element={<TasksPage />} />

@@ -37,6 +37,11 @@ const menuItems = [
     label: '回测',
   },
   {
+    key: '/experiments',
+    icon: <ExperimentOutlined />,
+    label: '实验优化',
+  },
+  {
     key: '/kline',
     icon: <StockOutlined />,
     label: 'K线图',
