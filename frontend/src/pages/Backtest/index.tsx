@@ -384,10 +384,10 @@ export default function BacktestPage() {
                 {/* Results */}
                 {results?.metrics && (
                   <>
-                    {/* Metrics Cards */}
-                    <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
-                      <Col xs={12} sm={6}>
-                        <Card>
+                    {/* 核心指标卡片 */}
+                    <Card title="核心指标" style={{ marginBottom: 16 }}>
+                      <Row gutter={[16, 16]}>
+                        <Col xs={12} sm={6}>
                           <Statistic
                             title="年化收益"
                             value={results.metrics.annual_return * 100}
@@ -397,19 +397,18 @@ export default function BacktestPage() {
                               color: results.metrics.annual_return >= 0 ? '#3f8600' : '#cf1322',
                             }}
                           />
-                        </Card>
-                      </Col>
-                      <Col xs={12} sm={6}>
-                        <Card>
+                        </Col>
+                        <Col xs={12} sm={6}>
                           <Statistic
                             title="夏普比率"
                             value={results.metrics.sharpe}
                             precision={4}
+                            valueStyle={{
+                              color: results.metrics.sharpe >= 1 ? '#3f8600' : results.metrics.sharpe >= 0 ? '#1890ff' : '#cf1322',
+                            }}
                           />
-                        </Card>
-                      </Col>
-                      <Col xs={12} sm={6}>
-                        <Card>
+                        </Col>
+                        <Col xs={12} sm={6}>
                           <Statistic
                             title="最大回撤"
                             value={results.metrics.max_drawdown * 100}
@@ -417,16 +416,134 @@ export default function BacktestPage() {
                             suffix="%"
                             valueStyle={{ color: '#cf1322' }}
                           />
-                        </Card>
-                      </Col>
-                      <Col xs={12} sm={6}>
-                        <Card>
+                        </Col>
+                        <Col xs={12} sm={6}>
                           <Statistic
                             title="信息比率"
                             value={results.metrics.information_ratio}
                             precision={4}
+                            valueStyle={{
+                              color: results.metrics.information_ratio >= 0 ? '#3f8600' : '#cf1322',
+                            }}
                           />
-                        </Card>
+                        </Col>
+                      </Row>
+                    </Card>
+
+                    {/* 收益分析 */}
+                    <Card title="收益分析" style={{ marginBottom: 16 }}>
+                      <Row gutter={[16, 16]}>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="总收益"
+                            value={results.metrics.total_return * 100}
+                            precision={2}
+                            suffix="%"
+                            valueStyle={{
+                              color: results.metrics.total_return >= 0 ? '#3f8600' : '#cf1322',
+                            }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="年化波动率"
+                            value={results.metrics.volatility * 100}
+                            precision={2}
+                            suffix="%"
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="超额收益"
+                            value={(results.metrics.excess_return || 0) * 100}
+                            precision={2}
+                            suffix="%"
+                            valueStyle={{
+                              color: (results.metrics.excess_return || 0) >= 0 ? '#3f8600' : '#cf1322',
+                            }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="跟踪误差"
+                            value={(results.metrics.tracking_error || 0) * 100}
+                            precision={2}
+                            suffix="%"
+                          />
+                        </Col>
+                      </Row>
+                    </Card>
+
+                    {/* 基准对比 */}
+                    <Card title="基准对比" style={{ marginBottom: 16 }}>
+                      <Row gutter={[16, 16]}>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="基准总收益"
+                            value={(results.metrics.benchmark_total_return || 0) * 100}
+                            precision={2}
+                            suffix="%"
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="基准年化收益"
+                            value={(results.metrics.benchmark_annual_return || 0) * 100}
+                            precision={2}
+                            suffix="%"
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="基准波动率"
+                            value={(results.metrics.benchmark_volatility || 0) * 100}
+                            precision={2}
+                            suffix="%"
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="相关系数"
+                            value={results.metrics.benchmark_correlation || 0}
+                            precision={4}
+                          />
+                        </Col>
+                      </Row>
+                    </Card>
+
+                    {/* 持仓统计 */}
+                    <Card title="持仓统计" style={{ marginBottom: 16 }}>
+                      <Row gutter={[16, 16]}>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="再平衡次数"
+                            value={results.metrics.rebalance_count || 0}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="平均持仓数"
+                            value={results.metrics.average_holdings || 0}
+                            precision={1}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="平均换手率"
+                            value={(results.metrics.average_turnover || 0) * 100}
+                            precision={2}
+                            suffix="%"
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic
+                            title="Beta"
+                            value={results.metrics.beta || 0}
+                            precision={4}
+                          />
+                        </Col>
+                      </Row>
+                    </Card>
                       </Col>
                     </Row>
 
