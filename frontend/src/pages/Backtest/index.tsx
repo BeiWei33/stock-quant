@@ -544,8 +544,6 @@ export default function BacktestPage() {
                         </Col>
                       </Row>
                     </Card>
-                      </Col>
-                    </Row>
 
                     {/* Equity Curve */}
                     <Card title="净值曲线" style={{ marginBottom: 24 }}>
