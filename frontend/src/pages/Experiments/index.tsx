@@ -15,12 +15,15 @@ import {
   Tooltip,
   Progress,
   Spin,
+  Alert,
+  Steps,
 } from 'antd';
 import {
   ExperimentOutlined,
   PlayCircleOutlined,
   EyeOutlined,
   TrophyOutlined,
+  InfoCircleOutlined,
 } from '@ant-design/icons';
 import ReactECharts from 'echarts-for-react';
 import api from '../../api/client';
@@ -320,6 +323,30 @@ export default function ExperimentsPage() {
 
   return (
     <div>
+      {/* 操作指引 */}
+      <Alert
+        message="实验优化使用指南"
+        description={
+          <div>
+            <p><strong>实验优化</strong>可以帮你自动搜索最优策略参数，步骤如下：</p>
+            <ol style={{ margin: '8px 0', paddingLeft: 20 }}>
+              <li>点击「创建实验」按钮，填写实验名称、选择策略、输入参数搜索空间</li>
+              <li>在实验列表中，点击「眼睛」图标查看详情</li>
+              <li>在详情页面，点击「运行实验」按钮开始参数搜索</li>
+              <li>等待运行完成，查看评分雷达图和最优参数排名</li>
+            </ol>
+            <p style={{ color: '#666', fontSize: 12 }}>
+              💡 提示：参数组合越多，运行时间越长。建议先用少量参数测试。
+            </p>
+          </div>
+        }
+        type="info"
+        showIcon
+        icon={<InfoCircleOutlined />}
+        style={{ marginBottom: 16 }}
+        closable
+      />
+
       <Card
         title={
           <Space>
@@ -356,7 +383,7 @@ export default function ExperimentsPage() {
           form={createForm}
           onFinish={handleCreate}
           layout="vertical"
-          initialValues={{ metric: 'sharpe' }}
+          initialValues={{ metric: 'sharpe', name: '动量参数优化', strategy_id: 'momentum_rank' }}
         >
           <Form.Item
             label="实验名称"
@@ -367,49 +394,67 @@ export default function ExperimentsPage() {
           </Form.Item>
 
           <Form.Item
-            label="策略 ID"
+            label="选择策略"
             name="strategy_id"
             rules={[{ required: true, message: '请选择策略' }]}
           >
             <Select
               options={[
-                { label: '动量排名策略', value: 'momentum_rank' },
-                { label: '质量排名策略', value: 'quality_rank' },
-                { label: '动量+趋势过滤', value: 'momentum_rank_trend' },
-                { label: '质量+趋势过滤', value: 'quality_rank_trend' },
+                { label: '动量排名策略 (momentum_rank)', value: 'momentum_rank' },
+                { label: '质量排名策略 (quality_rank)', value: 'quality_rank' },
+                { label: '动量+趋势过滤 (momentum_rank_trend)', value: 'momentum_rank_trend' },
+                { label: '质量+趋势过滤 (quality_rank_trend)', value: 'quality_rank_trend' },
               ]}
             />
           </Form.Item>
 
           <Form.Item
-            label="参数搜索空间 (JSON)"
+            label={
+              <Space>
+                参数搜索空间
+                <Tooltip title='JSON 格式，每个参数对应一个数组。系统会遍历所有组合进行回测。'>
+                  <InfoCircleOutlined />
+                </Tooltip>
+              </Space>
+            }
             name="param_grid"
             rules={[{ required: true, message: '请输入参数搜索空间' }]}
           >
             <Input.TextArea
-              rows={4}
-              placeholder={`{
+              rows={5}
+              placeholder={`动量策略参数示例：
+{
   "top_pct": [0.1, 0.2, 0.3],
   "max_holdings": [10, 20, 30]
+}
+
+质量策略参数示例：
+{
+  "top_pct": [0.1, 0.2],
+  "max_holdings": [15, 20, 25]
 }`}
             />
           </Form.Item>
 
-          <Form.Item label="优化目标" name="metric">
+          <Form.Item
+            label="优化目标"
+            name="metric"
+            tooltip="选择要优化的指标，系统会按此指标对结果排名"
+          >
             <Select
               options={[
-                { label: '夏普比率', value: 'sharpe' },
+                { label: '夏普比率 (推荐)', value: 'sharpe' },
                 { label: '年化收益', value: 'annual_return' },
-                { label: '最大回撤', value: 'max_drawdown' },
+                { label: '最大回撤 (越小越好)', value: 'max_drawdown' },
               ]}
             />
           </Form.Item>
 
-          <Form.Item label="开始日期" name="start_date">
+          <Form.Item label="回测开始日期" name="start_date">
             <Input placeholder="2025-01-01" />
           </Form.Item>
 
-          <Form.Item label="结束日期" name="end_date">
+          <Form.Item label="回测结束日期" name="end_date">
             <Input placeholder="默认今天" />
           </Form.Item>
 
