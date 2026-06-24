@@ -871,8 +871,21 @@ def on_bar(ctx, bar):
             <Card title="策略参数" size="small" style={{ marginBottom: 16 }}>
               {editingStrategy.strategy_type === 'momentum_rank' && (
                 <>
+                  <Form.Item label="因子名称" name="param_factor_name">
+                    <Select>
+                      <Select.Option value="momentum_20d">动量20天</Select.Option>
+                      <Select.Option value="momentum_40d">动量40天</Select.Option>
+                      <Select.Option value="momentum_60d">动量60天</Select.Option>
+                    </Select>
+                  </Form.Item>
                   <Form.Item label="最大持仓数量" name="param_max_holdings">
                     <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="止损比例 (%)" name="param_stop_loss">
+                    <Input type="number" placeholder="5" step="0.1" />
+                  </Form.Item>
+                  <Form.Item label="止盈比例 (%)" name="param_take_profit">
+                    <Input type="number" placeholder="10" step="0.1" />
                   </Form.Item>
                 </>
               )}
@@ -880,6 +893,15 @@ def on_bar(ctx, bar):
                 <>
                   <Form.Item label="最大持仓数量" name="param_max_holdings">
                     <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="最低质量评分" name="param_min_score">
+                    <Input type="number" placeholder="0" step="0.1" />
+                  </Form.Item>
+                  <Form.Item label="止损比例 (%)" name="param_stop_loss">
+                    <Input type="number" placeholder="5" step="0.1" />
+                  </Form.Item>
+                  <Form.Item label="止盈比例 (%)" name="param_take_profit">
+                    <Input type="number" placeholder="10" step="0.1" />
                   </Form.Item>
                 </>
               )}
@@ -891,6 +913,9 @@ def on_bar(ctx, bar):
                   <Form.Item label="动量阈值" name="param_threshold">
                     <Input type="number" placeholder="0" step="0.01" />
                   </Form.Item>
+                  <Form.Item label="仓位大小 (权重)" name="param_position_size">
+                    <Input type="number" placeholder="0.05" step="0.01" />
+                  </Form.Item>
                 </>
               )}
               {editingStrategy.strategy_type === 'ma_cross' && (
@@ -900,6 +925,9 @@ def on_bar(ctx, bar):
                   </Form.Item>
                   <Form.Item label="慢线周期" name="param_slow_period">
                     <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="仓位大小 (权重)" name="param_position_size">
+                    <Input type="number" placeholder="0.05" step="0.01" />
                   </Form.Item>
                 </>
               )}
@@ -914,6 +942,9 @@ def on_bar(ctx, bar):
                   <Form.Item label="超买阈值" name="param_overbought">
                     <Input type="number" placeholder="70" />
                   </Form.Item>
+                  <Form.Item label="仓位大小 (权重)" name="param_position_size">
+                    <Input type="number" placeholder="0.05" step="0.01" />
+                  </Form.Item>
                 </>
               )}
               {editingStrategy.strategy_type === 'bollinger' && (
@@ -924,6 +955,9 @@ def on_bar(ctx, bar):
                   <Form.Item label="标准差倍数" name="param_std_dev">
                     <Input type="number" placeholder="2" step="0.1" />
                   </Form.Item>
+                  <Form.Item label="仓位大小 (权重)" name="param_position_size">
+                    <Input type="number" placeholder="0.05" step="0.01" />
+                  </Form.Item>
                 </>
               )}
               {editingStrategy.strategy_type === 'dual_ma' && (
@@ -933,6 +967,9 @@ def on_bar(ctx, bar):
                   </Form.Item>
                   <Form.Item label="慢线周期" name="param_slow_period">
                     <Input type="number" placeholder="20" />
+                  </Form.Item>
+                  <Form.Item label="仓位大小 (权重)" name="param_position_size">
+                    <Input type="number" placeholder="0.05" step="0.01" />
                   </Form.Item>
                   <Form.Item label="止损比例" name="param_stop_loss">
                     <Input type="number" placeholder="0.05" step="0.01" />
