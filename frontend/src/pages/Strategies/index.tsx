@@ -86,7 +86,6 @@ export default function StrategiesPage() {
   const [createForm] = Form.useForm();
   const [editForm] = Form.useForm();
   const [scriptForm] = Form.useForm();
-  const [scriptForm] = Form.useForm();
 
   useEffect(() => {
     fetchStrategies();
