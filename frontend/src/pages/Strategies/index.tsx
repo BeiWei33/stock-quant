@@ -76,12 +76,16 @@ export default function StrategiesPage() {
   const [strategies, setStrategies] = useState<StrategyConfig[]>([]);
   const [loading, setLoading] = useState(false);
   const [createVisible, setCreateVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
   const [detailVisible, setDetailVisible] = useState(false);
   const [scriptVisible, setScriptVisible] = useState(false);
   const [selectedStrategy, setSelectedStrategy] = useState<StrategyConfig | null>(null);
+  const [editingStrategy, setEditingStrategy] = useState<StrategyConfig | null>(null);
   const [review, setReview] = useState<StrategyReview | null>(null);
   const [scriptTypes, setScriptTypes] = useState<ScriptStrategy[]>([]);
   const [createForm] = Form.useForm();
+  const [editForm] = Form.useForm();
+  const [scriptForm] = Form.useForm();
   const [scriptForm] = Form.useForm();
 
   useEffect(() => {
@@ -229,6 +233,38 @@ export default function StrategiesPage() {
     message.success('策略创建成功');
   };
 
+  const handleEdit = (strategy: StrategyConfig) => {
+    setEditingStrategy(strategy);
+    editForm.setFieldsValue({
+      strategy_name: strategy.strategy_name,
+      description: strategy.description,
+      status: strategy.status,
+    });
+    setEditVisible(true);
+  };
+
+  const handleEditSave = (values: any) => {
+    if (!editingStrategy) return;
+
+    const updated = strategies.map(s =>
+      s.strategy_id === editingStrategy.strategy_id
+        ? {
+            ...s,
+            strategy_name: values.strategy_name,
+            description: values.description,
+            status: values.status,
+            updated_at: new Date().toISOString(),
+          }
+        : s
+    );
+    setStrategies(updated);
+    localStorage.setItem('strategies', JSON.stringify(updated));
+    setEditVisible(false);
+    editForm.resetFields();
+    setEditingStrategy(null);
+    message.success('策略更新成功');
+  };
+
   const handleDelete = (strategyId: string) => {
     const updated = strategies.filter(s => s.strategy_id !== strategyId);
     setStrategies(updated);
@@ -334,11 +370,14 @@ export default function StrategiesPage() {
     {
       title: '操作',
       key: 'actions',
-      width: 200,
+      width: 250,
       render: (_: any, record: StrategyConfig) => (
         <Space>
           <Tooltip title="查看详情">
             <Button type="link" icon={<EyeOutlined />} onClick={() => handleViewDetail(record)} />
+          </Tooltip>
+          <Tooltip title="编辑">
+            <Button type="link" icon={<EditOutlined />} onClick={() => handleEdit(record)} />
           </Tooltip>
           <Tooltip title="状态流转">
             <Select
@@ -430,6 +469,61 @@ export default function StrategiesPage() {
             <Button type="primary" htmlType="submit">创建</Button>
           </Form.Item>
         </Form>
+      </Modal>
+
+      {/* 编辑策略 Modal */}
+      <Modal
+        title={`编辑策略: ${editingStrategy?.strategy_name || ''}`}
+        open={editVisible}
+        onCancel={() => {
+          setEditVisible(false);
+          editForm.resetFields();
+          setEditingStrategy(null);
+        }}
+        footer={null}
+        width={600}
+      >
+        {editingStrategy && (
+          <Form form={editForm} onFinish={handleEditSave} layout="vertical">
+            <Form.Item label="策略ID">
+              <Input value={editingStrategy.strategy_id} disabled />
+            </Form.Item>
+            <Form.Item label="策略类型">
+              <Input value={editingStrategy.strategy_type} disabled />
+            </Form.Item>
+            <Form.Item
+              label="策略名称"
+              name="strategy_name"
+              rules={[{ required: true, message: '请输入策略名称' }]}
+            >
+              <Input placeholder="例如: 我的动量策略" />
+            </Form.Item>
+            <Form.Item label="状态" name="status">
+              <Select>
+                <Select.Option value="draft">草稿</Select.Option>
+                <Select.Option value="research">研究中</Select.Option>
+                <Select.Option value="candidate">候选</Select.Option>
+                <Select.Option value="paper">模拟盘</Select.Option>
+                <Select.Option value="production">实盘</Select.Option>
+                <Select.Option value="deprecated">淘汰</Select.Option>
+                <Select.Option value="retired">退役</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item label="描述" name="description">
+              <TextArea rows={3} placeholder="策略描述..." />
+            </Form.Item>
+            <Form.Item>
+              <Space>
+                <Button type="primary" htmlType="submit">保存</Button>
+                <Button onClick={() => {
+                  setEditVisible(false);
+                  editForm.resetFields();
+                  setEditingStrategy(null);
+                }}>取消</Button>
+              </Space>
+            </Form.Item>
+          </Form>
+        )}
       </Modal>
 
       {/* 策略详情 Modal */}
