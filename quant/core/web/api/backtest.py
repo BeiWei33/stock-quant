@@ -83,6 +83,7 @@ async def run_backtest(
     current_user: CurrentUser,
     start_date: str = Query(..., description="Start date (YYYY-MM-DD)", min_length=10),
     end_date: str = Query(..., description="End date (YYYY-MM-DD)", min_length=10),
+    strategy: str = Query("momentum_rank", description="Strategy ID"),
     rebalance: str = Query("weekly", description="Rebalance frequency"),
     limit: str = Query("", description="Stock limit"),
     use_local: bool = Query(False, description="Use local market data instead of fetching"),
@@ -100,6 +101,7 @@ async def run_backtest(
             f'--sqlite={local_db}',
             f'--start-date={start_date}',
             f'--end-date={end_date}',
+            f'--strategy={strategy}',
             f'--rebalance={rebalance}',
             f'--output={ROOT / "research_store" / "reports" / "akshare_backtest.json"}',
         ]

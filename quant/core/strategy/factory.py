@@ -6,15 +6,15 @@ from quant.core.strategy.quality import QualityRankStrategy
 from quant.core.strategy.trend import TrendFilterStrategy
 
 
-def build_strategy(name: str, *, trend_filter: bool = False) -> Strategy:
+def build_strategy(name: str, *, trend_filter: bool = False, **kwargs) -> Strategy:
     if name == "momentum_rank":
-        strategy: Strategy = MomentumRankStrategy()
+        strategy: Strategy = MomentumRankStrategy(**kwargs)
     elif name == "quality_rank":
-        strategy = QualityRankStrategy()
+        strategy = QualityRankStrategy(**kwargs)
     elif name == "momentum_rank_trend":
-        strategy = TrendFilterStrategy(MomentumRankStrategy())
+        strategy = TrendFilterStrategy(MomentumRankStrategy(**kwargs))
     elif name == "quality_rank_trend":
-        strategy = TrendFilterStrategy(QualityRankStrategy())
+        strategy = TrendFilterStrategy(QualityRankStrategy(**kwargs))
     else:
         raise ValueError(f"unsupported strategy: {name}")
 

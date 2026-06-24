@@ -78,6 +78,7 @@ export default function BacktestPage() {
       const params: any = {
         start_date: values.dateRange?.[0]?.format('YYYY-MM-DD') || '2025-01-01',
         end_date: values.dateRange?.[1]?.format('YYYY-MM-DD') || new Date().toISOString().split('T')[0],
+        strategy: values.strategy || 'momentum_rank',
         rebalance: values.rebalance || 'weekly',
         use_local: values.useLocal || false,
         universe: values.universe || 'all',
@@ -231,12 +232,20 @@ export default function BacktestPage() {
                     form={form}
                     onFinish={handleRunBacktest}
                     layout="inline"
-                    initialValues={{ rebalance: 'weekly', universe: 'all' }}
+                    initialValues={{ rebalance: 'weekly', universe: 'all', strategy: 'momentum_rank' }}
                   >
                     <Form.Item label="日期范围" name="dateRange">
                       <RangePicker
                         defaultValue={[dayjs('2025-01-01'), dayjs()]}
                       />
+                    </Form.Item>
+                    <Form.Item label="策略" name="strategy">
+                      <Select style={{ width: 180 }}>
+                        <Select.Option value="momentum_rank">动量排名</Select.Option>
+                        <Select.Option value="quality_rank">质量排名</Select.Option>
+                        <Select.Option value="momentum_rank_trend">动量+趋势</Select.Option>
+                        <Select.Option value="quality_rank_trend">质量+趋势</Select.Option>
+                      </Select>
                     </Form.Item>
                     <Form.Item label="股票池" name="universe">
                       <Select style={{ width: 150 }}>
