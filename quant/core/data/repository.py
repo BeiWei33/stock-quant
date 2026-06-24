@@ -64,6 +64,10 @@ def close_price_matrix(bars: pd.DataFrame) -> pd.DataFrame:
     return bars.pivot(index="trade_date", columns="ts_code", values="close").sort_index()
 
 
+def open_price_matrix(bars: pd.DataFrame) -> pd.DataFrame:
+    return bars.pivot(index="trade_date", columns="ts_code", values="open").sort_index()
+
+
 def amount_matrix(bars: pd.DataFrame) -> pd.DataFrame:
     return bars.pivot(index="trade_date", columns="ts_code", values="amount").sort_index()
 

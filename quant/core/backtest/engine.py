@@ -7,7 +7,7 @@ import pandas as pd
 
 from quant.core.backtest.metrics import performance_metrics
 from quant.core.benchmark.returns import benchmark_returns as build_benchmark_returns
-from quant.core.data.repository import close_price_matrix
+from quant.core.data.repository import close_price_matrix, open_price_matrix
 from quant.core.execution.rebalance import RebalancePlanner
 from quant.core.factor.technical import FactorEngine, MomentumFactor
 from quant.core.models import OrderIntent, PortfolioSnapshot, StrategyRegistration
@@ -108,6 +108,7 @@ class BacktestEngine:
         )
         factors = self.factor_engine.calculate(bars)
         close = close_price_matrix(bars)
+        open_prices = open_price_matrix(bars)
         benchmark_returns = build_benchmark_returns(
             bars=bars,
             benchmark_bars=request.benchmark_bars,
@@ -125,6 +126,11 @@ class BacktestEngine:
         rebalance_records: list[RebalanceRecord] = []
         returns: list[tuple[date, float]] = []
 
+        # Pending orders for T+1 execution (fix lookahead bias)
+        pending_orders: list[OrderIntent] = []
+        pending_target: pd.DataFrame | None = None
+        pending_trade_date: date | None = None
+
         for idx, trade_date in enumerate(dates):
             current_prices = close.iloc[idx].astype(float)
             position_value = quantities.astype(float) * current_prices
@@ -133,6 +139,46 @@ class BacktestEngine:
                 equity_before_trade / previous_equity - 1.0 if previous_equity > 0 else 0.0
             )
             equity = equity_before_trade
+
+            # Execute pending orders at T+1 open price
+            if pending_orders:
+                open_p = open_prices.iloc[idx].astype(float) if idx < len(open_prices) else current_prices
+                cash, quantities = self._apply_orders(
+                    orders=pending_orders,
+                    cash=cash,
+                    quantities=quantities,
+                    close_prices=open_p,  # Use T+1 open price
+                    request=request,
+                )
+                equity = cash + float((quantities.astype(float) * current_prices).sum())
+                position_value = quantities.astype(float) * current_prices
+
+                # Record the rebalance
+                if pending_target is not None:
+                    next_weights = self._target_to_weight_series(pending_target, close.columns)
+                    current_weights = (
+                        position_value / equity if equity > 0 else pd.Series(0.0, index=close.columns)
+                    )
+                    turnover_delta = next_weights - current_weights
+                    record = RebalanceRecord(
+                        trade_date=pending_trade_date,
+                        allowed=True,
+                        reasons=[],
+                        turnover=float(turnover_delta.abs().sum()),
+                        buy_turnover=float(turnover_delta.clip(lower=0.0).sum()),
+                        sell_turnover=float((-turnover_delta.clip(upper=0.0)).sum()),
+                        holdings_count=int((quantities > 0).sum()),
+                        order_count=len(pending_orders),
+                        rejected_order_count=0,
+                        filled_count=len(pending_orders),
+                        rejected_orders=[],
+                        target_weights=_target_records(pending_target),
+                    )
+                    rebalance_records.append(record)
+
+                pending_orders = []
+                pending_target = None
+                pending_trade_date = None
 
             if trade_date in rebalance_dates:
                 history = bars[bars["trade_date"] <= trade_date]
@@ -147,11 +193,6 @@ class BacktestEngine:
                 )
                 target = self.portfolio_engine.build_target_weights(signals, universe_snapshot)
                 decision = self.risk_engine.check_target_weights(target)
-                next_weights = self._target_to_weight_series(target, close.columns)
-                current_weights = (
-                    position_value / equity if equity > 0 else pd.Series(0.0, index=close.columns)
-                )
-                turnover_delta = next_weights - current_weights
                 current_positions = self._positions_frame(
                     account_id=request.account_id,
                     trade_date=trade_date,
@@ -159,9 +200,6 @@ class BacktestEngine:
                     prices=current_prices,
                     equity=equity,
                 )
-                orders: list[OrderIntent] = []
-                risk_results = []
-                filled_orders: list[OrderIntent] = []
                 if decision.allowed:
                     latest_bars = history[history["trade_date"] == trade_date]
                     orders = self.rebalance_planner.generate_order_intents(
@@ -179,30 +217,10 @@ class BacktestEngine:
                         current_positions=current_positions,
                     )
                     filled_orders = [order for order, risk_decision in risk_results if risk_decision.allowed]
-                    cash, quantities = self._apply_orders(
-                        orders=filled_orders,
-                        cash=cash,
-                        quantities=quantities,
-                        close_prices=current_prices,
-                        request=request,
-                    )
-                    equity = cash + float((quantities.astype(float) * current_prices).sum())
-                    position_value = quantities.astype(float) * current_prices
-                record = RebalanceRecord(
-                    trade_date=trade_date,
-                    allowed=decision.allowed,
-                    reasons=decision.reasons,
-                    turnover=float(turnover_delta.abs().sum()),
-                    buy_turnover=float(turnover_delta.clip(lower=0.0).sum()),
-                    sell_turnover=float((-turnover_delta.clip(upper=0.0)).sum()),
-                    holdings_count=int((quantities > 0).sum()) if decision.allowed else 0,
-                    order_count=len(orders),
-                    rejected_order_count=sum(1 for _, risk_decision in risk_results if not risk_decision.allowed),
-                    filled_count=len(filled_orders),
-                    rejected_orders=_rejected_order_records(risk_results),
-                    target_weights=_target_records(target),
-                )
-                rebalance_records.append(record)
+                    # Store for T+1 execution instead of immediate execution
+                    pending_orders = filled_orders
+                    pending_target = target
+                    pending_trade_date = trade_date
 
             daily_return = equity / previous_equity - 1.0 if previous_equity > 0 else 0.0
             high_watermark = max(high_watermark, equity)
@@ -318,9 +336,14 @@ class BacktestEngine:
         close_prices: pd.Series,
         request: BacktestRequest,
     ) -> tuple[float, pd.Series]:
+        import math
         updated = quantities.copy()
         for order in sorted(orders, key=lambda item: 0 if item.side.upper() == "SELL" else 1):
-            close = float(close_prices.get(order.ts_code, order.price))
+            close = close_prices.get(order.ts_code, order.price)
+            # Skip NaN or invalid prices
+            if close is None or (isinstance(close, float) and (math.isnan(close) or close <= 0)):
+                continue
+            close = float(close)
             if close <= 0:
                 continue
             side = order.side.upper()
