@@ -282,6 +282,21 @@ export default function ExperimentsPage() {
       ),
     },
     {
+      title: '总收益',
+      key: 'total_return',
+      width: 120,
+      render: (_: any, record: ExperimentRun) => {
+        const val = record.metrics?.total_return;
+        if (val == null) return '-';
+        const percent = val * 100;
+        return (
+          <span style={{ color: percent >= 0 ? '#3f8600' : '#cf1322', fontWeight: 'bold' }}>
+            {percent.toFixed(2)}%
+          </span>
+        );
+      },
+    },
+    {
       title: '夏普',
       key: 'sharpe',
       width: 100,

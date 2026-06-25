@@ -270,6 +270,10 @@ class BacktestEngine:
                 sum(record.turnover for record in rebalance_records) / len(rebalance_records)
             )
             metrics["max_turnover"] = float(max(record.turnover for record in rebalance_records))
+            # 计算平均持仓数
+            metrics["average_holdings"] = float(
+                sum(record.holdings_count for record in rebalance_records) / len(rebalance_records)
+            )
         else:
             metrics["rebalance_count"] = 0.0
             metrics["rejected_rebalance_count"] = 0.0
@@ -277,6 +281,7 @@ class BacktestEngine:
             metrics["filled_order_count"] = 0.0
             metrics["average_turnover"] = 0.0
             metrics["max_turnover"] = 0.0
+            metrics["average_holdings"] = 0.0
         return BacktestResult(
             benchmark_code=request.benchmark_code,
             strategy_registration=registration,
