@@ -227,6 +227,14 @@ class ExperimentEngine:
                 # 构建策略
                 strategy = build_strategy(config.strategy_id, **params)
 
+                # 如果是自定义脚本策略，需要加载脚本代码
+                if config.strategy_id in ("custom", "custom_script"):
+                    from quant.core.strategy.script_adapter import load_script_from_db
+                    script_code = load_script_from_db(config.experiment_id)
+                    if script_code:
+                        params["script_code"] = script_code
+                        strategy = build_strategy(config.strategy_id, **params)
+
                 # 构建因子引擎
                 factors = strategy.required_factors()
                 factor_engine = FactorEngine(factors) if factors else FactorEngine([MomentumFactor(60)])
