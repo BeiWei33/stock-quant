@@ -131,6 +131,17 @@ def _delete_task(task_id: str) -> bool:
         conn.close()
 
 
+def _load_task_result(file_path: Path) -> dict[str, Any] | None:
+    """加载任务结果文件。"""
+    try:
+        if file_path.exists():
+            content = file_path.read_text(encoding="utf-8")
+            return json.loads(content)
+    except Exception as e:
+        print(f"[Warning] Failed to load result file {file_path}: {e}")
+    return None
+
+
 # 初始化数据库
 _init_tasks_db()
 
@@ -173,6 +184,9 @@ async def _run_backtest_task(
 
     _save_task(task_id, status="running", started_at=datetime.now(UTC).isoformat())
 
+    # 每个任务使用独立的结果文件
+    output_file = ROOT / "research_store" / "reports" / f"{task_id}.json"
+
     # Check if using local data
     local_db = ROOT / "research_store" / "market_data.sqlite3"
     if use_local and local_db.exists():
@@ -183,7 +197,7 @@ async def _run_backtest_task(
             f'--end-date={end_date}',
             f'--strategy={strategy}',
             f'--rebalance={rebalance}',
-            f'--output={ROOT / "research_store" / "reports" / "akshare_backtest.json"}',
+            f'--output={output_file}',
         ]
         if universe and universe != "all":
             cmd_parts.append(f'--universe={universe}')
@@ -227,7 +241,8 @@ async def _run_backtest_task(
         print(f"[Backtest {task_id}] Return code: {proc.returncode}")
 
         if proc.returncode == 0:
-            result = load_report("akshare_backtest.json")
+            # 加载任务独立的结果文件
+            result = _load_task_result(output_file)
             _save_task(
                 task_id,
                 status="completed",
