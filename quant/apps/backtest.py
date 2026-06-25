@@ -299,48 +299,60 @@ def _filter_bars(bars, start_date: str | None, end_date: str | None):
 
 
 def _filter_by_universe(bars, universe: str):
-    """Filter bars by stock universe (csi300/csi500/csi800)."""
-    import akshare as ak
+    """Filter bars by stock universe."""
+    import sqlite3
+    from pathlib import Path
 
-    # Get index components
-    csi300_codes = set()
-    csi500_codes = set()
-
-    if universe in ["csi300", "csi800"]:
-        try:
-            df = ak.index_stock_cons(symbol="000300")
-            for code in df["品种代码"]:
-                if code.startswith("6"):
-                    csi300_codes.add(f"{code}.SH")
-                else:
-                    csi300_codes.add(f"{code}.SZ")
-        except Exception as e:
-            print(f"[Warning] Failed to get CSI 300 components: {e}")
-
-    if universe in ["csi500", "csi800"]:
-        try:
-            df = ak.index_stock_cons(symbol="000905")
-            for code in df["品种代码"]:
-                if code.startswith("6"):
-                    csi500_codes.add(f"{code}.SH")
-                else:
-                    csi500_codes.add(f"{code}.SZ")
-        except Exception as e:
-            print(f"[Warning] Failed to get CSI 500 components: {e}")
-
-    # Combine codes
-    if universe == "csi300":
-        valid_codes = csi300_codes
-    elif universe == "csi500":
-        valid_codes = csi500_codes
-    elif universe == "csi800":
-        valid_codes = csi300_codes | csi500_codes
-    else:
+    db_path = Path("research_store/market_data.sqlite3")
+    if not db_path.exists():
+        print(f"[Warning] Database not found, using all stocks")
         return bars
+
+    # 直接从数据库查询分类
+    conn = sqlite3.connect(str(db_path))
+    cursor = conn.cursor()
+
+    # 解析股票池
+    if universe == "all":
+        conn.close()
+        return bars
+
+    # 复合分类
+    if "+" in universe:
+        categories = universe.split("+")
+        placeholders = ",".join(["?" for _ in categories])
+        cursor.execute(f"SELECT ts_code FROM stocks WHERE industry IN ({placeholders})", categories)
+    else:
+        # 单一分类映射
+        category_map = {
+            "csi300": "CSI300",
+            "csi500": "CSI500",
+            "csi1000": "CSI1000",
+            "sse50": "SSE50",
+            "chinext": "ChiNext",
+            "star50": "STAR50",
+            "csi800": None,  # 特殊处理
+        }
+
+        category = category_map.get(universe)
+
+        if universe == "csi800":
+            cursor.execute("SELECT ts_code FROM stocks WHERE industry IN ('CSI300', 'CSI500')")
+        elif category:
+            cursor.execute("SELECT ts_code FROM stocks WHERE industry = ?", (category,))
+        else:
+            print(f"[Warning] Unknown universe: {universe}, using all stocks")
+            conn.close()
+            return bars
+
+    valid_codes = set(row[0] for row in cursor.fetchall())
+    conn.close()
 
     if not valid_codes:
         print(f"[Warning] No stock codes found for {universe}, using all stocks")
         return bars
+
+    print(f"[Universe] Filtered to {universe}: {len(valid_codes)} stocks")
 
     # Filter bars
     filtered = bars[bars["ts_code"].isin(valid_codes)]

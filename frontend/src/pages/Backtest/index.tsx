@@ -386,11 +386,16 @@ export default function BacktestPage() {
                       </Select>
                     </Form.Item>
                     <Form.Item label="股票池" name="universe">
-                      <Select style={{ width: 150 }}>
-                        <Select.Option value="all">全市场 (717只)</Select.Option>
-                        <Select.Option value="csi300">沪深300 (300只)</Select.Option>
-                        <Select.Option value="csi500">中证500 (500只)</Select.Option>
+                      <Select style={{ width: 180 }}>
+                        <Select.Option value="all">全市场 (5,895只)</Select.Option>
+                        <Select.Option value="csi300">沪深300 (194只)</Select.Option>
+                        <Select.Option value="csi500">中证500 (358只)</Select.Option>
+                        <Select.Option value="csi1000">中证1000 (769只)</Select.Option>
+                        <Select.Option value="sse50">上证50 (50只)</Select.Option>
+                        <Select.Option value="chinext">创业板指 (100只)</Select.Option>
+                        <Select.Option value="star50">科创50 (44只)</Select.Option>
                         <Select.Option value="csi800">沪深300+中证500</Select.Option>
+                        <Select.Option value="csi300+csi1000">沪深300+中证1000</Select.Option>
                       </Select>
                     </Form.Item>
                     <Form.Item label="再平衡" name="rebalance">
