@@ -1,8 +1,9 @@
-"""Backtest API router with async execution."""
+"""Backtest API router with async execution and persistent storage."""
 from __future__ import annotations
 
 import asyncio
 import json
+import sqlite3
 import subprocess
 import sys
 import uuid
@@ -20,9 +21,118 @@ router = APIRouter()
 
 ROOT = Path(__file__).resolve().parents[4]
 RUN_DIR = ROOT / "research_store" / "web_runs"
+TASKS_DB = ROOT / "research_store" / "backtest_tasks.sqlite3"
 
-# In-memory task storage
-_backtest_tasks: dict[str, dict[str, Any]] = {}
+
+def _init_tasks_db():
+    """初始化任务数据库。"""
+    TASKS_DB.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(TASKS_DB))
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS backtest_tasks (
+            task_id TEXT PRIMARY KEY,
+            status TEXT DEFAULT 'pending',
+            params TEXT DEFAULT '{}',
+            result TEXT DEFAULT '{}',
+            error TEXT DEFAULT '',
+            stdout TEXT DEFAULT '',
+            created_at TEXT,
+            started_at TEXT,
+            completed_at TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+
+def _save_task(task_id: str, **kwargs):
+    """保存任务到数据库。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    try:
+        # 检查任务是否存在
+        cursor = conn.execute("SELECT task_id FROM backtest_tasks WHERE task_id = ?", (task_id,))
+        exists = cursor.fetchone() is not None
+
+        if exists:
+            # 更新现有任务
+            updates = []
+            params = []
+            for key, value in kwargs.items():
+                if key != 'task_id':
+                    updates.append(f"{key} = ?")
+                    params.append(json.dumps(value) if isinstance(value, (dict, list)) else value)
+            if updates:
+                params.append(task_id)
+                conn.execute(f"UPDATE backtest_tasks SET {', '.join(updates)} WHERE task_id = ?", params)
+        else:
+            # 插入新任务
+            columns = ['task_id'] + [k for k in kwargs.keys() if k != 'task_id']
+            placeholders = ', '.join(['?' for _ in columns])
+            values = [task_id] + [json.dumps(v) if isinstance(v, (dict, list)) else v for k, v in kwargs.items() if k != 'task_id']
+            conn.execute(f"INSERT INTO backtest_tasks ({', '.join(columns)}) VALUES ({placeholders})", values)
+
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def _get_task(task_id: str) -> dict[str, Any] | None:
+    """从数据库获取任务。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    conn.row_factory = sqlite3.Row
+    try:
+        cursor = conn.execute("SELECT * FROM backtest_tasks WHERE task_id = ?", (task_id,))
+        row = cursor.fetchone()
+        if not row:
+            return None
+
+        task = dict(row)
+        # 解析 JSON 字段
+        for field in ['params', 'result']:
+            if task[field]:
+                try:
+                    task[field] = json.loads(task[field])
+                except:
+                    pass
+        return task
+    finally:
+        conn.close()
+
+
+def _get_all_tasks() -> list[dict[str, Any]]:
+    """获取所有任务。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    conn.row_factory = sqlite3.Row
+    try:
+        cursor = conn.execute("SELECT * FROM backtest_tasks ORDER BY created_at DESC LIMIT 50")
+        tasks = []
+        for row in cursor.fetchall():
+            task = dict(row)
+            for field in ['params', 'result']:
+                if task[field]:
+                    try:
+                        task[field] = json.loads(task[field])
+                    except:
+                        pass
+            tasks.append(task)
+        return tasks
+    finally:
+        conn.close()
+
+
+def _delete_task(task_id: str) -> bool:
+    """删除任务。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    try:
+        cursor = conn.execute("DELETE FROM backtest_tasks WHERE task_id = ?", (task_id,))
+        conn.commit()
+        return cursor.rowcount > 0
+    finally:
+        conn.close()
+
+
+# 初始化数据库
+_init_tasks_db()
 
 
 def _get_python_exe() -> str:
@@ -61,8 +171,7 @@ async def _run_backtest_task(
     """Run backtest in background."""
     import os
 
-    _backtest_tasks[task_id]["status"] = "running"
-    _backtest_tasks[task_id]["started_at"] = datetime.now(UTC).isoformat()
+    _save_task(task_id, status="running", started_at=datetime.now(UTC).isoformat())
 
     # Check if using local data
     local_db = ROOT / "research_store" / "market_data.sqlite3"
@@ -119,25 +228,28 @@ async def _run_backtest_task(
 
         if proc.returncode == 0:
             result = load_report("akshare_backtest.json")
-            _backtest_tasks[task_id].update({
-                "status": "completed",
-                "result": result,
-                "completed_at": datetime.now(UTC).isoformat(),
-            })
+            _save_task(
+                task_id,
+                status="completed",
+                result=result,
+                completed_at=datetime.now(UTC).isoformat(),
+            )
         else:
-            _backtest_tasks[task_id].update({
-                "status": "failed",
-                "error": stderr_str[-500:] if stderr_str else "Unknown error",
-                "stdout": stdout_str[-500:],
-                "completed_at": datetime.now(UTC).isoformat(),
-            })
+            _save_task(
+                task_id,
+                status="failed",
+                error=stderr_str[-500:] if stderr_str else "Unknown error",
+                stdout=stdout_str[-500:],
+                completed_at=datetime.now(UTC).isoformat(),
+            )
 
     except Exception as e:
-        _backtest_tasks[task_id].update({
-            "status": "failed",
-            "error": str(e),
-            "completed_at": datetime.now(UTC).isoformat(),
-        })
+        _save_task(
+            task_id,
+            status="failed",
+            error=str(e),
+            completed_at=datetime.now(UTC).isoformat(),
+        )
 
 
 @router.get("/results")
@@ -174,18 +286,19 @@ async def run_backtest(
     """Submit a backtest task (async)."""
     task_id = f"backtest_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:4]}"
 
-    _backtest_tasks[task_id] = {
-        "task_id": task_id,
-        "status": "pending",
-        "params": {
+    # 保存任务到数据库
+    _save_task(
+        task_id,
+        status="pending",
+        params={
             "start_date": start_date,
             "end_date": end_date,
             "strategy": strategy,
             "rebalance": rebalance,
             "universe": universe,
         },
-        "created_at": datetime.now(UTC).isoformat(),
-    }
+        created_at=datetime.now(UTC).isoformat(),
+    )
 
     # Run in background
     background_tasks.add_task(
@@ -210,7 +323,7 @@ async def run_backtest(
 @router.get("/status/{task_id}")
 async def get_backtest_status(task_id: str, current_user: CurrentUser):
     """Get backtest task status."""
-    task = _backtest_tasks.get(task_id)
+    task = _get_task(task_id)
     if not task:
         return ApiResponse(code=404, message="Task not found")
     return ApiResponse(data=task)
@@ -219,15 +332,13 @@ async def get_backtest_status(task_id: str, current_user: CurrentUser):
 @router.get("/tasks")
 async def list_backtest_tasks(current_user: CurrentUser):
     """List all backtest tasks."""
-    tasks = list(_backtest_tasks.values())
-    tasks.sort(key=lambda x: x.get("created_at", ""), reverse=True)
-    return ApiResponse(data=tasks[:50])
+    tasks = _get_all_tasks()
+    return ApiResponse(data=tasks)
 
 
 @router.delete("/tasks/{task_id}")
 async def delete_backtest_task(task_id: str, current_user: CurrentUser):
     """Delete a backtest task."""
-    if task_id in _backtest_tasks:
-        del _backtest_tasks[task_id]
+    if _delete_task(task_id):
         return ApiResponse(message="Task deleted")
     return ApiResponse(code=404, message="Task not found")
