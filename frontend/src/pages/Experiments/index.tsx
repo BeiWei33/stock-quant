@@ -119,6 +119,7 @@ export default function ExperimentsPage() {
         strategy_id: values.strategy_id,
         param_grid: paramGrid,
         metric: values.metric,
+        universe: values.universe || 'all',
         start_date: values.start_date,
         end_date: values.end_date,
       });
@@ -493,6 +494,25 @@ export default function ExperimentsPage() {
                 { label: '夏普比率 (推荐)', value: 'sharpe' },
                 { label: '年化收益', value: 'annual_return' },
                 { label: '最大回撤 (越小越好)', value: 'max_drawdown' },
+              ]}
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="股票池"
+            name="universe"
+            tooltip="选择回测使用的股票池"
+          >
+            <Select
+              options={[
+                { label: '全市场 (5,895只)', value: 'all' },
+                { label: '沪深300 (194只)', value: 'csi300' },
+                { label: '中证500 (358只)', value: 'csi500' },
+                { label: '中证1000 (769只)', value: 'csi1000' },
+                { label: '上证50 (50只)', value: 'sse50' },
+                { label: '创业板指 (100只)', value: 'chinext' },
+                { label: '科创50 (44只)', value: 'star50' },
+                { label: '沪深300+中证500', value: 'csi800' },
               ]}
             />
           </Form.Item>

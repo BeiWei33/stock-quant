@@ -29,6 +29,7 @@ class CreateExperimentRequest(BaseModel):
     strategy_id: str
     param_grid: dict[str, Any]
     metric: str = "sharpe"
+    universe: str = "all"
     start_date: str = "2025-01-01"
     end_date: str = ""
     rebalance: str = "weekly"
@@ -58,10 +59,11 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
             strategy_id=experiment["strategy_id"],
             param_grid=experiment["param_grid"],
             metric=experiment.get("metric", "sharpe"),
-            start_date="2025-01-01",
-            end_date="",
-            rebalance="weekly",
-            benchmark_code="000300.SH",
+            universe=experiment.get("universe", "all"),
+            start_date=experiment.get("start_date", "2025-01-01"),
+            end_date=experiment.get("end_date", ""),
+            rebalance=experiment.get("rebalance", "weekly"),
+            benchmark_code=experiment.get("benchmark_code", "000300.SH"),
         )
 
         # Run in executor to avoid blocking
@@ -124,20 +126,22 @@ async def create_experiment(
                 strategy_id TEXT,
                 param_grid TEXT,
                 metric TEXT,
+                universe TEXT DEFAULT 'all',
                 status TEXT,
                 created_at TEXT
             )
         """)
         conn.execute(
             """INSERT INTO experiments
-               (experiment_id, name, strategy_id, param_grid, metric, status, created_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?)""",
+               (experiment_id, name, strategy_id, param_grid, metric, universe, status, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 experiment_id,
                 request.name,
                 request.strategy_id,
                 json.dumps(request.param_grid),
                 request.metric,
+                request.universe,
                 "created",
                 datetime.now(UTC).isoformat(),
             ),
@@ -150,6 +154,7 @@ async def create_experiment(
         "experiment_id": experiment_id,
         "name": request.name,
         "strategy_id": request.strategy_id,
+        "universe": request.universe,
         "status": "created",
     })
 

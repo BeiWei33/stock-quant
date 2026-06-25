@@ -31,6 +31,7 @@ class ExperimentConfig:
     strategy_id: str
     param_grid: dict[str, list[Any]]
     metric: str = "sharpe"
+    universe: str = "all"
     start_date: str = "2025-01-01"
     end_date: str = ""
     rebalance: str = "weekly"
@@ -213,6 +214,12 @@ class ExperimentEngine:
         )
         stocks = store.load_stocks()
         benchmark_bars = store.load_benchmark_bars(config.benchmark_code)
+
+        # 应用股票池过滤
+        universe = getattr(config, 'universe', 'all') or 'all'
+        if universe != 'all':
+            bars = self._filter_by_universe(bars, universe)
+            print(f"[Experiment] Filtered to {universe}: {bars['ts_code'].nunique()} stocks")
 
         runs = []
         for i, params in enumerate(param_combinations):
@@ -436,3 +443,58 @@ class ExperimentEngine:
             return datetime.strptime(value, "%Y-%m-%d").date()
         except ValueError:
             return None
+
+    @staticmethod
+    def _filter_by_universe(bars, universe: str):
+        """按股票池过滤数据。"""
+        import sqlite3
+
+        if universe == 'all':
+            return bars
+
+        # 连接数据库查询分类
+        db_path = Path("research_store/market_data.sqlite3")
+        if not db_path.exists():
+            print(f"[Warning] Database not found, using all stocks")
+            return bars
+
+        conn = sqlite3.connect(str(db_path))
+        cursor = conn.cursor()
+
+        # 解析股票池
+        if "+" in universe:
+            categories = universe.split("+")
+            placeholders = ",".join(["?" for _ in categories])
+            cursor.execute(f"SELECT ts_code FROM stocks WHERE industry IN ({placeholders})", categories)
+        else:
+            category_map = {
+                "csi300": "CSI300",
+                "csi500": "CSI500",
+                "csi1000": "CSI1000",
+                "sse50": "SSE50",
+                "chinext": "ChiNext",
+                "star50": "STAR50",
+                "csi800": None,
+            }
+
+            category = category_map.get(universe)
+
+            if universe == "csi800":
+                cursor.execute("SELECT ts_code FROM stocks WHERE industry IN ('CSI300', 'CSI500')")
+            elif category:
+                cursor.execute("SELECT ts_code FROM stocks WHERE industry = ?", (category,))
+            else:
+                print(f"[Warning] Unknown universe: {universe}, using all stocks")
+                conn.close()
+                return bars
+
+        valid_codes = set(row[0] for row in cursor.fetchall())
+        conn.close()
+
+        if not valid_codes:
+            print(f"[Warning] No stock codes found for {universe}, using all stocks")
+            return bars
+
+        # 过滤数据
+        filtered = bars[bars["ts_code"].isin(valid_codes)]
+        return filtered.reset_index(drop=True)
