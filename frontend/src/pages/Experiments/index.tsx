@@ -143,8 +143,9 @@ export default function ExperimentsPage() {
         param_grid: paramGrid,
         metric: values.metric,
         universe: values.universe || 'all',
-        start_date: values.start_date,
-        end_date: values.end_date,
+        rebalance: values.rebalance || 'weekly',
+        start_date: values.start_date || '2025-01-01',
+        end_date: values.end_date || '',
       });
 
       if (response.data.code === 200) {
@@ -552,6 +553,19 @@ export default function ExperimentsPage() {
                 { label: '创业板指 (100只)', value: 'chinext' },
                 { label: '科创50 (44只)', value: 'star50' },
                 { label: '沪深300+中证500', value: 'csi800' },
+              ]}
+            />
+          </Form.Item>
+
+          <Form.Item
+            label="再平衡频率"
+            name="rebalance"
+            tooltip="策略多久调整一次持仓"
+          >
+            <Select
+              options={[
+                { label: '每周（适合动量策略）', value: 'weekly' },
+                { label: '每月（适合价值/质量策略）', value: 'monthly' },
               ]}
             />
           </Form.Item>
