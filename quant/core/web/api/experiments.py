@@ -30,7 +30,7 @@ class CreateExperimentRequest(BaseModel):
     param_grid: dict[str, Any]
     metric: str = "sharpe"
     universe: str = "all"
-    start_date: str = "2025-01-01"
+    start_date: str = ""
     end_date: str = ""
     rebalance: str = "weekly"
     benchmark_code: str = "000300.SH"
@@ -64,8 +64,8 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
             param_grid=experiment["param_grid"],
             metric=experiment.get("metric", "sharpe"),
             universe=experiment.get("universe", "all"),
-            start_date=experiment.get("start_date", "2025-01-01"),
-            end_date=experiment.get("end_date", ""),
+            start_date=experiment.get("start_date") or "2025-01-01",
+            end_date=experiment.get("end_date") or "",
             rebalance=experiment.get("rebalance", "weekly"),
             benchmark_code=experiment.get("benchmark_code", "000300.SH"),
         )
@@ -153,14 +153,18 @@ async def create_experiment(
                 param_grid TEXT,
                 metric TEXT,
                 universe TEXT DEFAULT 'all',
+                start_date TEXT DEFAULT '',
+                end_date TEXT DEFAULT '',
+                rebalance TEXT DEFAULT 'weekly',
+                benchmark_code TEXT DEFAULT '000300.SH',
                 status TEXT,
                 created_at TEXT
             )
         """)
         conn.execute(
             """INSERT INTO experiments
-               (experiment_id, name, strategy_id, param_grid, metric, universe, status, created_at)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+               (experiment_id, name, strategy_id, param_grid, metric, universe, start_date, end_date, rebalance, benchmark_code, status, created_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 experiment_id,
                 request.name,
@@ -168,6 +172,10 @@ async def create_experiment(
                 json.dumps(request.param_grid),
                 request.metric,
                 request.universe,
+                request.start_date,
+                request.end_date,
+                request.rebalance,
+                request.benchmark_code,
                 "created",
                 datetime.now(UTC).isoformat(),
             ),
@@ -181,6 +189,8 @@ async def create_experiment(
         "name": request.name,
         "strategy_id": request.strategy_id,
         "universe": request.universe,
+        "start_date": request.start_date,
+        "end_date": request.end_date,
         "status": "created",
     })
 
