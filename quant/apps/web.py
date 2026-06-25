@@ -63,6 +63,7 @@ def create_app() -> FastAPI:
     from quant.core.web.api.positions import router as positions_router
     from quant.core.web.api.signals import router as signals_router
     from quant.core.web.api.tasks import router as tasks_router
+    from quant.core.web.api.advanced_analysis import router as advanced_analysis_router
 
     # Public routes (no auth required)
     app.include_router(auth_router, prefix="/api/auth", tags=["auth"])
@@ -81,6 +82,7 @@ def create_app() -> FastAPI:
     app.include_router(experiments_router, prefix="/api/experiments", tags=["experiments"])
     app.include_router(market_router, prefix="/api/market", tags=["market"])
     app.include_router(notification_router, prefix="/api/notification", tags=["notification"])
+    app.include_router(advanced_analysis_router, prefix="/api/advanced-analysis", tags=["advanced-analysis"])
 
     # Note: WebSocket endpoint is now in tasks_router at /api/tasks/ws
 

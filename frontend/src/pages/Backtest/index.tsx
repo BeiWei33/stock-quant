@@ -18,6 +18,9 @@ import {
   Space,
   Popconfirm,
   Badge,
+  Modal,
+  Alert,
+  Descriptions,
 } from 'antd';
 import {
   ReloadOutlined,
@@ -26,6 +29,9 @@ import {
   CloseCircleOutlined,
   LoadingOutlined,
   ClockCircleOutlined,
+  ExperimentOutlined,
+  LineChartOutlined,
+  BarChartOutlined,
 } from '@ant-design/icons';
 import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
@@ -56,13 +62,10 @@ interface BacktestMetrics {
   average_turnover: number;
 }
 
-interface Experiment {
-  experiment_id: string;
-  experiment_name: string;
-  created_at: string;
-  status: string;
-  params: any;
-  metrics: BacktestMetrics;
+interface AdvancedAnalysisResult {
+  type: string;
+  loading: boolean;
+  data: any;
 }
 
 export default function BacktestPage() {
@@ -72,6 +75,8 @@ export default function BacktestPage() {
   const [polling, setPolling] = useState<string | null>(null);
   const [strategies, setStrategies] = useState<any[]>([]);
   const [form] = Form.useForm();
+  const [advancedAnalysis, setAdvancedAnalysis] = useState<AdvancedAnalysisResult | null>(null);
+  const [analysisModalVisible, setAnalysisModalVisible] = useState(false);
 
   useEffect(() => {
     fetchResults();
@@ -156,6 +161,44 @@ export default function BacktestPage() {
       setTasks(response.data.data || []);
     } catch (error) {
       console.error('获取任务列表失败', error);
+    }
+  };
+
+  // 高级分析功能
+  const runAdvancedAnalysis = async (type: string) => {
+    const strategy = form.getFieldValue('strategy') || 'momentum_rank';
+    const dateRange = form.getFieldValue('dateRange');
+    const startDate = dateRange?.[0]?.format('YYYY-MM-DD') || '2025-01-01';
+    const endDate = dateRange?.[1]?.format('YYYY-MM-DD') || '2026-06-24';
+
+    setAdvancedAnalysis({ type, loading: true, data: null });
+    setAnalysisModalVisible(true);
+
+    try {
+      let response;
+      if (type === 'out-of-sample') {
+        response = await api.get('/api/advanced-analysis/out-of-sample', {
+          params: { strategy, start_date: '2020-01-01', end_date: endDate },
+        });
+      } else if (type === 'multi-benchmark') {
+        response = await api.get('/api/advanced-analysis/multi-benchmark', {
+          params: { strategy, start_date: startDate, end_date: endDate },
+        });
+      } else if (type === 'monte-carlo') {
+        response = await api.get('/api/advanced-analysis/monte-carlo', {
+          params: { strategy, start_date: startDate, end_date: endDate, n_simulations: 30 },
+        });
+      }
+
+      if (response?.data?.code === 200) {
+        setAdvancedAnalysis({ type, loading: false, data: response.data.data });
+      } else {
+        message.error(response?.data?.message || '分析失败');
+        setAdvancedAnalysis({ type, loading: false, data: null });
+      }
+    } catch (error: any) {
+      message.error('分析失败: ' + (error.message || '未知错误'));
+      setAdvancedAnalysis({ type, loading: false, data: null });
     }
   };
 
@@ -368,6 +411,36 @@ export default function BacktestPage() {
                       </Button>
                     </Form.Item>
                   </Form>
+                </Card>
+
+                {/* 高级分析按钮 */}
+                <Card title="高级分析" style={{ marginBottom: 16 }}>
+                  <Space wrap>
+                    <Button
+                      icon={<ExperimentOutlined />}
+                      onClick={() => runAdvancedAnalysis('out-of-sample')}
+                      loading={advancedAnalysis?.type === 'out-of-sample' && advancedAnalysis.loading}
+                    >
+                      样本外测试
+                    </Button>
+                    <Button
+                      icon={<BarChartOutlined />}
+                      onClick={() => runAdvancedAnalysis('multi-benchmark')}
+                      loading={advancedAnalysis?.type === 'multi-benchmark' && advancedAnalysis.loading}
+                    >
+                      多基准对比
+                    </Button>
+                    <Button
+                      icon={<LineChartOutlined />}
+                      onClick={() => runAdvancedAnalysis('monte-carlo')}
+                      loading={advancedAnalysis?.type === 'monte-carlo' && advancedAnalysis.loading}
+                    >
+                      蒙特卡洛测试
+                    </Button>
+                  </Space>
+                  <div style={{ marginTop: 8, color: '#666', fontSize: 12 }}>
+                    💡 样本外测试检查过拟合风险，多基准对比评估相对表现，蒙特卡洛测试评估稳健性
+                  </div>
                 </Card>
 
                 {/* Running Task */}
@@ -645,6 +718,195 @@ export default function BacktestPage() {
           },
         ]}
       />
+
+      {/* 高级分析结果 Modal */}
+      <Modal
+        title={
+          advancedAnalysis?.type === 'out-of-sample' ? '样本外测试结果' :
+          advancedAnalysis?.type === 'multi-benchmark' ? '多基准对比结果' :
+          advancedAnalysis?.type === 'monte-carlo' ? '蒙特卡洛测试结果' : '分析结果'
+        }
+        open={analysisModalVisible}
+        onCancel={() => setAnalysisModalVisible(false)}
+        footer={null}
+        width={900}
+      >
+        {advancedAnalysis?.loading && (
+          <div style={{ textAlign: 'center', padding: 40 }}>
+            <Spin size="large" />
+            <div style={{ marginTop: 16 }}>正在运行分析，请稍候...</div>
+          </div>
+        )}
+
+        {advancedAnalysis?.data && !advancedAnalysis.loading && (
+          <div>
+            {/* 样本外测试结果 */}
+            {advancedAnalysis.type === 'out-of-sample' && (
+              <>
+                <Alert
+                  message={`过拟合风险: ${advancedAnalysis.data.analysis?.risk_level === 'low' ? '低' : advancedAnalysis.data.analysis?.risk_level === 'medium' ? '中' : '高'}`}
+                  description={advancedAnalysis.data.analysis?.message}
+                  type={advancedAnalysis.data.analysis?.risk_level === 'low' ? 'success' : advancedAnalysis.data.analysis?.risk_level === 'medium' ? 'warning' : 'error'}
+                  showIcon
+                  style={{ marginBottom: 16 }}
+                />
+
+                <Descriptions bordered column={2} size="small" style={{ marginBottom: 16 }}>
+                  <Descriptions.Item label="训练集夏普">
+                    {advancedAnalysis.data.analysis?.train_sharpe?.toFixed(4)}
+                  </Descriptions.Item>
+                  <Descriptions.Item label="测试集平均夏普">
+                    {advancedAnalysis.data.analysis?.avg_test_sharpe?.toFixed(4)}
+                  </Descriptions.Item>
+                  <Descriptions.Item label="夏普衰减">
+                    {(advancedAnalysis.data.analysis?.sharpe_decay * 100)?.toFixed(2)}%
+                  </Descriptions.Item>
+                </Descriptions>
+
+                <Table
+                  dataSource={advancedAnalysis.data.periods}
+                  rowKey="name"
+                  size="small"
+                  pagination={false}
+                  columns={[
+                    { title: '数据集', dataIndex: 'name', key: 'name' },
+                    { title: '开始日期', dataIndex: 'start_date', key: 'start_date' },
+                    { title: '结束日期', dataIndex: 'end_date', key: 'end_date' },
+                    {
+                      title: '总收益',
+                      key: 'total_return',
+                      render: (_: any, record: any) => `${(record.metrics?.total_return * 100).toFixed(2)}%`,
+                    },
+                    {
+                      title: '夏普比率',
+                      key: 'sharpe',
+                      render: (_: any, record: any) => record.metrics?.sharpe?.toFixed(4),
+                    },
+                    {
+                      title: '最大回撤',
+                      key: 'max_drawdown',
+                      render: (_: any, record: any) => `${(record.metrics?.max_drawdown * 100).toFixed(2)}%`,
+                    },
+                  ]}
+                />
+              </>
+            )}
+
+            {/* 多基准对比结果 */}
+            {advancedAnalysis.type === 'multi-benchmark' && (
+              <>
+                <Alert
+                  message={`最佳基准: ${advancedAnalysis.data.best_benchmark}`}
+                  type="info"
+                  style={{ marginBottom: 16 }}
+                />
+
+                <Table
+                  dataSource={advancedAnalysis.data.comparisons}
+                  rowKey="benchmark_code"
+                  size="small"
+                  pagination={false}
+                  columns={[
+                    { title: '基准', dataIndex: 'benchmark_name', key: 'benchmark_name' },
+                    {
+                      title: '超额收益',
+                      key: 'excess_return',
+                      render: (_: any, record: any) => (
+                        <span style={{ color: record.excess_return >= 0 ? '#3f8600' : '#cf1322' }}>
+                          {(record.excess_return * 100).toFixed(2)}%
+                        </span>
+                      ),
+                    },
+                    {
+                      title: '信息比率',
+                      key: 'information_ratio',
+                      render: (_: any, record: any) => record.information_ratio?.toFixed(4),
+                    },
+                    {
+                      title: '跟踪误差',
+                      key: 'tracking_error',
+                      render: (_: any, record: any) => `${(record.tracking_error * 100).toFixed(2)}%`,
+                    },
+                    {
+                      title: 'Beta',
+                      key: 'beta',
+                      render: (_: any, record: any) => record.beta?.toFixed(4),
+                    },
+                    {
+                      title: '相关系数',
+                      key: 'correlation',
+                      render: (_: any, record: any) => record.correlation?.toFixed(4),
+                    },
+                  ]}
+                />
+
+                {advancedAnalysis.data.report && (
+                  <Card title="分析报告" size="small" style={{ marginTop: 16 }}>
+                    <pre style={{ whiteSpace: 'pre-wrap', fontSize: 12 }}>
+                      {advancedAnalysis.data.report}
+                    </pre>
+                  </Card>
+                )}
+              </>
+            )}
+
+            {/* 蒙特卡洛测试结果 */}
+            {advancedAnalysis.type === 'monte-carlo' && (
+              <>
+                <Row gutter={16} style={{ marginBottom: 16 }}>
+                  <Col span={12}>
+                    <Card title="Bootstrap 测试" size="small">
+                      <Descriptions column={1} size="small">
+                        <Descriptions.Item label="实际夏普">
+                          {advancedAnalysis.data.actual_sharpe?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="模拟均值">
+                          {advancedAnalysis.data.bootstrap?.mean?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="模拟标准差">
+                          {advancedAnalysis.data.bootstrap?.std?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="50%分位">
+                          {advancedAnalysis.data.bootstrap?.percentile_50?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="95%置信区间">
+                          [{advancedAnalysis.data.bootstrap?.percentile_5?.toFixed(4)}, {advancedAnalysis.data.bootstrap?.percentile_95?.toFixed(4)}]
+                        </Descriptions.Item>
+                      </Descriptions>
+                    </Card>
+                  </Col>
+                  <Col span={12}>
+                    <Card title="参数扰动测试" size="small">
+                      <Descriptions column={1} size="small">
+                        <Descriptions.Item label="模拟均值">
+                          {advancedAnalysis.data.parameter?.mean?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="模拟标准差">
+                          {advancedAnalysis.data.parameter?.std?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="最小值">
+                          {advancedAnalysis.data.parameter?.min?.toFixed(4)}
+                        </Descriptions.Item>
+                        <Descriptions.Item label="最大值">
+                          {advancedAnalysis.data.parameter?.max?.toFixed(4)}
+                        </Descriptions.Item>
+                      </Descriptions>
+                    </Card>
+                  </Col>
+                </Row>
+
+                {advancedAnalysis.data.report && (
+                  <Card title="分析报告" size="small">
+                    <pre style={{ whiteSpace: 'pre-wrap', fontSize: 12 }}>
+                      {advancedAnalysis.data.report}
+                    </pre>
+                  </Card>
+                )}
+              </>
+            )}
+          </div>
+        )}
+      </Modal>
     </div>
   );
 }
