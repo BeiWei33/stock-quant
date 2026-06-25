@@ -77,10 +77,17 @@ export default function ExperimentsPage() {
         const response = await api.get(`/api/experiments/${pollingExperimentId}`);
         const experiment = response.data.data;
 
-        if (experiment && (experiment.status === 'completed' || experiment.status === 'failed')) {
-          message.success(experiment.status === 'completed' ? '实验完成！' : '实验失败');
-          setPollingExperimentId(null);
-          fetchExperiments();
+        if (experiment) {
+          const taskStatus = experiment.task_status;
+          if (taskStatus === 'completed') {
+            message.success('实验完成！');
+            setPollingExperimentId(null);
+            fetchExperiments();
+          } else if (taskStatus === 'failed') {
+            message.error('实验失败: ' + (experiment.task_error || '未知错误'));
+            setPollingExperimentId(null);
+            fetchExperiments();
+          }
         }
       } catch (error) {
         console.error('轮询实验状态失败', error);

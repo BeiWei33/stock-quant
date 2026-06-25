@@ -1,4 +1,4 @@
-"""Experiments API router with async execution."""
+"""Experiments API router with async execution and persistent storage."""
 from __future__ import annotations
 
 import asyncio
@@ -19,8 +19,122 @@ from quant.core.web.schemas.common import ApiResponse
 router = APIRouter()
 engine = ExperimentEngine()
 
-# In-memory task storage
-_experiment_tasks: dict[str, dict[str, Any]] = {}
+TASKS_DB = Path("research_store/experiment_tasks.sqlite3")
+
+
+def _init_tasks_db():
+    """初始化任务数据库。"""
+    TASKS_DB.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(TASKS_DB))
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS experiment_tasks (
+            task_id TEXT PRIMARY KEY,
+            experiment_id TEXT,
+            status TEXT DEFAULT 'pending',
+            result TEXT DEFAULT '{}',
+            error TEXT DEFAULT '',
+            created_at TEXT,
+            started_at TEXT,
+            completed_at TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+
+def _save_task(task_id: str, **kwargs):
+    """保存任务到数据库。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    try:
+        cursor = conn.execute("SELECT task_id FROM experiment_tasks WHERE task_id = ?", (task_id,))
+        exists = cursor.fetchone() is not None
+
+        if exists:
+            updates = []
+            params = []
+            for key, value in kwargs.items():
+                if key != 'task_id':
+                    updates.append(f"{key} = ?")
+                    params.append(json.dumps(value) if isinstance(value, (dict, list)) else value)
+            if updates:
+                params.append(task_id)
+                conn.execute(f"UPDATE experiment_tasks SET {', '.join(updates)} WHERE task_id = ?", params)
+        else:
+            columns = ['task_id'] + [k for k in kwargs.keys() if k != 'task_id']
+            placeholders = ', '.join(['?' for _ in columns])
+            values = [task_id] + [json.dumps(v) if isinstance(v, (dict, list)) else v for k, v in kwargs.items() if k != 'task_id']
+            conn.execute(f"INSERT INTO experiment_tasks ({', '.join(columns)}) VALUES ({placeholders})", values)
+
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def _get_task(task_id: str) -> dict[str, Any] | None:
+    """从数据库获取任务。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    conn.row_factory = sqlite3.Row
+    try:
+        cursor = conn.execute("SELECT * FROM experiment_tasks WHERE task_id = ?", (task_id,))
+        row = cursor.fetchone()
+        if not row:
+            return None
+
+        task = dict(row)
+        for field in ['result']:
+            if task[field]:
+                try:
+                    task[field] = json.loads(task[field])
+                except:
+                    pass
+        return task
+    finally:
+        conn.close()
+
+
+def _get_tasks_by_experiment(experiment_id: str) -> list[dict[str, Any]]:
+    """获取实验的所有任务。"""
+    conn = sqlite3.connect(str(TASKS_DB))
+    conn.row_factory = sqlite3.Row
+    try:
+        cursor = conn.execute(
+            "SELECT * FROM experiment_tasks WHERE experiment_id = ? ORDER BY created_at DESC",
+            (experiment_id,)
+        )
+        tasks = []
+        for row in cursor.fetchall():
+            task = dict(row)
+            for field in ['result']:
+                if task[field]:
+                    try:
+                        task[field] = json.loads(task[field])
+                    except:
+                        pass
+            tasks.append(task)
+        return tasks
+    finally:
+        conn.close()
+
+
+def _update_experiment_status(experiment_id: str, status: str):
+    """更新实验状态。"""
+    db_path = Path("research_store/experiments.sqlite3")
+    if not db_path.exists():
+        return
+
+    conn = sqlite3.connect(str(db_path))
+    try:
+        conn.execute(
+            "UPDATE experiments SET status = ? WHERE experiment_id = ?",
+            (status, experiment_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+# 初始化数据库
+_init_tasks_db()
 
 
 class CreateExperimentRequest(BaseModel):
@@ -38,21 +152,19 @@ class CreateExperimentRequest(BaseModel):
 
 async def _run_experiment_task(task_id: str, experiment_id: str):
     """Run experiment in background."""
-    _experiment_tasks[task_id]["status"] = "running"
-    _experiment_tasks[task_id]["started_at"] = datetime.now(UTC).isoformat()
-
-    # 更新实验表状态为 running
+    _save_task(task_id, status="running", started_at=datetime.now(UTC).isoformat())
     _update_experiment_status(experiment_id, "running")
 
     try:
         # Get experiment config
         experiment = engine.get_experiment(experiment_id)
         if not experiment:
-            _experiment_tasks[task_id].update({
-                "status": "failed",
-                "error": "Experiment not found",
-                "completed_at": datetime.now(UTC).isoformat(),
-            })
+            _save_task(
+                task_id,
+                status="failed",
+                error="Experiment not found",
+                completed_at=datetime.now(UTC).isoformat(),
+            )
             _update_experiment_status(experiment_id, "failed")
             return
 
@@ -74,45 +186,28 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(None, engine.run_grid_search, config)
 
-        _experiment_tasks[task_id].update({
-            "status": "completed",
-            "total_runs": result.total_runs,
-            "best_run": {
+        _save_task(
+            task_id,
+            status="completed",
+            total_runs=result.total_runs,
+            best_run={
                 "params": result.best_run.params if result.best_run else {},
                 "metrics": result.best_run.metrics if result.best_run else {},
                 "score": result.best_run.score if result.best_run else {},
             } if result.best_run else None,
-            "completed_at": datetime.now(UTC).isoformat(),
-        })
+            completed_at=datetime.now(UTC).isoformat(),
+        )
 
-        # 更新实验表状态为 completed
         _update_experiment_status(experiment_id, "completed")
 
     except Exception as e:
-        _experiment_tasks[task_id].update({
-            "status": "failed",
-            "error": str(e),
-            "completed_at": datetime.now(UTC).isoformat(),
-        })
-        # 更新实验表状态为 failed
-        _update_experiment_status(experiment_id, "failed")
-
-
-def _update_experiment_status(experiment_id: str, status: str):
-    """更新实验状态。"""
-    db_path = Path("research_store/experiments.sqlite3")
-    if not db_path.exists():
-        return
-
-    conn = sqlite3.connect(str(db_path))
-    try:
-        conn.execute(
-            "UPDATE experiments SET status = ? WHERE experiment_id = ?",
-            (status, experiment_id),
+        _save_task(
+            task_id,
+            status="failed",
+            error=str(e),
+            completed_at=datetime.now(UTC).isoformat(),
         )
-        conn.commit()
-    finally:
-        conn.close()
+        _update_experiment_status(experiment_id, "failed")
 
 
 @router.get("")
@@ -128,6 +223,14 @@ async def get_experiment(experiment_id: str, current_user: CurrentUser):
     experiment = engine.get_experiment(experiment_id)
     if not experiment:
         return ApiResponse(code=404, message="Experiment not found")
+
+    # 添加任务状态
+    tasks = _get_tasks_by_experiment(experiment_id)
+    if tasks:
+        latest_task = tasks[0]
+        experiment["task_status"] = latest_task.get("status")
+        experiment["task_error"] = latest_task.get("error")
+
     return ApiResponse(data=experiment)
 
 
@@ -208,12 +311,13 @@ async def run_experiment(
 
     task_id = f"exp_run_{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}_{uuid.uuid4().hex[:4]}"
 
-    _experiment_tasks[task_id] = {
-        "task_id": task_id,
-        "experiment_id": experiment_id,
-        "status": "pending",
-        "created_at": datetime.now(UTC).isoformat(),
-    }
+    # 保存任务
+    _save_task(
+        task_id,
+        experiment_id=experiment_id,
+        status="pending",
+        created_at=datetime.now(UTC).isoformat(),
+    )
 
     # Run in background
     background_tasks.add_task(_run_experiment_task, task_id, experiment_id)
@@ -229,7 +333,7 @@ async def run_experiment(
 @router.get("/status/{task_id}")
 async def get_experiment_status(task_id: str, current_user: CurrentUser):
     """Get experiment task status."""
-    task = _experiment_tasks.get(task_id)
+    task = _get_task(task_id)
     if not task:
         return ApiResponse(code=404, message="Task not found")
     return ApiResponse(data=task)
@@ -244,21 +348,20 @@ async def delete_experiment(experiment_id: str, current_user: CurrentUser):
 
     conn = sqlite3.connect(str(db_path))
     try:
-        # Delete experiment runs first
-        conn.execute(
-            "DELETE FROM experiment_runs WHERE experiment_id = ?",
-            (experiment_id,),
-        )
-        # Delete experiment
-        cursor = conn.execute(
-            "DELETE FROM experiments WHERE experiment_id = ?",
-            (experiment_id,),
-        )
+        conn.execute("DELETE FROM experiment_runs WHERE experiment_id = ?", (experiment_id,))
+        cursor = conn.execute("DELETE FROM experiments WHERE experiment_id = ?", (experiment_id,))
         conn.commit()
 
         if cursor.rowcount == 0:
             return ApiResponse(code=404, message="Experiment not found")
+    finally:
+        conn.close()
 
+    # 删除任务记录
+    conn = sqlite3.connect(str(TASKS_DB))
+    try:
+        conn.execute("DELETE FROM experiment_tasks WHERE experiment_id = ?", (experiment_id,))
+        conn.commit()
     finally:
         conn.close()
 
