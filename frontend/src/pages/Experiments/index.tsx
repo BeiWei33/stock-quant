@@ -61,11 +61,34 @@ export default function ExperimentsPage() {
   const [createVisible, setCreateVisible] = useState(false);
   const [createForm] = Form.useForm();
   const [strategies, setStrategies] = useState<any[]>([]);
+  const [pollingExperimentId, setPollingExperimentId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchExperiments();
     loadStrategies();
   }, []);
+
+  // 轮询实验状态
+  useEffect(() => {
+    if (!pollingExperimentId) return;
+
+    const interval = setInterval(async () => {
+      try {
+        const response = await api.get(`/api/experiments/${pollingExperimentId}`);
+        const experiment = response.data.data;
+
+        if (experiment && (experiment.status === 'completed' || experiment.status === 'failed')) {
+          message.success(experiment.status === 'completed' ? '实验完成！' : '实验失败');
+          setPollingExperimentId(null);
+          fetchExperiments();
+        }
+      } catch (error) {
+        console.error('轮询实验状态失败', error);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [pollingExperimentId]);
 
   // 从 localStorage 加载策略列表
   const loadStrategies = () => {
@@ -142,6 +165,7 @@ export default function ExperimentsPage() {
       const response = await api.post(`/api/experiments/${experimentId}/run`);
       if (response.data.code === 200) {
         message.info('实验已提交运行，请等待完成');
+        setPollingExperimentId(experimentId);
         fetchExperiments();
       } else {
         message.error(response.data.message || '运行失败');

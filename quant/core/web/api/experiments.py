@@ -41,6 +41,9 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
     _experiment_tasks[task_id]["status"] = "running"
     _experiment_tasks[task_id]["started_at"] = datetime.now(UTC).isoformat()
 
+    # 更新实验表状态为 running
+    _update_experiment_status(experiment_id, "running")
+
     try:
         # Get experiment config
         experiment = engine.get_experiment(experiment_id)
@@ -50,6 +53,7 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
                 "error": "Experiment not found",
                 "completed_at": datetime.now(UTC).isoformat(),
             })
+            _update_experiment_status(experiment_id, "failed")
             return
 
         # Create config
@@ -81,12 +85,34 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
             "completed_at": datetime.now(UTC).isoformat(),
         })
 
+        # 更新实验表状态为 completed
+        _update_experiment_status(experiment_id, "completed")
+
     except Exception as e:
         _experiment_tasks[task_id].update({
             "status": "failed",
             "error": str(e),
             "completed_at": datetime.now(UTC).isoformat(),
         })
+        # 更新实验表状态为 failed
+        _update_experiment_status(experiment_id, "failed")
+
+
+def _update_experiment_status(experiment_id: str, status: str):
+    """更新实验状态。"""
+    db_path = Path("research_store/experiments.sqlite3")
+    if not db_path.exists():
+        return
+
+    conn = sqlite3.connect(str(db_path))
+    try:
+        conn.execute(
+            "UPDATE experiments SET status = ? WHERE experiment_id = ?",
+            (status, experiment_id),
+        )
+        conn.commit()
+    finally:
+        conn.close()
 
 
 @router.get("")
