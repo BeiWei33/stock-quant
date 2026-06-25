@@ -186,15 +186,20 @@ async def _run_experiment_task(task_id: str, experiment_id: str):
         loop = asyncio.get_event_loop()
         result = await loop.run_in_executor(None, engine.run_grid_search, config)
 
+        # 保存结果
+        best_run_data = None
+        if result.best_run:
+            best_run_data = {
+                "params": result.best_run.params,
+                "metrics": result.best_run.metrics,
+                "score": result.best_run.score,
+            }
+
         _save_task(
             task_id,
             status="completed",
             total_runs=result.total_runs,
-            best_run={
-                "params": result.best_run.params if result.best_run else {},
-                "metrics": result.best_run.metrics if result.best_run else {},
-                "score": result.best_run.score if result.best_run else {},
-            } if result.best_run else None,
+            best_run=best_run_data,
             completed_at=datetime.now(UTC).isoformat(),
         )
 
